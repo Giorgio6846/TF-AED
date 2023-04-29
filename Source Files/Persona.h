@@ -25,4 +25,3 @@ public:
     int getEdad(){return this->edad;}
     char getTipoDocumento(){return this->tipoDocumento;}
 };
-
