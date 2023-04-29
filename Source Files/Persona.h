@@ -1,19 +1,19 @@
 #include "Libraries.h"
 
-class Estudiante
+class Persona
 {
 public:
     string nombre, apellido;
     int edad;
     char tipoDocumento;
 public:
-    Estudiante(string nombre, string apellido, int edad, char tipoDocumento){
+    Persona(string nombre, string apellido, int edad, char tipoDocumento){
     this -> nombre = nombre;
     this -> apellido = apellido;
     this -> edad = edad;
     this -> tipoDocumento = tipoDocumento;
     };
-    ~Estudiante(){};
+    ~Persona(){};
 
     void setNombre(string nombre){this->nombre = nombre;}
     void setApellido(string apellido){this->apellido = apellido;}
