@@ -3,16 +3,24 @@
 class Persona
 {
 public:
-    string nombre, apellido;
+    string nombre;
+    string apellido;
     int edad;
     char tipoDocumento;
+
+    string DNI;
+    string CarnetExtranjeria;
+    string Pasaporte;
+
 public:
-    Persona(string nombre, string apellido, int edad, char tipoDocumento){
-    this -> nombre = nombre;
-    this -> apellido = apellido;
-    this -> edad = edad;
-    this -> tipoDocumento = tipoDocumento;
+    Persona(string nombre, string apellido, int edad, char tipoDocumento)
+    {
+        this -> nombre = nombre;
+        this -> apellido = apellido;
+        this -> edad = edad;
+        this -> tipoDocumento = tipoDocumento;
     };
+    
     ~Persona(){};
 
     void setNombre(string nombre){this->nombre = nombre;}
@@ -25,3 +33,4 @@ public:
     int getEdad(){return this->edad;}
     char getTipoDocumento(){return this->tipoDocumento;}
 };
+
