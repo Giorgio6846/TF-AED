@@ -14,7 +14,11 @@ if (opcion == 'V')
     cout << "Los destinos disponibles para viaje son: ";
     TurismoDias->printDestinosViajes();
 }
-
+else
+{
+    cout << "Los destinos disponibles para encomiendas son: ";
+    TurismoDias->printDestinosEncomiendas();
+}
 
 
 }
