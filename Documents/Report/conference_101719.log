@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.29)  29 APR 2023 20:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.29)  30 APR 2023 10:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/giorgio6846/Documents/Uni/UPC/2023 - 1/Algoritmos y Estructuras de Datos/Github/TrabajoFinalAlgEstDat/Report/conference_101719.tex"
-(/Users/giorgio6846/Documents/Uni/UPC/2023 - 1/Algoritmos y Estructuras de Datos/Github/TrabajoFinalAlgEstDat/Report/conference_101719.tex
+**"/Volumes/giorgio6846/Documents/Uni/UPC/2023 - 1/Algoritmos y Estructuras de Datos/Github/TrabajoFinalAlgEstDat/Documents/Report/conference_101719.tex"
+(/Volumes/giorgio6846/Documents/Uni/UPC/2023 - 1/Algoritmos y Estructuras de Datos/Github/TrabajoFinalAlgEstDat/Documents/Report/conference_101719.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-04-20> (./IEEEtran.cls
 Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
@@ -268,26 +268,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 56.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Calculating math sizes for size <11> on input line 56.
-
-
-LaTeX Warning: Reference `AA' on page 1 undefined on input line 87.
-
-
-LaTeX Warning: Reference `SCM' on page 1 undefined on input line 87.
-
-
-LaTeX Warning: Reference `eq' on page 1 undefined on input line 121.
-
-
-LaTeX Warning: Reference `eq' on page 1 undefined on input line 121.
-
-
-LaTeX Warning: Reference `eq' on page 1 undefined on input line 121.
-
-
-LaTeX Warning: Reference `eq' on page 1 undefined on input line 122.
-
-[1{/usr/local/texlive/2023basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023basic/texmf-dist/fonts/enc/dvips/base/8r.enc}
+ [1{/usr/local/texlive/2023basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023basic/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
 ]
@@ -295,7 +276,7 @@ LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 12
  (/usr/local/texlive/2023basic/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-/Users/giorgio6846/Documents/Uni/UPC/2023 - 1/Algoritmos y Estructuras de Datos/Github/TrabajoFinalAlgEstDat/Report/conference_101719.tex:126: Font OT1/pcr/m/n/10=pcrr7t at 10.0pt not loadable: Metric (TFM) file not found.
+/Volumes/giorgio6846/Documents/Uni/UPC/2023 - 1/Algoritmos y Estructuras de Datos/Github/TrabajoFinalAlgEstDat/Documents/Report/conference_101719.tex:126: Font OT1/pcr/m/n/10=pcrr7t at 10.0pt not loadable: Metric (TFM) file not found.
 <to be read again> 
                    relax 
 l.126 Please use ``soft'' (e.g., \verb
@@ -409,12 +390,6 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no } in font nullfont!
-
-LaTeX Warning: Citation `b7' on page 2 undefined on input line 175.
-
-
-LaTeX Warning: Reference `fig' on page 2 undefined on input line 211.
-
 <fig1.png, id=13, 82.1469pt x 71.5473pt>
 File: fig1.png Graphic file (type png)
 <use fig1.png>
@@ -428,33 +403,6 @@ LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 242.
  [2]
 
-LaTeX Warning: Citation `b1' on page 3 undefined on input line 255.
-
-
-LaTeX Warning: Citation `b2' on page 3 undefined on input line 256.
-
-
-LaTeX Warning: Citation `b3' on page 3 undefined on input line 257.
-
-
-LaTeX Warning: Citation `b3' on page 3 undefined on input line 257.
-
-
-LaTeX Warning: Citation `b3' on page 3 undefined on input line 257.
-
-
-LaTeX Warning: Citation `b3' on page 3 undefined on input line 258.
-
-
-LaTeX Warning: Citation `b4' on page 3 undefined on input line 266.
-
-
-LaTeX Warning: Citation `b5' on page 3 undefined on input line 267.
-
-
-LaTeX Warning: Citation `b6' on page 3 undefined on input line 272.
-
-
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
 
@@ -465,24 +413,17 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[3 <./fig1.png (PNG copy)>] (./conference_101719.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[3 <./fig1.png (PNG copy)>] (./conference_101719.aux) ) 
 Here is how much of TeX's memory you used:
  4127 strings out of 477452
- 65067 string characters out of 5823426
+ 65103 string characters out of 5823426
  1872074 words of memory out of 5000000
  24347 multiletter control sequences out of 15000+600000
  562877 words of font info for 131 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 57i,11n,62p,710b,304s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,11n,62p,722b,304s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2023basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023basic/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2023basic/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2023basic/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2023basic/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on conference_101719.pdf (3 pages, 124556 bytes).
+Output written on conference_101719.pdf (3 pages, 123931 bytes).
 PDF statistics:
  66 PDF objects out of 1000 (max. 8388607)
  39 compressed objects within 1 object stream

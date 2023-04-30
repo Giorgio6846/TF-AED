@@ -9,6 +9,11 @@ private:
 public:
     Asiento(string ubicacion, char clase);
     ~Asiento();
+
+    string getAsiento(){ return this->ubicacion; }
+    char getClase(){ return this->clase; }
+
+    
 };
 
 Asiento::Asiento(string ubicacion, char clase)

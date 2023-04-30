@@ -1,8 +1,8 @@
-PWD /Users/giorgio6846/Documents/Uni/UPC/2023 - 1/Algoritmos y Estructuras de Datos/Github/TrabajoFinalAlgEstDat/Report
+PWD /Volumes/giorgio6846/Documents/Uni/UPC/2023 - 1/Algoritmos y Estructuras de Datos/Github/TrabajoFinalAlgEstDat/Documents/Report
 INPUT /usr/local/texlive/2023basic/texmf.cnf
 INPUT /usr/local/texlive/2023basic/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2023basic/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/giorgio6846/Documents/Uni/UPC/2023 - 1/Algoritmos y Estructuras de Datos/Github/TrabajoFinalAlgEstDat/Report/conference_101719.tex
+INPUT /Volumes/giorgio6846/Documents/Uni/UPC/2023 - 1/Algoritmos y Estructuras de Datos/Github/TrabajoFinalAlgEstDat/Documents/Report/conference_101719.tex
 OUTPUT conference_101719.log
 INPUT ./IEEEtran.cls
 INPUT ./IEEEtran.cls
@@ -344,8 +344,6 @@ INPUT /usr/local/texlive/2023basic/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT /usr/local/texlive/2023basic/texmf-dist/fonts/vf/adobe/times/ptmrc7t.vf
 INPUT /usr/local/texlive/2023basic/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
 INPUT /usr/local/texlive/2023basic/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
-INPUT /usr/local/texlive/2023basic/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
-INPUT /usr/local/texlive/2023basic/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT /usr/local/texlive/2023basic/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 INPUT /usr/local/texlive/2023basic/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 INPUT /usr/local/texlive/2023basic/texmf-dist/tex/latex/psnfss/ot1pcr.fd
@@ -362,6 +360,8 @@ INPUT /usr/local/texlive/2023basic/texmf-dist/tex/latex/psnfss/omsptm.fd
 INPUT /usr/local/texlive/2023basic/texmf-dist/tex/latex/psnfss/omsptm.fd
 INPUT /usr/local/texlive/2023basic/texmf-dist/fonts/vf/adobe/times/ptmri7t.vf
 INPUT /usr/local/texlive/2023basic/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
+INPUT /usr/local/texlive/2023basic/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
+INPUT /usr/local/texlive/2023basic/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT /usr/local/texlive/2023basic/texmf-dist/fonts/vf/adobe/times/ptmrc7t.vf
 INPUT /usr/local/texlive/2023basic/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT /usr/local/texlive/2023basic/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
