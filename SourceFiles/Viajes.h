@@ -31,6 +31,8 @@ public:
 
     void selecionarDestino();
     void selecionarOrigen();
+    void leerArchivo();
+    void escribirArchivo();
 };
 
 void Viajes :: selecionarDestino()
