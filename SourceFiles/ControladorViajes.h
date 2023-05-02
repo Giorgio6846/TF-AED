@@ -6,6 +6,7 @@ class ControladorViajes
 private:
     int cantidadPasajeros;
     vector<Persona> Pasajero;
+    
 
 public:
     ControladorViajes(/* args */);

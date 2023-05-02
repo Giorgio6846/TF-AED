@@ -9,9 +9,14 @@ void opcionEncomiendas();
 int main()
 {
     Viajes* TurismoDiasViajes = new Viajes();
+    int opcionElegida;
 
-    switch (menu())
+    do
     {
+        opcionElegida = menu();
+
+        switch (opcionElegida)
+        {
         case 1:
             opcionViajes(TurismoDiasViajes);
             break;
@@ -20,17 +25,37 @@ int main()
             break;
         default:
             break;
-    }
+        }
+    } while (opcionElegida != 3);
 }
 
 void opcionViajes(Viajes *TurismoDiasViajes)
 {
-    TurismoDiasViajes->selecionarDestino();
+    int opcionViajeSelecionada;
+    do
+    {
+        opcionViajeSelecionada = TurismoDiasViajes->menuViajes();
+
+        switch (opcionViajeSelecionada)
+        {
+        case 1:
+            TurismoDiasViajes->reservaViajes();
+            break;
+        case 2:
+            TurismoDiasViajes->reservaBusquedaViajes();
+            break;
+        case 4:
+            TurismoDiasViajes->escrituraArchivo();
+            break;
+        default:
+            break;
+        }
+    } while (opcionViajeSelecionada == 3);
 }
 
 void opcionEncomiendas()
 {
-    char opcionViajeEncomienda, opcionPersonaEmpresa;
+    char opcionPersonaEmpresa;
 
     cout << "Esta usted solicitando este servicio como Persona (P) o como Empresa (E): ";
     cin >> opcionPersonaEmpresa;
@@ -54,8 +79,8 @@ int menu()
 
         cin >> opcionSelecionada;
 
-        if (!(opcionSelecionada >= 1 && opcionSelecionada <= 3)) cout << "La opcion seleccionada es incorrecta.\n";
-    } while (!(opcionSelecionada >= 1 && opcionSelecionada <= 3));
+        if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4)) cout << "La opcion seleccionada es incorrecta.\n";
+    } while (!(opcionSelecionada >= 1 && opcionSelecionada <= 4));
 
     return opcionSelecionada;
 }
