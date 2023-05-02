@@ -1,30 +1,14 @@
 #include "Libraries.h"
 
-#include "Origen.h"
-#include "Destino.h"
+#include "Rutas.h"
 #include "ControladorViajes.h"
 /*
 Lima, Chimbote, Trujillo, Pacasmayo, Cajamarca, Chepen, Chiclayo, Piura, Jaen, Cajabamba, Moyobamba, Tarapoto
 */
 
-class Viajes : public Origen, public Destino
+class Viajes : public Rutas
 {
 private:
-    bool rutas[12][12] = {
-        /*Lima*/      {0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0},
-        /*Chimbote*/  {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        /*Trujillo*/  {1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0},
-        /*Pacasmayo*/ {1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0},
-        /*Cajamarca*/ {0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1},
-        /*Chepen*/    {1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0},
-        /*Chiclayo*/  {1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0},
-        /*Piura*/     {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0},
-        /*Jaen*/      {0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0},
-        /*Cajabamba*/ {0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0},
-        /*Moyobamba*/ {0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1},
-        /*Tarapoto*/  {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0},
-    };
-
     vector<ControladorViajes> Pasajes;
 
 public:
@@ -51,7 +35,7 @@ int Viajes ::selecionarDestino(int *Origen)
     vector<string> DestinosDisponibles;
     for (int i = 0; i < getSizeDestino(); i++)
     {
-        if (rutas[*Origen][i])
+        if (getRuta(*Origen,i))
         {
             DestinosDisponibles.push_back(getDestino(i));
         }
