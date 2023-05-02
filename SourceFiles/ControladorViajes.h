@@ -6,7 +6,8 @@ class ControladorViajes
 private:
     int cantidadPasajeros;
     vector<Persona> Pasajero;
-    
+    int codigoO, codigoD;
+
 
 public:
     ControladorViajes(/* args */);

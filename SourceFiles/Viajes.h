@@ -2,6 +2,7 @@
 
 #include "Rutas.h"
 #include "ControladorViajes.h"
+
 /*
 Lima, Chimbote, Trujillo, Pacasmayo, Cajamarca, Chepen, Chiclayo, Piura, Jaen, Cajabamba, Moyobamba, Tarapoto
 */
@@ -15,12 +16,16 @@ public:
     Viajes(){};
     ~Viajes(){};
 
-    int menuViajes();
-    int selecionarDestino(int *Origen);
+    //Funciones usuario
+    int selecionarDestino(int *);
     int selecionarOrigen();
-    
+    int seleccionarCantidadUsuarios(string, string);
+
+    //Opcion seleccion
+    int menuViajes();
     void reservaViajes();
     void reservaBusquedaViajes();
+    
     void escrituraArchivo();
 };
 
@@ -29,7 +34,7 @@ void Viajes :: escrituraArchivo()
 
 }
 
-int Viajes ::selecionarDestino(int *Origen)
+int Viajes :: selecionarDestino(int *Origen)
 {
     //Convierte de la matriz a un vector con los destinos disponibles para esa ruta especifica
     vector<string> DestinosDisponibles;
@@ -86,17 +91,30 @@ int Viajes :: selecionarOrigen()
 
 void Viajes :: reservaViajes()
 {
-    int Origen, Destino;
+    int Origen, Destino, cantidadUsuarios;
 
     Origen = selecionarOrigen();
-
     Destino = selecionarDestino(&Origen);
+    cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
 
     cout << "\n" << "Ha selecionado el origen " << getOrigen(Origen);
     cout << "\n" << "Ha selecionado el destino " << getDestino(Destino);
 }
 
-void Viajes ::reservaBusquedaViajes()
+int Viajes :: seleccionarCantidadUsuarios(string Origen, string Destino)
+{
+    int cantidadUsuarios;
+
+    do
+    {
+        cout << "\n Cuantos pasajeros hay en el grupo de " + Origen + " para " + Destino << "\n";
+        cin >> cantidadUsuarios;
+    } while (!(cantidadUsuarios >= 1 && cantidadUsuarios <= 50));
+
+    return cantidadUsuarios;
+}
+
+void Viajes :: reservaBusquedaViajes()
 {
 
 }
