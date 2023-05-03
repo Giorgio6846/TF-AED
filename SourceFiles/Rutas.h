@@ -74,6 +74,7 @@ int Rutas ::selecionarDestino(int *Origen)
 
     return opcionElegida;
 }
+
 int Rutas ::selecionarOrigen()
 {
     int opcionElegida;
