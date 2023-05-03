@@ -9,6 +9,7 @@ void opcionEncomiendas(Viajes *TurismoDiasViajes);
 int main()
 {
     Viajes* TurismoDiasViajes = new Viajes();
+
     int opcionElegida;
 
     do
@@ -70,7 +71,7 @@ void opcionEncomiendas(Viajes *TurismoDiasViajes)
         }
     }
 
-    opcionSeleccionada = TurismoDiasViajes->menuEncomiendas();
+    //opcionSeleccionada = TurismoDiasViajes->menuEncomiendas();
 
     do{
         switch (opcionSeleccionada)
@@ -95,6 +96,24 @@ void opcionEncomiendas(Viajes *TurismoDiasViajes)
 
     //cout << "\nElija, de la lista, el destino de la encomienda (1 - " << TurismoDias->getEncomiendasN() << ")";
     //cin>>opcionDestino;
+}
+
+int menuEncomiendas()
+{
+
+    int opcionSeleccionada;
+    do
+    {
+            cout << "Selecione la opcion. \n";
+            cout << "1. Agendar una encomienda \n";
+            cout << "2. Cancelar una encomienda \n";
+            cout << "3. Regresar al menu principal \n";
+            cin >> opcionSeleccionada;
+            if (!(opcionSeleccionada >= 1 && opcionSeleccionada <= 4))
+                cout << "La opcion seleccionada es incorrecta.\n";
+    } while (!(opcionSeleccionada >= 1 && opcionSeleccionada <= 4));
+
+    return opcionSeleccionada;
 }
 
 int menu()

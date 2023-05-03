@@ -23,7 +23,6 @@ private:
     };
 
 public:
-    int destino, origen;
     Rutas(/* args */){};
     ~Rutas(){};
 
