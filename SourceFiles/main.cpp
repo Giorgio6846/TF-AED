@@ -2,13 +2,15 @@
 #include "Libraries.h"
 #include "Viajes.h"
 #include "ControladorEncomiendas.h"
+#include "NodoLista.h"
 
 int menu();
 void opcionViajes(Viajes *TurismoDiasViajes);
-void opcionEncomiendas(ControladorEncomiendas *contEncomienda, Rutas * rutas);
+void opcionEncomiendas(ControladorEncomiendas *contEncomienda, Rutas * rutas, NodoLista * listaClientes);
 
 int main()
 {
+    NodoLista * listaClientes = new NodoLista();
     Viajes* TurismoDiasViajes = new Viajes();
     ControladorEncomiendas * contEncomienda = new ControladorEncomiendas();
     Rutas * rutas = new Rutas();
@@ -25,7 +27,7 @@ int main()
             opcionViajes(TurismoDiasViajes);
             break;
         case 2:
-            opcionEncomiendas(contEncomienda, rutas);
+            opcionEncomiendas(contEncomienda, rutas, listaClientes);
             break;
         default:
             cout << "Gracias por elegir nuestra app! :)";
@@ -58,7 +60,7 @@ void opcionViajes(Viajes *TurismoDiasViajes)
     } while (opcionViajeSelecionada == 3);
 }
 
-void opcionEncomiendas(ControladorEncomiendas *contEncomienda, Rutas* rutas)
+void opcionEncomiendas(ControladorEncomiendas *contEncomienda, Rutas* rutas, NodoLista * listaClientes)
 {
 
     char opcionPersonaEmpresa = 'F';
@@ -68,12 +70,15 @@ void opcionEncomiendas(ControladorEncomiendas *contEncomienda, Rutas* rutas)
     {
         cout << "Esta usted solicitando este servicio como Persona (P) o como Empresa (E): ";
         cin >> opcionPersonaEmpresa;
-        if (opcionPersonaEmpresa != 'P' && opcionPersonaEmpresa != 'p' && opcionPersonaEmpresa != 'E' && opcionPersonaEmpresa != 'e')
+        opcionPersonaEmpresa = toupper(opcionPersonaEmpresa);
+        if (opcionPersonaEmpresa != 'P' && opcionPersonaEmpresa != 'E')
         {
             cout << "Por favor, ingrese 'P' para persona y 'E' para empresa" << endl;
         }
     }
-
+    //Almacena la información del cliente
+    contEncomienda->informacionCliente(opcionPersonaEmpresa);
+    //Almacenamos que opción del menú ha elegido el usuario
     opcionSeleccionada = contEncomienda->menuEncomiendas();
 
     do{
@@ -100,24 +105,6 @@ void opcionEncomiendas(ControladorEncomiendas *contEncomienda, Rutas* rutas)
 
     //cout << "\nElija, de la lista, el destino de la encomienda (1 - " << TurismoDias->getEncomiendasN() << ")";
     //cin>>opcionDestino;
-}
-
-int menuEncomiendas()
-{
-
-    int opcionSeleccionada;
-    do
-    {
-            cout << "Selecione la opcion. \n";
-            cout << "1. Agendar una encomienda \n";
-            cout << "2. Cancelar una encomienda \n";
-            cout << "3. Regresar al menu principal \n";
-            cin >> opcionSeleccionada;
-            if (!(opcionSeleccionada >= 1 && opcionSeleccionada <= 4))
-                cout << "La opcion seleccionada es incorrecta.\n";
-    } while (!(opcionSeleccionada >= 1 && opcionSeleccionada <= 4));
-
-    return opcionSeleccionada;
 }
 
 int menu()
