@@ -54,7 +54,7 @@ void opcionViajes(Viajes *TurismoDiasViajes)
         default:
             break;
         }
-    } while (opcionViajeSelecionada == 3);
+    } while (opcionViajeSelecionada != 3);
 }
 
 void opcionEncomiendas(Encomienda *encomienda)

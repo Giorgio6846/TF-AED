@@ -31,7 +31,7 @@ public:
     int getSizeOrigen() { return origen.size(); }
     string getOrigen(int N) { return origen.at(N); }
 
-    bool getRuta(int pos, int N){return rutas[pos][N]; }
+    bool getRuta(int fil, int col) { return rutas[fil][col]; }
 };
 
 Rutas::Rutas(/* args */)
