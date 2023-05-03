@@ -22,7 +22,6 @@ public:
     void reservaViajes();
     void reservaBusquedaViajes();
 
-
     void escrituraArchivo();
 };
 

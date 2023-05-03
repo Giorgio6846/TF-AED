@@ -26,13 +26,16 @@ ControladorViajes::~ControladorViajes()
 {
 }
 
-void ControladorViajes :: agregarPasajero()
+void ControladorViajes :: informacionPasajero()
 {
 
+}
+
+void ControladorViajes :: agregarPasajero()
+{
 
     for (int i = 0; i <= cantidadPasajeros; i++)
     {
 
-    }
-    
+    }   
 }
