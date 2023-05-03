@@ -8,10 +8,11 @@ private:
     vector<Persona> Pasajero;
     int codigoO, codigoD;
 
-
 public:
     ControladorViajes(int codigoO, int codigoD, int cantidadPasajeros);
     ~ControladorViajes();
+    void agregarPasajero(); 
+    void informacionPasajero();
 };
 
 ControladorViajes::ControladorViajes(int codigoO, int codigoD, int cantidadPasajeros)
@@ -23,4 +24,15 @@ ControladorViajes::ControladorViajes(int codigoO, int codigoD, int cantidadPasaj
 
 ControladorViajes::~ControladorViajes()
 {
+}
+
+void ControladorViajes :: agregarPasajero()
+{
+
+
+    for (int i = 0; i <= cantidadPasajeros; i++)
+    {
+
+    }
+    
 }
