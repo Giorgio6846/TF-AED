@@ -26,7 +26,7 @@ public:
     Rutas(/* args */){};
     ~Rutas(){};
 
-    int selecionarDestino(int *);
+    int selecionarDestino(int );
     int selecionarOrigen();
 
     int getSizeDestino() { return destino.size(); }
@@ -38,13 +38,13 @@ public:
     bool getRuta(int pos, int N){return rutas[pos][N]; }
 };
 
-int Rutas ::selecionarDestino(int *Origen)
+int Rutas ::selecionarDestino(int Origen)
 {
     // Convierte de la matriz a un vector con los destinos disponibles para esa ruta especifica
     vector<string> DestinosDisponibles;
     for (int i = 0; i < getSizeDestino(); i++)
     {
-        if (getRuta(*Origen, i))
+        if (getRuta(Origen, i))
         {
             DestinosDisponibles.push_back(getDestino(i));
         }
@@ -53,7 +53,7 @@ int Rutas ::selecionarDestino(int *Origen)
     int opcionElegida;
     do
     {
-        cout << "\nElija, de la lista, los destinos disponibles para " << getOrigen(*Origen) << " del (1 - " << getSizeDestino() << " o 0 para regresar al menu de viajes) \n";
+        cout << "\nElija, de la lista, los destinos disponibles para " << getOrigen(Origen) << " del (1 - " << getSizeDestino() << " o 0 para regresar al menu de viajes) \n";
         for (int i = 0; i < DestinosDisponibles.size(); i++)
         {
             cout << i + 1 << " " << DestinosDisponibles.at(i) << "\n";

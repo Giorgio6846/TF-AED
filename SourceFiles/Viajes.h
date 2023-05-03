@@ -4,7 +4,7 @@
     /*
     Lima, Chimbote, Trujillo, Pacasmayo, Cajamarca, Chepen, Chiclayo, Piura, Jaen, Cajabamba, Moyobamba, Tarapoto
     */
-    class Viajes : public Rutas
+class Viajes : public Rutas
 {
 private:
     vector<ControladorViajes> Pasajes;
@@ -34,7 +34,7 @@ void Viajes ::reservaViajes()
     int Origen, Destino, cantidadUsuarios;
 
     Origen = selecionarOrigen();
-    Destino = selecionarDestino(&Origen);
+    Destino = selecionarDestino(Origen);
     cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
 
     cout << "\n Ha selecionado el origen " << getOrigen(Origen);
