@@ -1,14 +1,17 @@
 #include "Libraries.h"
 //#include "App.h"
 #include "Viajes.h"
+#include "Encomienda.h"
 
 int menu();
 void opcionViajes(Viajes *TurismoDiasViajes);
-void opcionEncomiendas(Viajes *TurismoDiasViajes);
+void opcionEncomiendas(Encomienda *encomienda);
 
 int main()
 {
     Viajes* TurismoDiasViajes = new Viajes();
+    Encomienda* encomienda = new Encomienda();
+
     int opcionElegida;
 
     do
@@ -21,7 +24,7 @@ int main()
             opcionViajes(TurismoDiasViajes);
             break;
         case 2:
-            opcionEncomiendas(TurismoDiasViajes);
+            opcionEncomiendas(encomienda);
             break;
         default:
             cout << "Gracias por elegir nuestra app! :)";
@@ -54,7 +57,7 @@ void opcionViajes(Viajes *TurismoDiasViajes)
     } while (opcionViajeSelecionada == 3);
 }
 
-void opcionEncomiendas(Viajes *TurismoDiasViajes)
+void opcionEncomiendas(Encomienda *encomienda)
 {
 
     char opcionPersonaEmpresa = 'F';
@@ -70,13 +73,13 @@ void opcionEncomiendas(Viajes *TurismoDiasViajes)
         }
     }
 
-    opcionSeleccionada = TurismoDiasViajes->menuEncomiendas();
+    opcionSeleccionada = encomienda->menuEncomiendas();
 
     do{
         switch (opcionSeleccionada)
             {
             case 1:
-                
+
                 break;
 
             case 2:
