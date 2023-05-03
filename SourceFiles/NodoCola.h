@@ -1,31 +1,27 @@
 #include "Libraries.h"
-#include "Encomienda.h""
+#include "Encomienda.h"
 
-class Nodo
+class NodoCola
 {
 public:
     Encomienda * encomienda;
-    Nodo * next;
+    NodoCola * next;
 
 public:
-    Nodo(){
-    Nodo * frente = NULL;
-    Nodo * fin = NULL;
+    NodoCola(){
+    NodoCola * frente = NULL;
+    NodoCola * fin = NULL;
     };
-    ~Nodo(){};
+    ~NodoCola(){};
 
-    //Funcion que verifica si la cola está vacía
-    bool colaVacia(Nodo * frente){
+
+    void insertarElementoCola(NodoCola *& frente, NodoCola *& fin, Encomienda * encomiendaCliente){
         
-
-    }
-
-    void insertarElementoCola(Nodo *& frente, Nodo *& fin, Encomienda * encomiendaCliente){
-        
-        Nodo * nuevoNodo = new Nodo();
+        NodoCola * nuevoNodo = new NodoCola();
         nuevoNodo->encomienda = encomiendaCliente;
         nuevoNodo->next = NULL;
         
+        //Función lambda que evalua si la cola está vacía
         auto estaVacia = [&](){return (frente == NULL) ? true : false;};
 
         if (estaVacia()){frente = nuevoNodo;}
