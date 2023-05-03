@@ -3,6 +3,7 @@
 class Rutas
 {
 private:
+    
     vector<string> origen{"Lima", "Chimbote", "Trujillo", "Pacasmayo", "Cajamarca", "Chepen", "Chiclayo", "Piura", "Jaen", "Cajabamba", "Moyobamba", "Tarapoto"};
     vector<string> destino{"Lima", "Chimbote", "Trujillo", "Pacasmayo", "Cajamarca", "Chepen", "Chiclayo", "Piura", "Jaen", "Cajabamba", "Moyobamba", "Tarapoto"};
 
@@ -22,8 +23,9 @@ private:
     };
 
 public:
-    Rutas(/* args */);
-    ~Rutas();
+    int destino, origen;
+    Rutas(/* args */){};
+    ~Rutas(){};
 
     int getSizeDestino() { return destino.size(); }
     string getDestino(int N) { return destino.at(N); }
@@ -32,12 +34,34 @@ public:
     string getOrigen(int N) { return origen.at(N); }
 
     bool getRuta(int pos, int N){return rutas[pos][N]; }
+
+    int seleccionarOrigen(){
+    int opcionElegida;
+    do
+    {
+        cout << "\nElija, de la lista, el origen del viaje (1 - " << getSizeOrigen() << " o 0 para regresar al menu de viajes) \n";
+        for (size_t i = 0; i < getSizeOrigen(); i++)
+        {
+            cout << i + 1 << " " << getOrigen(i) << "\n";
+        }
+        cin >> opcionElegida;
+    } while (!(opcionElegida >= 0 && opcionElegida <= 13));
+
+    return opcionElegida-1;
+    }
+
+    void selecionarDestino(int *Origen){
+
+    //Convierte de la matriz a un vector con los destinos disponibles para esa ruta especifica
+    vector<string> DestinosDisponibles;
+    for (int i = 0; i < getSizeDestino(); i++)
+    {
+        if (getRuta(*Origen,i))
+        {
+            DestinosDisponibles.push_back(getDestino(i));
+        }
+    }
+
+
 };
 
-Rutas::Rutas(/* args */)
-{
-}
-
-Rutas::~Rutas()
-{
-}

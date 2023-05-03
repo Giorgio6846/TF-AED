@@ -18,7 +18,6 @@ public:
 
     //Funciones usuario
     int selecionarDestino(int *);
-    int selecionarOrigen();
     int seleccionarCantidadUsuarios(string, string);
 
     //Opcion seleccion
@@ -35,17 +34,6 @@ void Viajes :: escrituraArchivo()
 
 }
 
-int Viajes :: selecionarDestino(int *Origen)
-{
-    //Convierte de la matriz a un vector con los destinos disponibles para esa ruta especifica
-    vector<string> DestinosDisponibles;
-    for (int i = 0; i < getSizeDestino(); i++)
-    {
-        if (getRuta(*Origen,i))
-        {
-            DestinosDisponibles.push_back(getDestino(i));
-        }
-    }
 
     //El usuario seleciona el destino a base del 1 a la cantidad de destinos disponibles
     int opcionElegida;
@@ -74,21 +62,7 @@ int Viajes :: selecionarDestino(int *Origen)
     return opcionElegida;
 }   
 
-int Viajes :: selecionarOrigen()
-{
-    int opcionElegida;
-    do
-    {
-        cout << "\nElija, de la lista, el origen del viaje (1 - " << getSizeOrigen() << " o 0 para regresar al menu de viajes) \n";
-        for (size_t i = 0; i < getSizeOrigen(); i++)
-        {
-            cout << i + 1 << " " << getOrigen(i) << "\n";
-        }
-        cin >> opcionElegida;
-    } while (!(opcionElegida >= 0 && opcionElegida <= 13));
 
-    return opcionElegida-1;
-}
 
 void Viajes :: reservaViajes()
 {
