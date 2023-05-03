@@ -34,6 +34,7 @@ public:
     string getOrigen(int N) { return origen.at(N); }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     bool getRuta(int pos, int N){return rutas[pos][N]; }
 
     int seleccionarOrigen(){
@@ -67,5 +68,8 @@ public:
 =======
     bool getRuta(int fil, int col) { return rutas[fil][col]; }
 >>>>>>> aa9b36fc99cdce3ee9db5deefe9491da7014701e
+=======
+    bool getRuta(int pos, int N){return rutas[pos][N]; }
+>>>>>>> parent of aa9b36f (Minor changes)
 };
 

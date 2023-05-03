@@ -45,7 +45,7 @@ void Bus::generarAsientos()
         for (int j = 0; j < columnaAsiento; j++)
         {
             ubicacion = char(65 + j) + to_string(i+1);
-            clase = char((i <= (10)) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
+            clase = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
 
             Fil.push_back(Asiento());
             Fil[j].clase = clase;
