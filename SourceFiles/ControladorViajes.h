@@ -10,12 +10,15 @@ private:
 
 
 public:
-    ControladorViajes(/* args */);
+    ControladorViajes(int codigoO, int codigoD, int cantidadPasajeros);
     ~ControladorViajes();
 };
 
-ControladorViajes::ControladorViajes(/* args */)
+ControladorViajes::ControladorViajes(int codigoO, int codigoD, int cantidadPasajeros)
 {
+    this -> codigoO = codigoO;
+    this -> codigoD = codigoD;
+    this -> cantidadPasajeros = cantidadPasajeros;
 }
 
 ControladorViajes::~ControladorViajes()

@@ -89,10 +89,8 @@ void Viajes ::reservaViajes()
     Destino = selecionarDestino(&Origen);
     cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
 
-    cout << "\n"
-         << "Ha selecionado el origen " << getOrigen(Origen);
-    cout << "\n"
-         << "Ha selecionado el destino " << getDestino(Destino);
+    cout << "\n Ha selecionado el origen " << getOrigen(Origen);
+    cout << "\n Ha selecionado el destino " << getDestino(Destino);
 }
 
 int Viajes ::seleccionarCantidadUsuarios(string Origen, string Destino)
