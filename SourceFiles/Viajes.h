@@ -47,7 +47,7 @@ int Viajes ::seleccionarCantidadUsuarios(string Origen, string Destino)
 
     do
     {
-        cout << "\n Cuantos pasajeros hay en el grupo de " + Origen + " para " + Destino << "\n";
+        cout << "\n Cuantos pasajeros son en el grupo de " + Origen + " para " + Destino << "\n";
         cin >> cantidadUsuarios;
     } while (!(cantidadUsuarios >= 1 && cantidadUsuarios <= 50));
 
