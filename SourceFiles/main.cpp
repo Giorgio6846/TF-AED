@@ -4,7 +4,7 @@
 
 int menu();
 void opcionViajes(Viajes *TurismoDiasViajes);
-void opcionEncomiendas();
+void opcionEncomiendas(Viajes *TurismoDiasViajes);
 
 int main()
 {
@@ -21,9 +21,10 @@ int main()
             opcionViajes(TurismoDiasViajes);
             break;
         case 2:
-            opcionEncomiendas();
+            opcionEncomiendas(TurismoDiasViajes);
             break;
         default:
+            cout << "Gracias por elegir nuestra app! :)";
             break;
         }
     } while (opcionElegida != 3);
@@ -53,12 +54,41 @@ void opcionViajes(Viajes *TurismoDiasViajes)
     } while (opcionViajeSelecionada == 3);
 }
 
-void opcionEncomiendas()
+void opcionEncomiendas(Viajes *TurismoDiasViajes)
 {
-    char opcionPersonaEmpresa;
 
-    cout << "Esta usted solicitando este servicio como Persona (P) o como Empresa (E): ";
-    cin >> opcionPersonaEmpresa;
+    char opcionPersonaEmpresa = 'F';
+    int opcionSeleccionada;
+
+    while (opcionPersonaEmpresa != 'P' && opcionPersonaEmpresa != 'p' && opcionPersonaEmpresa != 'E' && opcionPersonaEmpresa != 'e' )
+    {
+        cout << "Esta usted solicitando este servicio como Persona (P) o como Empresa (E): ";
+        cin >> opcionPersonaEmpresa;
+        if (opcionPersonaEmpresa != 'P' && opcionPersonaEmpresa != 'p' && opcionPersonaEmpresa != 'E' && opcionPersonaEmpresa != 'e')
+        {
+            cout << "Por favor, ingrese 'P' para persona y 'E' para empresa" << endl;
+        }
+    }
+
+    opcionSeleccionada = TurismoDiasViajes->menuEncomiendas();
+
+    do{
+        switch (opcionSeleccionada)
+            {
+            case 1:
+                
+                break;
+
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+                break;
+            }
+    } while (opcionSeleccionada != 3);
 
     cout << "Los destinos disponibles para encomiendas son: ";
     //TurismoDias->printDestinosEncomiendas();
