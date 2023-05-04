@@ -9,29 +9,53 @@ public:
     NodoLista * next;
 
 public:
-    NodoLista(){
-
-    NodoLista * head = NULL;
-    };
+    NodoLista(){};
     ~NodoLista(){};
     
-    void insertarElementoLista(NodoLista *& lista, Persona * cliente){
+    void insertarElementoLista(NodoLista *&lista, Persona * cliente){
         //Se crea un nuevo nodo
         NodoLista * nuevoNodo = new NodoLista();
         nuevoNodo->cliente = cliente;
         //Lo pone al inicio
-        nuevoNodo->next= lista;
+        NodoLista * aux1 = lista;
+        NodoLista * aux2;
         //Hace que ahora el inicio apunte a nuevoNodo
-        lista = nuevoNodo;
+
+        while (aux1 != NULL)
+        {
+            aux2 = aux1;
+            aux1 = aux1->next;
+        }
+        
+        if (lista == aux1)
+        {
+            lista = nuevoNodo;
+            nuevoNodo->next = aux1;
+        }
+        else
+        {
+            aux2->next  = nuevoNodo;
+            nuevoNodo->next = aux1;
+        }
+        
         }
 
+
     void printClientes(NodoLista* lista){
-        //Mientas que la lista no llegue a su fin -> imprimir nombre del cliente
-        while (lista != NULL)
-        {
-            cout << lista->cliente->getEdad() << endl;
-            lista = lista->next;
-        }
+
+
+
+        cout << lista->cliente->getNombre();
+
+        //NodoLista * aux = new NodoLista();
+        //aux = lista;
+        ////Mientas que la lista no llegue a su fin -> imprimir nombre del cliente
+        //while (aux != NULL)
+        //{
+        //    cout << "Edad: " << aux->cliente->getNombre() << endl;
+        //    cout << "" << endl;
+        //    aux = aux->next;
+        //}
     }
 };
 

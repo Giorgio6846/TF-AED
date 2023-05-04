@@ -75,6 +75,8 @@ void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaC
         {
         case 1:
             contEncomienda->almacenarInfoCliente(listaClientes);
+            cout << listaClientes->cliente->getApellido();
+            //contEncomienda->printClientesEncomiendas(listaClientes);
             //TurismoDiasEncomienda->reservaEncomienda();
             break;
         case 2:

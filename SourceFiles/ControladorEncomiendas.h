@@ -52,6 +52,20 @@ public:
         Persona * cliente = new Persona(nombreP, apellidoP, edadP, 'D');
         //Se ingresa la información del cliente en una lista enlazada
         lista->insertarElementoLista(lista, cliente);
-        cout << "Su información ha sido registrada de manera satisfactoria!";
+        cout << "Su datos han sido registrada de manera satisfactoria!" << endl;
     }
+
+
+    void printClientesEncomiendas(NodoLista * lista){
+
+        int opcion;
+        cout << "Desea ver la lista de clientes con encomiendas agendadas? Si = 1 / No = 0" << endl;
+        cin >> opcion;
+        lista->printClientes(lista);
+        
+        
+
+
+    }
+
 };
