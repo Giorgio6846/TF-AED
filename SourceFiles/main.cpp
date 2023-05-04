@@ -1,19 +1,23 @@
 //#include "App.h"
 #include "Libraries.h"
 #include "Viajes.h"
-#include "ControladorEncomiendas.h"
-#include "NodoLista.h"
+//#include "ControladorEncomiendas.h"
+//#include "NodoLista.h"
+#include "Encomienda.h"
 
 int menu();
 void opcionViajes(Viajes *TurismoDiasViajes);
-void opcionEncomiendas(ControladorEncomiendas *contEncomienda, Rutas * rutas, NodoLista * listaClientes);
+void opcionEncomienda(Encomienda *TurismoDiasEncomienda);
+//void opcionEncomiendas(ControladorEncomiendas *contEncomienda, Rutas * rutas, NodoLista * listaClientes);
 
 int main()
 {
-    NodoLista * listaClientes = new NodoLista();
+    //NodoLista * listaClientes = new NodoLista();
     Viajes* TurismoDiasViajes = new Viajes();
-    ControladorEncomiendas * contEncomienda = new ControladorEncomiendas();
-    Rutas * rutas = new Rutas();
+    Encomienda *TurismoDiasEncomienda = new Encomienda();
+    // ControladorEncomiendas * contEncomienda = new ControladorEncomiendas();
+
+    //Rutas *rutas = new Rutas();
 
     int opcionElegida;
 
@@ -27,7 +31,7 @@ int main()
             opcionViajes(TurismoDiasViajes);
             break;
         case 2:
-            opcionEncomiendas(contEncomienda, rutas, listaClientes);
+            opcionEncomienda(TurismoDiasEncomienda);
             break;
         default:
             cout << "Gracias por elegir nuestra app! :)";
@@ -38,12 +42,12 @@ int main()
 
 void opcionViajes(Viajes *TurismoDiasViajes)
 {
-    int opcionViajeSelecionada;
+    int opcionSelecionada;
     do
     {
-        opcionViajeSelecionada = TurismoDiasViajes->menuViajes();
+        opcionSelecionada = TurismoDiasViajes->menuViajes();
 
-        switch (opcionViajeSelecionada)
+        switch (opcionSelecionada)
         {
         case 1:
             TurismoDiasViajes->reservaViajes();
@@ -57,57 +61,86 @@ void opcionViajes(Viajes *TurismoDiasViajes)
         default:
             break;
         }
-    } while (opcionViajeSelecionada == 3);
+    } while (opcionSelecionada == 3);
 }
 
-void opcionEncomiendas(ControladorEncomiendas *contEncomienda, Rutas* rutas, NodoLista * listaClientes)
+void opcionEncomienda(Encomienda *TurismoDiasEncomienda)
 {
-
-    char opcionPersonaEmpresa = 'F';
-    int opcionSeleccionada;
-
-    while (opcionPersonaEmpresa != 'P' && opcionPersonaEmpresa != 'p' && opcionPersonaEmpresa != 'E' && opcionPersonaEmpresa != 'e' )
+    int opcionSelecionada;
+    do
     {
-        cout << "Esta usted solicitando este servicio como Persona (P) o como Empresa (E): ";
-        cin >> opcionPersonaEmpresa;
-        opcionPersonaEmpresa = toupper(opcionPersonaEmpresa);
-        if (opcionPersonaEmpresa != 'P' && opcionPersonaEmpresa != 'E')
+        opcionSelecionada = TurismoDiasEncomienda->menuEncomienda();
+
+        switch (opcionSelecionada)
         {
-            cout << "Por favor, ingrese 'P' para persona y 'E' para empresa" << endl;
+        case 1:
+            TurismoDiasEncomienda->reservaEncomienda();
+            break;
+        case 2:
+            TurismoDiasEncomienda->reservaBusquedaEncomienda();
+            break;
+        /*
+        case 4:
+            TurismoDiasViajes->escrituraArchivo();
+            break;
+        */
+        default:
+            break;
         }
-    }
-    //Almacena la información del cliente
-    contEncomienda->informacionCliente(opcionPersonaEmpresa);
-    //Almacenamos que opción del menú ha elegido el usuario
-    opcionSeleccionada = contEncomienda->menuEncomiendas();
-
-    do{
-        int rutaElegida;
-        switch (opcionSeleccionada)
-            {
-            case 1:
-                rutaElegida = rutas->selecionarOrigen();
-                rutas->selecionarDestino(rutaElegida);
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            default:
-                break;
-            }
-    } while (opcionSeleccionada != 3);
-
-    cout << "Los destinos disponibles para encomiendas son: ";
-    //TurismoDias->printDestinosEncomiendas();
-
-    //cout << "\nElija, de la lista, el destino de la encomienda (1 - " << TurismoDias->getEncomiendasN() << ")";
-    //cin>>opcionDestino;
+    } while (opcionSelecionada == 3);
 }
 
-int menu()
+    /*
+    void opcionEncomiendas(ControladorEncomiendas *contEncomienda, Rutas* rutas, NodoLista * listaClientes)
+    {
+
+        char opcionPersonaEmpresa = 'F';
+        int opcionSeleccionada;
+
+        while (opcionPersonaEmpresa != 'P' && opcionPersonaEmpresa != 'p' && opcionPersonaEmpresa != 'E' && opcionPersonaEmpresa != 'e' )
+        {
+            cout << "Esta usted solicitando este servicio como Persona (P) o como Empresa (E): ";
+            cin >> opcionPersonaEmpresa;
+            opcionPersonaEmpresa = toupper(opcionPersonaEmpresa);
+            if (opcionPersonaEmpresa != 'P' && opcionPersonaEmpresa != 'E')
+            {
+                cout << "Por favor, ingrese 'P' para persona y 'E' para empresa" << endl;
+            }
+        }
+        //Almacena la información del cliente
+        contEncomienda->informacionCliente(opcionPersonaEmpresa);
+        //Almacenamos que opción del menú ha elegido el usuario
+        opcionSeleccionada = contEncomienda->menuEncomiendas();
+
+        do{
+            int rutaElegida;
+            switch (opcionSeleccionada)
+                {
+                case 1:
+                    rutaElegida = rutas->selecionarOrigen();
+                    rutas->selecionarDestino(rutaElegida);
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                default:
+                    break;
+                }
+        } while (opcionSeleccionada != 3);
+
+        cout << "Los destinos disponibles para encomiendas son: ";
+        //TurismoDias->printDestinosEncomiendas();
+
+        //cout << "\nElija, de la lista, el destino de la encomienda (1 - " << TurismoDias->getEncomiendasN() << ")";
+        //cin>>opcionDestino;
+    }
+    */
+
+    int
+    menu()
 {
     int opcionSelecionada;
     do
