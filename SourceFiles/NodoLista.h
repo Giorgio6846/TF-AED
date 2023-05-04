@@ -37,25 +37,21 @@ public:
             aux2->next  = nuevoNodo;
             nuevoNodo->next = aux1;
         }
-        
+        cout << "Su datos han sido registrada de manera satisfactoria!" << endl;
         }
 
 
     void printClientes(NodoLista* lista){
 
-
-
-        cout << lista->cliente->getNombre();
-
-        //NodoLista * aux = new NodoLista();
-        //aux = lista;
-        ////Mientas que la lista no llegue a su fin -> imprimir nombre del cliente
-        //while (aux != NULL)
-        //{
-        //    cout << "Edad: " << aux->cliente->getNombre() << endl;
-        //    cout << "" << endl;
-        //    aux = aux->next;
-        //}
+        NodoLista * aux = new NodoLista();
+        aux = lista;
+        //Mientas que la lista no llegue a su fin -> imprimir nombre del cliente
+        while (aux != NULL)
+        {
+            cout << "Edad: " << aux->cliente->getEdad() << endl;
+            cout << "" << endl;
+            aux = aux->next;
+        }
     }
 };
 

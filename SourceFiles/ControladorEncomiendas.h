@@ -42,17 +42,16 @@ public:
         return opcionSelecionada;
     }
 
-    void almacenarInfoCliente(NodoLista * lista){
+    Persona * almacenarInfoCliente(NodoLista * lista){
         string nombreP, apellidoP;
         int edadP;
         cout << "Ingrese su nombre: "; cin >> nombreP;
         cout << "Ingrese su apellido: "; cin >> apellidoP;
         cout << "Ingrese su edad: "; cin >> edadP;
-        //Con la información dada, se crea un objeto cliente
+        //Con la información dada, se crea un objeto cliente y se devuelve 
         Persona * cliente = new Persona(nombreP, apellidoP, edadP, 'D');
-        //Se ingresa la información del cliente en una lista enlazada
-        lista->insertarElementoLista(lista, cliente);
-        cout << "Su datos han sido registrada de manera satisfactoria!" << endl;
+        return cliente;
+        //lista->insertarElementoLista(lista, cliente);
     }
 
 

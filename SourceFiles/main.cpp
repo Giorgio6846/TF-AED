@@ -74,8 +74,9 @@ void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaC
         switch (opcionSelecionada)
         {
         case 1:
-            contEncomienda->almacenarInfoCliente(listaClientes);
-            cout << listaClientes->cliente->getApellido();
+            //Usa como parametro el objeto persona que devuelve la función "almacenarInfoCliente"
+            listaClientes->insertarElementoLista(listaClientes,contEncomienda->almacenarInfoCliente(listaClientes));
+            listaClientes->printClientes(listaClientes);
             //contEncomienda->printClientesEncomiendas(listaClientes);
             //TurismoDiasEncomienda->reservaEncomienda();
             break;
@@ -159,3 +160,5 @@ void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaC
 
     return opcionSelecionada;
 }
+
+
