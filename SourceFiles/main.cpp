@@ -1,21 +1,21 @@
 //#include "App.h"
 #include "Libraries.h"
 #include "Viajes.h"
-//#include "ControladorEncomiendas.h"
-//#include "NodoLista.h"
+#include "ControladorEncomiendas.h"
+#include "NodoLista.h"
 #include "Encomienda.h"
+#include "Persona.h"
 
 int menu();
 void opcionViajes(Viajes *TurismoDiasViajes);
-void opcionEncomienda(Encomienda *TurismoDiasEncomienda);
-//void opcionEncomiendas(ControladorEncomiendas *contEncomienda, Rutas * rutas, NodoLista * listaClientes);
+void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaClientes);
 
 int main()
 {
-    //NodoLista * listaClientes = new NodoLista();
+    NodoLista * listaClientes = NULL;
     Viajes* TurismoDiasViajes = new Viajes();
-    Encomienda *TurismoDiasEncomienda = new Encomienda();
-    // ControladorEncomiendas * contEncomienda = new ControladorEncomiendas();
+    //Objeto que administra el menú de encomiendas
+    ControladorEncomiendas * contEncomienda = new ControladorEncomiendas();
 
     //Rutas *rutas = new Rutas();
 
@@ -31,7 +31,7 @@ int main()
             opcionViajes(TurismoDiasViajes);
             break;
         case 2:
-            opcionEncomienda(TurismoDiasEncomienda);
+            opcionEncomienda(contEncomienda, listaClientes);
             break;
         default:
             cout << "Gracias por elegir nuestra app! :)";
@@ -64,20 +64,21 @@ void opcionViajes(Viajes *TurismoDiasViajes)
     } while (opcionSelecionada == 3);
 }
 
-void opcionEncomienda(Encomienda *TurismoDiasEncomienda)
+void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaClientes)
 {
     int opcionSelecionada;
     do
     {
-        opcionSelecionada = TurismoDiasEncomienda->menuEncomienda();
+        opcionSelecionada = contEncomienda->menuEncomienda();
 
         switch (opcionSelecionada)
         {
         case 1:
-            TurismoDiasEncomienda->reservaEncomienda();
+            contEncomienda->almacenarInfoCliente(listaClientes);
+            //TurismoDiasEncomienda->reservaEncomienda();
             break;
         case 2:
-            TurismoDiasEncomienda->reservaBusquedaEncomienda();
+            
             break;
         /*
         case 4:
@@ -139,8 +140,7 @@ void opcionEncomienda(Encomienda *TurismoDiasEncomienda)
     }
     */
 
-    int
-    menu()
+    int menu()
 {
     int opcionSelecionada;
     do

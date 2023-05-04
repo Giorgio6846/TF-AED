@@ -1,16 +1,17 @@
 #include "Libraries.h"
 #include "Persona.h"
-
+#pragma once
 class NodoLista
 {
 public:
 
-    TIPO cliente;
+    Persona * cliente;
     NodoLista * next;
 
 public:
     NodoLista(){
-    NodoLista * lista = NULL;
+
+    NodoLista * head = NULL;
     };
     ~NodoLista(){};
     
@@ -28,7 +29,7 @@ public:
         //Mientas que la lista no llegue a su fin -> imprimir nombre del cliente
         while (lista != NULL)
         {
-            cout << lista->cliente << endl;
+            cout << lista->cliente->getEdad() << endl;
             lista = lista->next;
         }
     }

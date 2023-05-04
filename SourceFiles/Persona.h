@@ -1,4 +1,5 @@
 #include "Libraries.h"
+#pragma once
 
 class Persona
 {
