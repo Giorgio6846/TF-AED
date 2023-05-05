@@ -28,11 +28,11 @@ int main()
         switch (opcionElegida)
         {
         case 1:
-            system("CLS");
+            clearScreen;
             opcionViajes(TurismoDiasViajes);
             break;
         case 2:
-            system("CLS");
+            clearScreen;
             opcionEncomienda(contEncomienda, listaClientes);
             break;
         default:
@@ -64,8 +64,7 @@ void opcionViajes(Viajes *TurismoDiasViajes)
             break;
         }
     } while (opcionSelecionada != 3);
-    system("CLS");
-
+    clearScreen;
 }
 
 void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaClientes)
@@ -97,7 +96,7 @@ void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaC
             break;
         }
     } while (opcionSelecionada != 3);
-    system("CLS");
+    
 }
 
     /*
@@ -166,5 +165,4 @@ void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaC
 
     return opcionSelecionada;
 }
-
 
