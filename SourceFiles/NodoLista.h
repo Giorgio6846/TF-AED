@@ -17,7 +17,7 @@ public:
         NodoLista * nuevoNodo = new NodoLista();
         nuevoNodo->cliente = cliente;
         //El ultimo nodo siempre apunta a NULL
-        nuevoNodo->next= NULL;
+        nuevoNodo->next = NULL;
         //Si la lista está ya vacia, podemos insertar el nuevo nodo directamente
         if (*lista == NULL){*lista = nuevoNodo;}
         else
@@ -30,11 +30,11 @@ public:
         cout << "Su datos han sido registrada de manera satisfactoria!" << endl;
         }
 
-
     void printClientes(NodoLista* lista){
         //Mientras no se llegue al final de lista, mostrar los datos de los clientes almacenados
         while (lista != NULL)
         {
+            cout << "GFAAA";
             cout << "Nombre: " << lista->cliente->getNombre() << endl;
             cout << "Apellido: " << lista->cliente->getApellido() << endl;
             cout << "Edad: " << lista->cliente->getEdad() << endl;
