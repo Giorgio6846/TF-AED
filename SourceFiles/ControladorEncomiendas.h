@@ -46,6 +46,7 @@ public:
         cout << "Ingrese su edad: "; cin >> edadP;
         //Con la información dada, se crea un objeto cliente y se devuelve 
         Persona * cliente = new Persona(nombreP, apellidoP, edadP, 'D');
+        system("CLS");
         return cliente;
     }
 
@@ -54,6 +55,7 @@ public:
         int opcion;
         cout << "Desea ver sus datos en la lista de clientes? Si = 1 / No = 0" << endl;
         cin >> opcion;
+        system("CLS");
         return opcion;
     }
 
