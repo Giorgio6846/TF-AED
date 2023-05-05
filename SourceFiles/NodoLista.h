@@ -34,7 +34,6 @@ public:
         //Mientras no se llegue al final de lista, mostrar los datos de los clientes almacenados
         while (lista != NULL)
         {
-            cout << "GFAAA";
             cout << "Nombre: " << lista->cliente->getNombre() << endl;
             cout << "Apellido: " << lista->cliente->getApellido() << endl;
             cout << "Edad: " << lista->cliente->getEdad() << endl;

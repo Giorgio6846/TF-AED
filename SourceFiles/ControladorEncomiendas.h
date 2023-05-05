@@ -9,7 +9,6 @@ public:
     ControladorEncomiendas(){};
     ~ControladorEncomiendas(){};
 
-
     void reservaEncomienda(){
 
     int Origen, Destino, cantidadUsuarios;
@@ -19,12 +18,9 @@ public:
 
     cout << "\n Ha selecionado el origen " << Rutas :: getOrigen(Origen);
     cout << "\n Ha selecionado el destino " << Rutas :: getDestino(Destino);
-
-
     }
     
     int menuEncomienda(){
-        
         int opcionSelecionada;
         do{
             cout << "Selecione la opcion. \n";
@@ -51,18 +47,14 @@ public:
         //Con la información dada, se crea un objeto cliente y se devuelve 
         Persona * cliente = new Persona(nombreP, apellidoP, edadP, 'D');
         return cliente;
-        //lista->insertarElementoLista(lista, cliente);
     }
 
 
     int printClientesEncomiendas(NodoLista * lista){
-
         int opcion;
         cout << "Desea ver sus datos en la lista de clientes? Si = 1 / No = 0" << endl;
         cin >> opcion;
         return opcion;
-        
-        
     }
 
 };
