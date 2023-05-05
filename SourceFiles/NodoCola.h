@@ -8,10 +8,7 @@ public:
     NodoCola * next;
 
 public:
-    NodoCola(){
-    NodoCola * frente = NULL;
-    NodoCola * fin = NULL;
-    };
+    NodoCola(){};
     ~NodoCola(){};
 
 

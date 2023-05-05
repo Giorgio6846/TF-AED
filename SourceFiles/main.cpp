@@ -61,7 +61,7 @@ void opcionViajes(Viajes *TurismoDiasViajes)
         default:
             break;
         }
-    } while (opcionSelecionada == 3);
+    } while (opcionSelecionada != 3);
 }
 
 void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaClientes)
@@ -92,7 +92,7 @@ void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaC
         default:
             break;
         }
-    } while (opcionSelecionada == 3);
+    } while (opcionSelecionada != 3);
 }
 
     /*
