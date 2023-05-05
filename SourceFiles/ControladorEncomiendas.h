@@ -55,16 +55,14 @@ public:
     }
 
 
-    void printClientesEncomiendas(NodoLista * lista){
+    int printClientesEncomiendas(NodoLista * lista){
 
         int opcion;
         cout << "Desea ver la lista de clientes con encomiendas agendadas? Si = 1 / No = 0" << endl;
         cin >> opcion;
-        lista->printClientes(lista);
+        return opcion;
         
         
-
-
     }
 
 };

@@ -66,6 +66,7 @@ void opcionViajes(Viajes *TurismoDiasViajes)
 
 void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaClientes)
 {
+    int esPrint;
     int opcionSelecionada;
     do
     {
@@ -75,14 +76,14 @@ void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaC
         {
         case 1:
             //Usa como parametro el objeto persona que devuelve la función "almacenarInfoCliente"
-            listaClientes->insertarElementoLista(listaClientes,contEncomienda->almacenarInfoCliente(listaClientes));
-            listaClientes->printClientes(listaClientes);
-            //contEncomienda->printClientesEncomiendas(listaClientes);
+            listaClientes->insertarElementoLista(&listaClientes,contEncomienda->almacenarInfoCliente(listaClientes));
+            esPrint = contEncomienda->printClientesEncomiendas(listaClientes);
+            if (esPrint == 1){listaClientes->printClientes(listaClientes);}
             //TurismoDiasEncomienda->reservaEncomienda();
             break;
-        case 2:
+        /*case 2:
             
-            break;
+            break;*/
         /*
         case 4:
             TurismoDiasViajes->escrituraArchivo();
