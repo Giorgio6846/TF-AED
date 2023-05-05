@@ -14,6 +14,7 @@ public:
     
     void insertarElementoLista(NodoLista **lista, Persona * cliente){
         //Se crea un nuevo nodo
+        system("CLS");
         NodoLista * nuevoNodo = new NodoLista();
         nuevoNodo->cliente = cliente;
         //El ultimo nodo siempre apunta a NULL
@@ -32,6 +33,7 @@ public:
 
     void printClientes(NodoLista* lista){
         //Mientras no se llegue al final de lista, mostrar los datos de los clientes almacenados
+        system("CLS");
         while (lista != NULL)
         {
             cout << "Nombre: " << lista->cliente->getNombre() << endl;
