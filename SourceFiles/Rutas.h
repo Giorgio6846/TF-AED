@@ -39,6 +39,7 @@ public:
     bool getRuta(int pos, int N){return rutas[pos][N]; }
 };
 
+// Selecciona el Destino
 int Rutas ::selecionarDestino(int Origen)
 {
     // Convierte de la matriz a un vector con los destinos disponibles para esa ruta especifica
@@ -76,6 +77,7 @@ int Rutas ::selecionarDestino(int Origen)
     return opcionElegida;
 }
 
+//Selecciona el Origen
 int Rutas ::selecionarOrigen()
 {
     int opcionElegida;
