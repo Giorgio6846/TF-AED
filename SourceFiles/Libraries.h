@@ -2,6 +2,9 @@
 #include <string>
 #include <vector>
 #include <time.h>
+#include <limits>
+#include <sstream>
+#include <stdio.h>
 
 using namespace std;
 
