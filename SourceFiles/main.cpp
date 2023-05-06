@@ -159,8 +159,13 @@ void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaC
         cout << "3. Salir" << "\n";
 
         cin >> opcionSelecionada;
+        //Validando que solo permita numeros del 1 al 3
+        if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4)) {
+            cin.clear();
+            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+            cout << "La opcion seleccionada es incorrecta.\n";
+        }
 
-        if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4)) cout << "La opcion seleccionada es incorrecta.\n";
     } while (!(opcionSelecionada >= 1 && opcionSelecionada <= 4));
 
     return opcionSelecionada;

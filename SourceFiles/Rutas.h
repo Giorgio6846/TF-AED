@@ -61,6 +61,13 @@ int Rutas ::selecionarDestino(int Origen)
             cout << i + 1 << " " << DestinosDisponibles.at(i) << "\n";
         }
         cin >> opcionElegida;
+    if (!(opcionElegida >= 0 && opcionElegida <= DestinosDisponibles.size()))
+    {
+        cin.clear();
+        cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+        cout << "La opcion seleccionada es incorrecta.\n";
+    }
+        
     } while (!(opcionElegida >= 0 && opcionElegida <= DestinosDisponibles.size()));
     opcionElegida--;
 
@@ -89,6 +96,12 @@ int Rutas ::selecionarOrigen()
             cout << i + 1 << " " << getOrigen(i) << "\n";
         }
         cin >> opcionElegida;
+    if (!(opcionElegida >= 0 && opcionElegida <= 13))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+            cout << "La opcion seleccionada es incorrecta.\n";
+        }
     } while (!(opcionElegida >= 0 && opcionElegida <= 13));
     return opcionElegida - 1;
 }

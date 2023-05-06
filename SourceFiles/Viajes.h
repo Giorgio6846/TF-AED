@@ -50,6 +50,11 @@ int Viajes ::seleccionarCantidadUsuarios(string Origen, string Destino)
     {
         cout << "\n Cuantos pasajeros son en el grupo de " + Origen + " para " + Destino << "\n";
         cin >> cantidadUsuarios;
+        if(!(cantidadUsuarios >= 1 && cantidadUsuarios <= 50)){
+            cin.clear();
+            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+            cout << "La opcion seleccionada es incorrecta.\n";
+        }
     } while (!(cantidadUsuarios >= 1 && cantidadUsuarios <= 50));
 
     return cantidadUsuarios;
@@ -71,8 +76,11 @@ int Viajes ::menuViajes()
 
         cin >> opcionSelecionada;
 
-        if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4))
+        if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4)){
+            cin.clear();
+            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
             cout << "La opcion seleccionada es incorrecta.\n";
+        }
     } while (!(opcionSelecionada >= 1 && opcionSelecionada <= 4));
 
     return opcionSelecionada;
