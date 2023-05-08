@@ -1,10 +1,11 @@
 #include "Libraries.h"
 #include "Encomienda.h"
 
+template <class T>
 class NodoCola
 {
 public:
-    Encomienda * encomienda;
+    T *elemento;
     NodoCola * next;
 
 public:
@@ -12,12 +13,12 @@ public:
     ~NodoCola(){};
 
 
-    void insertarElementoCola(NodoCola *& frente, NodoCola *& fin, Encomienda * encomiendaCliente){
+    void insertarElementoCola(NodoCola *& frente, NodoCola *& fin, T * elementoClase){
         
         //Creación del nuevo nodo
         NodoCola * nuevoNodo = new NodoCola();
         //Asignación del valor al nuevo nodo
-        nuevoNodo->encomienda = encomiendaCliente;
+        nuevoNodo->elemento = elementoClase;
         //Al ser una cola, el ultimo elemento apunta a NULL
         nuevoNodo->next = NULL;
         //Función lambda que evalua si la cola está vacía
