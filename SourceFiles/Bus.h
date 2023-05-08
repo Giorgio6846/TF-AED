@@ -11,6 +11,8 @@ class Bus
 private:
     vector<vector<Asiento>> distribucionAsientos;
 
+    int hora, minutos;
+
     int columnaAsiento = 6;
     int filaAsiento = 10;
 

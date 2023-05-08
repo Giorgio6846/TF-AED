@@ -12,6 +12,8 @@ void opcionEncomienda(Encomienda *claseEncomienda);
 
 int main()
 {
+    srand(time(NULL));
+
     //NodoLista * listaClientes = NULL;
     
     Viajes *claseViaje = new Viajes();

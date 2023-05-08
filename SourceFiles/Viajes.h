@@ -1,9 +1,10 @@
 #include "Rutas.h"
 #include "ControladorViajes.h"
 
-    /*
-    Lima, Chimbote, Trujillo, Pacasmayo, Cajamarca, Chepen, Chiclayo, Piura, Jaen, Cajabamba, Moyobamba, Tarapoto
-    */
+/*
+Lima, Chimbote, Trujillo, Pacasmayo, Cajamarca, Chepen, Chiclayo, Piura, Jaen, Cajabamba, Moyobamba, Tarapoto
+*/
+
 class Viajes : public Rutas
 {
 private:
@@ -48,7 +49,7 @@ int Viajes ::seleccionarCantidadUsuarios(string Origen, string Destino)
 
     do
     {
-        cout << "\n Cuantos pasajeros son en el grupo de " + Origen + " para " + Destino << "\n";
+        cout << "\n Cuantos pasajeros son en el grupo de " + Origen + " con destino a  " + Destino << "\n";
         cin >> cantidadUsuarios;
         if(!(cantidadUsuarios >= 1 && cantidadUsuarios <= 50)){
             cin.clear();

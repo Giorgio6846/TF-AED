@@ -7,7 +7,9 @@ public:
     string nombre;
     string apellido;
     int edad;
-    char tipoDocumento;
+
+    //0 = Ninguno, 1 DNI, 2 Carnet Extranjeria, 3 Pasaporte
+    int tipoDocumento;
 
     string DNI;
     string CarnetExtranjeria;
@@ -22,6 +24,14 @@ public:
         this -> tipoDocumento = tipoDocumento;
     };
     
+    Persona()
+    {
+        this->nombre = "";
+        this -> apellido = "";
+        this -> edad = NULL;
+        this -> tipoDocumento = NULL;
+    }
+
     ~Persona(){};
 
     void setNombre(string nombre){this->nombre = nombre;}
