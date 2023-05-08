@@ -1,21 +1,24 @@
 //#include "App.h"
 #include "Libraries.h"
 #include "Viajes.h"
-#include "ControladorEncomiendas.h"
-#include "NodoLista.h"
 #include "Encomienda.h"
 #include "Persona.h"
 
 int menu();
-void opcionViajes(Viajes *TurismoDiasViajes);
-void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaClientes);
+void opcionViajes(Viajes *claseViaje);
+void opcionEncomienda(Encomienda *claseEncomienda);
+
+//void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaClientes);
 
 int main()
 {
-    NodoLista * listaClientes = NULL;
-    Viajes* TurismoDiasViajes = new Viajes();
-    //Objeto que administra el menú de encomiendas
-    ControladorEncomiendas * contEncomienda = new ControladorEncomiendas();
+    //NodoLista * listaClientes = NULL;
+    
+    Viajes *claseViaje = new Viajes();
+    Encomienda *claseEncomienda = new Encomienda();
+
+    // Objeto que administra el menú de encomiendas
+    //ControladorEncomiendas *contEncomienda = new ControladorEncomiendas();
 
     //Rutas *rutas = new Rutas();
 
@@ -29,11 +32,12 @@ int main()
         {
         case 1:
             clearScreen;
-            opcionViajes(TurismoDiasViajes);
+            opcionViajes(claseViaje);
             break;
         case 2:
             clearScreen;
-            opcionEncomienda(contEncomienda, listaClientes);
+            opcionEncomienda(claseEncomienda);
+            //opcionEncomienda(contEncomienda, listaClientes);
             break;
         default:
             cout << "Gracias por elegir nuestra app! :)";
@@ -42,23 +46,26 @@ int main()
     } while (opcionElegida != 3);
 }
 
-void opcionViajes(Viajes *TurismoDiasViajes)
+void opcionViajes(Viajes *claseViaje)
 {
     int opcionSelecionada;
     do
     {
-        opcionSelecionada = TurismoDiasViajes->menuViajes();
+        opcionSelecionada = claseViaje->menuViajes();
 
         switch (opcionSelecionada)
         {
         case 1:
-            TurismoDiasViajes->reservaViajes();
+            // Invoca la funcion de la clase para reservar el viaje
+            claseViaje->reservaViajes();
             break;
         case 2:
-            TurismoDiasViajes->reservaBusquedaViajes();
+            // Invoca la funcion de la clase para buscar un viaje reservado
+            claseViaje->reservaBusquedaViajes();
             break;
         case 4:
-            TurismoDiasViajes->escrituraArchivo();
+            // Invoca la funcion de la clase para realizar la escritura de archivos
+            claseViaje->escrituraArchivo();
             break;
         default:
             break;
@@ -67,6 +74,31 @@ void opcionViajes(Viajes *TurismoDiasViajes)
     clearScreen;
 }
 
+void opcionEncomienda(Encomienda *claseEncomienda)
+{
+    int opcionSelecionada;
+
+    do
+    {
+        opcionSelecionada = claseEncomienda->menuEncomienda();
+
+        switch (opcionSelecionada)
+        {
+        case 1:
+                //Invoca la clase para agendar la encomienda
+                claseEncomienda ->agendarEncomienda();
+            break;
+
+        case 2:
+            /* code */
+            break;
+
+        default:
+            break;
+        }
+    } while (opcionSelecionada != 3);
+}
+/*
 void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaClientes)
 {
     int esPrint;
@@ -84,14 +116,15 @@ void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaC
             if (esPrint == 1){listaClientes->printClientes(listaClientes);}
             //TurismoDiasEncomienda->reservaEncomienda();
             break;
-        /*case 2:
+        case 2:
             
-            break;*/
-        /*
+            break;
+        
         case 4:
             TurismoDiasViajes->escrituraArchivo();
             break;
-        */
+        
+
         default:
             break;
         }
@@ -99,7 +132,7 @@ void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaC
     
 }
 
-    /*
+    
     void opcionEncomiendas(ControladorEncomiendas *contEncomienda, Rutas* rutas, NodoLista * listaClientes)
     {
 
@@ -146,9 +179,9 @@ void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaC
         //cout << "\nElija, de la lista, el destino de la encomienda (1 - " << TurismoDias->getEncomiendasN() << ")";
         //cin>>opcionDestino;
     }
-    */
+*/    
 
-    int menu()
+int menu()
 {
     int opcionSelecionada;
     do
