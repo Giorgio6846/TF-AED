@@ -41,7 +41,7 @@ public:
         return opcionSelecionada;
     }
 
-    Persona * almacenarInfoCliente(NodoLista * lista){
+    Persona * almacenarInfoCliente(NodoLista<Persona> * lista){
         string nombreP, apellidoP;
         int edadP;
         cout << "Ingrese su nombre: "; cin >> nombreP;
@@ -49,16 +49,16 @@ public:
         cout << "Ingrese su edad: "; cin >> edadP;
         //Con la información dada, se crea un objeto cliente y se devuelve 
         Persona * cliente = new Persona(nombreP, apellidoP, edadP, 'D');
-        system("CLS");
+        clearScreen;
         return cliente;
     }
 
 
-    int printClientesEncomiendas(NodoLista * lista){
+    int printClientesEncomiendas(NodoLista<Persona> * lista){
         int opcion;
         cout << "Desea ver sus datos en la lista de clientes? Si = 1 / No = 0" << endl;
         cin >> opcion;
-        system("CLS");
+        clearScreen;
         return opcion;
     }
 

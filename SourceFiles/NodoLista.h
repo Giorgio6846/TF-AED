@@ -1,22 +1,25 @@
 #include "Libraries.h"
 #include "Persona.h"
 #pragma once
+
+template <class T>
 class NodoLista
 {
 public:
 
-    Persona * cliente;
+    T * elemento;
     NodoLista * next;
 
 public:
     NodoLista(){};
     ~NodoLista(){};
-    
-    void insertarElementoLista(NodoLista **lista, Persona * cliente){
+
+    void insertarElementoLista(NodoLista **lista, T *elemento)
+    {
         //Se crea un nuevo nodo
         clearScreen;
         NodoLista * nuevoNodo = new NodoLista();
-        nuevoNodo->cliente = cliente;
+        nuevoNodo->elemento = elemento;
         //El ultimo nodo siempre apunta a NULL
         nuevoNodo->next = NULL;
         //Si la lista está ya vacia, podemos insertar el nuevo nodo directamente
@@ -29,21 +32,5 @@ public:
             aux->next = nuevoNodo;
         }
         cout << "Su datos han sido registrada de manera satisfactoria!" << endl;
-        }
-
-    void printClientes(NodoLista* lista){
-        //Mientras no se llegue al final de lista, mostrar los datos de los clientes almacenados
-        clearScreen;
-        while (lista != NULL)
-        {
-            cout << "Nombre: " << lista->cliente->getNombre() << endl;
-            cout << "Apellido: " << lista->cliente->getApellido() << endl;
-            cout << "Edad: " << lista->cliente->getEdad() << endl;
-            lista = lista->next;
-        }
     }
 };
-
-
-
-

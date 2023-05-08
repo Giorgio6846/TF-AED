@@ -6,7 +6,7 @@
 class Encomienda
 {
 private:
-    NodoLista * listaClientes = NULL;
+    NodoLista<Persona> *listaClientes = NULL;
     int esPrint;
     //Objeto que administra el menú de encomiendas
     ControladorEncomiendas *contEncomienda = new ControladorEncomiendas();
@@ -19,6 +19,7 @@ public:
     int menuEncomienda();
     void agendarEncomienda();
     void reservaBusquedaEncomienda();
+    void printClientes(NodoLista<Persona> *lista);
 };
 
 int Encomienda::menuEncomienda()
@@ -51,6 +52,19 @@ void Encomienda::agendarEncomienda()
     esPrint = contEncomienda->printClientesEncomiendas(listaClientes);
     if (esPrint == 1)
     {
-        listaClientes->printClientes(listaClientes);
+        printClientes(listaClientes);
+    }
+}
+
+void Encomienda::printClientes(NodoLista<Persona> *lista)
+{
+    // Mientras no se llegue al final de lista, mostrar los datos de los clientes almacenados
+    clearScreen;
+    while (lista != NULL)
+    {
+        cout << "Nombre: " << lista->elemento->getNombre() << endl;
+        cout << "Apellido: " << lista->elemento->getApellido() << endl;
+        cout << "Edad: " << lista->elemento->getEdad() << endl;
+        lista = lista->next;
     }
 }
