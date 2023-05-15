@@ -4,7 +4,6 @@
 class informacionRuta
 {
 private:
-    vector<Bus> Buses;
 
 public:
     informacionRuta(/* args */);
@@ -23,7 +22,7 @@ informacionRuta::~informacionRuta()
 
 }
 
-informacionRuta :: generarBus()
+void informacionRuta :: generarBus()
 {
 
 }
