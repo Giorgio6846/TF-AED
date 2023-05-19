@@ -80,7 +80,6 @@ int Rutas ::selecionarDestino(int Origen)
             break;
         }
     }
-
     return opcionElegida;
 }
 
@@ -96,7 +95,7 @@ int Rutas ::selecionarOrigen()
             cout << i + 1 << " " << getOrigen(i) << "\n";
         }
         cin >> opcionElegida;
-    if (!(opcionElegida >= 0 && opcionElegida <= 13))
+        if (!(opcionElegida >= 0 && opcionElegida <= 13))
         {
             cin.clear();
             cin.ignore(numeric_limits<std::streamsize>::max(), '\n');

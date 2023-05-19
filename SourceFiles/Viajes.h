@@ -8,14 +8,13 @@ Lima, Chimbote, Trujillo, Pacasmayo, Cajamarca, Chepen, Chiclayo, Piura, Jaen, C
 class Viajes : public Rutas
 {
 private:
-    vector<ControladorViajes> Pasajes;
+    NodoLista<ControladorViajes> *listaCompras = NULL;
 
 public:
     Viajes(){};
     ~Viajes(){};
 
     // Funciones usuario
-
     int seleccionarCantidadUsuarios(string, string);
 
     // Opcion seleccion
@@ -38,6 +37,10 @@ void Viajes ::reservaViajes()
     Destino = Rutas :: selecionarDestino(Origen);
     cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
 
+    ControladorViajes *NuevaReserva = new ControladorViajes(Origen, Destino, cantidadUsuarios);
+
+    listaCompras->insertarElementoLista(&listaCompras, NuevaReserva);
+
     cout << "\n Ha selecionado el origen " << Rutas :: getOrigen(Origen);
     cout << "\n Ha selecionado el destino " << Rutas :: getDestino(Destino);
     cout << "\n";
@@ -57,7 +60,6 @@ int Viajes ::seleccionarCantidadUsuarios(string Origen, string Destino)
             cout << "La opcion seleccionada es incorrecta.\n";
         }
     } while (!(cantidadUsuarios >= 1 && cantidadUsuarios <= 50));
-
     return cantidadUsuarios;
 }
 
@@ -74,7 +76,6 @@ int Viajes ::menuViajes()
         cout << "1. Reservar su viaje \n";
         cout << "2. Buscar una reserva \n";
         cout << "3. Regresar al menu principal \n";
-
         cin >> opcionSelecionada;
 
         if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4)){
@@ -83,6 +84,5 @@ int Viajes ::menuViajes()
             cout << "La opcion seleccionada es incorrecta.\n";
         }
     } while (!(opcionSelecionada >= 1 && opcionSelecionada <= 4));
-
     return opcionSelecionada;
 }

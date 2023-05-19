@@ -5,16 +5,15 @@ template <class T>
 class NodoCola
 {
 public:
-    T *elemento;
+    T * elemento;
     NodoCola * next;
 
 public:
     NodoCola(){};
     ~NodoCola(){};
 
-
-    void insertarElementoCola(NodoCola *& frente, NodoCola *& fin, T * elementoClase){
-        
+    void insertarElementoCola(NodoCola *& frente, NodoCola *& fin, T * elementoClase)
+    {
         //Creación del nuevo nodo
         NodoCola * nuevoNodo = new NodoCola();
         //Asignación del valor al nuevo nodo
@@ -27,8 +26,4 @@ public:
         else {fin->next = nuevoNodo;}
         fin = nuevoNodo;
     }
-
-
-    
-
 };

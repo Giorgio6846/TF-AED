@@ -6,7 +6,6 @@ template <class T>
 class NodoLista
 {
 public:
-
     T * elemento;
     NodoLista * next;
 
