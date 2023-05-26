@@ -18,6 +18,7 @@ public:
     // Opcion seleccion
     int menuEncomienda();
     void agendarEncomienda();
+    void eliminarEncomienda();
     void reservaBusquedaEncomienda();
     void printClientes(NodoLista<Persona> *lista);
 };
@@ -54,6 +55,12 @@ void Encomienda::agendarEncomienda()
     {
         printClientes(listaClientes);
     }
+}
+
+void Encomienda::eliminarEncomienda()
+{
+
+
 }
 
 void Encomienda::printClientes(NodoLista<Persona> *lista)

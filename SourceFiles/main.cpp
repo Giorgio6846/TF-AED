@@ -8,19 +8,10 @@ int menu();
 void opcionViajes(Viajes *claseViaje);
 void opcionEncomienda(Encomienda *claseEncomienda);
 
-//void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaClientes);
-
 int main()
 {
-    //NodoLista * listaClientes = NULL;
-    
     Viajes *claseViaje = new Viajes();
     Encomienda *claseEncomienda = new Encomienda();
-
-    // Objeto que administra el menú de encomiendas
-    //ControladorEncomiendas *contEncomienda = new ControladorEncomiendas();
-
-    //Rutas *rutas = new Rutas();
 
     int opcionElegida;
 
@@ -37,7 +28,6 @@ int main()
         case 2:
             clearScreen;
             opcionEncomienda(claseEncomienda);
-            //opcionEncomienda(contEncomienda, listaClientes);
             break;
         default:
             cout << "Gracias por elegir nuestra app! :)";
@@ -90,96 +80,14 @@ void opcionEncomienda(Encomienda *claseEncomienda)
             break;
 
         case 2:
-            /* code */
+            //Eliminar una encomienda del sistema
             break;
 
         default:
             break;
         }
     } while (opcionSelecionada != 3);
-}
-/*
-void opcionEncomienda(ControladorEncomiendas *contEncomienda, NodoLista * listaClientes)
-{
-    int esPrint;
-    int opcionSelecionada;
-    do
-    {
-        opcionSelecionada = contEncomienda->menuEncomienda();
-
-        switch (opcionSelecionada)
-        {
-        case 1:
-            //Usa como parametro el objeto persona que devuelve la función "almacenarInfoCliente"
-            listaClientes->insertarElementoLista(&listaClientes,contEncomienda->almacenarInfoCliente(listaClientes));
-            esPrint = contEncomienda->printClientesEncomiendas(listaClientes);
-            if (esPrint == 1){listaClientes->printClientes(listaClientes);}
-            //TurismoDiasEncomienda->reservaEncomienda();
-            break;
-        case 2:
-            
-            break;
-        
-        case 4:
-            TurismoDiasViajes->escrituraArchivo();
-            break;
-        
-
-        default:
-            break;
-        }
-    } while (opcionSelecionada != 3);
-    
-}
-
-    
-    void opcionEncomiendas(ControladorEncomiendas *contEncomienda, Rutas* rutas, NodoLista * listaClientes)
-    {
-
-        char opcionPersonaEmpresa = 'F';
-        int opcionSeleccionada;
-
-        while (opcionPersonaEmpresa != 'P' && opcionPersonaEmpresa != 'p' && opcionPersonaEmpresa != 'E' && opcionPersonaEmpresa != 'e' )
-        {
-            cout << "Esta usted solicitando este servicio como Persona (P) o como Empresa (E): ";
-            cin >> opcionPersonaEmpresa;
-            opcionPersonaEmpresa = toupper(opcionPersonaEmpresa);
-            if (opcionPersonaEmpresa != 'P' && opcionPersonaEmpresa != 'E')
-            {
-                cout << "Por favor, ingrese 'P' para persona y 'E' para empresa" << endl;
-            }
-        }
-        //Almacena la información del cliente
-        contEncomienda->informacionCliente(opcionPersonaEmpresa);
-        //Almacenamos que opción del menú ha elegido el usuario
-        opcionSeleccionada = contEncomienda->menuEncomiendas();
-
-        do{
-            int rutaElegida;
-            switch (opcionSeleccionada)
-                {
-                case 1:
-                    rutaElegida = rutas->selecionarOrigen();
-                    rutas->selecionarDestino(rutaElegida);
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                default:
-                    break;
-                }
-        } while (opcionSeleccionada != 3);
-
-        cout << "Los destinos disponibles para encomiendas son: ";
-        //TurismoDias->printDestinosEncomiendas();
-
-        //cout << "\nElija, de la lista, el destino de la encomienda (1 - " << TurismoDias->getEncomiendasN() << ")";
-        //cin>>opcionDestino;
-    }
-*/    
+}    
 
 int menu()
 {
