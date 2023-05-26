@@ -22,13 +22,27 @@
 
 using namespace std;
 
+//Funciones de uso comun para toda la applicacion
 
+/*
+clearScreen
+- Limpieza de pantalla
+
+cont()
+Uso del getch en los sistemas operativos Windows y Unix
+
+ClearKeyboard()
+Limpieza del cin
+*/
+
+//Limpieza de pantalla
 #ifdef _WIN32
 #define clearScreen system("CLS");
 #else
 #define clearScreen system("clear");
 #endif
 
+//Uso del getch en los sistemas operativos Windows y Unix
 #ifdef _WIN32
 void cont()
 {
@@ -38,12 +52,13 @@ void cont()
 void cont()
 {
     getch();
-    //char c;
-    //cin >> c;
-    //return c;
+    // char c;
+    // cin >> c;
+    // return c;
 }
 #endif
 
+// Limpieza del cin
 void ClearKeyboard()
 {
     cin.clear();
