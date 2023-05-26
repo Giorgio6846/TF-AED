@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -7,8 +9,12 @@
 #include <stdio.h>
 #include <list>
 #include <stdlib.h>
+
+#ifdef _WIN32
 #include <conio.h>
 #include<windows.h>
+#endif
+
 #include <ctype.h>
 
 using namespace std;
@@ -18,4 +24,18 @@ using namespace std;
 #define clearScreen system("CLS");
 #else
 #define clearScreen system("clear");
+#endif
+
+#ifdef _WIN32
+char getChar()
+{
+    return getch();
+}
+#else
+char getChar()
+{
+    char c;
+    cin >> c;
+    return c;
+}
 #endif

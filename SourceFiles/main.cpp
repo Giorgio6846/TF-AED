@@ -140,7 +140,7 @@ int menu()
             cin.clear();
             cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
             cout << "La opcion seleccionada es incorrecta.";
-            getch();
+            getChar();
         }
 
     } while (!(opcionSelecionada >= 1 && opcionSelecionada <= 4));
