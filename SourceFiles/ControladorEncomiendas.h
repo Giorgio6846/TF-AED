@@ -27,7 +27,7 @@ public:
             cout << "1. Agendar una encomienda \n";
             cout << "2. Eliminar una encomienda \n";
             cout << "3. Regresar al menu principal \n";
-
+            
             cin >> opcionSelecionada;
 
             if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4)){
@@ -42,6 +42,7 @@ public:
     }
 
     Persona * almacenarInfoCliente(NodoLista<Persona> * lista){
+        clearScreen;
         string nombreP, apellidoP;
         int edadP;
         cout << "Ingrese su nombre: "; cin >> nombreP;
@@ -49,7 +50,6 @@ public:
         cout << "Ingrese su edad: "; cin >> edadP;
         //Con la información dada, se crea un objeto cliente y se devuelve 
         Persona * cliente = new Persona(nombreP, apellidoP, edadP, 'D');
-        clearScreen;
         return cliente;
     }
 
@@ -58,7 +58,6 @@ public:
         int opcion;
         cout << "Desea ver sus datos en la lista de clientes? Si = 1 / No = 0" << endl;
         cin >> opcion;
-        clearScreen;
         return opcion;
     }
 

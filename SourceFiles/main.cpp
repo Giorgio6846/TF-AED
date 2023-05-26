@@ -128,6 +128,7 @@ int menu()
     int opcionSelecionada;
     do
     {
+        clearScreen;
         cout << "Selecione la opcion." << "\n";
         cout << "1. Viajes" << "\n";
         cout << "2. Encomiendas" << "\n";

@@ -32,7 +32,7 @@ int Encomienda::menuEncomienda()
         cout << "1. Agendar una encomienda \n";
         cout << "2. Eliminar una encomienda \n";
         cout << "3. Regresar al menu principal \n";
-
+        
         cin >> opcionSelecionada;
 
         if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4))
@@ -72,9 +72,11 @@ void Encomienda::printClientes(NodoLista<Persona> *lista)
         cout << "Nombre: " << lista->elemento->getNombre() << endl;
         cout << "Apellido: " << lista->elemento->getApellido() << endl;
         cout << "Edad: " << lista->elemento->getEdad() << endl;
+        cout <<endl;
         lista = lista->next;
     }
     //AGREGAR VALIDACIÓN - FABIO
     cout << "Presione cualquier tecla para volver al menu de encomiendas!" << endl;
-    clearScreen;
+    
+    cout<<endl;
 }
