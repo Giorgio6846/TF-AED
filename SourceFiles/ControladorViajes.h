@@ -37,7 +37,7 @@ void ControladorViajes :: agregarPasajero()
     for (int i = 0; i <= cantidadPasajeros - 1; i++)
     {
         Persona *cliente = new Persona();
-        cliente->setPersona();
+        cliente->typePersona();
 
         listaPasajeros->insertarElementoLista(&listaPasajeros, cliente);
     }   

@@ -38,6 +38,7 @@ void Viajes ::reservaViajes()
     cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
 
     ControladorViajes *NuevaReserva = new ControladorViajes(Origen, Destino, cantidadUsuarios);
+    NuevaReserva -> agregarPasajero();
 
     listaCompras->insertarElementoLista(&listaCompras, NuevaReserva);
 
@@ -55,8 +56,7 @@ int Viajes ::seleccionarCantidadUsuarios(string Origen, string Destino)
         cout << "\n Cuantos pasajeros son en el grupo de " + Origen + " con destino a  " + Destino << "\n";
         cin >> cantidadUsuarios;
         if(!(cantidadUsuarios >= 1 && cantidadUsuarios <= 50)){
-            cin.clear();
-            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+            ClearKeyboard();
             cout << "La opcion seleccionada es incorrecta.\n";
         }
     } while (!(cantidadUsuarios >= 1 && cantidadUsuarios <= 50));
@@ -79,8 +79,7 @@ int Viajes ::menuViajes()
         cin >> opcionSelecionada;
 
         if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4)){
-            cin.clear();
-            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+            ClearKeyboard();
             cout << "La opcion seleccionada es incorrecta.\n";
         }
     } while (!(opcionSelecionada >= 1 && opcionSelecionada <= 4));

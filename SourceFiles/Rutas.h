@@ -63,8 +63,7 @@ int Rutas ::selecionarDestino(int Origen)
         cin >> opcionElegida;
     if (!(opcionElegida >= 0 && opcionElegida <= DestinosDisponibles.size()))
     {
-        cin.clear();
-        cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+        ClearKeyboard();
         cout << "La opcion seleccionada es incorrecta.";
         cont();
     }
@@ -98,8 +97,7 @@ int Rutas ::selecionarOrigen()
         cin >> opcionElegida;
         if (!(opcionElegida >= 0 && opcionElegida <= 13))
         {
-            cin.clear();
-            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+            ClearKeyboard();
             cout << "La opcion seleccionada es incorrecta.";
             cont();
         }

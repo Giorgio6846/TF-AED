@@ -137,8 +137,7 @@ int menu()
         cin >> opcionSelecionada;
         //Validando que solo permita numeros del 1 al 3
         if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4)) {
-            cin.clear();
-            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+            ClearKeyboard();
             cout << "La opcion seleccionada es incorrecta.";
             cont();
         }
