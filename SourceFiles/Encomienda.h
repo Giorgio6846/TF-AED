@@ -76,6 +76,5 @@ void Encomienda::printClientes(NodoLista<Persona> *lista)
     }
     //AGREGAR VALIDACIÓN - FABIO
     cout << "Presione cualquier tecla para volver al menu de encomiendas!" << endl;
-    RegresarMenu();
     clearScreen;
 }

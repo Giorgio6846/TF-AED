@@ -15,8 +15,3 @@ using namespace std;
 #else
 #define clearScreen system("clear");
 #endif
-
-int RegresarMenu(){
-    std::cin.get();
-    return 0;
-}
