@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include<windows.h>
+#include <ctype.h>
 
 using namespace std;
 
