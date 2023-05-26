@@ -48,7 +48,19 @@ public:
         int edadP;
         cout << "Ingrese su nombre: "; cin >> nombreP;
         cout << "Ingrese su apellido: "; cin >> apellidoP;
-        cout << "Ingrese su edad: "; cin >> edadP;
+
+        do
+        {
+            cout << "Ingrese su edad: "; cin >> edadP;
+
+            if (!(edadP >= 18 && edadP <= 120)) {
+            cin.clear();
+            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+            cout << "El valor ingresado es invalido.\n";
+            }   
+
+        } while (!(edadP >= 18 && edadP <= 120));
+
         //Con la información dada, se crea un objeto cliente y se devuelve 
         Persona * cliente = new Persona(nombreP, apellidoP, edadP, 'D');
         return cliente;
