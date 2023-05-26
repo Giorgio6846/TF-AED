@@ -1,17 +1,41 @@
 //#include "App.h"
 #include "Libraries.h"
-#include "Viajes.h"
-#include "Encomienda.h"
 #include "Persona.h"
 
+#if (VER == 1 || VER == 2)
+#include "Viajes.h" 
+#endif
+
+#if (VER == 1 || VER == 3)
+#include "Encomienda.h"
+#endif
+
+/*
+Opciones de Compilacion
+1: Release
+2: Solo Viajes
+3: Solo Encomiendas
+*/
+
 int menu();
+
+#if (VER == 1 || VER == 2)
 void opcionViajes(Viajes *claseViaje);
+#endif
+
+#if (VER == 1 || VER == 3)
 void opcionEncomienda(Encomienda *claseEncomienda);
+#endif
 
 int main()
 {
+    #if (VER == 1 || VER == 2)
     Viajes *claseViaje = new Viajes();
+    #endif
+
+    #if (VER == 1 || VER == 3)
     Encomienda *claseEncomienda = new Encomienda();
+    #endif
 
     int opcionElegida;
 
@@ -22,12 +46,18 @@ int main()
         switch (opcionElegida)
         {
         case 1:
+            #if (VER == 1 || VER == 2)
             clearScreen;
             opcionViajes(claseViaje);
+            #endif
+
             break;
         case 2:
+            #if (VER == 1 || VER == 3)
             clearScreen;
             opcionEncomienda(claseEncomienda);
+            #endif
+            
             break;
         default:
             cout << "Gracias por elegir nuestra app! :)";
@@ -36,6 +66,7 @@ int main()
     } while (opcionElegida != 3);
 }
 
+#if (VER == 1 || VER == 2)
 void opcionViajes(Viajes *claseViaje)
 {
     int opcionSelecionada;
@@ -63,7 +94,9 @@ void opcionViajes(Viajes *claseViaje)
     } while (opcionSelecionada != 3);
     clearScreen;
 }
+#endif
 
+#if (VER == 1 || VER == 3)
 void opcionEncomienda(Encomienda *claseEncomienda)
 {
     int opcionSelecionada;
@@ -88,6 +121,7 @@ void opcionEncomienda(Encomienda *claseEncomienda)
         }
     } while (opcionSelecionada != 3);
 }    
+#endif
 
 int menu()
 {
