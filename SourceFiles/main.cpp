@@ -104,7 +104,7 @@ void opcionEncomienda(Encomienda *claseEncomienda)
     do
     {
         opcionSelecionada = claseEncomienda->menuEncomienda();
-
+        
         switch (opcionSelecionada)
         {
         case 1:

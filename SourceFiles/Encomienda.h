@@ -25,6 +25,7 @@ public:
 
 int Encomienda::menuEncomienda()
 {
+    clearScreen;
     int opcionSelecionada;
     do
     {
@@ -65,6 +66,7 @@ void Encomienda::eliminarEncomienda()
 
 void Encomienda::printClientes(NodoLista<Persona> *lista)
 {
+    int op;
     // Mientras no se llegue al final de lista, mostrar los datos de los clientes almacenados
     clearScreen;
     while (lista != NULL)
@@ -75,8 +77,6 @@ void Encomienda::printClientes(NodoLista<Persona> *lista)
         cout <<endl;
         lista = lista->next;
     }
-    //AGREGAR VALIDACIÓN - FABIO
     cout << "Presione cualquier tecla para volver al menu de encomiendas!" << endl;
-    
-    cout<<endl;
+    getch();
 }
