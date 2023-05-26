@@ -66,7 +66,7 @@ int Rutas ::selecionarDestino(int Origen)
         cin.clear();
         cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
         cout << "La opcion seleccionada es incorrecta.";
-        getChar();
+        cont();
     }
         
     } while (!(opcionElegida >= 0 && opcionElegida <= DestinosDisponibles.size()));
@@ -101,7 +101,7 @@ int Rutas ::selecionarOrigen()
             cin.clear();
             cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
             cout << "La opcion seleccionada es incorrecta.";
-            getChar();
+            cont();
         }
     } while (!(opcionElegida >= 0 && opcionElegida <= 13));
     return opcionElegida - 1;

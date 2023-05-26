@@ -41,7 +41,7 @@ int Encomienda::menuEncomienda()
             cin.clear();
             cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
             cout << "La opcion seleccionada es incorrecta.";
-            getChar();
+            cont();
         }
         else
             return opcionSelecionada;
@@ -79,5 +79,5 @@ void Encomienda::printClientes(NodoLista<Persona> *lista)
         lista = lista->next;
     }
     cout << "Presione cualquier tecla para volver al menu de encomiendas!" << endl;
-    getChar();
+    cont();
 }

@@ -13,7 +13,10 @@
 #ifdef _WIN32
 #include <conio.h>
 #include<windows.h>
+#else
+#include <curses.h>
 #endif
+
 
 #include <ctype.h>
 
@@ -27,15 +30,16 @@ using namespace std;
 #endif
 
 #ifdef _WIN32
-char getChar()
+void cont()
 {
-    return getch();
+    getch();
 }
 #else
-char getChar()
+void cont()
 {
-    char c;
-    cin >> c;
-    return c;
+    getch();
+    //char c;
+    //cin >> c;
+    //return c;
 }
 #endif

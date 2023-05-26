@@ -34,7 +34,7 @@ public:
                 cin.clear();
                 cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
                 cout << "La opcion seleccionada es incorrecta.";
-                getChar();
+                cont();
             }
             else
                 return opcionSelecionada;
