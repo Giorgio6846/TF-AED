@@ -67,4 +67,6 @@ void Encomienda::printClientes(NodoLista<Persona> *lista)
         cout << "Edad: " << lista->elemento->getEdad() << endl;
         lista = lista->next;
     }
+    //AGREGAR VALIDACIÓN - FABIO
+    cout << "Presione cualquier tecla para volver al menu de encomiendas!" << endl;
 }
