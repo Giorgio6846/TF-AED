@@ -8,6 +8,7 @@
 #include <list>
 #include <stdlib.h>
 #include <conio.h>
+#include<windows.h>
 
 using namespace std;
 

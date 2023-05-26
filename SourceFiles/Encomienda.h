@@ -25,10 +25,10 @@ public:
 
 int Encomienda::menuEncomienda()
 {
-    clearScreen;
     int opcionSelecionada;
     do
     {
+        clearScreen;
         cout << "Selecione la opcion. \n";
         cout << "1. Agendar una encomienda \n";
         cout << "2. Eliminar una encomienda \n";
@@ -36,11 +36,12 @@ int Encomienda::menuEncomienda()
         
         cin >> opcionSelecionada;
 
-        if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4))
+        if (!(opcionSelecionada >= 1 && opcionSelecionada <= 3))
         {
             cin.clear();
             cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
-            cout << "La opcion seleccionada es incorrecta.\n";
+            cout << "La opcion seleccionada es incorrecta.";
+            getch();
         }
         else
             return opcionSelecionada;
