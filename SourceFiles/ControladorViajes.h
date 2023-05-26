@@ -1,11 +1,12 @@
 #include "Libraries.h"
 #include "Persona.h"
+#include "NodoLista.h"
 
 class ControladorViajes
 {
 private:
     int cantidadPasajeros;
-    vector<Persona> Pasajero;
+    NodoLista<Persona> *listaPasajeros = NULL;
     int codigoO, codigoD;
 
 public:
@@ -33,9 +34,11 @@ void ControladorViajes :: informacionPasajero()
 
 void ControladorViajes :: agregarPasajero()
 {
-
-    for (int i = 0; i <= cantidadPasajeros; i++)
+    for (int i = 0; i <= cantidadPasajeros - 1; i++)
     {
+        Persona *cliente = new Persona();
+        cliente->setPersona();
 
+        listaPasajeros->insertarElementoLista(&listaPasajeros, cliente);
     }   
 }

@@ -1,18 +1,28 @@
 #include "Libraries.h"
+#include "Bus.h"
 
 class informacionRuta
 {
 private:
-    /* data */
+
 public:
     informacionRuta(/* args */);
     ~informacionRuta();
+
+    void generarBus();
 };
 
 informacionRuta::informacionRuta(/* args */)
 {
+
 }
 
 informacionRuta::~informacionRuta()
 {
+
+}
+
+void informacionRuta :: generarBus()
+{
+
 }
