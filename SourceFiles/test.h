@@ -33,17 +33,17 @@ void Viajes ::reservaViajes()
 {
     int Origen, Destino, cantidadUsuarios;
 
-    Origen = Rutas :: selecionarOrigen();
-    Destino = Rutas :: selecionarDestino(Origen);
+    Origen = Rutas ::selecionarOrigen();
+    Destino = Rutas ::selecionarDestino(Origen);
     cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
 
     ControladorViajes *NuevaReserva = new ControladorViajes(Origen, Destino, cantidadUsuarios);
-    NuevaReserva -> agregarPasajero();
+    NuevaReserva->agregarPasajero();
 
     listaCompras->insertarElementoLista(&listaCompras, NuevaReserva);
 
-    cout << "\n Ha selecionado el origen " << Rutas :: getOrigen(Origen);
-    cout << "\n Ha selecionado el destino " << Rutas :: getDestino(Destino);
+    cout << "\n Ha selecionado el origen " << Rutas ::getOrigen(Origen);
+    cout << "\n Ha selecionado el destino " << Rutas ::getDestino(Destino);
     cout << "\n";
 }
 
@@ -55,7 +55,8 @@ int Viajes ::seleccionarCantidadUsuarios(string Origen, string Destino)
     {
         cout << "\n Cuantos pasajeros son en el grupo de " + Origen + " con destino a  " + Destino << "\n";
         cin >> cantidadUsuarios;
-        if(!(cantidadUsuarios >= 1 && cantidadUsuarios <= 50)){
+        if (!(cantidadUsuarios >= 1 && cantidadUsuarios <= 50))
+        {
             ClearKeyboard();
             cout << "La opcion seleccionada es incorrecta.\n";
         }
@@ -78,7 +79,8 @@ int Viajes ::menuViajes()
         cout << "3. Regresar al menu principal \n";
         cin >> opcionSelecionada;
 
-        if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4)){
+        if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4))
+        {
             ClearKeyboard();
             cout << "La opcion seleccionada es incorrecta.\n";
         }

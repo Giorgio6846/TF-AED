@@ -3,7 +3,7 @@
 #include "Persona.h"
 
 #if (VER == 1 || VER == 2)
-#include "Viajes.h" 
+#include "ControladorViajes.h" 
 #endif
 
 #if (VER == 1 || VER == 3)
@@ -20,7 +20,7 @@ Opciones de Compilacion
 int menu();
 
 #if (VER == 1 || VER == 2)
-void opcionViajes(Viajes *claseViaje);
+void opcionViajes(ControladorViajes *claseViaje);
 #endif
 
 #if (VER == 1 || VER == 3)
@@ -30,8 +30,8 @@ void opcionEncomienda(Encomienda *claseEncomienda);
 int main()
 {
     #if (VER == 1 || VER == 2)
-    Viajes *claseViaje = new Viajes();
-    #endif
+    ControladorViajes *claseViaje = new ControladorViajes();
+#endif
 
     #if (VER == 1 || VER == 3)
     Encomienda *claseEncomienda = new Encomienda();
@@ -67,7 +67,7 @@ int main()
 }
 
 #if (VER == 1 || VER == 2)
-void opcionViajes(Viajes *claseViaje)
+void opcionViajes(ControladorViajes *claseViaje)
 {
     int opcionSelecionada;
     do
@@ -78,7 +78,7 @@ void opcionViajes(Viajes *claseViaje)
         {
         case 1:
             // Invoca la funcion de la clase para reservar el viaje
-            claseViaje->reservaViajes();
+            claseViaje->reservaViaje();
             break;
         case 2:
             // Invoca la funcion de la clase para buscar un viaje reservado
