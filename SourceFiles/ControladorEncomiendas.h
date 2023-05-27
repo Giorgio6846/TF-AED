@@ -2,15 +2,18 @@
 #include "Rutas.h"
 #include "Persona.h"
 #include "Algoritmos/NodoLista.h"
+#include "objetoEncomienda.h"
 
 class ControladorEncomiendas: public Rutas
 {
     private:
         NodoLista<Persona> *listaClientes;
+        NodoLista<objetoEncomienda> * listaObjetos;
         int esPrint;
 public:
     ControladorEncomiendas(){
         this->listaClientes = NULL;
+        this->listaObjetos = NULL;
     };
     ~ControladorEncomiendas(){};
 
@@ -44,11 +47,10 @@ public:
         return opcionSelecionada;
     }
 
-    void agendarEncomienda()
+    void agendarCliente()
     {
         listaClientes->insertarElementoLista(&listaClientes, almacenarInfoCliente(listaClientes));
-        esPrint = printClientesEncomiendas(listaClientes);
-        if (esPrint == 1)
+        if (printClientesEncomiendas() == 1)
         {
             printClientes(listaClientes);
         }
@@ -124,12 +126,39 @@ public:
         return cliente;
     }
 
-
-    int printClientesEncomiendas(NodoLista<Persona> * lista){
+    int printClientesEncomiendas(){
         int opcion;
         cout << "Desea ver sus datos en la lista de clientes? Si = 1 / No = 0" << endl;
         cin >> opcion;
         return opcion;
     }
 
+    objetoEncomienda * almacenarInfoObjeto(){
+        string categoria;
+        int opcion, peso;
+        bool esFragil;
+        //TODO: Validación - Fabio
+        cout << "De que categoria es su objeto a encomendar?: " << endl;
+        cout << "1- Tecnologia"<< endl;
+        cout << "2- Salud"<< endl;
+        cout << "3- Vestimenta"<< endl;
+        cin >> opcion;
+        switch (opcion)
+        {
+        case 1: categoria = "Tecnologia";break;
+        case 2: categoria = "Salud";break;
+        case 3: categoria = "Vestimenta";break;
+        }
+        
+        cout << "Cual es el peso aproximado(Kg) de su objeto?"<< endl;
+        cin >> peso;
+        cout << "Es su objeto considero fragil?: 1 = SI / 0 = NO "<< endl;
+        cin >> esFragil;
+        objetoEncomienda * objeto = new objetoEncomienda(categoria, peso, esFragil);
+        return objeto;
+    }
+
+    void agendarObjeto(){
+        listaObjetos->insertarElementoLista(&listaObjetos, almacenarInfoObjeto());
+    }
 };

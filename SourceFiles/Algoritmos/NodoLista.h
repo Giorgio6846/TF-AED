@@ -29,6 +29,6 @@ public:
             while (aux->next != NULL){aux = aux->next;}
             aux->next = nuevoNodo;
         }
-        cout << "Su datos han sido registrada de manera satisfactoria!" << endl;
+        cout << "Los datos han sido registrada de manera satisfactoria!" << endl;
     }
 };

@@ -108,7 +108,8 @@ void opcionEncomienda(ControladorEncomiendas *claseEncomienda)
         {
         case 1:
                 //Invoca la clase para agendar la encomienda
-                claseEncomienda ->agendarEncomienda();
+                claseEncomienda->agendarCliente();
+                claseEncomienda->agendarObjeto();
             break;
 
         case 2:
