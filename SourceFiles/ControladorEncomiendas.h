@@ -17,7 +17,6 @@ public:
     ControladorEncomiendas(){
         this->listaClientes = NULL;
         this->listaObjetos = NULL;
-        this->colaEncomiendas = NULL;
     };
     ~ControladorEncomiendas(){};
 
@@ -29,17 +28,9 @@ public:
            listaClientes = listaClientes->next;
            listaObjetos = listaObjetos->next;
            colaEncomiendas->insertarElementoCola(encomiendaFinal);
+           cout << colaEncomiendas->elemento->cliente->getNombre();
         }   
-
-        while (colaEncomiendas != NULL)
-        {
-            cout << "OTRO GAAA";
-            cout << colaEncomiendas->elemento->cliente->getEdad() << endl;
-            colaEncomiendas = colaEncomiendas->next;
-            /* code */
-        }
         
-
         //TODO: Vaciar listaClientes y listaObjetos para evitar Encomiendas repetidas
     }
     

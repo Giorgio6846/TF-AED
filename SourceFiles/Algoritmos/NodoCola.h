@@ -31,6 +31,4 @@ public:
         fin = nuevoNodo;
     }
 
-    void mostrarElementos(T * lista){}
-
 };
