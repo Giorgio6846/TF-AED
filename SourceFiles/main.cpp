@@ -11,9 +11,15 @@
 
 /*
 Opciones de Compilacion
+VER
 1: Release
 2: Solo Viajes
 3: Solo Encomiendas
+4: Solo Viajes pero Personas es Random
+
+RAD
+0: Se tienen que ingresar los datos del pasajero
+1: Se crean aleatoriamente los datos del pasajero
 */
 
 int menu();

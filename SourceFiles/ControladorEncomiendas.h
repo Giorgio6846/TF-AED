@@ -155,23 +155,49 @@ public:
         string categoria;
         int opcion, peso;
         bool esFragil;
-        //TODO: Validación - Fabio
-        cout << "De que categoria es su objeto a encomendar?: " << endl;
-        cout << "1- Tecnologia"<< endl;
-        cout << "2- Salud"<< endl;
-        cout << "3- Vestimenta"<< endl;
-        cin >> opcion;
+
+        do
+        {
+            clearScreen;
+            cout << "De que categoria es su objeto a encomendar?: " << endl;
+            cout << "1- Tecnologia"<< endl;
+            cout << "2- Salud"<< endl;
+            cout << "3- Vestimenta"<< endl;
+
+            cin >> opcion;
+
+            if (!(opcion >= 1 && opcion <= 3)) {
+            ClearKeyboard();
+            cout << "La opcion seleccionada es incorrecta.";
+            cont();
+        }
+        } while (!(opcion >= 1 && opcion <= 3));
+        
         switch (opcion)
         {
         case 1: categoria = "Tecnologia";break;
         case 2: categoria = "Salud";break;
         case 3: categoria = "Vestimenta";break;
         }
-        
-        cout << "Cual es el peso aproximado(Kg) de su objeto?"<< endl;
-        cin >> peso;
-        cout << "Es su objeto considero fragil?: 1 = SI / 0 = NO "<< endl;
-        cin >> esFragil;
+        do
+        {
+            cout << "Cual es el peso aproximado(Kg) de su objeto?"<< endl;
+            cin >> peso;
+            if (!(peso >= 0 && peso <= 30)) {
+            ClearKeyboard();
+            cout << "El valor ingresado es invalidoo.\n";
+            }   
+        } while (!(peso >= 0 && peso <= 30));
+        do
+        {
+            cout << "Es su objeto considero fragil?: 1 = SI / 0 = NO "<< endl;
+            cin >> esFragil;
+            if (!(esFragil >= 0 && esFragil <= 1)) {
+            ClearKeyboard();
+            cout << "El valor ingresado es invalido.\n";
+            }   
+        } while (!(esFragil >= 0 && esFragil <= 1));
+
         objetoEncomienda * objeto = new objetoEncomienda(categoria, peso, esFragil);
         return objeto;
     }
