@@ -39,6 +39,7 @@ Limpieza del cin
 //Limpieza de pantalla
 #ifdef _WIN32
 #define VER 1
+#define RAD 0
 #define clearScreen system("CLS");
 #else
 #define clearScreen system("clear");
