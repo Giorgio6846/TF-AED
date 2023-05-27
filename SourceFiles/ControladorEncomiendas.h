@@ -1,7 +1,7 @@
 #include "Libraries.h"
 #include "Rutas.h"
 #include "Persona.h"
-#include "NodoLista.h"
+#include "Algoritmos/NodoLista.h"
 
 class ControladorEncomiendas: public Rutas
 {

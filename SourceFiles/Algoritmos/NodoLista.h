@@ -1,5 +1,4 @@
-#include "Libraries.h"
-#include "Persona.h"
+#include "../Libraries.h"
 #pragma once
 
 template <class T>
