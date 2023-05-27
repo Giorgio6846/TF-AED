@@ -194,7 +194,7 @@ public:
             cin >> peso;
             if (!(peso >= 0 && peso <= 30)) {
             ClearKeyboard();
-            cout << "El valor ingresado es invalido.\n";
+            cout << "El valor ingresado es invalidoo.\n";
             }   
         } while (!(peso >= 0 && peso <= 30));
         do
