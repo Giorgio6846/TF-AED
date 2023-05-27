@@ -129,20 +129,20 @@ int menu()
     do
     {
         clearScreen;
-        cout << "Selecione la opcion." << "\n";
+        cout << "Selecione la opcion:" << "\n";
         cout << "1. Viajes" << "\n";
         cout << "2. Encomiendas" << "\n";
         cout << "3. Salir" << "\n";
 
         cin >> opcionSelecionada;
         //Validando que solo permita numeros del 1 al 3
-        if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4)) {
+        if (!(opcionSelecionada >= 1 && opcionSelecionada <= 3)) {
             ClearKeyboard();
             cout << "La opcion seleccionada es incorrecta.";
             cont();
         }
 
-    } while (!(opcionSelecionada >= 1 && opcionSelecionada <= 4));
+    } while (!(opcionSelecionada >= 1 && opcionSelecionada <= 3));
 
     return opcionSelecionada;
 }

@@ -46,20 +46,49 @@ public:
         clearScreen;
         string nombreP, apellidoP;
         int edadP;
+        bool validar;
+
+        do{
         cout << "Ingrese su nombre: "; cin >> nombreP;
+        for (int i = 0; i < nombreP.length(); i++)
+        {
+            if(!(isdigit(nombreP[i]))){
+            validar=true;
+            }else
+            {
+            validar=false;
+            }
+        }if (validar==false){
+                cout << "El nombre ingresado es invalido.\n";
+                }
+        } while (validar==false);
+
+        do{
         cout << "Ingrese su apellido: "; cin >> apellidoP;
+        for (int i = 0; i < apellidoP.length(); i++)
+        {
+            if(!(isdigit(apellidoP[i]))){
+            validar=true;
+            }else
+            {
+            validar=false;
+            }
+        }if (validar==false){
+                cout << "El apellido ingresado es invalido.\n";
+                }
+        } while (validar==false);
 
         do
         {
             cout << "Ingrese su edad: "; cin >> edadP;
 
-            if (!(edadP >= 18 && edadP <= 120)) {
+            if (!(edadP >= 0 && edadP <= 120)) {
             cin.clear();
             cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
             cout << "El valor ingresado es invalido.\n";
             }   
 
-        } while (!(edadP >= 18 && edadP <= 120));
+        } while (!(edadP >= 0 && edadP <= 120));
 
         //Con la información dada, se crea un objeto cliente y se devuelve 
         Persona * cliente = new Persona(nombreP, apellidoP, edadP, 'D');
