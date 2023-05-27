@@ -6,7 +6,7 @@
 #endif
 
 #if (VER == 1 || VER == 3)
-#include "Encomienda.h"
+#include "ControladorEncomiendas.h"
 #endif
 
 /*
@@ -23,7 +23,7 @@ void opcionViajes(ControladorViajes *claseViaje);
 #endif
 
 #if (VER == 1 || VER == 3)
-void opcionEncomienda(Encomienda *claseEncomienda);
+void opcionEncomienda(ControladorEncomiendas *claseEncomienda);
 #endif
 
 int main()
@@ -31,11 +31,11 @@ int main()
     srand(time(NULL));
 
     #if (VER == 1 || VER == 2)
-        ControladorViajes *claseViaje = new ControladorViajes();
+    ControladorViajes *claseViaje = new ControladorViajes();
     #endif
 
     #if (VER == 1 || VER == 3)
-    Encomienda *claseEncomienda = new Encomienda();
+    ControladorEncomiendas *claseEncomienda = new ControladorEncomiendas();
     #endif
 
     int opcionElegida;
@@ -98,7 +98,7 @@ void opcionViajes(ControladorViajes *claseViaje)
 #endif
 
 #if (VER == 1 || VER == 3)
-void opcionEncomienda(Encomienda *claseEncomienda)
+void opcionEncomienda(ControladorEncomiendas *claseEncomienda)
 {
     int opcionSelecionada;
 
@@ -110,7 +110,9 @@ void opcionEncomienda(Encomienda *claseEncomienda)
         {
         case 1:
                 //Invoca la clase para agendar la encomienda
-                claseEncomienda ->agendarEncomienda();
+                claseEncomienda->agendarCliente();
+                claseEncomienda->agendarObjeto();
+                claseEncomienda->agendarEncomiendaFinal();
             break;
 
         case 2:
