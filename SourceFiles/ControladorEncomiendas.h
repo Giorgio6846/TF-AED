@@ -113,7 +113,7 @@ public:
 
             if (!(edadP >= 0 && edadP <= 120)) {
             cin.clear();
-            //cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
             cout << "El valor ingresado es invalido.\n";
             }   
 
