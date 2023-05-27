@@ -2,21 +2,47 @@
 #include "Rutas.h"
 #include "Persona.h"
 #include "Algoritmos/NodoLista.h"
+#include "Algoritmos/NodoCola.h"
 #include "objetoEncomienda.h"
+#include "Encomienda.h"
 
 class ControladorEncomiendas: public Rutas
 {
     private:
         NodoLista<Persona> *listaClientes;
         NodoLista<objetoEncomienda> * listaObjetos;
+        NodoCola<Encomienda> * colaEncomiendas;
         int esPrint;
 public:
     ControladorEncomiendas(){
         this->listaClientes = NULL;
         this->listaObjetos = NULL;
+        this->colaEncomiendas = NULL;
     };
     ~ControladorEncomiendas(){};
 
+    void agendarEncomiendaFinal(){
+        while (listaClientes != NULL && listaObjetos!= NULL)
+        {
+            cout << "GAAA";
+           Encomienda * encomiendaFinal = new Encomienda(listaClientes->getElemento(listaClientes), listaObjetos->getElemento(listaObjetos));
+           listaClientes = listaClientes->next;
+           listaObjetos = listaObjetos->next;
+           colaEncomiendas->insertarElementoCola(encomiendaFinal);
+        }   
+
+        while (colaEncomiendas != NULL)
+        {
+            cout << "OTRO GAAA";
+            cout << colaEncomiendas->elemento->cliente->getEdad() << endl;
+            colaEncomiendas = colaEncomiendas->next;
+            /* code */
+        }
+        
+
+        //TODO: Vaciar listaClientes y listaObjetos para evitar Encomiendas repetidas
+    }
+    
     void reservaEncomienda(){
     int Origen, Destino, cantidadUsuarios;
     Origen = Rutas :: selecionarOrigen();

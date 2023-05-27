@@ -6,12 +6,17 @@ class NodoCola
 public:
     T * elemento;
     NodoCola * next;
+    NodoCola * frente;
+    NodoCola * fin;
 
 public:
-    NodoCola(){};
+    NodoCola(){
+        NodoCola * frente = NULL;
+        NodoCola * fin = NULL;
+    };
     ~NodoCola(){};
 
-    void insertarElementoCola(NodoCola *& frente, NodoCola *& fin, T * elementoClase)
+    void insertarElementoCola(T * elementoClase)
     {
         //Creación del nuevo nodo
         NodoCola * nuevoNodo = new NodoCola();
@@ -25,4 +30,7 @@ public:
         else {fin->next = nuevoNodo;}
         fin = nuevoNodo;
     }
+
+    void mostrarElementos(T * lista){}
+
 };

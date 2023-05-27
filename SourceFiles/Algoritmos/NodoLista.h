@@ -31,4 +31,6 @@ public:
         }
         cout << "Los datos han sido registrada de manera satisfactoria!" << endl;
     }
+
+    T * getElemento(NodoLista *listaElementos){return listaElementos->elemento;}
 };
