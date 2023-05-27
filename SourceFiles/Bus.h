@@ -56,3 +56,4 @@ void Bus::generarAsientos()
         distribucionAsientos.push_back(Fil);
     }
 }
+

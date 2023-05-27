@@ -174,7 +174,7 @@ public:
             {
                 cout << "Ingrese el Carnet de Extranjeria del pasajero: ";
                 cin >> documentoP;
-                val = documentoP.size() == 8;
+                val = documentoP.size() == 9;
                 if (val)
                 {
                     for (int i = 0; i < documentoP.size(); i++)
