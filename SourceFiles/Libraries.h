@@ -7,7 +7,6 @@
 #include <limits>
 #include <sstream>
 #include <stdio.h>
-#include <list>
 #include <stdlib.h>
 #include <fstream>
 
