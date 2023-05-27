@@ -1,4 +1,4 @@
-#include "Rutas.h"
+#include "../Rutas.h"
 #include "Viaje.h"
 
 /*

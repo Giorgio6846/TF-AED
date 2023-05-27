@@ -1,6 +1,6 @@
-#include "Libraries.h"
-#include "Persona.h"
-#include "NodoLista.h"
+#include "../Libraries.h"
+#include "../Persona.h"
+#include "../Algoritmos/NodoLista.h"
 
 class Viaje
 {
