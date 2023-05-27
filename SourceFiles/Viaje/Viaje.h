@@ -33,7 +33,12 @@ void Viaje :: agregarPasajero()
     for (int i = 0; i <= cantidadPasajeros - 1; i++)
     {
         Persona *cliente = new Persona();
+
+        #if RAD == 0
         cliente->typePersona();
+        #elif RAD == 1
+        cliente->randomPersona();
+        #endif
 
         listaPasajeros->insertarElementoLista(&listaPasajeros, cliente);
     }
