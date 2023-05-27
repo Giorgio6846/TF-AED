@@ -37,6 +37,7 @@ Limpieza del cin
 
 //Limpieza de pantalla
 #ifdef _WIN32
+#define VER 1
 #define clearScreen system("CLS");
 #else
 #define clearScreen system("clear");
@@ -62,5 +63,5 @@ void cont()
 void ClearKeyboard()
 {
     cin.clear();
-    cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+    //cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
 }

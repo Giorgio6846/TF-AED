@@ -5,17 +5,19 @@
 
 class ControladorEncomiendas: public Rutas
 {
+    private:
+        NodoLista<Persona> *listaClientes;
+        int esPrint;
 public:
-    ControladorEncomiendas(){};
+    ControladorEncomiendas(){
+        this->listaClientes = NULL;
+    };
     ~ControladorEncomiendas(){};
 
     void reservaEncomienda(){
-
     int Origen, Destino, cantidadUsuarios;
-
     Origen = Rutas :: selecionarOrigen();
     Destino = Rutas :: selecionarDestino(Origen);
-
     cout << "\n Ha selecionado el origen " << Rutas :: getOrigen(Origen);
     cout << "\n Ha selecionado el destino " << Rutas :: getDestino(Destino);
     }
@@ -32,7 +34,7 @@ public:
 
             if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4)){
                 cin.clear();
-                cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+                //cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
                 cout << "La opcion seleccionada es incorrecta.";
                 cont();
             }
@@ -40,6 +42,33 @@ public:
                 return opcionSelecionada;
         } while (opcionSelecionada != 3);
         return opcionSelecionada;
+    }
+
+    void agendarEncomienda()
+    {
+        listaClientes->insertarElementoLista(&listaClientes, almacenarInfoCliente(listaClientes));
+        esPrint = printClientesEncomiendas(listaClientes);
+        if (esPrint == 1)
+        {
+            printClientes(listaClientes);
+        }
+    }
+
+    void printClientes(NodoLista<Persona> *lista)
+    {
+        int op;
+        // Mientras no se llegue al final de lista, mostrar los datos de los clientes almacenados
+        clearScreen;
+        while (lista != NULL)
+        {
+            cout << "Nombre: " << lista->elemento->getNombre() << endl;
+            cout << "Apellido: " << lista->elemento->getApellido() << endl;
+            cout << "Edad: " << lista->elemento->getEdad() << endl;
+            cout <<endl;
+            lista = lista->next;
+        }
+        cout << "Presione cualquier tecla para volver al menu de encomiendas!" << endl;
+        cont();
     }
 
     Persona * almacenarInfoCliente(NodoLista<Persona> * lista){
@@ -84,7 +113,7 @@ public:
 
             if (!(edadP >= 0 && edadP <= 120)) {
             cin.clear();
-            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+            //cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
             cout << "El valor ingresado es invalido.\n";
             }   
 
