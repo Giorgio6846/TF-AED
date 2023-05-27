@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <list>
 #include <stdlib.h>
+#include <fstream>
 
 #ifdef _WIN32
 #include <conio.h>
@@ -63,4 +64,9 @@ void ClearKeyboard()
 {
     cin.clear();
     cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+}
+
+int randDigit(int exception)
+{
+    return (rand() % (10 - exception) + exception);
 }

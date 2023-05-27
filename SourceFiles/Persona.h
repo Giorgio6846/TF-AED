@@ -49,9 +49,10 @@ public:
     string getDocumento() { return this->documento; }
 
     void typePersona();
+    void randomPersona();
 };
 
-    void Persona :: typeNombre()
+void Persona :: typeNombre()
     {
         string nombreP;
         bool val;
@@ -79,7 +80,7 @@ public:
         this->nombre = nombreP;
     }
 
-    void Persona :: typeApellido()
+void Persona :: typeApellido()
     {
         string apellidosP;
         bool val;
@@ -107,7 +108,7 @@ public:
         this -> apellido = apellidosP;
     }
 
-    void Persona :: typeEdad()
+void Persona :: typeEdad()
     {
         int edadP;
 
@@ -125,7 +126,7 @@ public:
         this->edad = edadP;
     }
 
-    void Persona :: typeTipoDocumentoyDocumento()
+void Persona :: typeTipoDocumentoyDocumento()
     {
         int tipoDocumentoP;
         string documentoP;
@@ -223,7 +224,6 @@ public:
 
     }
 
-
 void Persona :: typePersona()
 {
     cout << "Ingrese los datos de la persona: \n";
@@ -255,7 +255,7 @@ void Persona :: typePersona()
         break;
     default:
         break;
-    }
+    } 
 
     int verDat;
     int camDat;
@@ -310,4 +310,95 @@ void Persona :: typePersona()
             }
         }
     } while (!(verDat >= 1 && verDat <= 2));
+}
+
+void Persona :: randomPersona()
+{
+    string pathApellidos = "InformacionDatos/apellidos-es.txt";
+    string pathNombres = "InformacionDatos/nombres-propios-es.txt";
+
+    string cantidadNombres;
+    string cantidadApellidos;
+
+    int i = 0;
+    int datTemp1, datTemp2;
+    string temp;
+
+    ifstream nombresFile(pathNombres, ios::in);
+    getline(nombresFile, cantidadNombres);
+
+    datTemp1 = rand() % stoi(cantidadNombres);
+    datTemp2 = rand() % stoi(cantidadNombres);
+
+    this -> nombre = "";
+    i = 0;
+
+    do
+    {
+        getline(nombresFile, temp);
+
+        if (i == datTemp1 || i == datTemp2)
+        {
+            this->nombre = temp + " " + this->nombre;
+        }
+        i++;
+    } while ((i <= datTemp1) || (i <= datTemp2));
+
+    nombresFile.close();
+
+    ifstream apellidosFile(pathApellidos, ios::in);
+    getline(apellidosFile, cantidadApellidos);
+
+    datTemp1 = rand() % stoi(cantidadApellidos);
+    datTemp2 = rand() % stoi(cantidadApellidos);
+
+    this->apellido = "";
+    i = 0;
+
+    do
+    {
+        getline(apellidosFile, temp);
+
+        if (i == datTemp1 || i == datTemp2)
+        {
+            this->apellido = temp + " " + this->apellido;
+        }
+        i++;
+    } while ((i <= datTemp1) || (i <= datTemp2));
+
+    apellidosFile.close();
+
+    this-> edad = 0;
+    this -> edad = rand() % 80 + 18;
+
+    this-> tipoDocumento = 0;
+    this->tipoDocumento = rand() % 3 + 1;
+
+    this-> documento = "";
+    switch (this->tipoDocumento)
+    {
+    case 1:
+        for (int i = 1; i <= 8; i++)
+        {
+            this->documento = to_string(randDigit((i == 1) * 1)) + this->documento;
+        }
+        break;
+
+    case 2:
+        for (int i = 1; i <= 9; i++)
+        {
+            this->documento = to_string(randDigit((i == 1) * 1)) + this->documento;
+        }
+        break;
+
+    case 3:
+        for (int i = 1; i <= 8; i++)
+        {
+            this->documento = to_string(randDigit((i == 1) * 1)) + this->documento;
+        }
+        break;
+
+    default:
+        break;
+    }
 }

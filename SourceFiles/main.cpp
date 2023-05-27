@@ -28,9 +28,11 @@ void opcionEncomienda(Encomienda *claseEncomienda);
 
 int main()
 {
+    srand(time(NULL));
+
     #if (VER == 1 || VER == 2)
-    ControladorViajes *claseViaje = new ControladorViajes();
-#endif
+        ControladorViajes *claseViaje = new ControladorViajes();
+    #endif
 
     #if (VER == 1 || VER == 3)
     Encomienda *claseEncomienda = new Encomienda();
@@ -123,7 +125,7 @@ void opcionEncomienda(Encomienda *claseEncomienda)
 #endif
 
 int menu()
-{
+{    
     int opcionSelecionada;
     do
     {
