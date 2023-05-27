@@ -34,7 +34,7 @@ public:
 
             if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4)){
                 cin.clear();
-                //cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+                cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
                 cout << "La opcion seleccionada es incorrecta.";
                 cont();
             }

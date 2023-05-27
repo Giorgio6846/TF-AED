@@ -63,5 +63,5 @@ void cont()
 void ClearKeyboard()
 {
     cin.clear();
-    //cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+    cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
 }
