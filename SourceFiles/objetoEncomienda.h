@@ -4,16 +4,16 @@ class objetoEncomienda
 {
 private:
     string categoria;
-    int peso;
-    bool esFragil;
+    float peso;
+    char esFragil;
 public:
-    objetoEncomienda(string categoria, int peso, bool esFragil){
+    objetoEncomienda(string categoria, float peso, char esFragil){
         this->peso=peso;
         this->esFragil = esFragil;
     };
     ~objetoEncomienda(){};
 
     void setCategoria(string categoria){this->categoria = categoria;}
-    void setPeso(int peso){this->peso = peso;}
-    void setEsFragilI(bool esFragil){this->esFragil = esFragil;}
+    void setPeso(float peso){this->peso = peso;}
+    void setEsFragilI(char esFragil){this->esFragil = esFragil;}
 };
