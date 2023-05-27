@@ -23,10 +23,10 @@ public:
     }
     
     int menuEncomienda(){
-        clearScreen;
         int opcionSelecionada;
         do{
-            cout << "Selecione la opcion. \n";
+            clearScreen;
+            cout << "Selecione la opcion: \n";
             cout << "1. Agendar una encomienda \n";
             cout << "2. Eliminar una encomienda \n";
             cout << "3. Regresar al menu principal \n";
