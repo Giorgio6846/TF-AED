@@ -1,9 +1,8 @@
 //#include "App.h"
 #include "Libraries.h"
-#include "Persona.h"
 
 #if (VER == 1 || VER == 2)
-#include "ControladorViajes.h" 
+#include "Viaje/ControladorViajes.h" 
 #endif
 
 #if (VER == 1 || VER == 3)
