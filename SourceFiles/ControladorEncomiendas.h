@@ -159,6 +159,7 @@ public:
         do
         {
             clearScreen;
+
             cout << "De que categoria es su objeto a encomendar?: " << endl;
             cout << "1- Tecnologia"<< endl;
             cout << "2- Salud"<< endl;
@@ -170,6 +171,7 @@ public:
             ClearKeyboard();
             cout << "La opcion seleccionada es incorrecta.";
             cont();
+            
         }
         } while (!(opcion >= 1 && opcion <= 3));
         
@@ -183,25 +185,32 @@ public:
         do
         {
             clearScreen;
+
             cout << "Cual es el peso aproximado(Kg) de su objeto?"<< endl;
             cin >> peso;
+
             if (!(peso >= 0.01 && peso <= 30)) {
             ClearKeyboard();
             cout << "El valor ingresado es invalido.\n";
             cont();
+
             }   
         } while (!(peso >= 0.01 && peso <= 30));
 
         do
         {
             clearScreen;
+
             cout << "Es su objeto considero fragil?: S = SI / N = NO "<< endl;
             cin >> esFragil;
+
             esFragil = toupper(esFragil);
+
             if (!(int(esFragil) == 78 || int(esFragil) == 83)) {
             ClearKeyboard();
             cout << "El valor ingresado es invalido.\n";
             cont();
+
             }   
         } while (!(int(esFragil) == 78 || int(esFragil) == 83));
 
