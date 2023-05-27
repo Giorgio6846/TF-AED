@@ -23,6 +23,7 @@ public:
     }
     
     int menuEncomienda(){
+        clearScreen;
         int opcionSelecionada;
         do{
             cout << "Selecione la opcion. \n";
