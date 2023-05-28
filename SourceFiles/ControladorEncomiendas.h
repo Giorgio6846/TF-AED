@@ -2,7 +2,6 @@
 #include "Rutas.h"
 #include "Persona.h"
 #include "Algoritmos/NodoLista.h"
-#include "Algoritmos/NodoCola.h"
 #include "objetoEncomienda.h"
 #include "Encomienda.h"
 
@@ -11,27 +10,25 @@ class ControladorEncomiendas: public Rutas
     private:
         NodoLista<Persona> *listaClientes;
         NodoLista<objetoEncomienda> * listaObjetos;
-        NodoCola<Encomienda> * colaEncomiendas;
+        NodoLista<Encomienda> * listaEncomienda;
         int esPrint;
 public:
     ControladorEncomiendas(){
         this->listaClientes = NULL;
         this->listaObjetos = NULL;
+        this->listaEncomienda = NULL;
     };
     ~ControladorEncomiendas(){};
 
     void agendarEncomiendaFinal(){
         while (listaClientes != NULL && listaObjetos!= NULL)
         {
-            cout << "GAAA";
            Encomienda * encomiendaFinal = new Encomienda(listaClientes->getElemento(listaClientes), listaObjetos->getElemento(listaObjetos));
            listaClientes = listaClientes->next;
            listaObjetos = listaObjetos->next;
-           colaEncomiendas->insertarElementoCola(encomiendaFinal);
-           cout << colaEncomiendas->elemento->cliente->getNombre();
+           listaEncomienda->insertarElementoLista(&listaEncomienda, encomiendaFinal);
+           cout << listaEncomienda->elemento->cliente->getApellido();
         }   
-        
-        //TODO: Vaciar listaClientes y listaObjetos para evitar Encomiendas repetidas
     }
     
     void reservaEncomienda(){
