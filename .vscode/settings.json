@@ -5,6 +5,7 @@
     "xstring": "cpp",
     "limits": "cpp",
     "string": "cpp",
-    "list": "cpp"
+    "list": "cpp",
+    "ios": "cpp"
   }
 }
