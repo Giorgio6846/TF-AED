@@ -20,6 +20,26 @@ public:
     };
     ~ControladorEncomiendas(){};
 
+    void printInfoEncomiendas(){
+        int contador = 1;
+        if (listaEncomienda!= NULL)
+        {
+            while (listaEncomienda != NULL)
+        {
+            cout << "Encomienda numero " << contador << endl;
+            cout << "Nombre: " << listaEncomienda->elemento->cliente->getNombre() << endl;
+            cout << "Apellido: " << listaEncomienda->elemento->cliente->getApellido() << endl;
+            cout << "Edad: " << listaEncomienda->elemento->cliente->getEdad() << endl;
+            contador++;
+            listaEncomienda = listaEncomienda->next;
+        }
+        }
+        else
+        {
+            cout << "No existen encomiendas por el momento!" << endl;
+        }
+    }
+
     void agendarEncomiendaFinal(){
         while (listaClientes != NULL && listaObjetos!= NULL)
         {
@@ -27,8 +47,7 @@ public:
            listaClientes = listaClientes->next;
            listaObjetos = listaObjetos->next;
            listaEncomienda->insertarElementoLista(&listaEncomienda, encomiendaFinal);
-           cout << listaEncomienda->elemento->cliente->getApellido();
-        }   
+        }           
     }
     
     void reservaEncomienda(){
@@ -45,7 +64,7 @@ public:
             clearScreen;
             cout << "Selecione la opcion: \n";
             cout << "1. Agendar una encomienda \n";
-            cout << "2. Eliminar una encomienda \n";
+            cout << "2. Mostrar lista de encomiendas \n";
             cout << "3. Regresar al menu principal \n";
             
             cin >> opcionSelecionada;

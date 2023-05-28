@@ -122,7 +122,8 @@ void opcionEncomienda(ControladorEncomiendas *claseEncomienda)
             break;
 
         case 2:
-            //Eliminar una encomienda del sistema
+            claseEncomienda->printInfoEncomiendas();
+            cont();
             break;
 
         default:
