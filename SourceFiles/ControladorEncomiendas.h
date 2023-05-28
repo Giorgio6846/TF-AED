@@ -131,13 +131,12 @@ public:
         {
             cout << "Ingrese su edad: "; cin >> edadP;
 
-            if (!(edadP >= 0 && edadP <= 120)) {
-            cin.clear();
-            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+            if (!(edadP >= 1 && edadP <= 120)) {
+            ClearKeyboard();
             cout << "El valor ingresado es invalido.\n";
             }   
 
-        } while (!(edadP >= 0 && edadP <= 120));
+        } while (!(edadP >= 1 && edadP <= 120));
 
         //Con la información dada, se crea un objeto cliente y se devuelve 
         Persona * cliente = new Persona(nombreP, apellidoP, edadP, 'D');
@@ -153,12 +152,14 @@ public:
 
     objetoEncomienda * almacenarInfoObjeto(){
         string categoria;
-        int opcion, peso;
-        bool esFragil;
+        int opcion;
+        float peso;
+        char esFragil;
 
         do
         {
             clearScreen;
+
             cout << "De que categoria es su objeto a encomendar?: " << endl;
             cout << "1- Tecnologia"<< endl;
             cout << "2- Salud"<< endl;
@@ -170,6 +171,7 @@ public:
             ClearKeyboard();
             cout << "La opcion seleccionada es incorrecta.";
             cont();
+            
         }
         } while (!(opcion >= 1 && opcion <= 3));
         
@@ -179,24 +181,38 @@ public:
         case 2: categoria = "Salud";break;
         case 3: categoria = "Vestimenta";break;
         }
+
         do
         {
+            clearScreen;
+
             cout << "Cual es el peso aproximado(Kg) de su objeto?"<< endl;
             cin >> peso;
-            if (!(peso >= 0 && peso <= 30)) {
-            ClearKeyboard();
-            cout << "El valor ingresado es invalidoo.\n";
-            }   
-        } while (!(peso >= 0 && peso <= 30));
-        do
-        {
-            cout << "Es su objeto considero fragil?: 1 = SI / 0 = NO "<< endl;
-            cin >> esFragil;
-            if (!(esFragil >= 0 && esFragil <= 1)) {
+
+            if (!(peso >= 0.01 && peso <= 30)) {
             ClearKeyboard();
             cout << "El valor ingresado es invalido.\n";
+            cont();
+
             }   
-        } while (!(esFragil >= 0 && esFragil <= 1));
+        } while (!(peso >= 0.01 && peso <= 30));
+
+        do
+        {
+            clearScreen;
+
+            cout << "Es su objeto considero fragil?: S = SI / N = NO "<< endl;
+            cin >> esFragil;
+
+            esFragil = toupper(esFragil);
+
+            if (!(int(esFragil) == 78 || int(esFragil) == 83)) {
+            ClearKeyboard();
+            cout << "El valor ingresado es invalido.\n";
+            cont();
+
+            }   
+        } while (!(int(esFragil) == 78 || int(esFragil) == 83));
 
         objetoEncomienda * objeto = new objetoEncomienda(categoria, peso, esFragil);
         return objeto;

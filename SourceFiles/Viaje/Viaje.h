@@ -14,7 +14,7 @@ public:
     ~Viaje();
 
     void agregarPasajero();
-    void informacionPasajero();
+    void informacionPasajeros();
 };
 
 Viaje::Viaje(int codigoO, int codigoD, int cantidadPasajeros)
@@ -44,7 +44,34 @@ void Viaje :: agregarPasajero()
     }
 }
 
-void Viaje :: informacionPasajero()
+void Viaje :: informacionPasajeros()
 {
+    int op;
+    // Mientras no se llegue al final de lista, mostrar los datos de los clientes almacenados
+    clearScreen;
+    while (listaPasajeros != NULL)
+    {
+        cout << "Los datos de la persona son: \n";
+        cout << "Nombres: " << listaPasajeros->elemento->getNombre() << "\n";
+        cout << "Apellidos: " << listaPasajeros->elemento->getApellido() << "\n";
+        cout << "Edad: " << listaPasajeros->elemento->getEdad() << "\n";
+        cout << "Documento: ";
 
+        switch (listaPasajeros->elemento->getTipoDocumento())
+        {
+        case 1:
+            cout << "DNI " << listaPasajeros->elemento->getDocumento() << "\n";
+            break;
+        case 2:
+            cout << "Carnet de Extranjeria " << listaPasajeros->elemento->getDocumento() << "\n";
+            break;
+        case 3:
+            cout << "Pasaporte " << listaPasajeros->elemento->getDocumento() << "\n";
+            break;
+        default:
+            break;
+        }
+    cout << "Presione cualquier tecla para volver al menu de encomiendas!" << endl;
+    cont();
+    }
 }

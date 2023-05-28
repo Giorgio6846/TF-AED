@@ -401,4 +401,24 @@ void Persona :: randomPersona()
     default:
         break;
     }
+    cout << "Los datos de la persona son: \n";
+    cout << "Nombres: " << this->nombre << "\n";
+    cout << "Apellidos: " << this->apellido << "\n";
+    cout << "Edad: " << this->edad << "\n";
+    cout << "Documento: ";
+
+    switch (this->tipoDocumento)
+    {
+    case 1:
+        cout << "DNI " << this->documento << "\n";
+        break;
+    case 2:
+        cout << "Carnet de Extranjeria " << this->documento << "\n";
+        break;
+    case 3:
+        cout << "Pasaporte " << this->documento << "\n";
+        break;
+    default:
+        break;
+    }
 }

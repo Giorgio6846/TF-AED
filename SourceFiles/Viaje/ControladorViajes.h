@@ -74,6 +74,7 @@ int ControladorViajes :: seleccionarCantidadUsuarios(string Origen, string Desti
 
 void ControladorViajes :: reservaBusquedaViajes()
 {
+    listaCompras->elemento->informacionPasajeros();
 }
 
 int ControladorViajes :: menuViajes()
