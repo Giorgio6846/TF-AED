@@ -22,21 +22,23 @@ public:
 
     void printInfoEncomiendas(){
         int contador = 1;
-        if (listaEncomienda!= NULL)
+        NodoLista<Encomienda> * aux = listaEncomienda;
+        if (aux!= NULL)
         {
-            while (listaEncomienda != NULL)
+            while (aux != NULL)
         {
             cout << "Encomienda numero " << contador << endl;
-            cout << "Nombre: " << listaEncomienda->elemento->cliente->getNombre() << endl;
-            cout << "Apellido: " << listaEncomienda->elemento->cliente->getApellido() << endl;
-            cout << "Edad: " << listaEncomienda->elemento->cliente->getEdad() << endl;
+            cout << "Nombre: " << aux->elemento->cliente->getNombre() << endl;
+            cout << "Apellido: " << aux->elemento->cliente->getApellido() << endl;
+            cout << "Edad: " << aux->elemento->cliente->getEdad() << endl;
             contador++;
-            listaEncomienda = listaEncomienda->next;
+            aux = aux->next;
         }
         }
         else
         {
             cout << "No existen encomiendas por el momento!" << endl;
+            cont();
         }
     }
 
