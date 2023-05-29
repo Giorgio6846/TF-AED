@@ -22,21 +22,27 @@ public:
 
     void printInfoEncomiendas(){
         int contador = 1;
-        if (listaEncomienda!= NULL)
+        //Se crea un auxiliar para no alterar los punteros de la lista original
+        NodoLista<Encomienda> * aux = listaEncomienda;
+        if (aux!= NULL)
         {
-            while (listaEncomienda != NULL)
+            while (aux != NULL)
         {
             cout << "Encomienda numero " << contador << endl;
-            cout << "Nombre: " << listaEncomienda->elemento->cliente->getNombre() << endl;
-            cout << "Apellido: " << listaEncomienda->elemento->cliente->getApellido() << endl;
-            cout << "Edad: " << listaEncomienda->elemento->cliente->getEdad() << endl;
+            cout << "Propietario: " << aux->elemento->cliente->getNombre() << " " << aux->elemento->cliente->getApellido() <<endl;
+            cout << "Categoria del producto: " << aux->elemento->objeto->getCategoria()<< endl;
+            cout << "Peso (Kg): " << aux->elemento->getPeso();
+            cout << "Fragil: ";
+            if (aux->elemento->objeto->getEsFragil()){cout << "SI" << endl;}
+            else{cout << "NO" << endl;}  
             contador++;
-            listaEncomienda = listaEncomienda->next;
+            aux = aux->next;
         }
         }
         else
         {
             cout << "No existen encomiendas por el momento!" << endl;
+            cont();
         }
     }
 
