@@ -9,7 +9,6 @@ public:
 
     //0 = Ninguno, 1 DNI, 2 Carnet Extranjeria, 3 Pasaporte
     int tipoDocumento;
-
     string documento;
 
 public:
@@ -50,6 +49,8 @@ public:
 
     void typePersona();
     void randomPersona();
+
+    void informacionPersona();
 };
 
 void Persona :: typeNombre()
@@ -401,6 +402,10 @@ void Persona :: randomPersona()
     default:
         break;
     }
+}
+
+void Persona :: informacionPersona()
+{
     cout << "Los datos de la persona son: \n";
     cout << "Nombres: " << this->nombre << "\n";
     cout << "Apellidos: " << this->apellido << "\n";
