@@ -31,6 +31,7 @@ public:
             cout << "Encomienda numero " << contador << endl;
             cout << "Propietario: " << aux->elemento->cliente->getNombre() << " " << aux->elemento->cliente->getApellido() <<endl;
             cout << "Categoria del producto: " << aux->elemento->objeto->getCategoria()<< endl;
+            cout << "Peso (Kg): " << aux->elemento->getPeso();
             cout << "Fragil: ";
             if (aux->elemento->objeto->getEsFragil()){cout << "SI" << endl;}
             else{cout << "NO" << endl;}  

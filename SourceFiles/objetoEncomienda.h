@@ -20,4 +20,5 @@ public:
 
     bool getEsFragil(){return (this->esFragil == 'S') ? true : false;}
     string getCategoria(){return this->categoria;}
+    int getPeso(){return this->peso;}
 };

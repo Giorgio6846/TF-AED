@@ -12,6 +12,7 @@ public:
         this->objeto = objeto;
     };
     ~Encomienda(){};
-
+    
+    int getPeso(){return objeto->getPeso();}
 
 };
