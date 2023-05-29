@@ -2,7 +2,6 @@
 #include "Rutas.h"
 #include "Persona.h"
 #include "Algoritmos/NodoLista.h"
-#include "Algoritmos/NodoCola.h"
 #include "objetoEncomienda.h"
 #include "Encomienda.h"
 
@@ -11,27 +10,44 @@ class ControladorEncomiendas: public Rutas
     private:
         NodoLista<Persona> *listaClientes;
         NodoLista<objetoEncomienda> * listaObjetos;
-        NodoCola<Encomienda> * colaEncomiendas;
+        NodoLista<Encomienda> * listaEncomienda;
         int esPrint;
 public:
     ControladorEncomiendas(){
         this->listaClientes = NULL;
         this->listaObjetos = NULL;
+        this->listaEncomienda = NULL;
     };
     ~ControladorEncomiendas(){};
+
+    void printInfoEncomiendas(){
+        int contador = 1;
+        if (listaEncomienda!= NULL)
+        {
+            while (listaEncomienda != NULL)
+        {
+            cout << "Encomienda numero " << contador << endl;
+            cout << "Nombre: " << listaEncomienda->elemento->cliente->getNombre() << endl;
+            cout << "Apellido: " << listaEncomienda->elemento->cliente->getApellido() << endl;
+            cout << "Edad: " << listaEncomienda->elemento->cliente->getEdad() << endl;
+            contador++;
+            listaEncomienda = listaEncomienda->next;
+        }
+        }
+        else
+        {
+            cout << "No existen encomiendas por el momento!" << endl;
+        }
+    }
 
     void agendarEncomiendaFinal(){
         while (listaClientes != NULL && listaObjetos!= NULL)
         {
-            cout << "GAAA";
            Encomienda * encomiendaFinal = new Encomienda(listaClientes->getElemento(listaClientes), listaObjetos->getElemento(listaObjetos));
            listaClientes = listaClientes->next;
            listaObjetos = listaObjetos->next;
-           colaEncomiendas->insertarElementoCola(encomiendaFinal);
-           cout << colaEncomiendas->elemento->cliente->getNombre();
-        }   
-        
-        //TODO: Vaciar listaClientes y listaObjetos para evitar Encomiendas repetidas
+           listaEncomienda->insertarElementoLista(&listaEncomienda, encomiendaFinal);
+        }           
     }
     
     void reservaEncomienda(){
@@ -48,7 +64,7 @@ public:
             clearScreen;
             cout << "Selecione la opcion: \n";
             cout << "1. Agendar una encomienda \n";
-            cout << "2. Eliminar una encomienda \n";
+            cout << "2. Mostrar lista de encomiendas \n";
             cout << "3. Regresar al menu principal \n";
             
             cin >> opcionSelecionada;
