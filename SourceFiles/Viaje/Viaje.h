@@ -50,6 +50,9 @@ void Viaje :: informacionPasajeros()
     // Mientras no se llegue al final de lista, mostrar los datos de los clientes almacenados
     clearScreen;
 
+    //listaPasajeros->elemento->informacionPersona();
+    //listaPasajeros->next;
+
     cout << "Presione cualquier tecla para volver al menu de encomiendas!" << endl;
     cont();
     

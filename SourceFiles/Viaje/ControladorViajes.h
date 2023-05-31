@@ -74,7 +74,22 @@ int ControladorViajes :: seleccionarCantidadUsuarios(string Origen, string Desti
 
 void ControladorViajes :: reservaBusquedaViajes()
 {
-    listaCompras->elemento->informacionPasajeros();
+    int contador;
+    // listaCompras->elemento->informacionPasajeros();
+    if (listaCompras != NULL)
+{
+        while (listaCompras != NULL)
+        {
+            cout << "Encomienda numero " << contador << endl;
+            listaCompras->elemento->informacionPasajeros();
+            contador++;
+            listaCompras = listaCompras->next;
+        }
+    }
+    else
+    {
+        cout << "No existen encomiendas por el momento!" << endl;
+    }
 }
 
 int ControladorViajes :: menuViajes()

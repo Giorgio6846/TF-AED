@@ -37,17 +37,9 @@ public:
 
     T * getElemento(NodoLista *listaElementos){return listaElementos->elemento;}
 
-    void insertarNodoInicio(T *objeto);
-    void insertarNodoFinal(T *objeto);
-    void insertarNodoPosicion(T *objeto, int pos);
-    void eliminarNodoPosicion();
-    void busquedaNodo();
-    T obtenerPosicionNodos();
-};
-
-void NodoLista<class T> :: insertarElementoInicio(T *objeto)
+void insertarElementoInicio(T *objeto)
 {
-    NodoLista * nuevoNodo = new NodoLista<T>();
+    NodoLista<T> * nuevoNodo = new NodoLista<T>();
     nuevoNodo -> elemento = objeto;
     if (next == NULL)
     {
@@ -60,9 +52,9 @@ void NodoLista<class T> :: insertarElementoInicio(T *objeto)
     next = nuevoNodo;
 }
 
-void NodoLista<class T> :: insertarElementoFinal(NodoLista *lista, T *objeto)
+void insertarElementoFinal(NodoLista<T> *lista, T *objeto)
 {
-    NodoLista * nuevoNodo = new NodoLista<T>();
+    NodoLista<T> * nuevoNodo = new NodoLista<T>();
     nuevoNodo -> elemento = objeto;
     nuevoNodo -> next = NULL;
     if (next == NULL)
@@ -71,7 +63,7 @@ void NodoLista<class T> :: insertarElementoFinal(NodoLista *lista, T *objeto)
     }
     else
     {
-        NodoLista *aux = *lista;
+        NodoLista<T> *aux = *lista;
         while (aux -> next != NULL)
         {
              aux = aux -> next;
@@ -80,21 +72,21 @@ void NodoLista<class T> :: insertarElementoFinal(NodoLista *lista, T *objeto)
     }
 }
 
-void NodoLista<class T>::insertarElementoPosicion(NodoLista *lista, T *objeto, int pos)
+void insertarElementoPosicion(NodoLista<T> *lista, T *objeto, int pos)
 {
-    NodoLista *aux = *lista;
-    i = 0;
-    while (k < pos)
+    NodoLista<T> *aux = *lista;
+    int i = 0;
+    while (i < pos)
     {
         *aux -> next;
         if(*aux == NULL)
         {
             cout << "La posicion selecionada es mejor a la cantidad de items en la lista";
         }
-        k++;
+        i++;
     }
     
-    NodoLista * nuevoNodo = new NodoLista<T>();
+    NodoLista<T> * nuevoNodo = new NodoLista<T>();
     nuevoNodo -> elemento = objeto;
     nuevoNodo -> next = *aux -> next;
     *aux -> next = nuevoNodo;
@@ -112,7 +104,7 @@ void busquedaNodo()
 
 T obtenerPosicionNodos(NodoLista *lista)
 {
-    if (*lista = NULL)
+    if (*lista == NULL)
     {
         cout << "La lista esta vacia";
         return NULL;
@@ -122,3 +114,5 @@ T obtenerPosicionNodos(NodoLista *lista)
         NodoLista * aux = *lista;
     }
 }
+
+};
