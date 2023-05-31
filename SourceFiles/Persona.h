@@ -57,6 +57,7 @@ void Persona :: typeNombre()
     {
         string nombreP;
         bool val;
+        /*
         do
         {
             cout << "Nombres: ";
@@ -77,6 +78,28 @@ void Persona :: typeNombre()
             }
             
         } while (val == 0);
+        */
+
+        do
+        {
+        cout << "Ingrese su nombre: ";
+        cin >> nombreP;
+        for (int i = 0; i < nombreP.length(); i++)
+        {
+            if (!(isdigit(nombreP[i])))
+            {
+                val = true;
+            }
+            else
+            {
+                val = false;
+            }
+        }
+        if (val == false)
+        {
+            cout << "El nombre ingresado es invalido.\n";
+        }
+        } while (val == false);
 
         this->nombre = nombreP;
     }
@@ -85,6 +108,29 @@ void Persona :: typeApellido()
     {
         string apellidosP;
         bool val;
+
+        do
+        {
+        cout << "Ingrese su apellido: ";
+        cin >> apellidosP;
+        for (int i = 0; i < apellidosP.length(); i++)
+        {
+            if (!(isdigit(apellidosP[i])))
+            {
+                val = true;
+            }
+            else
+            {
+                val = false;
+            }
+        }
+        if (val == false)
+        {
+            cout << "El apellido ingresado es invalido.\n";
+        }
+        } while (val == false);
+
+        /*
         do
         {
             cout << "Apellido: ";
@@ -105,6 +151,7 @@ void Persona :: typeApellido()
             }
 
         } while (val == 0);
+        */
 
         this -> apellido = apellidosP;
     }
@@ -117,12 +164,12 @@ void Persona :: typeEdad()
         {
             cout << "Edad: ";
             cin >> edadP;
-            if(!(edad >= 0 && edad <= 120))
+            if(!(edadP >= 1 && edadP <= 120))
             {
                 ClearKeyboard();
                 cout << "La edad no es valida";
             }
-        } while (!(edad >= 0 && edad <= 120));
+        } while (!(edadP >= 1 && edadP <= 120));
 
         this->edad = edadP;
     }

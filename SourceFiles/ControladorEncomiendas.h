@@ -76,8 +76,7 @@ public:
             cin >> opcionSelecionada;
 
             if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4)){
-                cin.clear();
-                cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+                ClearKeyboard();
                 cout << "La opcion seleccionada es incorrecta.";
                 cont();
             }
@@ -101,12 +100,18 @@ public:
         int op;
         // Mientras no se llegue al final de lista, mostrar los datos de los clientes almacenados
         clearScreen;
+        
         while (lista != NULL)
         {
+            /*
+
             cout << "Nombre: " << lista->elemento->getNombre() << endl;
             cout << "Apellido: " << lista->elemento->getApellido() << endl;
             cout << "Edad: " << lista->elemento->getEdad() << endl;
             cout <<endl;
+            lista = lista->next;
+            */
+            lista->elemento->informacionPersona();
             lista = lista->next;
         }
         cout << "Presione cualquier tecla para volver al menu de encomiendas!" << endl;
@@ -119,6 +124,7 @@ public:
         int edadP;
         bool validar;
 
+        /*
         do{
         cout << "Ingrese su nombre: "; cin >> nombreP;
         for (int i = 0; i < nombreP.length(); i++)
@@ -133,7 +139,8 @@ public:
                 cout << "El nombre ingresado es invalido.\n";
                 }
         } while (validar==false);
-
+        */
+       /*
         do{
         cout << "Ingrese su apellido: "; cin >> apellidoP;
         for (int i = 0; i < apellidoP.length(); i++)
@@ -148,7 +155,8 @@ public:
                 cout << "El apellido ingresado es invalido.\n";
                 }
         } while (validar==false);
-
+        */
+        /*
         do
         {
             cout << "Ingrese su edad: "; cin >> edadP;
@@ -159,9 +167,17 @@ public:
             }   
 
         } while (!(edadP >= 1 && edadP <= 120));
+        */
 
         //Con la información dada, se crea un objeto cliente y se devuelve 
-        Persona * cliente = new Persona(nombreP, apellidoP, edadP, 'D');
+        Persona * cliente = new Persona();
+
+        #if RAD == 0
+                    cliente->typePersona();
+        #elif RAD == 1
+                    cliente->randomPersona();
+        #endif
+
         return cliente;
     }
 
