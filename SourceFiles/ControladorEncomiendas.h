@@ -103,14 +103,6 @@ public:
         
         while (lista != NULL)
         {
-            /*
-
-            cout << "Nombre: " << lista->elemento->getNombre() << endl;
-            cout << "Apellido: " << lista->elemento->getApellido() << endl;
-            cout << "Edad: " << lista->elemento->getEdad() << endl;
-            cout <<endl;
-            lista = lista->next;
-            */
             lista->elemento->informacionPersona();
             lista = lista->next;
         }
@@ -124,52 +116,6 @@ public:
         int edadP;
         bool validar;
 
-        /*
-        do{
-        cout << "Ingrese su nombre: "; cin >> nombreP;
-        for (int i = 0; i < nombreP.length(); i++)
-        {
-            if(!(isdigit(nombreP[i]))){
-            validar=true;
-            }else
-            {
-            validar=false;
-            }
-        }if (validar==false){
-                cout << "El nombre ingresado es invalido.\n";
-                }
-        } while (validar==false);
-        */
-       /*
-        do{
-        cout << "Ingrese su apellido: "; cin >> apellidoP;
-        for (int i = 0; i < apellidoP.length(); i++)
-        {
-            if(!(isdigit(apellidoP[i]))){
-            validar=true;
-            }else
-            {
-            validar=false;
-            }
-        }if (validar==false){
-                cout << "El apellido ingresado es invalido.\n";
-                }
-        } while (validar==false);
-        */
-        /*
-        do
-        {
-            cout << "Ingrese su edad: "; cin >> edadP;
-
-            if (!(edadP >= 1 && edadP <= 120)) {
-            ClearKeyboard();
-            cout << "El valor ingresado es invalido.\n";
-            }   
-
-        } while (!(edadP >= 1 && edadP <= 120));
-        */
-
-        //Con la información dada, se crea un objeto cliente y se devuelve 
         Persona * cliente = new Persona();
 
         #if RAD == 0

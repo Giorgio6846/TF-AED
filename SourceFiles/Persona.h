@@ -310,7 +310,7 @@ void Persona :: typePersona()
 
     do
     {
-        cout << "Desea cambiar algun dato. (1: Si, 2: No)";
+        cout << "Desea cambiar algun dato. (1: Si, 2: No): ";
         cin >> verDat;
 
         if (!(verDat >= 1 && verDat <= 2))
