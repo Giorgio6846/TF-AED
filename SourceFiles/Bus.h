@@ -12,7 +12,7 @@ private:
     vector<vector<Asiento>> distribucionAsientos;
 
     int HoraSalida;
-    int HoraLlegada;
+    int tiempoEstimado;
 
     int columnaAsiento = 6;
     int filaAsiento = 10;
@@ -57,4 +57,3 @@ void Bus::generarAsientos()
         distribucionAsientos.push_back(Fil);
     }
 }
-

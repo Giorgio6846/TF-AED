@@ -17,7 +17,6 @@ struct
         /*Moyobamba*/ {00, 00, 00, 00, 83, 00, 00, 00, 00, 95, 00, 12},
         /*Tarapoto*/  {00, 00, 00, 00, 96, 00, 00, 00, 00, 00, 12, 00},
     };
-    int H, D, M, Y;
 }TiempoEstimadoRuta;
 
 class Rutas

@@ -1,13 +1,18 @@
 #include "../Libraries.h"
 #include "../Persona.h"
 #include "../Algoritmos/NodoLista.h"
+#include "../Bus.h"
 
 class Viaje
 {
 private:
     int cantidadPasajeros;
     NodoLista<Persona> *listaPasajeros = NULL;
+    NodoLista<Bus> *rutaBus = NULL;
+
     int codigoO, codigoD;
+    int Da,Mo,Ye;
+    int Ho,Mi;
 
 public:
     Viaje(int codigoO, int codigoD, int cantidadPasajeros);
@@ -15,6 +20,9 @@ public:
 
     void agregarPasajero();
     void informacionPasajeros();
+    
+    void calculoRuta();
+    void generadorBus();    
 };
 
 Viaje::Viaje(int codigoO, int codigoD, int cantidadPasajeros)
@@ -55,5 +63,14 @@ void Viaje :: informacionPasajeros()
 
     cout << "Presione cualquier tecla para volver al menu de encomiendas!" << endl;
     cont();
+}
+
+void Viaje :: calculoRuta()
+{
+
+}
+
+void Viaje :: generadorBus()
+{
     
 }
