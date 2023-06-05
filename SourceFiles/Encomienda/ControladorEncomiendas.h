@@ -1,7 +1,7 @@
-#include "Libraries.h"
-#include "Rutas.h"
-#include "Persona.h"
-#include "Algoritmos/NodoLista.h"
+#include "../Libraries.h"
+#include "../Rutas.h"
+#include "../Persona.h"
+#include "../Algoritmos/NodoLista.h"
 #include "objetoEncomienda.h"
 #include "Encomienda.h"
 
