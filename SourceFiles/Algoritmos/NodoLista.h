@@ -18,7 +18,7 @@ public:
     void insertarElementoLista(NodoLista **lista, T *elemento)
     {
         //Se crea un nuevo nodo
-        clearScreen;
+        //clearScreen;
         NodoLista * nuevoNodo = new NodoLista();
         nuevoNodo->elemento = elemento;
         //El ultimo nodo siempre apunta a NULL
@@ -32,15 +32,23 @@ public:
             while (aux->next != NULL){aux = aux->next;}
             aux->next = nuevoNodo;
         }
-        cout << "Los datos han sido registrada de manera satisfactoria!" << endl;
+        //cout << "Los datos han sido registrada de manera satisfactoria!" << endl;
     }
 
     T * getElemento(NodoLista *listaElementos){return listaElementos->elemento;}
 
-void insertarElementoInicio(T *objeto)
+
+
+//Listo
+void push(NodoLista<T> ** lista, T *objeto)
 {
     NodoLista<T> * nuevoNodo = new NodoLista<T>();
     nuevoNodo -> elemento = objeto;
+
+    nuevoNodo -> next = *lista;
+    *lista = nuevoNodo;
+
+/*
     if (next == NULL)
     {
         nuevoNodo -> next = NULL;
@@ -50,11 +58,29 @@ void insertarElementoInicio(T *objeto)
         nuevoNodo -> next = next;
     }
     next = nuevoNodo;
+*/
 }
 
-void insertarElementoFinal(NodoLista<T> *lista, T *objeto)
+//Listo
+void append(NodoLista<T> **lista, T *objeto)
 {
     NodoLista<T> * nuevoNodo = new NodoLista<T>();
+    NodoLista *ultimo = *lista;
+
+    nuevoNodo ->elemento = objeto;
+    nuevoNodo -> next = NULL;
+
+    if(*lista == NULL)
+    {
+        *lista = nuevoNodo;
+    }
+
+    while(ultimo->next != NULL)
+    {
+        ultimo = ultimo -> next;
+    }
+    ultimo->next = nuevoNodo;
+/*
     nuevoNodo -> elemento = objeto;
     nuevoNodo -> next = NULL;
     if (next == NULL)
@@ -63,33 +89,43 @@ void insertarElementoFinal(NodoLista<T> *lista, T *objeto)
     }
     else
     {
-        NodoLista<T> *aux = *lista;
+        NodoLista<T> *aux = lista;
         while (aux -> next != NULL)
         {
              aux = aux -> next;
         }
         aux -> next = nuevoNodo;
     }
+*/
 }
 
+//Listo
+int contadorLista(NodoLista<T> *lista)
+{
+    int contador = 0;
+    NodoLista<T> *tmp = lista;
+    while(tmp != NULL)
+    {
+        contador++;
+        tmp=tmp->next;
+    }
+    return contador;
+}
+ 
 void insertarElementoPosicion(NodoLista<T> *lista, T *objeto, int pos)
 {
     NodoLista<T> *aux = *lista;
-    int i = 0;
-    while (i < pos)
+    if (pos > contadorLista(lista))
     {
-        *aux -> next;
-        if(*aux == NULL)
-        {
-            cout << "La posicion selecionada es mejor a la cantidad de items en la lista";
-        }
-        i++;
+        cout << "La posicion selecionada es mejor a la cantidad de items en la lista";
     }
-    
-    NodoLista<T> * nuevoNodo = new NodoLista<T>();
-    nuevoNodo -> elemento = objeto;
-    nuevoNodo -> next = *aux -> next;
-    *aux -> next = nuevoNodo;
+    else
+    {
+        NodoLista<T> *nuevoNodo = new NodoLista<T>();
+        nuevoNodo->elemento = objeto;
+        nuevoNodo->next = *aux->next;
+        *aux->next = nuevoNodo;
+    }
 }
 
 void eliminarNodoPosicion()
