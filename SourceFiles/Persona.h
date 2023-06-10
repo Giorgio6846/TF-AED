@@ -5,8 +5,7 @@ class Persona
 {
 public:
     string nombre, apellido;
-    int edad;
-
+    int edad, contador; //contador para generar un ranking basado en cuantos pedidos ha hecho el cliente
     //0 = Ninguno, 1 DNI, 2 Carnet Extranjeria, 3 Pasaporte
     int tipoDocumento;
     string documento;
@@ -18,6 +17,7 @@ public:
         this -> apellido = apellido;
         this -> edad = edad;
         this -> tipoDocumento = tipoDocumento;
+        this->contador = 0;
     };
     
     Persona()
@@ -46,10 +46,10 @@ public:
     int getEdad(){return this->edad;}
     char getTipoDocumento(){return this->tipoDocumento;}
     string getDocumento() { return this->documento; }
+    int getContador(){return this->contador;}
 
     void typePersona();
     void randomPersona();
-
     void informacionPersona();
 };
 
@@ -57,29 +57,6 @@ void Persona :: typeNombre()
     {
         string nombreP;
         bool val;
-        /*
-        do
-        {
-            cout << "Nombres: ";
-            val = 1;
-            for (int i = 0; i < nombre.size(); i++)
-            {
-                cout << "Nombres: ";
-                cin >> nombreP;
-                if (!( ( (int(toupper(nombre[i])) >= 65 && int(toupper(nombre[i])) <= 90) || (int(nombre[i]) >= 48 && int(nombre[i]) <= 57) ) || int(nombre[i]) == 32))
-                {
-                    ClearKeyboard();
-                    val = 0;
-                }
-            }
-            if (val == 0)
-            {
-                cout << "Los nombres ingresados son incorrectos. Solo se aceptan letras y numeros";
-            }
-            
-        } while (val == 0);
-        */
-
         do
         {
         cout << "Ingrese su nombre: ";

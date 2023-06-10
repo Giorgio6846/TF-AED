@@ -4,6 +4,7 @@
 #include "Algoritmos/NodoLista.h"
 #include "objetoEncomienda.h"
 #include "Encomienda.h"
+#include "NodoArbol.h"
 
 class ControladorEncomiendas: public Rutas
 {
@@ -71,6 +72,7 @@ public:
             cout << "Selecione la opcion: \n";
             cout << "1. Agendar una encomienda \n";
             cout << "2. Mostrar lista de encomiendas \n";
+            //cout << "3. Ranking de clientes \n";
             cout << "3. Regresar al menu principal \n";
             
             cin >> opcionSelecionada;
@@ -84,6 +86,11 @@ public:
                 return opcionSelecionada;
         } while (opcionSelecionada != 3);
         return opcionSelecionada;
+    }
+
+    //Para hacer funcionar esta función, se necesita primero el HashTable
+    void arbolRankingEncomiendas(NodoArbol * arbol, int cantEncomiendas){
+
     }
 
     void agendarCliente()
