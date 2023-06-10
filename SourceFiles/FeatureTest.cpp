@@ -2,6 +2,7 @@
 //#include "Bus.h"
 #include "Algoritmos/NodoLista.h"
 
+/*
 void print(NodoLista <int> *test)
 {
     int contador = 0;
@@ -14,10 +15,16 @@ void print(NodoLista <int> *test)
         tmp = tmp -> next;
     }
 }
+*/
 
 int main()
 {
     srand(time(NULL));
+
+    
+
+
+
 
 /*
     Persona * person = new Persona();
@@ -33,7 +40,7 @@ int main()
 //    bos->generarAsientos();
 //    bos->mostrarAsientos();
 
-    NodoLista<int> *test = NULL;
+    //NodoLista<int> *test = NULL;
 
     /*
     do
@@ -44,7 +51,7 @@ int main()
     } while (1);
     */
 
-
+/*
     int *a = new int;
     *a = 1;
 
@@ -71,7 +78,9 @@ int main()
     cout << test->contadorLista(test) << " ";
 
     print(test);
+*/
 
+    
 
 
     /*
