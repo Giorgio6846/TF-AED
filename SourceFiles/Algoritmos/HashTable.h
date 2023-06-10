@@ -34,4 +34,16 @@ public:
 		hashVal = hashVal % tableLists.size();
 		return(hashVal);	
 	}
+
+    void buscar(string key) {
+		int pos = 0;
+		pos = crearHashString(key);	//Obtenemos el indice de la Tabla (pos) a partir de la Funcion HASH
+		cout << "Key: " + to_string(pos) << " | ";
+		for (auto& it : tableLists[pos]) {	// Recorremos la Lista de cada indice del vector	
+			if (it.getDocumento() == key ) //Como es una lista, se recorre hasta que el documento coincida
+				cout << "Nombre: " << it.getNombre() << endl;
+                cout << "DNI: " << it.getDocumento() << endl;
+		}
+		cout << endl;
+	}
 };
