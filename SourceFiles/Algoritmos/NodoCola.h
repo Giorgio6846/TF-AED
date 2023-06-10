@@ -30,5 +30,4 @@ public:
         else {fin->next = nuevoNodo;}
         fin = nuevoNodo;
     }
-
 };

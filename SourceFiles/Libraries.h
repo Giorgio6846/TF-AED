@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fstream>
+#include <list>
 
 #ifdef _WIN32
 #include <conio.h>
