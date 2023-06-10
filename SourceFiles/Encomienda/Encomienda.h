@@ -1,5 +1,5 @@
-#include "Libraries.h"
-#include "Persona.h"
+#include "../Libraries.h"
+#include "../Persona.h"
 #include "objetoEncomienda.h"
 class Encomienda
 {

@@ -6,7 +6,7 @@
 #endif
 
 #if (VER == 1 || VER == 3)
-#include "ControladorEncomiendas.h"
+#include "Encomienda/ControladorEncomiendas.h"
 #endif
 
 /*
