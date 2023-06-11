@@ -38,7 +38,6 @@ int main()
 
     //cout << test->getN();
 
-    
     test->insertar(1, "hola");
     //cout << test->getN();
     

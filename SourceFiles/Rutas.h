@@ -22,8 +22,8 @@ struct
 class Rutas
 {
 private:
-    vector<string> origen{"Lima", "Chimbote", "Trujillo", "Pacasmayo", "Cajamarca", "Chepen", "Chiclayo", "Piura", "Jaen", "Cajabamba", "Moyobamba", "Tarapoto"};
-    vector<string> destino{"Lima", "Chimbote", "Trujillo", "Pacasmayo", "Cajamarca", "Chepen", "Chiclayo", "Piura", "Jaen", "Cajabamba", "Moyobamba", "Tarapoto"};
+    vector<string> lugares{"Lima", "Chimbote", "Trujillo", "Pacasmayo", "Cajamarca", "Chepen", "Chiclayo", "Piura", "Jaen", "Cajabamba", "Moyobamba", "Tarapoto"};
+    //vector<string> destino{"Lima", "Chimbote", "Trujillo", "Pacasmayo", "Cajamarca", "Chepen", "Chiclayo", "Piura", "Jaen", "Cajabamba", "Moyobamba", "Tarapoto"};
 
     bool rutas[12][12] = {
         /*Lima*/      {00, 01, 01, 01, 00, 01, 01, 01, 00, 00, 00, 00},
@@ -48,11 +48,11 @@ public:
     int selecionarDestinov2();
     int selecionarOrigen();
 
-    int getSizeDestino() { return destino.size(); }
-    string getDestino(int N) { return destino.at(N); }
+    int getSizeDestino() { return lugares.size(); }
+    string getDestino(int N) { return lugares.at(N); }
 
-    int getSizeOrigen() { return origen.size(); }
-    string getOrigen(int N) { return origen.at(N); }
+    int getSizeOrigen() { return lugares.size(); }
+    string getOrigen(int N) { return lugares.at(N); }
 
     bool getRuta(int pos, int N){return rutas[pos][N]; }
 
