@@ -11,6 +11,8 @@ private:
     NodoLista<Bus> *rutaBus = NULL;
 
     int codigoO, codigoD;
+    string ruta;
+
     int Da,Mo,Ye;
     int Ho,Mi;
 

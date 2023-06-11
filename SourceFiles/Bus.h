@@ -6,6 +6,14 @@ struct Asiento
     char clase;
 };
 
+/*
+
+El bus va a tiene 60 asientos
+Estos son categorizados por clase: A, B y C
+Dependiendo de la clase el costo del precio es mayor
+
+*/
+
 class Bus
 {
 private:

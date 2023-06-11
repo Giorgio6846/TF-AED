@@ -40,10 +40,13 @@ void ControladorViajes :: escrituraArchivo()
 void ControladorViajes :: reservaViaje()
 {
     int Origen, Destino, cantidadUsuarios;
+    string ruta;
 
     Origen = Rutas ::selecionarOrigen();
     Destino = Rutas ::selecionarDestino(Origen);
     cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
+
+
 
     Viaje *NuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios);
     NuevaReserva->agregarPasajero();

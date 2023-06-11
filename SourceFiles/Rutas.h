@@ -45,6 +45,7 @@ public:
     ~Rutas(){};
 
     int selecionarDestino(int );
+    int selecionarDestinov2();
     int selecionarOrigen();
 
     int getSizeDestino() { return destino.size(); }
@@ -57,12 +58,8 @@ public:
 
     void generarTiempoEstimado();
 
+    string generacionRuta(int Origen, int Destino, int cantidadPasajeros);
 };
-
-void Rutas :: generarTiempoEstimado()
-{
-    
-}
     // Selecciona el Destino
     int Rutas ::selecionarDestino(int Origen)
     {
@@ -127,4 +124,33 @@ int Rutas ::selecionarOrigen()
         }
     } while (!(opcionElegida >= 00 && opcionElegida <= 13));
     return opcionElegida - 01;
+}
+
+// Selecciona el Destino
+int Rutas ::selecionarDestinov2()
+{
+    int opcionElegida;
+    do
+    {
+        cout << "\nElija, de la lista, el destino del viaje (01 - " << getSizeOrigen() << " o 00 para regresar al menu de viajes) \n";
+        for (size_t i = 00; i < getSizeOrigen(); i++)
+        {
+            cout << i + 01 << " " << getOrigen(i) << "\n";
+        }
+        cin >> opcionElegida;
+        if (!(opcionElegida >= 00 && opcionElegida <= 13))
+        {
+            ClearKeyboard();
+            cout << "La opcion seleccionada es incorrecta.";
+            cont();
+        }
+    } while (!(opcionElegida >= 00 && opcionElegida <= 13));
+    return opcionElegida - 01;
+}
+
+string Rutas :: generacionRuta(int Origen, int Destino, int cantidadPasajeros)
+{
+
+
+
 }

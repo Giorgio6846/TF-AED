@@ -40,7 +40,7 @@ public:
 
     //Recorre el arbol desde abajo hacia arriba
     void recorrerArbol(NodoArbol *arbol)
-{
+{   
     if (arbol == NULL){return;}
     else
     {

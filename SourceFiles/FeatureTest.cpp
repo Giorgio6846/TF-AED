@@ -1,7 +1,9 @@
 #include "Libraries.h"
 //#include "Bus.h"
-#include "Algoritmos/NodoLista.h"
-
+//#include "Algoritmos/NodoLista.h"
+#include "Algoritmos/NodoArbolComplex.h"
+#include "Algoritmos/NodoArbol.h"
+#include "Algoritmos/NodoArbolComplexv2.h"
 /*
 void print(NodoLista <int> *test)
 {
@@ -21,24 +23,72 @@ int main()
 {
     srand(time(NULL));
 
+    //NodoArbolComplex<string> *test = new NodoArbolComplex<string>();
+    NodoArbolComplexv2<string> * test = new NodoArbolComplexv2<string>();
+
+    //NodoArbol *testArbol = new NodoArbol();
+
+    //testArbol->insertarValor(testArbol,1);
+    //testArbol->insertarValor(testArbol, 2);
+    //testArbol->insertarValor(testArbol, 3);
+    //testArbol->insertarValor(testArbol, 4);
+    //testArbol->insertarValor(testArbol, 5);
+
+    //testArbol->recorrerArbol(testArbol);
+
+    //cout << test->getN();
+
     
+    test->insertar(1, "hola");
+    //cout << test->getN();
+    
+    test->insertar(0, "hola");
+    test->insertar(2, "test");
+    test->insertar(3, "ab");
+    test->insertar(4, "gewsf");
+    test->insertar(5, "owo");
+    test->insertar(6, "You're my wonderwall");
+    test->insertar(7, "Nyanpasu");
+    test->insertar(8, "I said maybe");
+    test->insertar(9, "You're gonna be the one that saves me");
+    test->insertar(10, "And afterall");
+    test->insertar(11, "Estaba escuchando oasis ok");
+    
+    //cout << test->getData();
+    //cout << test->getN();
 
+    //cout << test->buscarNodoArbol(5);
 
+    cout << test->buscar(2)<< endl;
+    cout << test->buscar(4)<< endl;
+    cout << test->buscar(3)<< endl;
+    cout << test->buscar(5)<< endl;
+    cout << test->buscar(6)<< endl;
+    cout << test->buscar(7)<< endl;
+    cout << test->buscar(6)<< endl;
+    cout << test->buscar(7)<< endl;
+    cout << test->buscar(8) << endl;
 
+    cout << test->buscar(9) << endl;
+    cout << test->buscar(9) << endl;
+    cout << test->buscar(9) << endl;
+    cout << test->buscar(10) << endl;
+    cout << test->buscar(6) << endl;
+    cout << test->buscar(6) << endl;
 
-/*
-    Persona * person = new Persona();
+    /*
+        Persona * person = new Persona();
 
-    for (int i = 0; i < 10; i++)
-    {
-        person->randomPersona();
-    }
-*/
+        for (int i = 0; i < 10; i++)
+        {
+            person->randomPersona();
+        }
+    */
 
-//    Bus * bos = new Bus();
+    //    Bus * bos = new Bus();
 
-//    bos->generarAsientos();
-//    bos->mostrarAsientos();
+    //    bos->generarAsientos();
+    //    bos->mostrarAsientos();
 
     //NodoLista<int> *test = NULL;
 

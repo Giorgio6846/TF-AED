@@ -138,7 +138,7 @@ void busquedaNodo()
 
 }
 
-T obtenerPosicionNodos(NodoLista *lista)
+T obtenerPosicionNodos(NodoLista<T> *lista)
 {
     if (*lista == NULL)
     {
