@@ -1,5 +1,6 @@
 #include "../Rutas.h"
 #include "Viaje.h"
+#include "../Algoritmos/NodoArbolComplexv2.h"
 
 /*
 Lima, Chimbote, Trujillo, Pacasmayo, Cajamarca, Chepen, Chiclayo, Piura, Jaen, Cajabamba, Moyobamba, Tarapoto
@@ -22,6 +23,8 @@ public:
     void reservaViaje();
     void reservaBusquedaViajes();
 
+    void crearBus();
+
     void escrituraArchivo();
 };
 
@@ -33,11 +36,11 @@ ControladorViajes::~ControladorViajes()
 {
 }
 
-void ControladorViajes :: escrituraArchivo()
+void ControladorViajes ::escrituraArchivo()
 {
 }
 
-void ControladorViajes :: reservaViaje()
+void ControladorViajes ::reservaViaje()
 {
     int Origen, Destino, cantidadUsuarios;
     string ruta;
@@ -46,19 +49,17 @@ void ControladorViajes :: reservaViaje()
     Destino = Rutas ::selecionarDestino(Origen);
     cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
 
-
-
     Viaje *NuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios);
     NuevaReserva->agregarPasajero();
 
-    listaCompras->insertarElementoLista(&listaCompras, NuevaReserva);
+    listaCompras->push(&listaCompras, NuevaReserva);
 
     cout << "\n Ha selecionado el origen " << Rutas ::getOrigen(Origen);
     cout << "\n Ha selecionado el destino " << Rutas ::getDestino(Destino);
     cout << "\n";
 }
 
-int ControladorViajes :: seleccionarCantidadUsuarios(string Origen, string Destino)
+int ControladorViajes ::seleccionarCantidadUsuarios(string Origen, string Destino)
 {
     int cantidadUsuarios;
 
@@ -75,18 +76,18 @@ int ControladorViajes :: seleccionarCantidadUsuarios(string Origen, string Desti
     return cantidadUsuarios;
 }
 
-void ControladorViajes :: reservaBusquedaViajes()
+void ControladorViajes ::reservaBusquedaViajes()
 {
     int contador;
     // listaCompras->elemento->informacionPasajeros();
     if (listaCompras != NULL)
-{
+    {
         while (listaCompras != NULL)
         {
             cout << "Encomienda numero " << contador << endl;
-            listaCompras->elemento->informacionPasajeros();
+            listaCompras->getElemento(listaCompras)->informacionPasajeros();
             contador++;
-            listaCompras = listaCompras->next;
+            listaCompras = listaCompras->nextElemento(listaCompras);
         }
     }
     else
@@ -95,7 +96,7 @@ void ControladorViajes :: reservaBusquedaViajes()
     }
 }
 
-int ControladorViajes :: menuViajes()
+int ControladorViajes ::menuViajes()
 {
     int opcionSelecionada;
     do
@@ -113,4 +114,9 @@ int ControladorViajes :: menuViajes()
         }
     } while (!(opcionSelecionada >= 1 && opcionSelecionada <= 4));
     return opcionSelecionada;
+}
+
+void ControladorViajes :: crearBus()
+{
+
 }

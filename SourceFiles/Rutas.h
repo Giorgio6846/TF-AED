@@ -1,5 +1,6 @@
 #pragma once 
 #include "Libraries.h"
+#include "Algoritmos/NodoArbolComplexv2.h"
 
 struct 
 {
@@ -54,11 +55,14 @@ public:
     int getSizeOrigen() { return lugares.size(); }
     string getOrigen(int N) { return lugares.at(N); }
 
+    int getSizeLugares() {return lugares.size(); }
+    string getLugar(int N) {return lugares.at(N); }
+
     bool getRuta(int pos, int N){return rutas[pos][N]; }
 
     void generarTiempoEstimado();
 
-    string generacionRuta(int Origen, int Destino, int cantidadPasajeros);
+    void generacionRuta(int Origen, int Destino, int cantidadPasajeros);
 };
     // Selecciona el Destino
     int Rutas ::selecionarDestino(int Origen)
@@ -148,9 +152,40 @@ int Rutas ::selecionarDestinov2()
     return opcionElegida - 01;
 }
 
-string Rutas :: generacionRuta(int Origen, int Destino, int cantidadPasajeros)
+void Rutas ::generacionRuta(int Origen, int Destino, int cantidadPasajeros)
 {
+    /*
 
+    Obtiene el Origen, Destino y Cantidad de Pasajeros
+    Realiza el algoritmos para ver llegar del origen al destino
+    Este lo pone en el string "lugaresVisitados"
+    Accede al arbol con el Origen como Nodo
+    En este nodo Accede a los otros nodos para ver su tiempo de llegada
+    Al realizar la busqueda de todos los nodos le pone 3 a la raiz del arbol
+    Esto lo pone en una lista para despues realizar la busqueda de todas las otras raices hasta terminar el arbol
+
+    */
+
+    string lugaresVisitados = ""; 
+    for (int i = 0; i < getSizeLugares(); i++)
+    {
+        lugaresVisitados = "0" + lugaresVisitados;
+    }
+
+    /*
+    Del String lugaresVisitados:
+    
+    0: Lugar no visitado
+    1: Origen
+    2: Destino
+    3: Lugar Visitado
+
+    */
+
+    lugaresVisitados.at(Origen) = '1';
+    lugaresVisitados.at(Destino) = '2';
+    
+     
 
 
 }

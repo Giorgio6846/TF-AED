@@ -1,10 +1,13 @@
 #include "../Libraries.h"
 #include "../Rutas.h"
 #include "../Persona.h"
+
+//Algoritmos
 #include "../Algoritmos/NodoLista.h"
+#include "../Algoritmos/NodoArbol.h"
+
 #include "objetoEncomienda.h"
 #include "Encomienda.h"
-#include "NodoArbol.h"
 
 class ControladorEncomiendas: public Rutas
 {
@@ -30,14 +33,17 @@ public:
             while (aux != NULL)
         {
             cout << "Encomienda numero " << contador << endl;
-            cout << "Propietario: " << aux->elemento->cliente->getNombre() << " " << aux->elemento->cliente->getApellido() <<endl;
-            cout << "Categoria del producto: " << aux->elemento->objeto->getCategoria()<< endl;
-            cout << "Peso (Kg): " << aux->elemento->getPeso();
+            cout << "Propietario: " << aux->getElemento(aux)->cliente->getNombre() << " " << aux->getElemento(aux)->cliente->getApellido() <<endl;
+            cout << "Categoria del producto: " << aux->getElemento(aux)->objeto->getCategoria() << endl;
+            cout << "Peso (Kg): " << aux->getElemento(aux)->getPeso();
             cout << "Fragil: ";
-            if (aux->elemento->objeto->getEsFragil()){cout << "SI" << endl;}
+            if (aux->getElemento(aux)->objeto->getEsFragil())
+            {
+                cout << "SI" << endl;
+            }
             else{cout << "NO" << endl;}  
             contador++;
-            aux = aux->next;
+            aux = aux->nextElemento(aux);
         }
         }
         else
@@ -51,9 +57,9 @@ public:
         while (listaClientes != NULL && listaObjetos!= NULL)
         {
            Encomienda * encomiendaFinal = new Encomienda(listaClientes->getElemento(listaClientes), listaObjetos->getElemento(listaObjetos));
-           listaClientes = listaClientes->next;
-           listaObjetos = listaObjetos->next;
-           listaEncomienda->insertarElementoLista(&listaEncomienda, encomiendaFinal);
+           listaClientes = listaClientes->nextElemento(listaClientes);
+           listaObjetos = listaObjetos->nextElemento(listaObjetos);
+           listaEncomienda->push(&listaEncomienda, encomiendaFinal);
         }           
     }
     
@@ -95,7 +101,7 @@ public:
 
     void agendarCliente()
     {
-        listaClientes->insertarElementoLista(&listaClientes, almacenarInfoCliente(listaClientes));
+        listaClientes->push(&listaClientes, almacenarInfoCliente(listaClientes));
         if (printClientesEncomiendas() == 1)
         {
             printClientes(listaClientes);
@@ -110,8 +116,8 @@ public:
         
         while (lista != NULL)
         {
-            lista->elemento->informacionPersona();
-            lista = lista->next;
+            lista->getElemento(lista)->informacionPersona();
+            lista = lista->nextElemento(lista);
         }
         cout << "Presione cualquier tecla para volver al menu de encomiendas!" << endl;
         cont();
@@ -210,6 +216,6 @@ public:
     }
 
     void agendarObjeto(){
-        listaObjetos->insertarElementoLista(&listaObjetos, almacenarInfoObjeto());
+        listaObjetos->push(&listaObjetos, almacenarInfoObjeto());
     }
 };

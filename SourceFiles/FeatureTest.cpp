@@ -1,9 +1,13 @@
 #include "Libraries.h"
 //#include "Bus.h"
 //#include "Algoritmos/NodoLista.h"
-#include "Algoritmos/NodoArbolComplex.h"
-#include "Algoritmos/NodoArbol.h"
-#include "Algoritmos/NodoArbolComplexv2.h"
+//#include "Algoritmos/NodoArbolComplex.h"
+//#include "Algoritmos/NodoArbol.h"
+//#include "Algoritmos/NodoArbolComplexv2.h"
+
+//#include "Algoritmos/Grafo.h"
+#include "Algoritmos/NodoLista.h"
+
 /*
 void print(NodoLista <int> *test)
 {
@@ -23,8 +27,88 @@ int main()
 {
     srand(time(NULL));
 
+    //Grafo<int, int> *test = new Grafo<int,int>();
+
+    //test->agregarVertice(0);
+    //test->agregarVertice(1);
+    //test->agregarVertice(2);
+    //test->agregarVertice(3);
+    //test->agregarVertice(4);
+    //test->agregarVertice(5);
+    //test->agregarVertice(6);
+    //test->agregarVertice(6);
+    //test->agregarVertice(7);
+    //test->agregarVertice(8);
+    //test->agregarVertice(9);
+    
+    //test->imprimirVerticesTest();
+
+    
+    NodoLista<int> *testNodoLista = NULL;
+    NodoLista<int> *tmp = NULL;
+
+    for (int i = 0; i < 100; i++)
+    {
+        int * a = new int;
+        *a = i;
+
+        testNodoLista->push(&testNodoLista, a);
+    }
+
+    tmp = testNodoLista;
+
+    while (tmp != NULL)
+    {
+        cout << *(tmp->getElemento(tmp)) << endl;
+        tmp->nextElemento(tmp);
+    }
+    
+    
+
+    /*
+    int * a = new int;
+    *a = 2;
+
+    cout << a << endl;
+    cout << *a << endl;
+    cout << &a << endl;
+
+    int * b = new int;
+
+    testNodoLista -> push(&testNodoLista, a);
+
+    b = testNodoLista->getElemento(testNodoLista);
+
+    cout << b << endl;
+    cout << *b << endl;
+    cout << &b << endl;
+
+    cout << *(testNodoLista->getElemento(testNodoLista));
+
+    int *c = new int;
+    *c = 5;
+
+    cout << c << endl;
+    cout << *c << endl;
+    cout << &c << endl;
+
+    testNodoLista->append(&testNodoLista, c);
+
+    tmp = testNodoLista->nextElemento(testNodoLista);
+
+    int *d = new int;
+    
+    d = testNodoLista->getElemento(testNodoLista);
+
+    cout << d << endl;
+    cout << *d << endl;
+    cout << &d << endl;
+
+    cout << *(testNodoLista->getElemento(testNodoLista));
+    */
+
     //NodoArbolComplex<string> *test = new NodoArbolComplex<string>();
-    NodoArbolComplexv2<string> * test = new NodoArbolComplexv2<string>();
+    //NodoArbolComplexv2<string> * test = new NodoArbolComplexv2<string>();
 
     //NodoArbol *testArbol = new NodoArbol();
 
@@ -36,11 +120,13 @@ int main()
 
     //testArbol->recorrerArbol(testArbol);
 
+
+
     //cout << test->getN();
 
-    test->insertar(1, "hola");
+    //test->insertar(1, "hola");
     //cout << test->getN();
-    
+    /*
     test->insertar(0, "hola");
     test->insertar(2, "test");
     test->insertar(3, "ab");
@@ -74,7 +160,7 @@ int main()
     cout << test->buscar(10) << endl;
     cout << test->buscar(6) << endl;
     cout << test->buscar(6) << endl;
-
+    */
     /*
         Persona * person = new Persona();
 

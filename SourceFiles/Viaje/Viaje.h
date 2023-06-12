@@ -50,7 +50,8 @@ void Viaje :: agregarPasajero()
         cliente->randomPersona();
         #endif
 
-        listaPasajeros->insertarElementoLista(&listaPasajeros, cliente);
+        listaPasajeros->push(&listaPasajeros, cliente);
+
     }
 }
 
@@ -70,9 +71,4 @@ void Viaje :: informacionPasajeros()
 void Viaje :: calculoRuta()
 {
 
-}
-
-void Viaje :: generadorBus()
-{
-    
 }

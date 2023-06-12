@@ -1,4 +1,6 @@
 #include "Libraries.h"
+#include "Persona.h"
+#include "Algoritmos/HashTable.h"
 
 struct Asiento
 {
@@ -11,7 +13,13 @@ struct Asiento
 El bus va a tiene 60 asientos
 Estos son categorizados por clase: A, B y C
 Dependiendo de la clase el costo del precio es mayor
-
+1  2  3  4  5  6  7  8  9  10
+A  A  B  B  B  B  C  C  C  C
+A  A  B  B  B  B  C  C  C  C
+A  A  B  B  B  B  C  C  C  C
+A  A  B  B  B  B  C  C  C  C
+A  A  B  B  B  B  C  C  C  C
+A  A  B  B  B  B  C  C  C  C
 */
 
 class Bus
@@ -19,7 +27,6 @@ class Bus
 private:
     vector<vector<Asiento>> distribucionAsientos;
 
-    int HoraSalida;
     int tiempoEstimado;
 
     int columnaAsiento = 6;
@@ -28,9 +35,10 @@ private:
 public:
     Bus(){}
     ~Bus(){}
-
+    
     void mostrarAsientos();
     void generarAsientos();
+    void generarBus();
 };
 
 void Bus::mostrarAsientos()

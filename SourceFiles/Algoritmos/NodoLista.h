@@ -1,10 +1,11 @@
 #include "../Libraries.h"
 #pragma once
 
+
 template <class T>
 class NodoLista
 {
-public:
+private:
     T * elemento;
     NodoLista * next;
 
@@ -15,6 +16,7 @@ public:
     }
     ~NodoLista(){};
 
+    /*
     void insertarElementoLista(NodoLista **lista, T *elemento)
     {
         //Se crea un nuevo nodo
@@ -34,10 +36,15 @@ public:
         }
         //cout << "Los datos han sido registrada de manera satisfactoria!" << endl;
     }
+    */
 
     T * getElemento(NodoLista *listaElementos){return listaElementos->elemento;}
+    NodoLista * nextElemento(NodoLista *lista){return lista->next;}
 
-
+void eliminarElemento()
+{
+    
+}
 
 //Listo
 void push(NodoLista<T> ** lista, T *objeto)
@@ -47,18 +54,6 @@ void push(NodoLista<T> ** lista, T *objeto)
 
     nuevoNodo -> next = *lista;
     *lista = nuevoNodo;
-
-/*
-    if (next == NULL)
-    {
-        nuevoNodo -> next = NULL;
-    }
-    else
-    {
-        nuevoNodo -> next = next;
-    }
-    next = nuevoNodo;
-*/
 }
 
 //Listo
@@ -80,23 +75,6 @@ void append(NodoLista<T> **lista, T *objeto)
         ultimo = ultimo -> next;
     }
     ultimo->next = nuevoNodo;
-/*
-    nuevoNodo -> elemento = objeto;
-    nuevoNodo -> next = NULL;
-    if (next == NULL)
-    {
-        next = nuevoNodo;
-    }
-    else
-    {
-        NodoLista<T> *aux = lista;
-        while (aux -> next != NULL)
-        {
-             aux = aux -> next;
-        }
-        aux -> next = nuevoNodo;
-    }
-*/
 }
 
 //Listo
@@ -111,7 +89,8 @@ int contadorLista(NodoLista<T> *lista)
     }
     return contador;
 }
- 
+
+//Listo
 void insertarElementoPosicion(NodoLista<T> *lista, T *objeto, int pos)
 {
     NodoLista<T> *aux = *lista;
@@ -138,6 +117,7 @@ void busquedaNodo()
 
 }
 
+//Listo
 T obtenerPosicionNodos(NodoLista<T> *lista)
 {
     if (*lista == NULL)
@@ -150,5 +130,7 @@ T obtenerPosicionNodos(NodoLista<T> *lista)
         NodoLista * aux = *lista;
     }
 }
+
+
 
 };

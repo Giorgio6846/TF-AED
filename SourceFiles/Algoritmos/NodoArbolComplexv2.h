@@ -1,3 +1,4 @@
+#pragma once
 #include "../Libraries.h"
 
 template<class T>
