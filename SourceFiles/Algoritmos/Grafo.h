@@ -67,71 +67,57 @@ private:
         NodoLista<AGrafo> *ndArcos = NULL;
         VGrafo()
         {
-            infoVertice = vacio;
+            info = vacio;
         }
         void agregarArco(R llegadaVertice, int pesoLlegada, T dato)
         {
             bool cond = 0;
 
             AGrafo *rGraf = new AGrafo();
-            rGraf->llegadaVertice = llegadaVertice;
+            rGraf->verticeLlegada = llegadaVertice;
             rGraf->pesoLlegada = pesoLlegada;
-            rGraf->dato = dato;
+            rGraf->datos = dato;
 
-            while (arcosVertice != NULL || !cond)
-            {
-                if (arcosVertice->getElemento(arcosVertice)->llegadaVertice == llegadaVertice)
-                {   
-                    cond = 1;
-                }
-                arcosVertice->nextElemento(arcosVertice);
-            }
-            if (cond)
-            {
-                arcosVertice->push(&arcosVertice, rGraf);
-            }
-            else
+            if (_accesoArco(llegadaVertice) != NULL)
             {
                 cout << "El arco al vertice de llegada ya existe";
             }
+            else
+            {
+                ndArcos->push(&ndArcos, rGraf);
+            }            
         }
-
         int sizeVertice(){ return ndArcos -> contadorLista(ndArcos); }
         int pesoArco(R llegada)
         {
-            cond = 0;
-            NodoLista<AGrafo> *tmp = ndArcos;
-            while (ndArcos != NULL && !cond)
+            AGrafo * tmp = _accesoArco(llegada);
+            if (tmp != NULL)
             {
-                if (tmp->getElemento(tmp)->verticeLlegada == llegada)
-                {
-                    return tmp->getElemento(tmp)->pesoLLegada;
-                    cond = 1;
-                }
-                tmp->nextElemento(tmp);
+                return tmp->pesoLlegada;
             }
-            if (cond == 0)
+            else
             {
-                coud << "No existe el vertice de llegada";
-            }   
+                return 0;
+            }        
         }
-        AGrafo * accederGrafo(R llegada)
+        AGrafo * _accesoArco(R llegada)
         {
-            cond = 0;
+            bool cond = 0;
             NodoLista<AGrafo> *tmp = ndArcos;
-            while (ndArcos != NULL && !cond)
+            while (tmp != NULL && !cond)
             {
                 if (tmp->getElemento(tmp)->verticeLlegada == llegada)
                 {
                     return tmp->getElemento(tmp);
                     cond = 1;
                 }
-                tmp->nextElemento(tmp);
+                tmp = tmp->nextElemento(tmp);
             }
             if (cond == 0)
             {
-                coud << "No existe el vertice de llegada";
+                cout << "No existe el vertice de llegada";
             }
+            return NULL;
         }
 
     };
@@ -148,56 +134,99 @@ public:
 
     }
 
-    void agregarVertice(R inf)
+    void agregarVertice(R vertice)
     {
         bool cond = 0;
+        VGrafo *VerV = _accesoVertice(vertice);
+        VGrafo *tmpV = new VGrafo();
+        tmpV-> info = vertice;
 
-        VGrafo *vGraf = new VGrafo();
-        vGraf -> infoVertice = inf;
-        
-        while (vertices != NULL || !cond)
+        if ( VerV == NULL)
         {
-            if (vertices->getElemento(vertices)->infoVertice == inf)
-            {
-                cond = 1;
-            }
-            vertices->nextElemento(vertices);
-        }
-        if (cond)
-        {
-            cout << "El arco al vertice de llegada ya existe";
-        }
-        else
-        {
-            vertices->push(&vertices, vGraf);
+            ndVertices->push(&ndVertices, tmpV);
         }
     }
 
-    void agregarArco(R vertice, R llegadaVertice, int pesoLlegada, T dato)
+    void agregarArcoVertice(R vertice, R llegadaVertice, int pesoLlegada, T dato)
     {
         bool cond = 0;
-        while (vertices != NULL || !cond)
+        VGrafo * tmp = _accesoVertice(vertice);
+
+        if (tmp != NULL)
         {
-            if (vertices->getElemento(vertices)->infoVertice == vertice)
-            {
-                vertices->getElemento(vertices)->agregarArco(llegadaVertice,pesoLlegada, dato);
-                vertices->nextElemento(vertices);
-            }   
+            tmp->agregarArco(llegadaVertice, pesoLlegada, dato);
+        }
+        else
+        {
+            cout << "El vertice no existe";
         }
     }
 
     void imprimirVerticesTest()
     {
-        while (vertices != NULL)
+        int a;
+        cout << sizeGrafo() << endl << endl;
+        for (int i = 0; i < sizeGrafo(); i++)
         {
-            cout << vertices->getElemento(vertices)->infoVertice;
-            vertices->nextElemento(vertices);
+            a = _accesoVertice(i) -> info;
+            cout << a << endl;
         }
     }
 
-    int cantidadVertices()
+    void eliminarVertice()
     {
-        return vertices->contadorLista(vertices);
+        /*
+        
+        */
+    }
+
+    int pesoArco(R vertice, R llegadaVertice)
+    {
+        bool cond = 0;
+        VGrafo *tmp = _accesoVertice(vertice);
+        if (tmp->pesoArco(llegadaVertice) != NULL)
+        {
+            return tmp->pesoArco(llegadaVertice);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    AGrafo *arcoInfo(R vertice, R llegadaVertice)
+    {
+        bool cond = 0;
+        VGrafo *vTmp = _accesoVertice(vertice);
+        if (vTmp != NULL)
+        {
+            AGrafo *aTmp = vTmp->_accesoArco(llegadaVertice);
+        }
+        else
+        {
+            cout << "El vertice no existe";
+        }
+    }
+
+    VGrafo * _accesoVertice(R vertice)
+    {
+        bool cond = 0;
+        NodoLista<VGrafo> *tmp = ndVertices;
+        while (tmp != NULL && !cond)
+        {
+            if (tmp->getElemento(tmp)->info == vertice)
+            {
+                return tmp->getElemento(tmp);
+                cond = 1;
+            }
+            tmp = tmp->nextElemento(tmp);
+        }
+        return NULL;
+    }
+
+    int sizeGrafo()
+    {
+        return ndVertices->contadorLista(ndVertices);
     }
 };
 

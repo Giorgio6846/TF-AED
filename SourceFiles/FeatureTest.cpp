@@ -5,8 +5,8 @@
 //#include "Algoritmos/NodoArbol.h"
 //#include "Algoritmos/NodoArbolComplexv2.h"
 
-//#include "Algoritmos/Grafo.h"
-#include "Algoritmos/NodoLista.h"
+#include "Algoritmos/Grafo.h"
+//#include "Algoritmos/NodoLista.h"
 
 /*
 void print(NodoLista <int> *test)
@@ -26,24 +26,26 @@ void print(NodoLista <int> *test)
 int main()
 {
     srand(time(NULL));
-
-    //Grafo<int, int> *test = new Grafo<int,int>();
-
-    //test->agregarVertice(0);
-    //test->agregarVertice(1);
-    //test->agregarVertice(2);
-    //test->agregarVertice(3);
-    //test->agregarVertice(4);
-    //test->agregarVertice(5);
-    //test->agregarVertice(6);
-    //test->agregarVertice(6);
-    //test->agregarVertice(7);
-    //test->agregarVertice(8);
-    //test->agregarVertice(9);
     
-    //test->imprimirVerticesTest();
-
     
+    Grafo<int, int> *test = new Grafo<int,int>();
+
+    test->agregarVertice(0);
+    test->agregarArcoVertice(0,1,21,12);
+    test->agregarVertice(1);
+    test->agregarVertice(2);
+    test->agregarVertice(3);
+    test->agregarVertice(4);
+    test->agregarVertice(5);
+    test->agregarVertice(6);
+    test->agregarVertice(6);
+    test->agregarVertice(7);
+    test->agregarVertice(8);
+    test->agregarVertice(9);
+
+    test->imprimirVerticesTest();
+    
+   /*
     NodoLista<int> *testNodoLista = NULL;
     NodoLista<int> *tmp = NULL;
 
@@ -57,13 +59,16 @@ int main()
 
     tmp = testNodoLista;
 
+    cout << testNodoLista -> contadorLista(testNodoLista);
+    */
+
+    /*
     while (tmp != NULL)
     {
         cout << *(tmp->getElemento(tmp)) << endl;
         tmp->nextElemento(tmp);
-    }
-    
-    
+    }    
+    */
 
     /*
     int * a = new int;
