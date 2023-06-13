@@ -105,9 +105,33 @@ void insertarElementoPosicion(NodoLista<T> *lista, T *objeto, int pos)
     }
 }
 
-void eliminarNodoPosicion()
-{
+void borrarElemento(NodoLista<T> *&lista, T dato){
+    if(lista!=NULL){
+        NodoLista<T> *aux_borrar;
+        NodoLista<T> *anterior = NULL;
+        aux_borrar = lista;
 
+        while(aux_borrar!=NULL && aux_borrar->dato!=dato){
+            anterior = aux_borrar;
+            aux_borrar = aux_borrar->siguiente;
+        }
+        if(aux_borrar==NULL){
+            cout<<"El dato no existe en la lista.";
+        }
+        else if(anterior==NULL){
+            lista = lista->siguiente;
+            delete aux_borrar;
+            cout<<"El elemento se ha eliminado con exito!";
+        }
+        else{
+            anterior->siguiente =  aux_borrar->siguiente;
+            delete aux_borrar;         
+            cout<<"El elemento se ha eliminado con exito!";
+        }
+    }
+    else{
+        cout<<"La lista no contiene ningun elemento.";
+    }
 }
 
 void busquedaNodo()
