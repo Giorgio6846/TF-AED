@@ -107,7 +107,7 @@ void insertarElementoPosicion(NodoLista<T> *lista, T *objeto, int pos)
     }
 }
 
-void borrarElemento(NodoLista<T> *&lista, int dato){
+void borrarElemento(NodoLista<T> *&lista, T dato){
     if(lista!=NULL){
         NodoLista<T> *aux_borrar;
         NodoLista<T> *anterior = NULL;
