@@ -41,11 +41,6 @@ public:
     T * getElemento(NodoLista *listaElementos){return listaElementos->elemento;}
     NodoLista * nextElemento(NodoLista *lista){return lista->next;}
 
-void eliminarElemento()
-{
-    
-}
-
 //Listo
 void push(NodoLista<T> ** lista, T *objeto)
 {
@@ -80,8 +75,9 @@ void append(NodoLista<T> **lista, T *objeto)
 //Listo
 int contadorLista(NodoLista<T> *lista)
 {
+    int contador = 0;
     NodoLista<T> *tmp = lista;
-    for (int contador = 0; tmp != NULL; tmp=tmp->next)
+    for (; tmp != NULL; tmp=tmp->next)
     {
         contador++;
     }
@@ -111,20 +107,21 @@ void borrarElemento(NodoLista<T> *&lista, T dato){
         NodoLista<T> *anterior = NULL;
         aux_borrar = lista;
 
-        while(aux_borrar!=NULL && aux_borrar->dato!=dato){
+        while (aux_borrar != NULL && aux_borrar->elemento != elemento)
+        {
             anterior = aux_borrar;
-            aux_borrar = aux_borrar->siguiente;
+            aux_borrar = aux_borrar->next;
         }
         if(aux_borrar==NULL){
             cout<<"El dato no existe en la lista.";
         }
         else if(anterior==NULL){
-            lista = lista->siguiente;
+            lista = lista->next;
             delete aux_borrar;
             cout<<"El elemento se ha eliminado con exito!";
         }
         else{
-            anterior->siguiente =  aux_borrar->siguiente;
+            anterior->next = aux_borrar->next;
             delete aux_borrar;         
             cout<<"El elemento se ha eliminado con exito!";
         }

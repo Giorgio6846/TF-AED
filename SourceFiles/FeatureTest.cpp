@@ -45,7 +45,7 @@ int main()
 
     test->imprimirVerticesTest();
     */
-   /*
+   
     NodoLista<int> *testNodoLista = NULL;
     NodoLista<int> *tmp = NULL;
 
@@ -60,15 +60,18 @@ int main()
     tmp = testNodoLista;
 
     cout << testNodoLista -> contadorLista(testNodoLista);
-    
-    *tmp = testNodoLista;
 
-    while (tmp != NULL)
+    for (; tmp != NULL; tmp = tmp -> nextElemento(tmp))
     {
-        cout << tmp ->getElemento(tmp);
-        tm
+        cout << *(tmp->getElemento(tmp)) << endl;
     }
-    *?
+    
+    tmp->borrarElemento(tmp, 2);
+
+    for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
+    {
+        cout << *(tmp->getElemento(tmp)) << endl;
+    }
 
     /*
     while (tmp != NULL)
