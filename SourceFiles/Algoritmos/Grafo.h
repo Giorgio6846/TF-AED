@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "NodoLista.h"
 
@@ -50,26 +51,24 @@ private:
     public:
         R verticeLlegada;
         int pesoLlegada;
-        T datos;
+        T * datos;
 
         AGrafo()
         {
         }
-
-        void agregarDato(T datos) { this -> datos = datos; }
-        T getDato(){ return datos; }
     };
 
     class VGrafo
     {
     public:
         R info;
-        NodoLista<AGrafo> *ndArcos = NULL;
+        NodoLista<AGrafo> * ndArcos = NULL;
         VGrafo()
         {
             info = vacio;
         }
-        void agregarArco(R llegadaVertice, int pesoLlegada, T dato)
+
+        void agregarArco(R llegadaVertice, int pesoLlegada, T * dato)
         {
             bool cond = 0;
 
@@ -78,44 +77,44 @@ private:
             rGraf->pesoLlegada = pesoLlegada;
             rGraf->datos = dato;
 
-            if (_accesoArco(llegadaVertice) != NULL)
-            {
-                cout << "El arco al vertice de llegada ya existe";
-            }
-            else
+            AGrafo *tmp = _accesoArco(llegadaVertice);
+            if (tmp == NULL)
             {
                 ndArcos->push(&ndArcos, rGraf);
-            }            
-        }
-        int sizeVertice(){ return ndArcos -> contadorLista(ndArcos); }
-        int pesoArco(R llegada)
-        {
-            AGrafo * tmp = _accesoArco(llegada);
-            if (tmp != NULL)
-            {
-                return tmp->pesoLlegada;
             }
             else
             {
-                return 0;
-            }        
+                cout << "El arco al vertice de llegada ya existe";
+            }            
         }
+        
+        int sizeVertice(){ return ndArcos -> contadorLista(ndArcos); }
+
         AGrafo * _accesoArco(R llegada)
         {
             bool cond = 0;
             NodoLista<AGrafo> *tmp = ndArcos;
-            while (tmp != NULL && !cond)
+            for (bool cond = 0; tmp != NULL && !cond; tmp = tmp->nextElemento(tmp))
             {
                 if (tmp->getElemento(tmp)->verticeLlegada == llegada)
                 {
-                    return tmp->getElemento(tmp);
                     cond = 1;
+                    return tmp->getElemento(tmp);
                 }
-                tmp = tmp->nextElemento(tmp);
             }
-            if (cond == 0)
+            return NULL;
+        }
+
+        AGrafo *_accesoArcoPosicion(R posicion)
+        {
+            NodoLista<AGrafo> *tmp = ndArcos;
+            for (int contador = 0; tmp != NULL && contador <= posicion; tmp = tmp->nextElemento(tmp))
             {
-                cout << "No existe el vertice de llegada";
+                if (contador == posicion)
+                {
+                    return tmp->getElemento(tmp);
+                }
+                contador++;
             }
             return NULL;
         }
@@ -125,14 +124,8 @@ private:
     NodoLista<VGrafo> *ndVertices = NULL;
     
 public:
-    Grafo(/* args */)
-    {
-
-    }
-    ~Grafo()
-    {
-
-    }
+    Grafo(){}
+    ~Grafo(){}
 
     void agregarVertice(R vertice)
     {
@@ -147,9 +140,8 @@ public:
         }
     }
 
-    void agregarArcoVertice(R vertice, R llegadaVertice, int pesoLlegada, T dato)
+    void agregarArcoVertice(R vertice, R llegadaVertice, int pesoLlegada, T * dato)
     {
-        bool cond = 0;
         VGrafo * tmp = _accesoVertice(vertice);
 
         if (tmp != NULL)
@@ -162,22 +154,45 @@ public:
         }
     }
 
-    void imprimirVerticesTest()
+    void imprimirVerticesGrafo()
     {
-        int a;
-        cout << sizeGrafo() << endl << endl;
+        NodoLista<VGrafo> * tmp = ndVertices;
+        for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
+        {
+            cout << tmp->getElemento(tmp)->info << " ";
+        }
+    }
+
+    void imprmirArcosVertices(int vertice)
+    {
+        NodoLista<VGrafo> *Vtmp = ndVertices;
+        for (; Vtmp != NULL; Vtmp = Vtmp->nextElemento(Vtmp))
+        {
+            cout << Vtmp->getElemento(Vtmp)->info << " ";
+            NodoLista<AGrafo> *Atmp = Vtmp->getElemento(Vtmp)->ndArcos;
+            for (; Atmp != NULL; Atmp = Atmp->nextElemento(Atmp))
+            {
+                cout << Atmp->getElemento(Atmp)->verticeLlegada;
+            }
+        }
+    }
+
+    void imprimirGrafo()
+    {
         for (int i = 0; i < sizeGrafo(); i++)
         {
-            a = _accesoVertice(i) -> info;
-            cout << a << endl;
+            cout << "Vertice: " << _accesoVerticePosicion(i)->info << endl << endl;
+            for (int j = 0; j < _accesoVerticePosicion(i)->sizeVertice(); j++)
+            {
+                cout << "Rutas: " << _accesoVerticePosicion(i)->info << " con destino a " << _accesoVerticePosicion(i) -> _accesoArcoPosicion(j) -> verticeLlegada << " con duracion de " << _accesoVerticePosicion(i)->_accesoArcoPosicion(j)->pesoLlegada << endl;
+            }
+            cout << endl;
         }
     }
 
     void eliminarVertice()
     {
-        /*
         
-        */
     }
 
     int pesoArco(R vertice, R llegadaVertice)
@@ -200,26 +215,48 @@ public:
         VGrafo *vTmp = _accesoVertice(vertice);
         if (vTmp != NULL)
         {
-            AGrafo *aTmp = vTmp->_accesoArco(llegadaVertice);
+            if (vTmp->_accesoArco(llegadaVertice) != NULL)
+            {
+                cout << "EL arco no existe";
+                return NULL;
+            }
+            else
+            {
+                return vTmp->_accesoArco(llegadaVertice);
+            }
         }
         else
         {
             cout << "El vertice no existe";
         }
+        return NULL;
+    }
+
+    VGrafo *_accesoVerticePosicion(R posicion)
+    {
+        NodoLista<VGrafo> *tmp = ndVertices;
+        for (int contador = 0; tmp != NULL && contador <= posicion; tmp = tmp->nextElemento(tmp))
+        {
+            if (contador == posicion)
+            {
+                return tmp->getElemento(tmp);
+            }
+            contador++;
+        }
+        return NULL;
     }
 
     VGrafo * _accesoVertice(R vertice)
     {
-        bool cond = 0;
         NodoLista<VGrafo> *tmp = ndVertices;
-        while (tmp != NULL && !cond)
+
+        for (bool cond = 0; tmp != NULL && !cond; tmp = tmp->nextElemento(tmp))
         {
             if (tmp->getElemento(tmp)->info == vertice)
             {
-                return tmp->getElemento(tmp);
                 cond = 1;
+                return tmp->getElemento(tmp);
             }
-            tmp = tmp->nextElemento(tmp);
         }
         return NULL;
     }
@@ -228,5 +265,6 @@ public:
     {
         return ndVertices->contadorLista(ndVertices);
     }
-};
 
+
+};

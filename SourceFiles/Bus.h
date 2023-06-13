@@ -1,3 +1,4 @@
+#pragma once
 #include "Libraries.h"
 #include "Persona.h"
 #include "Algoritmos/HashTable.h"
@@ -26,16 +27,22 @@ class Bus
 {
 private:
     vector<vector<Asiento>> distribucionAsientos;
-
+    int Origen;
+    int Destino;
+    
     int tiempoEstimado;
 
     int columnaAsiento = 6;
     int filaAsiento = 10;
 
 public:
-    Bus(){}
+    Bus(int Origen, int Destino)
+    {
+        this -> Origen = Origen;
+        this -> Destino = Destino;
+    }
     ~Bus(){}
-    
+
     void mostrarAsientos();
     void generarAsientos();
     void generarBus();

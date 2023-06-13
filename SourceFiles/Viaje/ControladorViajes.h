@@ -1,6 +1,8 @@
 #include "../Rutas.h"
 #include "Viaje.h"
 #include "../Algoritmos/NodoArbolComplexv2.h"
+#include "../Algoritmos/Grafo.h"
+#include "../Bus.h"
 
 /*
 Lima, Chimbote, Trujillo, Pacasmayo, Cajamarca, Chepen, Chiclayo, Piura, Jaen, Cajabamba, Moyobamba, Tarapoto
@@ -10,6 +12,8 @@ class ControladorViajes : public Rutas
 {
 private:
     NodoLista<Viaje> *listaCompras = NULL;
+    NodoLista<Bus> *listaBuses = NULL;
+    Grafo<NodoLista<Bus>, int> *grafoRutas = new Grafo<NodoLista<Bus>, int>;
 
 public:
     ControladorViajes(/* args */);
@@ -26,6 +30,9 @@ public:
     void crearBus();
 
     void escrituraArchivo();
+
+    void generacionGrafo();
+    
 };
 
 ControladorViajes::ControladorViajes(/* args */)
@@ -120,3 +127,34 @@ void ControladorViajes :: crearBus()
 {
 
 }
+
+void ControladorViajes :: generacionGrafo()
+{
+
+    for (int i = 0; i < getSizeLugares(); i++)
+    {
+        grafoRutas -> agregarVertice(i);
+    }
+
+    grafoRutas->imprimirVerticesGrafo();
+
+    for (int i = 0; i < getSizeOrigen(); i++)
+    {
+        for (int j = 0; j < getSizeDestino(); j++)
+        {
+            if (accesoRutaDisponible(i,j) != 0)
+            {
+                NodoLista<Bus> *listaBus = NULL;
+                for (int i = 0; i <= 3; i++)
+                {
+                    Bus *tmp = new Bus(i, j);
+                    listaBus->push(&listaBus,tmp);
+                }
+                grafoRutas->agregarArcoVertice(i,j,accesoTiempoRuta(i,j),listaBus);
+            }
+
+        }
+    }
+    grafoRutas->imprimirGrafo();
+}
+

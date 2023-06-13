@@ -27,7 +27,7 @@ int main()
 {
     srand(time(NULL));
     
-    
+    /*
     Grafo<int, int> *test = new Grafo<int,int>();
 
     test->agregarVertice(0);
@@ -44,7 +44,7 @@ int main()
     test->agregarVertice(9);
 
     test->imprimirVerticesTest();
-    
+    */
    /*
     NodoLista<int> *testNodoLista = NULL;
     NodoLista<int> *tmp = NULL;
@@ -60,7 +60,15 @@ int main()
     tmp = testNodoLista;
 
     cout << testNodoLista -> contadorLista(testNodoLista);
-    */
+    
+    *tmp = testNodoLista;
+
+    while (tmp != NULL)
+    {
+        cout << tmp ->getElemento(tmp);
+        tm
+    }
+    *?
 
     /*
     while (tmp != NULL)

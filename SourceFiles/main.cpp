@@ -93,7 +93,7 @@ void opcionViajes(ControladorViajes *claseViaje)
             break;
         case 4:
             // Invoca la funcion de la clase para realizar la escritura de archivos
-            claseViaje->escrituraArchivo();
+            claseViaje->generacionGrafo();
             break;
         default:
             break;

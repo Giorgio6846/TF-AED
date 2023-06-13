@@ -80,12 +80,10 @@ void append(NodoLista<T> **lista, T *objeto)
 //Listo
 int contadorLista(NodoLista<T> *lista)
 {
-    int contador = 0;
     NodoLista<T> *tmp = lista;
-    while(tmp != NULL)
+    for (int contador = 0; tmp != NULL; tmp=tmp->next)
     {
         contador++;
-        tmp=tmp->next;
     }
     return contador;
 }
