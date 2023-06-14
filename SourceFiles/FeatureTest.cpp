@@ -71,11 +71,21 @@ int main()
     tmp = testNodoLista;
 
 
+    //for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
+    //{
+    //    cout << *(tmp->getElemento(tmp)) << endl;
+    //}
+
+
+    testNodoLista->SwapElementos(testNodoLista, 1, 7);
+
+    tmp = testNodoLista;
+
+
     for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
     {
         cout << *(tmp->getElemento(tmp)) << endl;
     }
-
 
     /*
     while (tmp != NULL)

@@ -132,8 +132,40 @@ void borrarElemento(NodoLista<T> *&lista, T dato){
     }
 }
 
-void busquedaNodo()
+void SwapElementos(NodoLista<T> *&lista, T x, T y)
 {
+    if (lista !=NULL)
+    {
+        if(x==y){return;}
+        NodoLista<T> * prevX = NULL; NodoLista<T> * currentX = lista; 
+        NodoLista<T> * prevY = NULL; NodoLista<T> *currentY = lista;
+
+        while (*(currentX->elemento) != x)
+        {
+            //Sabemos siempre quien sería el nodo anterior al que buscamos
+            prevX = currentX;
+            currentX = currentX->next;
+        }
+        while (*(currentY->elemento) != y)
+        {
+            //Sabemos siempre quien sería el nodo anterior al que buscamos
+            prevY = currentY;
+            currentY = currentY->next;
+        }
+        //Si alguno de los dos valores no existe, no se hace el cambio
+        if ((currentX->elemento) == NULL || (currentY->elemento) == NULL){cout << "Uno de los elementos dados no existen en la lista" << endl; return;}
+        //Cambiamos los valores
+        T aux1; T aux2;
+        aux1 = *(currentY->elemento); 
+        aux2 = *(currentX->elemento);
+
+        prevX = prevX->next; *(prevX->elemento) = aux1;
+        prevY = prevY->next; *(prevY->elemento) = aux2;
+    }
+    else{
+        cout << "La lista se encuentra vacía brothesito!; pero fresh, agregalo dos elementos y ya" << endl;
+    }
+    
 
 }
 
