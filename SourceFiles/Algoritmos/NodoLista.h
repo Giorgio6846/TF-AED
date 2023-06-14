@@ -223,8 +223,8 @@ T *obtenerPosicionElemento(NodoLista<T> **lista, int pos)
 }
 
 //Max y Min Heap
-int parent(NodoLista<T> *lista) { return (contadorLista(&lista) - 1) / 2; }
-int left(NodoLista<T> *lista) { return 2 * contadorLista(&lista) + 1;     }
-int right(NodoLista<T> *lista) { return 2 * contadorLista(&lista) + 2;    }
+int parent(NodoLista<T> *lista) { return (contadorLista(lista) - 1) / 2; }
+int left(NodoLista<T> *lista) { return 2 * contadorLista(lista) + 1;     }
+int right(NodoLista<T> *lista) { return 2 * contadorLista(lista) + 2;    }
 
 };
