@@ -2,7 +2,6 @@
 #include "Viaje.h"
 #include "../Algoritmos/NodoArbolComplexv2.h"
 #include "../Algoritmos/Grafo.h"
-#include "../Bus.h"
 
 /*
 Lima, Chimbote, Trujillo, Pacasmayo, Cajamarca, Chepen, Chiclayo, Piura, Jaen, Cajabamba, Moyobamba, Tarapoto
@@ -26,8 +25,6 @@ public:
     int menuViajes();
     void reservaViaje();
     void reservaBusquedaViajes();
-
-    void crearBus();
 
     void escrituraArchivo();
 
@@ -123,20 +120,12 @@ int ControladorViajes ::menuViajes()
     return opcionSelecionada;
 }
 
-void ControladorViajes :: crearBus()
-{
-
-}
-
 void ControladorViajes :: generacionGrafo()
 {
-
     for (int i = 0; i < getSizeLugares(); i++)
     {
         grafoRutas -> agregarVertice(i);
     }
-
-    grafoRutas->imprimirVerticesGrafo();
 
     for (int i = 0; i < getSizeOrigen(); i++)
     {
@@ -147,14 +136,12 @@ void ControladorViajes :: generacionGrafo()
                 NodoLista<Bus> *listaBus = NULL;
                 for (int i = 0; i <= 3; i++)
                 {
-                    Bus *tmp = new Bus(i, j);
+                    Bus *tmp = new Bus(i, j, accesoTiempoRuta(i,j));
                     listaBus->push(&listaBus,tmp);
                 }
                 grafoRutas->agregarArcoVertice(i,j,accesoTiempoRuta(i,j),listaBus);
             }
-
         }
     }
     grafoRutas->imprimirGrafo();
 }
-

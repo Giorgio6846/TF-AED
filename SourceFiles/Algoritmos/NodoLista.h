@@ -1,7 +1,6 @@
-#include "../Libraries.h"
 #pragma once
 #include "../Encomienda/Encomienda.h"
-
+#include "../Libraries.h"
 
 template <class T>
 class NodoLista
@@ -39,7 +38,7 @@ public:
     }
     */
 
-    T * getElemento(NodoLista *listaElementos){return listaElementos->elemento;}
+    T * getElemento(NodoLista *listaElementos){return elemento;}
     NodoLista * nextElemento(NodoLista *lista){return lista->next;}
 
     Encomienda * getElementoEncomienda(NodoLista<Encomienda> *listaElemento, string valor){
@@ -52,6 +51,7 @@ public:
             }
             aux = aux->next;
         }
+        return NULL;
     }
 //Listo
 void push(NodoLista<T> ** lista, T *objeto)
@@ -77,9 +77,9 @@ void append(NodoLista<T> **lista, T *objeto)
         *lista = nuevoNodo;
     }
 
-    while(ultimo->next != NULL)
+    while(nextElemento(ultimo) != NULL)                                                                                                   
     {
-        ultimo = ultimo -> next;
+        ultimo = nextElemento(ultimo);
     }
     ultimo->next = nuevoNodo;
 }
@@ -89,7 +89,7 @@ int contadorLista(NodoLista<T> *lista)
 {
     int contador = 0;
     NodoLista<T> *tmp = lista;
-    for (; tmp != NULL; tmp=tmp->next)
+    for (; tmp != NULL; tmp = nextElemento(tmp))
     {
         contador++;
     }
@@ -97,20 +97,88 @@ int contadorLista(NodoLista<T> *lista)
 }
 
 //Listo
-void insertarElementoPosicion(NodoLista<T> *lista, T *objeto, int pos)
+void insertarElementoPosicion(NodoLista<T> **lista, T *objeto, int pos)
 {
-    NodoLista<T> *aux = *lista;
+    /*
+    NodoLista<T> *aux = lista;
     if (pos > contadorLista(lista))
     {
         cout << "La posicion selecionada es mejor a la cantidad de items en la lista";
     }
+
     else
     {
-        NodoLista<T> *nuevoNodo = new NodoLista<T>();
-        nuevoNodo->elemento = objeto;
-        nuevoNodo->next = *aux->next;
-        *aux->next = nuevoNodo;
+        for (int contador = 0; (aux != NULL) && (contador <= pos); aux=nextElemento(aux))
+        {
+            cout << "a";
+            if (contador == pos)
+            {
+                cout << contador;
+                NodoLista<T> *nuevoNodo = new NodoLista<T>();
+                nuevoNodo->elemento = objeto;
+                nuevoNodo->next = aux->next;
+                aux->next = nuevoNodo;
+            }
+            contador++;
+        }
     }
+    */
+
+   NodoLista *nodo;
+   nodo->elemento = objeto;
+   nodo->next = NULL;
+
+    if (!(pos >= 0 && pos <= contadorLista(*lista)))
+    {
+    }
+    if (pos == 0)
+    {
+    push(lista, objeto);
+    }
+    else if(pos == contadorLista(*lista))
+    {
+    append(lista, objeto);
+    }
+    else
+    {
+        NodoLista *tmp = *lista;
+        for (int contador = 0; (tmp != NULL) && (contador <= pos); tmp = nextElemento(tmp))
+        {
+                if (contador == pos)
+                {
+                    nodo -> next = tmp -> next;
+                    tmp-> next  = nodo;
+                }
+                contador++;
+        }
+    }
+
+    /*
+    NodoLista<T> *aux = *lista;
+    if (pos > contadorLista(aux))
+    {
+         cout << "La posicion selecionada es mayor a la cantidad de items en la lista";
+    }
+    else
+    {
+        NodoLista<T> * Nodo1 = *lista;
+        NodoLista<T> * Nodo2 = NULL;
+
+        Nodo2 -> elemento = objeto;
+        Nodo2 -> next = NULL;
+
+        for(int contador = 0; (aux != NULL) && (contador <= pos); aux = nextElemento(aux))
+        {
+            if (contador == pos)
+            {
+                Nodo2 -> next = Nodo1 -> next;
+                Nodo1 -> next = Nodo2;
+            }
+            
+            contador++;
+        }
+    }
+    */
 }
 
 //Se requiere la dirección del dato, más no el valor en sí.
@@ -144,6 +212,8 @@ void borrarElemento(NodoLista<T> *&lista, T dato){
     }
 }
 
+//Hace swap del valor del elemento pero la idea es de la direccion de memoria
+//Mas tarde implementarlo
 void SwapElementos(NodoLista<T> *&lista, T x, T y)
 {
     if (lista !=NULL)
@@ -175,26 +245,39 @@ void SwapElementos(NodoLista<T> *&lista, T x, T y)
         prevY = prevY->next; *(prevY->elemento) = aux2;
     }
     else{
-        cout << "La lista se encuentra vacía brothesito!; pero fresh, agregalo dos elementos y ya" << endl;
+        cout << "La lista se encuentra vacía" << endl;
     }
     
 
 }
 
 //Listo
-T obtenerPosicionNodos(NodoLista<T> *lista)
+T * obtenerPosicionElemento(NodoLista<T> * lista, int pos)
 {
-    if (*lista == NULL)
+    if (lista == NULL)
     {
         cout << "La lista esta vacia";
         return NULL;
     }
-    else
+    
+    NodoLista<T> *tmp = lista;
+    if (pos <= contadorLista(tmp))
     {
-        NodoLista * aux = *lista;
+        tmp = lista;
+        for (int contador = 0; tmp != NULL && (contador <= pos); tmp = nextElemento(tmp))
+        {
+            cout << contador;
+            contador++;
+        }
+        return tmp->elemento;
     }
+    cout << "La posicion selecionada es mayor a la cantidad de items en la lista";
+    return NULL;  
 }
 
-
+//Max y Min Heap
+int parent(NodoLista<T> *lista) { return (contadorLista(&lista) - 1) / 2; }
+int left(NodoLista<T> *lista) { return 2 * contadorLista(&lista) + 1;     }
+int right(NodoLista<T> *lista) { return 2 * contadorLista(&lista) + 2;    }
 
 };

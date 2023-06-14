@@ -1,7 +1,7 @@
 #include "../Libraries.h"
 #include "../Persona.h"
 #include "../Algoritmos/NodoLista.h"
-#include "../Bus.h"
+#include "../VehiculoTransporte.h"
 
 class Viaje
 {

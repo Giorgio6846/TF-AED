@@ -23,6 +23,42 @@ void print(NodoLista <int> *test)
 }
 */
 
+void heapMinSort(NodoLista<int> *lista)
+{
+    //buildMinHeap(lista);
+    /*
+    for (int i = 0; lista->contadorLista(lista) - 1 > i; i--)
+    {
+        lista->SwapElementos(lista,lista->)
+    }
+    */
+}
+
+void buildMinHeap(NodoLista<int> *lista)
+{
+
+}
+
+void minHeapify(NodoLista<int> *lista)
+{
+
+}
+
+void heapMaxSort(NodoLista<int> *lista)
+{
+
+}
+
+void buildMaxHeap(NodoLista<int> *lista)
+{
+
+}
+
+void maxHeapify(NodoLista<int> *lista)
+{
+
+}
+
 int main()
 {
     srand(time(NULL));
@@ -59,24 +95,47 @@ int main()
 
     tmp = testNodoLista;
 
-    cout << testNodoLista -> contadorLista(testNodoLista);
+    cout << testNodoLista -> contadorLista(testNodoLista) << endl << endl;
+    /*
+    int *c = new int;
+    *c = 444;
 
+    testNodoLista->insertarElementoPosicion(testNodoLista,c,99);
     for (; tmp != NULL; tmp = tmp -> nextElemento(tmp))
     {
         cout << *(tmp->getElemento(tmp)) << endl;
     }
+    */
     
-    testNodoLista->borrarElemento(testNodoLista, 2);
+    int *b = new int;
+    *b = 222;
+
+    testNodoLista->append(&testNodoLista, b);
+    testNodoLista->insertarElementoPosicion(&testNodoLista, b, 99);
+
+    for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
+    {
+        cout << *(tmp->getElemento(tmp)) << endl;
+    }
+    
+    /*
+    tmp = testNodoLista;
+    cout << tmp->obtenerPosicionElemento(tmp, 99) << endl;
+
+    cout << *(tmp->obtenerPosicionElemento(tmp, 99)) << endl;
 
     tmp = testNodoLista;
+    cout << *(tmp->obtenerPosicionElemento(tmp, 10)) << endl;
 
-
+    cout << tmp->obtenerPosicionElemento(tmp, 10) << endl;
+    */
     //for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
     //{
     //    cout << *(tmp->getElemento(tmp)) << endl;
     //}
 
-
+    
+    
     testNodoLista->SwapElementos(testNodoLista, 1, 7);
 
     tmp = testNodoLista;
@@ -86,6 +145,7 @@ int main()
     {
         cout << *(tmp->getElemento(tmp)) << endl;
     }
+    
 
     /*
     while (tmp != NULL)

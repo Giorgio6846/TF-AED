@@ -190,11 +190,6 @@ public:
         }
     }
 
-    void eliminarVertice()
-    {
-        
-    }
-
     int pesoArco(R vertice, R llegadaVertice)
     {
         bool cond = 0;
@@ -266,5 +261,28 @@ public:
         return ndVertices->contadorLista(ndVertices);
     }
 
+/*
+
+Al realizar el algoritmo de Dijkstra este al ingresar un arco ingresarlo ya organizado
+
+
+*/
+
+
+int parent(int i) { return (i - 1) / 2; }
+int left(int i) { return 2 * i + 1; }
+int rigth(int i) { return 2 * i + 2; }
+
+// MinHeap basado en tiempo estimado
+void pushMin()
+{
+
+}
+
+//MaxHeap basado en tiempo estimado
+void pushMax()
+{
+    
+}
 
 };
