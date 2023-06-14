@@ -83,7 +83,9 @@ int main()
     */
    
     NodoLista<int> *testNodoLista = NULL;
+
     NodoLista<int> *tmp;
+    NodoLista<int> *tmp1;
 
     for (int i = 0; i < 100; i++)
     {
@@ -95,10 +97,10 @@ int main()
 
     tmp = testNodoLista;
 
-    cout << testNodoLista -> contadorLista(testNodoLista) << endl << endl;
+    //cout << testNodoLista -> contadorLista(testNodoLista) << endl << endl;
     /*
     int *c = new int;
-    *c = 444;
+clear    *c = 444;
 
     testNodoLista->insertarElementoPosicion(testNodoLista,c,99);
     for (; tmp != NULL; tmp = tmp -> nextElemento(tmp))
@@ -106,22 +108,51 @@ int main()
         cout << *(tmp->getElemento(tmp)) << endl;
     }
     */
-    
+    tmp = testNodoLista;
+
     int *b = new int;
-    *b = 222;
+    *b = 34;
 
-    testNodoLista->append(&testNodoLista, b);
+    //testNodoLista->append(&testNodoLista, b);
     testNodoLista->insertarElementoPosicion(&testNodoLista, b, 99);
+    tmp = testNodoLista;
+    tmp1 = testNodoLista;
 
-    for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
+    for (int contador = 0; tmp != NULL;)
     {
-        cout << *(tmp->getElemento(tmp)) << endl;
+        cout << contador << " ";
+        cout << *(tmp->getElemento(tmp)) << " ";
+        cout << *(tmp1->obtenerPosicionElemento(&tmp1, contador)) << endl;
+
+        tmp = tmp->nextElemento(tmp);
+    
+        contador++;
     }
     
+   /*
+    tmp = testNodoLista;
+    tmp1 = testNodoLista;
+    for (int contador = 0; contador <= tmp1->contadorLista(tmp1);)
+    {
+        cout << contador << " ";
+        //cout << *(tmp->getElemento(tmp)) << " ";
+        cout << *(tmp1->obtenerPosicionElemento(&tmp1, contador)) << endl;
+
+        //tmp = tmp->nextElemento(tmp);
+        //tmp1 = tmp1->nextElemento(tmp1);
+
+        contador++;
+    }
+    */
     /*
     tmp = testNodoLista;
-    cout << tmp->obtenerPosicionElemento(tmp, 99) << endl;
-
+    cout << tmp->contadorLista(tmp) << " ";
+    
+    
+    tmp = testNodoLista;
+    cout << *(tmp->obtenerPosicionElemento(&tmp, 100)) << endl;
+    */
+    /*
     cout << *(tmp->obtenerPosicionElemento(tmp, 99)) << endl;
 
     tmp = testNodoLista;
@@ -135,7 +166,7 @@ int main()
     //}
 
     
-    
+    /*
     testNodoLista->SwapElementos(testNodoLista, 1, 7);
 
     tmp = testNodoLista;
@@ -145,6 +176,7 @@ int main()
     {
         cout << *(tmp->getElemento(tmp)) << endl;
     }
+    */
     
 
     /*
