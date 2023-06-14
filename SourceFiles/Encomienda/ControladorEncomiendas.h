@@ -57,9 +57,12 @@ public:
         while (listaClientes != NULL && listaObjetos!= NULL)
         {
            Encomienda * encomiendaFinal = new Encomienda(listaClientes->getElemento(listaClientes), listaObjetos->getElemento(listaObjetos));
+           encomiendaFinal->generarCodigo();
+           cout << "Codigo: " << encomiendaFinal->getCodigo();
            listaClientes = listaClientes->nextElemento(listaClientes);
            listaObjetos = listaObjetos->nextElemento(listaObjetos);
            listaEncomienda->push(&listaEncomienda, encomiendaFinal);
+           cont();
         }           
     }
     
@@ -78,8 +81,8 @@ public:
             cout << "Selecione la opcion: \n";
             cout << "1. Agendar una encomienda \n";
             cout << "2. Mostrar lista de encomiendas \n";
-            //cout << "3. Buscar encomienda por codigo \n";
-            cout << "3. Regresar al menu principal \n";
+            cout << "3. Buscar encomienda por codigo \n";
+            //cout << "3. Regresar al menu principal \n";
             
             cin >> opcionSelecionada;
 
@@ -94,9 +97,16 @@ public:
         return opcionSelecionada;
     }
 
+    void buscarEncomienda(){
+        string codigo;
+        cout << "Ingrese el codigo de encomienda" << endl;
+        cin >> codigo;
+        Encomienda * aux = listaEncomienda->getElementoEncomienda(listaEncomienda, codigo);
+        cout << "Nombre del propietario " << aux->cliente->getNombre();
+    }
+
     //Para hacer funcionar esta función, se necesita primero el HashTable
     void arbolRankingEncomiendas(NodoArbol * arbol, int cantEncomiendas){
-
     }
 
     void agendarCliente()

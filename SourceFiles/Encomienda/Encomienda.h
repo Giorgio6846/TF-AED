@@ -1,6 +1,7 @@
 #include "../Libraries.h"
 #include "../Persona.h"
 #include "objetoEncomienda.h"
+#pragma once
 class Encomienda
 {
 public:

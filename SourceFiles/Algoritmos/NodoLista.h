@@ -1,5 +1,6 @@
 #include "../Libraries.h"
 #pragma once
+#include "../Encomienda/Encomienda.h"
 
 
 template <class T>
@@ -41,6 +42,17 @@ public:
     T * getElemento(NodoLista *listaElementos){return listaElementos->elemento;}
     NodoLista * nextElemento(NodoLista *lista){return lista->next;}
 
+    Encomienda * getElementoEncomienda(NodoLista<Encomienda> *listaElemento, string valor){
+        NodoLista<Encomienda> * aux = listaElemento;
+        while (aux->next != NULL)
+        {
+            if (aux->elemento->getCodigo() == valor)
+            {
+                return aux->elemento;
+            }
+            aux = aux->next;
+        }
+    }
 //Listo
 void push(NodoLista<T> ** lista, T *objeto)
 {

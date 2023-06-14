@@ -126,10 +126,12 @@ void opcionEncomienda(ControladorEncomiendas *claseEncomienda)
             cont();
             break;
 
+        case 3:
+            claseEncomienda->buscarEncomienda();
         default:
             break;
         }
-    } while (opcionSelecionada != 3);
+    } while (opcionSelecionada != 4);
 }    
 #endif
 
