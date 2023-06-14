@@ -47,7 +47,7 @@ int main()
     */
    
     NodoLista<int> *testNodoLista = NULL;
-    NodoLista<int> *tmp = NULL;
+    NodoLista<int> *tmp;
 
     for (int i = 0; i < 100; i++)
     {
@@ -66,12 +66,16 @@ int main()
         cout << *(tmp->getElemento(tmp)) << endl;
     }
     
-    tmp->borrarElemento(tmp, 2);
+    testNodoLista->borrarElemento(testNodoLista, 2);
+
+    tmp = testNodoLista;
+
 
     for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
     {
         cout << *(tmp->getElemento(tmp)) << endl;
     }
+
 
     /*
     while (tmp != NULL)
