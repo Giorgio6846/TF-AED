@@ -33,7 +33,7 @@ public:
 		}
 	return true;
 	}
-	void buscar(string key) {
+	void buscarEncomienda(string key) {
 
 		int pos = 0;
 		pos = crearHashString(key);	//Obtenemos el indice de la Tabla (pos) a partir de la Funcion HASH
@@ -46,13 +46,21 @@ public:
 		cout << endl;
 	}
 
-	T * getObjeto(string key){
-		auto list = tableLists[crearHashString(key)];
-		if (list.empty()) {
-		return nullptr;
+	void mostrarTodasEncomiendas() {
+		int pos = 0;
+		int cont = 0;
+		for (auto & thisList  : tableLists) {		// Recorremos el vector<>
+			for (auto * it : tableLists[pos]) {	// Recorremos la Lista de cada indice del vector	
+				if (it->cliente->getDocumento() != "" ){
+					cout << "Encomienda : " << cont << endl;
+					it->cliente->informacionPersona();
+					cont++;
+				}
+			}
+			pos++;
 		}
-		return list.front();
 	}
+
 	//Función hash; Se utiliza string, ya que el DNI será pasado como llave
     size_t crearHashString(const string key) const {
 		char c;	

@@ -58,6 +58,19 @@ public:
         cont();
     }
     
+    void printInfoEncomiendas(){
+        if (hashTable.isEmpty())
+        {
+            cout << "No hay encomiendas registradas!" << endl;
+            cont();
+        }
+        else
+        {
+            hashTable.mostrarTodasEncomiendas();
+            cont();
+        }
+    }
+
     void reservaEncomienda(){
     int Origen, Destino, cantidadUsuarios;
     Origen = Rutas :: selecionarOrigen();
@@ -74,7 +87,7 @@ public:
             cout << "1. Agendar una encomienda \n";
             cout << "2. Mostrar lista de encomiendas \n";
             cout << "3. Buscar encomienda por codigo \n";
-            //cout << "3. Regresar al menu principal \n";
+            cout << "4. Regresar al menu principal \n";
             
             cin >> opcionSelecionada;
 
@@ -100,7 +113,7 @@ public:
             string codigo;
             cout << "Ingrese su DNI" << endl;
             cin >> codigo;
-            hashTable.buscar(codigo);
+            hashTable.buscarEncomienda(codigo);
             
         }
     }

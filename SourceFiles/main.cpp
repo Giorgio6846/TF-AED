@@ -120,7 +120,7 @@ void opcionEncomienda(ControladorEncomiendas *claseEncomienda)
             break;
 
         case 2:
-            //claseEncomienda->printInfoEncomiendas();
+            claseEncomienda->printInfoEncomiendas();
             cont();
             break;
 
