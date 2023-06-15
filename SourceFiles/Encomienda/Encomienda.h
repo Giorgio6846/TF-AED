@@ -19,13 +19,13 @@ public:
     string generarCodigo(){
         while (codigo.size() != 10){
             if(rand()%2 == 1){
-            codigo = codigo + to_string(rand()%10);
+            this->codigo = codigo + to_string(rand()%10);
             }
             else{
-            codigo = codigo + to_string(rand()%10);
+            this->codigo = codigo + to_string(rand()%10);
             };
         }
-        return codigo;
+        return this->codigo;
     }
 
     string getCodigo(){return this->codigo;}

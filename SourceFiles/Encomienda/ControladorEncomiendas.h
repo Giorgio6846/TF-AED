@@ -5,6 +5,7 @@
 //Algoritmos
 #include "../Algoritmos/NodoLista.h"
 #include "../Algoritmos/NodoArbol.h"
+#include "../Algoritmos/HashTable.h"
 
 #include "objetoEncomienda.h"
 #include "Encomienda.h"
@@ -12,58 +13,50 @@
 class ControladorEncomiendas: public Rutas
 {
     private:
-        NodoLista<Persona> *listaClientes;
-        NodoLista<objetoEncomienda> * listaObjetos;
-        NodoLista<Encomienda> * listaEncomienda;
-        int esPrint;
+        HashTable<Encomienda> * hashTable;
 public:
     ControladorEncomiendas(){
-        this->listaClientes = NULL;
-        this->listaObjetos = NULL;
-        this->listaEncomienda = NULL;
+        
     };
     ~ControladorEncomiendas(){};
 
-    void printInfoEncomiendas(){
-        int contador = 1;
-        //Se crea un auxiliar para no alterar los punteros de la lista original
-        NodoLista<Encomienda> * aux = listaEncomienda;
-        if (aux!= NULL)
-        {
-            while (aux != NULL)
-        {
-            cout << "Encomienda numero " << contador << endl;
-            cout << "Propietario: " << aux->getElemento(aux)->cliente->getNombre() << " " << aux->getElemento(aux)->cliente->getApellido() <<endl;
-            cout << "Categoria del producto: " << aux->getElemento(aux)->objeto->getCategoria() << endl;
-            cout << "Peso (Kg): " << aux->getElemento(aux)->getPeso();
-            cout << "Fragil: ";
-            if (aux->getElemento(aux)->objeto->getEsFragil())
-            {
-                cout << "SI" << endl;
-            }
-            else{cout << "NO" << endl;}  
-            contador++;
-            aux = aux->nextElemento(aux);
-        }
-        }
-        else
-        {
-            cout << "No existen encomiendas por el momento!" << endl;
-            cont();
-        }
-    }
+    //void printInfoEncomiendas(){
+    //    int contador = 1;
+    //    //Se crea un auxiliar para no alterar los punteros de la lista original
+    //    NodoLista<Encomienda> * aux = listaEncomienda;
+    //    if (aux!= NULL)
+    //    {
+    //        while (aux != NULL)
+    //    {
+    //        cout << "Encomienda numero " << contador << endl;
+    //        cout << "Propietario: " << aux->getElemento(aux)->cliente->getNombre() << " " << aux->getElemento(aux)->cliente->getApellido() <<endl;
+    //        cout << "Categoria del producto: " << aux->getElemento(aux)->objeto->getCategoria() << endl;
+    //        cout << "Peso (Kg): " << aux->getElemento(aux)->getPeso();
+    //        cout << "Fragil: ";
+    //        if (aux->getElemento(aux)->objeto->getEsFragil())
+    //        {
+    //            cout << "SI" << endl;
+    //        }
+    //        else{cout << "NO" << endl;}  
+    //        contador++;
+    //        aux = aux->nextElemento(aux);
+    //    }
+    //    }
+    //    else
+    //    {
+    //        cout << "No existen encomiendas por el momento!" << endl;
+    //        cont();
+    //    }
+    //}
 
     void agendarEncomiendaFinal(){
-        while (listaClientes != NULL && listaObjetos!= NULL)
-        {
-           Encomienda * encomiendaFinal = new Encomienda(listaClientes->getElemento(listaClientes), listaObjetos->getElemento(listaObjetos));
-           encomiendaFinal->generarCodigo();
-           cout << "Codigo: " << encomiendaFinal->getCodigo();
-           listaClientes = listaClientes->nextElemento(listaClientes);
-           listaObjetos = listaObjetos->nextElemento(listaObjetos);
-           listaEncomienda->push(&listaEncomienda, encomiendaFinal);
-           cont();
-        }           
+        Persona * cliente = almacenarInfoCliente();
+        objetoEncomienda * encomiendaItem = almacenarInfoObjeto();
+        Encomienda * encomiendaFinal = new Encomienda(cliente, encomiendaItem);
+        encomiendaFinal->generarCodigo();
+        //hashTable->insert(&encomiendaFinal->getCodigo());
+        cout << "Codigo: " << encomiendaFinal->getCodigo();
+        cont();
     }
     
     void reservaEncomienda(){
@@ -101,39 +94,13 @@ public:
         string codigo;
         cout << "Ingrese el codigo de encomienda" << endl;
         cin >> codigo;
-        Encomienda * aux = listaEncomienda->getElementoEncomienda(listaEncomienda, codigo);
-        cout << "Nombre del propietario " << aux->cliente->getNombre();
     }
 
     //Para hacer funcionar esta función, se necesita primero el HashTable
     void arbolRankingEncomiendas(NodoArbol * arbol, int cantEncomiendas){
     }
 
-    void agendarCliente()
-    {
-        listaClientes->push(&listaClientes, almacenarInfoCliente(listaClientes));
-        if (printClientesEncomiendas() == 1)
-        {
-            printClientes(listaClientes);
-        }
-    }
-
-    void printClientes(NodoLista<Persona> *lista)
-    {
-        int op;
-        // Mientras no se llegue al final de lista, mostrar los datos de los clientes almacenados
-        clearScreen;
-        
-        while (lista != NULL)
-        {
-            lista->getElemento(lista)->informacionPersona();
-            lista = lista->nextElemento(lista);
-        }
-        cout << "Presione cualquier tecla para volver al menu de encomiendas!" << endl;
-        cont();
-    }
-
-    Persona * almacenarInfoCliente(NodoLista<Persona> * lista){
+    Persona * almacenarInfoCliente(){
         clearScreen;
         string nombreP, apellidoP;
         int edadP;
@@ -148,13 +115,6 @@ public:
         #endif
 
         return cliente;
-    }
-
-    int printClientesEncomiendas(){
-        int opcion;
-        cout << "Desea ver sus datos en la lista de clientes? Si = 1 / No = 0" << endl;
-        cin >> opcion;
-        return opcion;
     }
 
     objetoEncomienda * almacenarInfoObjeto(){
@@ -225,7 +185,4 @@ public:
         return objeto;
     }
 
-    void agendarObjeto(){
-        listaObjetos->push(&listaObjetos, almacenarInfoObjeto());
-    }
 };
