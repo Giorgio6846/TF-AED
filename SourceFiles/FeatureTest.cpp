@@ -44,7 +44,7 @@ void minHeapify(NodoLista<int> *&lista, int n, int i)
     }
     if (smallest != i)
     {
-        lista->SwapElementos(lista, *(lista->obtenerPosicionElemento(&lista, i)), *(lista->obtenerPosicionElemento(&lista, smallest)));
+        lista->SwapElementosDatos(lista, *(lista->obtenerPosicionElemento(&lista, i)), *(lista->obtenerPosicionElemento(&lista, smallest)));
         minHeapify(lista, n, smallest);
     }
 }
@@ -62,10 +62,9 @@ void heapMinSort(NodoLista<int> *&lista, int n)
     buildMinHeap(lista);
     for (int i = n - 1; i > 0; --i)
     {
-        lista->SwapElementos(lista, *(lista->obtenerPosicionElemento(&lista, 0)), *(lista->obtenerPosicionElemento(&lista, i)));
+        lista->SwapElementosDatos(lista, *(lista->obtenerPosicionElemento(&lista, 0)), *(lista->obtenerPosicionElemento(&lista, i)));
         minHeapify(lista, --n, 0);
     }
-    
 }
 
 
@@ -142,8 +141,12 @@ clear    *c = 444;
     *b = 34;
 
     //testNodoLista->append(&testNodoLista, b);
-    /*
+    
     testNodoLista->insertarElementoPosicion(&testNodoLista, b, 99);
+    testNodoLista->SwapElementosDatos(testNodoLista, 1, 7);
+
+    testNodoLista->SwapElementosDireccion(testNodoLista, testNodoLista->obtenerPosicionElemento(&testNodoLista, 10), testNodoLista->obtenerPosicionElemento(&testNodoLista, 20));
+
     tmp = testNodoLista;
     tmp1 = testNodoLista;
 
@@ -151,14 +154,24 @@ clear    *c = 444;
     {
         cout << contador << " ";
         cout << *(tmp->getElemento(tmp)) << " ";
-        cout << *(tmp1->obtenerPosicionElemento(&tmp1, contador)) << endl;
+        cout << *(tmp1->obtenerPosicionElemento(&tmp1, contador)) << " ";
+        cout << (tmp->getElemento(tmp)) << endl;
 
         tmp = tmp->nextElemento(tmp);
     
         contador++;
     }
-    */
 
+
+
+    tmp = testNodoLista;
+    /*
+    for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
+    {
+        cout << *(tmp->getElemento(tmp)) << endl;
+    }
+    */
+    /*
     buildMinHeap(tmp);
     heapMinSort(tmp, tmp->contadorLista(tmp));
 
@@ -166,7 +179,7 @@ clear    *c = 444;
     {
         cout << *(tmp->getElemento(tmp)) << endl;
     }
-    
+    */
 
     /*
      tmp = testNodoLista;
@@ -205,17 +218,8 @@ clear    *c = 444;
     //}
 
     
-    /*
-    testNodoLista->SwapElementos(testNodoLista, 1, 7);
-
-    tmp = testNodoLista;
-
-
-    for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
-    {
-        cout << *(tmp->getElemento(tmp)) << endl;
-    }
-    */
+    
+    
     
 
     /*

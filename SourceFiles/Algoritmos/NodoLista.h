@@ -150,7 +150,7 @@ void borrarElemento(NodoLista<T> *&lista, T dato){
 
 //Hace swap del valor del elemento pero la idea es de la direccion de memoria
 //Mas tarde implementarlo
-void SwapElementos(NodoLista<T> *&lista, T x, T y)
+void SwapElementosDatos(NodoLista<T> *&lista, T x, T y)
 {
     if (lista !=NULL)
     {
@@ -185,6 +185,54 @@ void SwapElementos(NodoLista<T> *&lista, T x, T y)
     }
 }
 
+void SwapElementosDireccion(NodoLista<T> *&lista, T * x, T * y)
+{
+    if (lista != NULL)
+    {
+        if (x == y)
+        {
+            return;
+        }
+        NodoLista<T> *prevX = NULL;
+        NodoLista<T> *currentX = lista;
+        NodoLista<T> *prevY = NULL;
+        NodoLista<T> *currentY = lista;
+
+        while ((currentX->elemento) != x)
+        {
+            // Sabemos siempre quien sería el nodo anterior al que buscamos
+            prevX = currentX;
+            currentX = currentX->next;
+        }
+        while ((currentY->elemento) != y)
+        {
+            // Sabemos siempre quien sería el nodo anterior al que buscamos
+            prevY = currentY;
+            currentY = currentY->next;
+        }
+        // Si alguno de los dos valores no existe, no se hace el cambio
+        if ((currentX->elemento) == NULL || (currentY->elemento) == NULL)
+        {
+            cout << "Uno de los elementos dados no existen en la lista" << endl;
+            return;
+        }
+        // Cambiamos los valores
+        T * aux1;
+        T * aux2;
+        aux1 = (currentY->elemento);
+        aux2 = (currentX->elemento);
+
+        prevX = prevX->next;
+        (prevX->elemento) = aux1;
+        prevY = prevY->next;
+        (prevY->elemento) = aux2;
+    }
+    else
+    {
+        cout << "La lista se encuentra vacía" << endl;
+    }
+}
+
 //Listo
 T *obtenerPosicionElemento(NodoLista<T> **lista, int pos)
 {
@@ -209,10 +257,4 @@ T *obtenerPosicionElemento(NodoLista<T> **lista, int pos)
     cout << "La posicion selecionada es mayor a la cantidad de items en la lista";
     return NULL;
 }
-
-//Max y Min Heap
-int parent(NodoLista<T> *lista) { return (contadorLista(lista) - 1) / 2; }
-int left(NodoLista<T> *lista) { return 2 * contadorLista(lista) + 1;     }
-int right(NodoLista<T> *lista) { return 2 * contadorLista(lista) + 2;    }
-
 };
