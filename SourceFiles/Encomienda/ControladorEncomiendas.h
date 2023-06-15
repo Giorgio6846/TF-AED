@@ -15,9 +15,7 @@ class ControladorEncomiendas: public Rutas
     private:
         HashTable<Encomienda> hashTable;
 public:
-    ControladorEncomiendas(){
-        hashTable = hashTable;
-    };
+    ControladorEncomiendas(){};
     ~ControladorEncomiendas(){};
 
     //void printInfoEncomiendas(){

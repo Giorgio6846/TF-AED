@@ -117,7 +117,6 @@ void opcionEncomienda(ControladorEncomiendas *claseEncomienda)
         case 1:
                 //Invoca la clase para agendar la encomienda
                 claseEncomienda->agendarEncomiendaFinal();
-                cout << "LASDFASF";
             break;
 
         case 2:

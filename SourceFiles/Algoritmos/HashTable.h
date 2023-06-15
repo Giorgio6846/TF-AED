@@ -5,7 +5,7 @@ template <class T>
 class HashTable
 {
 private:
-    vector<list<Encomienda*>>  tableLists; //Cada indice del Hash será una lista
+    vector<list<T*>>  tableLists; //Cada indice del Hash será una lista
     int currentSize; //Size del hashTable
 public:
     explicit HashTable(int size = 200) : currentSize{ 0 }
@@ -19,7 +19,7 @@ public:
 			thisList.clear();
 	}
 
-	bool insert(string key, Encomienda* n)
+	bool insert(string key, T* n)
 	{
 		tableLists[crearHashString(key)].push_back(n); // Del vector, obtenemos la lista de elementos según el hash(indice) obtenido
         return true;
