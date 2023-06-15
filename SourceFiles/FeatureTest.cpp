@@ -23,26 +23,54 @@ void print(NodoLista <int> *test)
 }
 */
 
-void heapMinSort(NodoLista<int> *lista)
+void minHeapify(NodoLista<int> *&lista, int n, int i)
 {
-    //buildMinHeap(lista);
-    /*
-    for (int i = 0; lista->contadorLista(lista) - 1 > i; i--)
+    int l = lista->left(lista);
+    int r = lista->right(lista);
+
+    int smallest(0);
+    if (l <= (n - 1) && lista->obtenerPosicionElemento(&lista, l) < lista->obtenerPosicionElemento(&lista, i))
     {
-        lista->SwapElementos(lista,lista->)
+        smallest = l;
     }
-    */
+    else
+    {
+        smallest = i;
+    }
+
+    if (r <= (n - 1) && lista->obtenerPosicionElemento(&lista, r) < lista->obtenerPosicionElemento(&lista, smallest))
+    {
+        smallest = r;
+    }
+    if (smallest != i)
+    {
+        lista->SwapElementos(lista, *(lista->obtenerPosicionElemento(&lista, i)), *(lista->obtenerPosicionElemento(&lista, smallest)));
+        minHeapify(lista, n, smallest);
+    }
 }
 
-void buildMinHeap(NodoLista<int> *lista)
+void buildMinHeap(NodoLista<int> *&lista)
 {
-
+    for (int i = lista->contadorLista(lista) / 2 - 1; i >= 0; --i)
+    {
+        minHeapify(lista, lista->contadorLista(lista), i);
+    }
 }
 
-void minHeapify(NodoLista<int> *lista)
+void heapMinSort(NodoLista<int> *&lista, int n)
 {
-
+    buildMinHeap(lista);
+    for (int i = n - 1; i > 0; --i)
+    {
+        lista->SwapElementos(lista, *(lista->obtenerPosicionElemento(&lista, 0)), *(lista->obtenerPosicionElemento(&lista, i)));
+        minHeapify(lista, --n, 0);
+    }
+    
 }
+
+
+
+
 
 void heapMaxSort(NodoLista<int> *lista)
 {
@@ -114,6 +142,7 @@ clear    *c = 444;
     *b = 34;
 
     //testNodoLista->append(&testNodoLista, b);
+    /*
     testNodoLista->insertarElementoPosicion(&testNodoLista, b, 99);
     tmp = testNodoLista;
     tmp1 = testNodoLista;
@@ -128,22 +157,32 @@ clear    *c = 444;
     
         contador++;
     }
-    
-   /*
-    tmp = testNodoLista;
-    tmp1 = testNodoLista;
-    for (int contador = 0; contador <= tmp1->contadorLista(tmp1);)
-    {
-        cout << contador << " ";
-        //cout << *(tmp->getElemento(tmp)) << " ";
-        cout << *(tmp1->obtenerPosicionElemento(&tmp1, contador)) << endl;
-
-        //tmp = tmp->nextElemento(tmp);
-        //tmp1 = tmp1->nextElemento(tmp1);
-
-        contador++;
-    }
     */
+
+    buildMinHeap(tmp);
+    heapMinSort(tmp, tmp->contadorLista(tmp));
+
+    for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
+    {
+        cout << *(tmp->getElemento(tmp)) << endl;
+    }
+    
+
+    /*
+     tmp = testNodoLista;
+     tmp1 = testNodoLista;
+     for (int contador = 0; contador <= tmp1->contadorLista(tmp1);)
+     {
+         cout << contador << " ";
+         //cout << *(tmp->getElemento(tmp)) << " ";
+         cout << *(tmp1->obtenerPosicionElemento(&tmp1, contador)) << endl;
+
+         //tmp = tmp->nextElemento(tmp);
+         //tmp1 = tmp1->nextElemento(tmp1);
+
+         contador++;
+     }
+     */
     /*
     tmp = testNodoLista;
     cout << tmp->contadorLista(tmp) << " ";
