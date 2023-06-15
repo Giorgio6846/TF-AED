@@ -25,6 +25,13 @@ public:
         return true;
 	}
 
+	T * getObjeto(string key){
+		auto list = tableLists[crearHashString(key)];
+		if (list.empty()) {
+		return nullptr;
+		}
+		return list.front();
+	}
 	//Función hash; Se utiliza string, ya que el DNI será pasado como llave
     size_t crearHashString(const string key) const {
 		char c;	

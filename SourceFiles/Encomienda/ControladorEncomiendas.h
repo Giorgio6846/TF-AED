@@ -51,10 +51,10 @@ public:
         Persona * cliente = almacenarInfoCliente();
         objetoEncomienda * encomiendaItem = almacenarInfoObjeto();
         Encomienda * encomiendaFinal = new Encomienda(cliente, encomiendaItem);
-        if (hashTable.insert("encomiendaFinal->getCodigo()", encomiendaFinal))
-        {
-            cout << "HGola";
-        }          
+        if (hashTable.insert(encomiendaFinal->cliente->getDocumento(), encomiendaFinal)){
+            cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
+        }
+       
         cont();
     }
     
@@ -91,8 +91,11 @@ public:
 
     void buscarEncomienda(){
         string codigo;
-        cout << "Ingrese el codigo de encomienda" << endl;
+        cout << "Ingrese su DNI" << endl;
         cin >> codigo;
+        Encomienda * aux = hashTable.getObjeto(codigo);
+        aux->cliente->informacionPersona();
+        cont();
     }
 
     //Para hacer funcionar esta función, se necesita primero el HashTable
