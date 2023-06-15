@@ -41,18 +41,6 @@ public:
     T * getElemento(NodoLista *listaElementos){return elemento;}
     NodoLista * nextElemento(NodoLista *lista){return lista->next;}
 
-    Encomienda * getElementoEncomienda(NodoLista<Encomienda> *listaElemento, string valor){
-        NodoLista<Encomienda> * aux = listaElemento;
-        while (aux->next != NULL)
-        {
-            if (aux->elemento->getCodigo() == valor)
-            {
-                return aux->elemento;
-            }
-            aux = aux->next;
-        }
-        return NULL;
-    }
 //Listo
 void push(NodoLista<T> ** lista, T *objeto)
 {
