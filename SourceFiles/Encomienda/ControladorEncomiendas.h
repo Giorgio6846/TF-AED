@@ -13,10 +13,10 @@
 class ControladorEncomiendas: public Rutas
 {
     private:
-        HashTable<Encomienda> * hashTable;
+        HashTable<Encomienda> hashTable;
 public:
     ControladorEncomiendas(){
-        
+        hashTable = hashTable;
     };
     ~ControladorEncomiendas(){};
 
@@ -53,7 +53,7 @@ public:
         Persona * cliente = almacenarInfoCliente();
         objetoEncomienda * encomiendaItem = almacenarInfoObjeto();
         Encomienda * encomiendaFinal = new Encomienda(cliente, encomiendaItem);
-        if (hashTable->insert("encomiendaFinal->getCodigo()", encomiendaFinal))
+        if (hashTable.insert("encomiendaFinal->getCodigo()", encomiendaFinal))
         {
             cout << "HGola";
         }          
