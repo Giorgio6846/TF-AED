@@ -90,12 +90,28 @@ public:
     }
 
     void buscarEncomienda(){
-        string codigo;
-        cout << "Ingrese su DNI" << endl;
-        cin >> codigo;
-        Encomienda * aux = hashTable.getObjeto(codigo);
-        aux->cliente->informacionPersona();
-        cont();
+        if (hashTable.isEmpty())
+        {
+            cout << "No hay encomiendas registradas!" << endl;
+            cont();
+        }
+        else
+        {
+            string codigo;
+            cout << "Ingrese su DNI" << endl;
+            cin >> codigo;
+            Encomienda * aux = hashTable.getObjeto(codigo);
+            if (aux == NULL)
+            {
+                cout << "No existe dicho DNI" << endl;
+            }
+            else
+            {
+                aux->cliente->informacionPersona();
+            }
+            cont();
+            
+        }
     }
 
     //Para hacer funcionar esta función, se necesita primero el HashTable

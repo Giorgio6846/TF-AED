@@ -25,6 +25,15 @@ public:
         return true;
 	}
 
+	bool isEmpty() const {
+		for (int i = 0; i < tableLists.size(); i++) {
+			if (!tableLists[i].empty()) {
+				return false;
+			}
+		}
+	return true;
+	}
+	
 	T * getObjeto(string key){
 		auto list = tableLists[crearHashString(key)];
 		if (list.empty()) {
