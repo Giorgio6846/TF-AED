@@ -53,9 +53,10 @@ public:
         Persona * cliente = almacenarInfoCliente();
         objetoEncomienda * encomiendaItem = almacenarInfoObjeto();
         Encomienda * encomiendaFinal = new Encomienda(cliente, encomiendaItem);
-        encomiendaFinal->generarCodigo();
-        //hashTable->insert(&encomiendaFinal->getCodigo());
-        cout << "Codigo: " << encomiendaFinal->getCodigo();
+        if (hashTable->insert("encomiendaFinal->getCodigo()", encomiendaFinal))
+        {
+            cout << "HGola";
+        }          
         cont();
     }
     
