@@ -52,7 +52,7 @@ private:
     public:
         R verticeLlegada;
         int pesoLlegada;
-        NodoLista<T> * datos;
+        T * datos;
 
         AGrafo()
         {
@@ -212,7 +212,7 @@ public:
     //Modificar mas adelante
     bool DisponiblesArco(R vertice, R llegada, int cantidadPasajeros)
     {
-        NodoLista<T> * tmp = _accesoVertice(vertice) -> _accesoArco(llegada)
+        NodoLista<T> * tmp = _accesoVertice(vertice) -> _accesoArco(llegada);
         for (; tmp != NULL; tmp = tmp -> nextElemento(tmp))
         {
             if (tmp->getElemento(tmp) -> cantidadDisponible >= cantidadPasajeros)
@@ -440,7 +440,7 @@ bool creacionRutav2(R Origen, R Destino, NodoLista<TotalRuta> *truct, informacio
     
     for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
     {
-        pesoArco(R, R);
+        pesoArco(Origen, Destino);
     }
     
 
