@@ -5,8 +5,9 @@
 //#include "Algoritmos/NodoArbol.h"
 //#include "Algoritmos/NodoArbolComplexv2.h"
 
-#include "Algoritmos/Grafo.h"
-//#include "Algoritmos/NodoLista.h"
+//#include "Algoritmos/Grafo.h"
+//#include "Viaje/ControladorViajes.h"
+#include "Algoritmos/NodoLista.h"
 
 /*
 void print(NodoLista <int> *test)
@@ -23,6 +24,7 @@ void print(NodoLista <int> *test)
 }
 */
 
+/*
 void minHeapify(NodoLista<int> *&lista, int n, int i)
 {
     int l = lista->left(lista);
@@ -85,11 +87,45 @@ void maxHeapify(NodoLista<int> *lista)
 {
 
 }
+*/
+
+struct test
+{
+    NodoLista<int> *tmp = NULL;
+    int a;
+};
 
 int main()
 {
     srand(time(NULL));
+
+    //ControladorViajes *claseViaje = new ControladorViajes();
+    //claseViaje->generarGrafo();
+
     
+
+    test *tmp1 = new test();
+    /*
+    for (int i = 0; i < 100; i++)
+    {
+        int *a = new int;
+        *a = i;
+
+        tmp1->tmp->push(&tmp1->tmp, a);
+    }
+    */
+
+    NodoLista<int> *tmp2 = tmp1->tmp;
+    cout << tmp1->tmp->contadorLista(tmp1->tmp);
+    /*
+    for (int i = 0; i < tmp2->contadorLista(tmp2); i++)
+    {
+      
+        cout << *(tmp1->tmp->getElemento(tmp1->tmp)) << endl;
+        tmp1->tmp = tmp1->tmp->nextElemento(tmp1->tmp);
+    }
+    */
+
     /*
     Grafo<int, int> *test = new Grafo<int,int>();
 
@@ -108,22 +144,16 @@ int main()
 
     test->imprimirVerticesTest();
     */
-   
+   /*
     NodoLista<int> *testNodoLista = NULL;
 
     NodoLista<int> *tmp;
     NodoLista<int> *tmp1;
 
-    for (int i = 0; i < 100; i++)
-    {
-        int * a = new int;
-        *a = i;
-
-        testNodoLista->push(&testNodoLista, a);
-    }
+    
 
     tmp = testNodoLista;
-
+    */
     //cout << testNodoLista -> contadorLista(testNodoLista) << endl << endl;
     /*
     int *c = new int;
@@ -135,6 +165,7 @@ clear    *c = 444;
         cout << *(tmp->getElemento(tmp)) << endl;
     }
     */
+    /*
     tmp = testNodoLista;
 
     int *b = new int;
@@ -165,6 +196,7 @@ clear    *c = 444;
 
 
     tmp = testNodoLista;
+    */
     /*
     for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
     {
