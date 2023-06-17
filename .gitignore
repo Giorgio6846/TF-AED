@@ -9,3 +9,6 @@ Documents/.DS_Store
 .DS_Store
 SourceFiles/FeatureTest.cpp
 xCode/TurismoDias/
+SourceFiles/main
+SourceFiles/main.dSYM/Contents/Resources/DWARF/main
+SourceFiles/main.dSYM/Contents/Resources/DWARF/main

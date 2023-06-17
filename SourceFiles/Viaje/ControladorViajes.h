@@ -144,11 +144,6 @@ void ControladorViajes :: generacionGrafo()
             }
         }
     }
-    grafoRutas->imprimirGrafo();
-
-    
-    funciontmp();
-
 }
 
 
