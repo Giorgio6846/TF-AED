@@ -88,12 +88,18 @@ void maxHeapify(NodoLista<int> *lista)
 
 }
 */
-
+/*
 struct test
 {
     NodoLista<int> *tmp = NULL;
     int a;
 };
+*/
+
+void funcion(vector<int> * test)
+{
+    test->
+}
 
 int main()
 {
@@ -104,7 +110,7 @@ int main()
 
     
 
-    test *tmp1 = new test();
+    //test *tmp1 = new test();
     /*
     for (int i = 0; i < 100; i++)
     {
@@ -115,8 +121,8 @@ int main()
     }
     */
 
-    NodoLista<int> *tmp2 = tmp1->tmp;
-    cout << tmp1->tmp->contadorLista(tmp1->tmp);
+    //NodoLista<int> *tmp2 = tmp1->tmp;
+    //cout << tmp1->tmp->contadorLista(tmp1->tmp);
     /*
     for (int i = 0; i < tmp2->contadorLista(tmp2); i++)
     {

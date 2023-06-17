@@ -46,6 +46,8 @@ public:
 		cout << endl;
 	}
 
+	
+
 	void mostrarTodasEncomiendas() {
 		int pos = 0;
 		int cont = 0;

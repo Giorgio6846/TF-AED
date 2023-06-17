@@ -42,7 +42,7 @@ Metodos:
 
 */
 
-template <class T, class R, R vacio = -1>
+template <class T, class R, class W, R vacio = -1>
 class Grafo
 {
 private:
@@ -50,7 +50,9 @@ private:
     class AGrafo
     {
     public:
+        R verticeOrigen;
         R verticeLlegada;
+
         int pesoLlegada;
         T * datos;
 
@@ -74,6 +76,7 @@ private:
             bool cond = 0;
 
             AGrafo *rGraf = new AGrafo();
+            rGraf->verticeOrigen = info;
             rGraf->verticeLlegada = llegadaVertice;
             rGraf->pesoLlegada = pesoLlegada;
             rGraf->datos = dato;
@@ -210,7 +213,7 @@ public:
     }
 
     //Modificar mas adelante
-    bool DisponiblesArco(R vertice, R llegada, int cantidadPasajeros)
+    bool disponiblesArco(R vertice, R llegada, int cantidadPasajeros)
     {
         NodoLista<T> * tmp = _accesoVertice(vertice) -> _accesoArco(llegada);
         for (; tmp != NULL; tmp = tmp -> nextElemento(tmp))
@@ -349,65 +352,306 @@ void rutaViaje(int Origen, int Destino, int cantidadPasajeros)
 
 //Esta diseñado para x Vertices
 //Se pueden agregar o eliminar vertices
-
+/*
 struct TotalRuta
 {
-    NodoLista<AGrafo> * rutaAlDestino= NULL;
+    NodoLista<Bus> * rutaAlDestino= NULL;
     int pesoEntero = 0;
 };
-
+*/
 struct informacionArco
 {
     NodoLista<AGrafo> * listArcs = NULL;
 };
 
-void rutaViaje(int Origen, int Destino, int cantidadPasajeros)
-{
-    /*
-    // 0: No visitado
-    // 1: Origen
-    // 2: Destino
-    //Generacion string lugares
+/*
+Usuario seleciona
+Origen, Destino y Cantidad de Pasajeros
 
-    string lugares = "";
-    for (int i = 0; i < sizeGrafo(); i++)
+
+Funcion 1:
+        Operacion:
+        Datos: Origen, Destino y Cantidad de Pasajeros
+
+    Crea un Nodo con Lista Buses y un peso de ellos
+    Invoca a Funcion 2:
+
+    Funcion 2:
+        Operacion: Accede al vertice
+        Datos: Origen, Destino, Cantidad de Pasajeros, vector de Destinos accedidos
+
+        A base de un for ingresa a cada arco del vertice
+            Verificacion Invoca a la Funcion 3 == 1
+                Si:
+                    Agrega el bus a la lista de buses y el tiempo de duracion a la estructura TotalRuta
+                    return 1;
+                No:
+                    Siguente Arco
+
+    bool Funcion 3:
+        Operacion: Accede al arco
+        Datos: Origen, Destino, Cantidad de Pasajeros, Vector de Destinos Accedidos
+
+        Accede al arco Bus *
+        Verificacion destinoLlegada = Destino y Asientos Disponibles
+            Si
+                Regresa con el puntero del bus
+                return 1
+            No
+                Verificacion: verticeDestinoLlegada esta en destinosAcedidos
+                    Si
+                        Accede al vertice del destinoLlegada
+                        Invoca a la Funcion 2
+                    No
+                        return 0;
+
+Este le va a retornar una lista de vehiculos para realizar su viaje
+*/
+
+/*
+METODO DEL CANGREJO PE IZIZIIIZZIZIZIZIZIZIZIZIZIZ
+Lo mismo :v
+*/
+
+struct TotalRuta
+{
+    NodoLista<Bus> *rutaAlDestino = NULL;
+    int pesoEntero = 0;
+};
+
+// Actualmente solo funciona con buses
+NodoLista<TotalRuta> *RutaFinal(R Origen, R Destino, int espacioDisponible)
+{
+    cout << "TEST";
+    NodoLista<TotalRuta> * TRtmp = NULL;
+    rutaVertice(Origen, Destino, espacioDisponible, NULL, NULL, TRtmp);
+
+    cout << TRtmp -> contadorLista(TRtmp);
+    return TRtmp;
+}
+
+void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *verticesIdos, NodoLista<Bus> * listaBus, NodoLista<TotalRuta> *rutasTotales)
+{
+    NodoLista<R> * tmpVI = verticesIdos;
+    if (tmpVI != NULL)
     {
-        if (i == Origen)
+        bool cond = 1;
+        for (; tmpVI != NULL; tmpVI = tmpVI -> nextElemento(tmpVI))
         {
-            lugares = lugares + "1";
-        }
-        if
-            else(i == Destino)
+            if (*(tmpVI->getElemento(tmpVI)) == Origen)
             {
-                lugares = lugares + "2";
+                cond = 0;
             }
-        else
+        }
+        if (cond)
         {
-            lugares = lugares + "0";
+            R * rTmp = new R;
+            *rTmp = Origen;
+            verticesIdos->push(&verticesIdos, rTmp);
         }
     }
+    else
+    {
+        R * rTmp = new R;
+        *rTmp = Origen;
+        verticesIdos->push(&verticesIdos, rTmp);
+    }
 
-    string *tmp = lugares;
-    */
+    NodoLista<AGrafo> * tmpNdAgrafo = _accesoVertice(Origen)->ndArcos;
 
-    NodoLista<TotalRuta> *rutasDisponibles = NULL;
-    TotalRuta *rutas = new TotalRuta();
+    for(; tmpNdAgrafo != NULL; tmpNdAgrafo = tmpNdAgrafo ->nextElemento(tmpNdAgrafo))
+    {
+        W * wTmp = verificacionVehiculo(tmpNdAgrafo->getElemento(tmpNdAgrafo), espacioDisponible);
+        // Si existe un bus disponible accede al arco
+        if (wTmp != NULL)
+        {
+            listaBus->push(&listaBus, wTmp);
+            rutaArco(Origen, Destino, espacioDisponible, tmpVI, listaBus, rutasTotales);
+        }
+        // Si no existe un bus disponible va al siguente arco
+    }
+}   
 
-    informacionArco *arcVist = new informacionArco();
+// Actualmente solo funciona con buses
+
+void rutaArco(R Origen, R Destino, int espacioDisponible, NodoLista<R> *verticesIdos, NodoLista<Bus> * listaBus, NodoLista<TotalRuta> *rutasTotales)
+{
+    AGrafo * tmpArco = arcoInfo(Origen, Destino);
+    NodoLista<Bus> * listaBustmp = listaBus;
+    
+    //Si el arco llega al vertice de llegada crea un objeto TotalRuta para ingresar el dato
+    if (tmpArco->verticeLlegada == Destino)
+    {  
+        W * tmpW = verificacionVehiculo(tmpArco, espacioDisponible);
+        TotalRuta * tmpTR = new TotalRuta;
+        tmpTR ->rutaAlDestino = listaBus;
+        rutasTotales->push(&rutasTotales, tmpTR);        
+    }
+    // Si no existe no bus disponible va al vertice de llegada
+    else
+    {
+        NodoLista<R> * tmpVI = verticesIdos;
+        int cond = 1;
+        for (; tmpVI != NULL; tmpVI = tmpVI->nextElemento(tmpVI))
+        {
+            if (*(tmpVI->getElemento(tmpVI)) == Origen)
+            {
+                cond = 0;
+            }
+        }
+        if (cond)
+        {
+            rutaVertice(tmpArco->verticeOrigen, tmpArco->verticeLlegada, espacioDisponible, verticesIdos, listaBustmp, rutasTotales);
+        }
+    }
 }
 
 
+// Actualmente solo funciona con buses
+/*
+Dato retorno
+Caso 1:
+    Retorna la direccion del vehiculo disponible
+Caso 2:
+    Retorna NULL
+
+*/
+W *verificacionVehiculo(AGrafo *tmpArco, int espacioDisponible)
+{
+T *tmpDato = tmpArco->datos;
+// NodoLista<Bus> * tmpDato = tmpArco->datos;
+for (; tmpDato != NULL; tmpDato = tmpDato->nextElemento(tmpDato))
+{
+        if (tmpDato->getElemento(tmpDato)->getCantidadDisponible() >= espacioDisponible)
+        {
+            return tmpDato->getElemento(tmpDato);
+        }
+}
+return NULL;
+}
+
+/*
+struct ListaBuses
+{
+    NodoLista<Bus> * Buses = NULL;
+    int duracionTiempo = 0;
+};
+
+// Actualmente solo funciona con buses
+NodoLista<Bus> * RutaFinal(R Origen, R Destino, int cantidadPasajeros)
+{   
+    vector<R> verticesVisitados;
+    
+}
+
+// Actualmente solo funciona con buses
+NodoLista<TotalRuta> * rutaTotal(R Origen, R Destino, int cantidadPasajeros)
+{
+    NodoLista<TotalRuta> * tmp = NULL;
+    
+    vector<int> * tmp;
+    rutaVertice(Origen, Destino, cantidadPasajeros, NULL);
+
+}
+
+// Actualmente solo funciona con buses
+bool rutaVertice(R Origen, R Destino, int cantidadPasajeros, vector<R> * verticesIdos)
+{
+    verticesIdos->insert(Origen);
+    VGrafo * tmpVertice = _accesoVertice(Origen);
+
+
+}
+
+// Actualmente solo funciona con buses
+
+bool rutaArco(R Origen, R Destino, int espacioDisponible, vector<R> *verticesIdos)
+{
+    AGrafo * tmpArco = arcoInfo(Origen, Destino);
+    NodoLista<Bus> *tmpBus = tmpArco->datos;
+
+    if (tmpArco -> verticeLlegada == Destino)
+    {
+        W * tmpVehiculo = verificacionVehiculo(tmpArco, espacioDisponible);
+        if(tmpVehiculo != NULL)
+        {
+            return 1;
+        }
+        
+    }
+    else
+    {
+        rutaVertice();
+    }
+   
+}
+*/
+
+
+
+
+/*
+TotalRuta *rutaSelecionada(int Origen, int Destino, int cantidadPasajeros, vector<int> verticesIdos)
+{
+    TotalRuta * trTmp = new TotalRuta();
+    
+    for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
+    {
+            if (disponiblesArco(Origen, tmp->getElemento(tmp)->verticeLlegada, cantPasajeros))
+            {
+                tmp1->push(&tmp1, tmp->getElemento(tmp));
+                return 1;
+            }
+    }
+    return 0;
+}
+*/
+
+/*
+void rutaViaje(int Origen, int Destino, int cantidadPasajeros){
+        
+        
+        0: No visitado
+        1: Origen
+        2: Destino
+        Generacion string lugares
+        
+        string lugares = "";
+        for (int i = 0; i < sizeGrafo(); i++)
+        {
+            if (i == Origen)
+            {
+                lugares = lugares + "1";
+            }
+            if
+                else(i == Destino)
+                {
+                    lugares = lugares + "2";
+                }
+            else
+            {
+                lugares = lugares + "0";
+            }
+        }
+
+        string *tmp = lugares;
+        
+NodoLista<TotalRuta> *rutasDisponibles = NULL;
+TotalRuta *rutas = new TotalRuta();
+
+informacionArco *arcVist = new informacionArco();
+}
+*/
+/*
 
 bool creacionRuta(R Origen, R Destino, NodoLista<TotalRuta> *truct, informacionArco *arcoVist)
 {
     //Crea un NodoLista temporal con todos los arcos del vertice Origen
     NodoLista<AGrafo> *tmp = _accesoVertice(Origen) -> ndArcos();
-    
 
     //Accede a cada arco
     for (int i = 0; i <= tmp->contadorLista() && tmp != NULL; i++)
     {
-
         if (tmp->getElemento(tmp)-> verticeLlegada == Destino)
         {
             TotalRuta * tmpS = new TotalRuta();
@@ -415,7 +659,6 @@ bool creacionRuta(R Origen, R Destino, NodoLista<TotalRuta> *truct, informacionA
             tmpS->pesoEntero = tmp->getElemento(tmp)->pesoLlegada + tmpS->pesoEntero;
             tmpA->append(tmpA, tmp);
             tmpS->rutaAlDestino = tmpA;
-
             return 1;
         }
 
@@ -427,26 +670,26 @@ bool creacionRuta(R Origen, R Destino, NodoLista<TotalRuta> *truct, informacionA
             tmpA->append(tmpA, tmp);
             tmpS->rutaAlDestino = tmpA;
         }
-
-        tmp->nextElemento(tmp);
-        
+        tmp->nextElemento(tmp);   
     }
     return 0;
 }
-
-bool creacionRutav2(R Origen, R Destino, NodoLista<TotalRuta> *truct, informacionArco *arcoVisit)
+*/
+/*
+bool creacionRutav2(R Origen, R Destino, NodoLista<TotalRuta> *truct, informacionArco *arcoVisit, int cantPasajeros)
 {
     NodoLista<AGrafo> *tmp = _accesoVertice(Origen) -> ndArcos();
     
     for (; tmp != NULL; tmp = tmp->nextElemento(tmp))
     {
-        pesoArco(Origen, Destino);
+        if (disponiblesArco(Origen, tmp->getElemento(tmp)->verticeLlegada,cantPasajeros))
+        {
+            return 0;
+        }   
     }
-    
-
 }
-
-
+*/
+/*
 bool verArcoVisitado(informacionArco *infArc, AGrafo *tmpnam)
 {
     informacionArco * aux = infArc;
@@ -457,11 +700,10 @@ bool verArcoVisitado(informacionArco *infArc, AGrafo *tmpnam)
     }
     else
     {
-
     }
     return 0;
 }
-
+*/
 /*
 Por ejemplo O:1 D:5
 Accede al Vertice 1 y obtiene los arcos del vertice 1

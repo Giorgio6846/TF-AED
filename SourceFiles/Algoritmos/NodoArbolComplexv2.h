@@ -1,5 +1,6 @@
 #pragma once
 #include "../Libraries.h"
+#include "NodoLista.h"
 
 template<class T>
 class NodoArbolComplexv2

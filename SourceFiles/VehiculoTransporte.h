@@ -49,8 +49,8 @@ public:
     int gettiempoEstimado(){ return this-> tiempoEstimado; }
     void settiempoEstimado(int tiempoEstimado){ this -> tiempoEstimado = tiempoEstimado; }
 
-    int getcantidadDisponible(){ return this -> cantidadDisponible; }
-
+    int getCantidadDisponible(){ return this -> cantidadDisponible; }
+    void setCantidadDisponible(int cantidadDisponible) {  this->cantidadDisponible = cantidadDisponible; }
 };
 
 /*
@@ -73,11 +73,18 @@ public:
         setOrigen(Origen);
         setDestino(Destino);
         settiempoEstimado(tiempoEstimado);
+        setCantidadDisponible(columnaAsiento * filaAsiento);
     }
     ~Bus(){}
 
     void mostrarAsientos();
     void generarAsientos();
+
+    //Terminar
+    void agregarPasajero()
+    {
+        setCantidadDisponible(getCantidadDisponible() - 1);
+    }
 };
 
 

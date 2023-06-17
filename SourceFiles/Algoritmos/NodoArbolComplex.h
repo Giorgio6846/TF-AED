@@ -1,185 +1,100 @@
+#pragma once
 #include "../Libraries.h"
+#include "NodoLista.h"
 
 template <class T>
-class NodoArbolComplex
+class NodoArbolComplexv2
 {
 private:
-    NodoArbolComplex * left;
-    NodoArbolComplex * right;
-    int n;
-    T data;
-    
-    /*
-    NodoArbolComplex *crearNodo(int n, T data)
+    struct nodo
     {
-        NodoArbolComplex *newNodo = new NodoArbolComplex<T>();
-        newNodo->n = n;
-        newNodo->data = data;
-        newNodo->right = nullptr;
-        newNodo->left = nullptr;
-        return newNodo;
+        int n;
+        T data;
+        NodoLista<nodo> *nodos;
+    };
+
+    nodo *raiz;
+
+    nodo *limpiarArbol(nodo *t)
+    {
+        if (t == NULL)
+            return NULL;
+        else
+        {
+            for (; t->nodos != NULL; t->nodos = (t->nodos)->nextElemento(t->nodos))
+            {
+                limpiarArbol(t->nodos->getElemento(t->nodos));
+            }
+        }
+        delete t;
     }
-    */
+
+    nodo *insertar(nodo *t, int n, T data)
+    {
+        if (t == NULL)
+        {
+            t = new nodo;
+            t->data = data;
+            t->n = n;
+            t->nodos = NULL;
+        }
+        
+        return t;
+
+        else if (n < t->n)
+        {
+            t->left = insertar(t->left, n, data);
+        }
+        else if (n > t->n)
+        {
+            t->right = insertar(t->right, n, data);
+        }
+        return t;
+    }
+
+    nodo *buscar(nodo *t, int n)
+    {
+        if (t == NULL)
+        {
+            return NULL;
+        }
+        else if (n < t->n)
+        {
+            return buscar(t->left, n);
+        }
+        else if (n > t->n)
+        {
+            return buscar(t->right, n);
+        }
+        else
+        {
+            return t;
+        }
+    }
 
 public:
-    NodoArbolComplex()
+    NodoArbolComplexv2(/* args */)
     {
     }
-    ~NodoArbolComplex(){};
-
-    int getN(){return n;}
-    T getData(){return data;}
-
-    void deleteNodo(NodoArbolComplex<T> *nodo)
+    ~NodoArbolComplexv2()
     {
-        if (nodo)
-        {
-            if(nodo->left) deleteNodo(nodo->left);
-            if(nodo->right) deleteNodo(nodo->right);
-        }
-        delete nodo;
+        raiz = limpiarArbol(raiz);
     }
 
-    //n debe ser el primer valor del apellido para ser creado en orden alfabetico
-    NodoArbolComplex * insertarValor(NodoArbolComplex *nodo, int n, T data)
+    void remover(int n)
     {
-        
-        if (nodo == NULL)    
-        {
-            nodo = new NodoArbolComplex();
-            n = n;
-            data = data;
-            nodo -> left = NULL;
-            nodo -> right = NULL;
-
-            //arbol = crearNodo(n, data);
-        }
-        else{
-            if (n < nodo->n)
-            {
-                nodo->left = insertarValor(nodo->left, n, data);
-            }
-            else
-            {
-                nodo->right = insertarValor(nodo->right, n, data);
-            }       
-        }
-    return nodo;
-    }
-/*
-    NodoArbolComplex *remover(NodoArbolComplex<T> *&arbol, int n)
-    {
-        NodoArbolComplex<T> * tmp;
-        if(arbol == NULL)
-        {
-            return NULL;
-        }
-        else if(n < arbol->n)
-        {
-            arbol->left = remover(arbol, n);
-        }
-        else if(n > arbol->n)
-        {
-            arbol->right = remover(arbol,n);
-        }
-        else
-        {
-            tmp = arbol;
-            if (arbol -> left == NULL)
-            {
-                arbol = arbol->right;
-            }
-            else if(arbol->right == NULL)
-            {
-                arbol = arbol -> left;
-            }
-            delete tmp;
-        }
-
-        return arbol;
-    }
-*/
-    //Recorre el arbol desde abajo hacia arriba
-    void recorrerArbol(NodoArbolComplex *nodo)
-    {
-    if (nodo == NULL){}
-    else
-    {
-        recorrerArbol(nodo->right);
-        //Funcion que quiera que haga al recorrer ( de abajo hacia arriba)
-        recorrerArbol(nodo->left);
-    }
+        raiz = remover(n, raiz);
     }
 
-    NodoArbolComplex buscar(NodoArbolComplex *nodo, int n)
+    void insertar(int n, T data)
     {
-        if (nodo == NULL)
-        {
-            return NULL;
-        }
-        else if(n < nodo->n)
-        {
-            return buscar(nodo->left, n);
-        }
-        else if(n > nodo->n)
-        {
-            return buscar(nodo->right,n);
-        }
-        
+        raiz = insertar(raiz, n, data);
     }
 
-    T buscarNodoArbol(NodoArbolComplex *nodo, int val)
+    T buscar(int n)
     {
-        if(nodo == NULL)
-        {
-            return NULL;
-        }
-        //else if (this -> n == n)
-        //{
-        //    return this->data;
-        //}
-        else if (n == val)
-        {
-            return data;
-        }
-        else if (val < n)
-        {
-           return buscarNodoArbol(nodo->left, val);
-        }
-        else if (val > n)
-        {
-           return buscarNodoArbol(nodo->right, val);
-        }
-        return NULL;
-        
-        /*
-
-        if(raiz == NULL || raiz -> n == n)
-        {
-            return raiz;
-        }
-        if(raiz -> n < n)
-        {
-            return buscarNodoArbol(raiz->right, n);
-        }
-        return buscarNodoArbol(raiz->left, n);
-        */
-        /*
-
-        if (raiz->n == n)
-        {
-            return data;
-        }
-        if (raiz == NULL)
-        {
-            return raiz;
-        }
-        else
-        {
-            recorrerArbol(raiz->right);
-            // Funcion que quiera que haga al recorrer ( de abajo hacia arriba)
-            recorrerArbol(raiz->left);
-        }
-        */
+        nodo *tmp = new nodo;
+        tmp = buscar(raiz, n);
+        return tmp->data;
     }
 };

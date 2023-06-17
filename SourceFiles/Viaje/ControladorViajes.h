@@ -12,7 +12,7 @@ class ControladorViajes : public Rutas
 private:
     NodoLista<Viaje> *listaCompras = NULL;
     NodoLista<Bus> *listaBuses = NULL;
-    Grafo<NodoLista<Bus>, int> *grafoRutas = new Grafo<NodoLista<Bus>, int>;
+    Grafo<NodoLista<Bus>, int, Bus> *grafoRutas = new Grafo<NodoLista<Bus>, int, Bus>;
 
 public:
     ControladorViajes(/* args */);
@@ -30,6 +30,7 @@ public:
 
     void generacionGrafo();
     
+    void funciontmp();
 };
 
 ControladorViajes::ControladorViajes(/* args */)
@@ -144,4 +145,15 @@ void ControladorViajes :: generacionGrafo()
         }
     }
     grafoRutas->imprimirGrafo();
+
+    
+    funciontmp();
+
+}
+
+
+
+void ControladorViajes :: funciontmp()
+{
+    grafoRutas->RutaFinal(1, 10, 10);
 }
