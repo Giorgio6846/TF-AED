@@ -2,14 +2,21 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: g++.exe build active file",
-            "command": "D:\\msys64\\mingw64\\bin\\g++.exe",
+            "label": "macOS C/C++: g++ build active file",
+            "command": "/usr/bin/g++",
             "args": [
+                "-std=c++20",
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-D",
+                "RAD=1",
+                "-D",
+                "VER=1",
+                "-lcurses",
+                
             ],
             "options": {
                 "cwd": "${fileDirname}"

@@ -144,9 +144,25 @@ int menu()
         cout << "2. Encomiendas" << "\n";
         cout << "3. Salir" << "\n";
 
-        cin >> opcionSelecionada;
-        //Validando que solo permita numeros del 1 al 3
-        if (!(opcionSelecionada >= 1 && opcionSelecionada <= 3)) {
+#ifdef _WIN32
+cout << "WINDOWS";
+#else
+cout << "NO WINDOWS";
+#endif
+
+#if (VER == 1)
+cout << "VER 1";
+#endif
+
+#if (RAD == 1)
+cout << "RAD 1";
+#endif
+
+cin >> opcionSelecionada;
+// Validando que solo permita numeros del 1 al 3
+
+if (!(opcionSelecionada >= 1 && opcionSelecionada <= 3))
+{
             ClearKeyboard();
             cout << "La opcion seleccionada es incorrecta.";
             cont();
