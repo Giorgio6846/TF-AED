@@ -226,20 +226,22 @@ public:
         return 0;
     }
 
-    AGrafo *arcoInfo(R vertice, R llegadaVertice)
+    AGrafo * arcoInfo(R vertice, R llegadaVertice)
     {
         bool cond = 0;
         VGrafo *vTmp = _accesoVertice(vertice);
         if (vTmp != NULL)
         {
-            if (vTmp->_accesoArco(llegadaVertice) != NULL)
+            AGrafo* aTmp = NULL;
+            aTmp = vTmp->_accesoArco(llegadaVertice);
+            if (aTmp == NULL)
             {
                 cout << "EL arco no existe";
                 return NULL;
             }
             else
             {
-                return vTmp->_accesoArco(llegadaVertice);
+                return aTmp;
             }
         }
         else
@@ -476,32 +478,36 @@ void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *verti
 
 void rutaArco(R Origen, R Destino, int espacioDisponible, NodoLista<R> *verticesIdos, NodoLista<Bus> * listaBus, NodoLista<TotalRuta> *rutasTotales)
 {
-    AGrafo * tmpArco = arcoInfo(Origen, Destino);
+    AGrafo* tmpArco = NULL;
+    tmpArco = arcoInfo(Origen, Destino);
     NodoLista<Bus> * listaBustmp = listaBus;
     
     //Si el arco llega al vertice de llegada crea un objeto TotalRuta para ingresar el dato
-    if (tmpArco->verticeLlegada == Destino)
-    {  
-        W * tmpW = verificacionVehiculo(tmpArco, espacioDisponible);
-        TotalRuta * tmpTR = new TotalRuta;
-        tmpTR ->rutaAlDestino = listaBus;
-        rutasTotales->push(&rutasTotales, tmpTR);        
-    }
-    // Si no existe no bus disponible va al vertice de llegada
-    else
+    if (tmpArco != NULL)
     {
-        NodoLista<R> * tmpVI = verticesIdos;
-        int cond = 1;
-        for (; tmpVI != NULL; tmpVI = tmpVI->nextElemento(tmpVI))
+        if (tmpArco->verticeLlegada == Destino)
         {
-            if (*(tmpVI->getElemento(tmpVI)) == Origen)
-            {
-                cond = 0;
-            }
+            W* tmpW = verificacionVehiculo(tmpArco, espacioDisponible);
+            TotalRuta* tmpTR = new TotalRuta;
+            tmpTR->rutaAlDestino = listaBus;
+            rutasTotales->push(&rutasTotales, tmpTR);
         }
-        if (cond)
+        // Si no existe no bus disponible va al vertice de llegada
+        else
         {
-            rutaVertice(tmpArco->verticeOrigen, tmpArco->verticeLlegada, espacioDisponible, verticesIdos, listaBustmp, rutasTotales);
+            NodoLista<R>* tmpVI = verticesIdos;
+            int cond = 1;
+            for (; tmpVI != NULL; tmpVI = tmpVI->nextElemento(tmpVI))
+            {
+                if (*(tmpVI->getElemento(tmpVI)) == Origen)
+                {
+                    cond = 0;
+                }
+            }
+            if (cond)
+            {
+                rutaVertice(tmpArco->verticeOrigen, tmpArco->verticeLlegada, espacioDisponible, verticesIdos, listaBustmp, rutasTotales);
+            }
         }
     }
 }

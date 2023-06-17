@@ -65,7 +65,7 @@ void cont()
 void ClearKeyboard()
 {
     cin.clear();
-    cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+    cin.ignore(20000, '\n');
 }
 
 int randDigit(int exception)

@@ -103,7 +103,7 @@ void funcion(vector<int> * test)
 
 int main()
 {
-    srand(time(NULL));
+    //srand(time(NULL));
 
     //ControladorViajes *claseViaje = new ControladorViajes();
     //claseViaje->generarGrafo();
