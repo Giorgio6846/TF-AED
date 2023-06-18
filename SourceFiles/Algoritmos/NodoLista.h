@@ -51,6 +51,20 @@ void push(NodoLista<T> ** lista, T *objeto)
     *lista = nuevoNodo;
 }
 
+void duplicadoLista(NodoLista<T> ** origen, NodoLista<T> ** copia)
+{
+    //Copia del NodoLista Origen
+    NodoLista<T> * tmpO = *origen;
+
+    //NodoLista Copia
+    NodoLista<T> *copiaTmp = NULL;
+    for (; tmpO != NULL; tmpO = tmpO->nextElemento(tmpO))
+    {
+        copiaTmp->append(&copiaTmp, tmpO->getElemento(tmpO));
+    }
+    *copia = copiaTmp;
+}
+
 //Listo
 void append(NodoLista<T> **lista, T *objeto)
 {
@@ -64,12 +78,14 @@ void append(NodoLista<T> **lista, T *objeto)
     {
         *lista = nuevoNodo;
     }
-
-    while(nextElemento(ultimo) != NULL)                                                                                                   
+    else
     {
-        ultimo = nextElemento(ultimo);
-    }
-    ultimo->next = nuevoNodo;
+        while (nextElemento(ultimo) != NULL)
+        {
+            ultimo = nextElemento(ultimo);
+        }
+        ultimo->next = nuevoNodo;
+    }    
 }
 
 //Listo

@@ -417,48 +417,91 @@ Lo mismo :v
 
 struct TotalRuta
 {
-    NodoLista<Bus> *rutaAlDestino = NULL;
+    NodoLista<W> *rutaAlDestino = NULL;
     int pesoEntero = 0;
 };
 
-// Actualmente solo funciona con buses
-NodoLista<TotalRuta> *RutaFinal(R Origen, R Destino, int espacioDisponible)
+void sumaPesos(NodoLista<TotalRuta> * TotRut)
 {
-    cout << "TEST";
     NodoLista<TotalRuta> * TRtmp = NULL;
-    rutaVertice(Origen, Destino, espacioDisponible, NULL, NULL, TRtmp);
+    TRtmp = TotRut;
 
-    cout << TRtmp -> contadorLista(TRtmp);
+    for (; TRtmp != NULL; TRtmp = TRtmp->nextElemento(TRtmp))
+    {
+        TotalRuta * TRStmp = new TotalRuta();
+        TRStmp = TRtmp->getElemento(TRtmp);
+        NodoLista<W> *wTmp = NULL;
+        wTmp = TRStmp->rutaAlDestino;
+        for (; wTmp != NULL;  wTmp = wTmp -> nextElemento(wTmp))
+        {
+            TRStmp->pesoEntero = TRStmp->pesoEntero + wTmp->getElemento(wTmp)->gettiempoEstimado();
+        }
+    }
+}
+
+// Si el vertice si esta en lista regresa 1
+bool verticeVisitado(R Origen, NodoLista<R> * verticesIdos)
+{
+    NodoLista<R> *tmpVI = verticesIdos;
+    if (tmpVI == NULL)
+    {
+            return 0;
+    }
+    for (; tmpVI != NULL; tmpVI = tmpVI->nextElemento(tmpVI))
+    {
+            if (*(tmpVI->getElemento(tmpVI)) == Origen)
+            {
+                return 1;
+            }
+    }
+    return 0;
+}
+
+// Actualmente solo funciona con buses
+
+//Ingresas el origen, destino y el espacioRequerido
+//Este regresa con un struct TotalRuta con el peso total y la ruta del vehiculo
+TotalRuta *RutaFinal(R Origen, R Destino, int espacioRequerido)
+{
+    //cout << "TEST";
+    NodoLista<TotalRuta> * rutaFinalNL = NULL;
+
+    NodoLista<R> * NLItmp = NULL;
+    NodoLista<W> *NLVTtmp = NULL;
+
+    rutaVertice(Origen, Destino, espacioRequerido, NLItmp, NLVTtmp, rutaFinalNL);
+    sumaPesos(rutaFinalNL);
+
+    TotalRuta * TRtmp = new TotalRuta;
+    TRtmp->pesoEntero = 999999;
+
+    NodoLista<TotalRuta> *rutaFinalNLtmp = NULL;
+    rutaFinalNLtmp = rutaFinalNL;
+    for (; rutaFinalNLtmp != NULL; rutaFinalNLtmp = rutaFinalNLtmp->nextElemento(rutaFinalNLtmp))
+    {
+        if (rutaFinalNLtmp->getElemento(rutaFinalNLtmp)->pesoEntero < TRtmp->pesoEntero)
+        {
+            TRtmp->pesoEntero = rutaFinalNLtmp->getElemento(rutaFinalNLtmp)->pesoEntero;
+            TRtmp->rutaAlDestino = rutaFinalNLtmp->getElemento(rutaFinalNLtmp)->rutaAlDestino;
+        }        
+    }
+    
     return TRtmp;
 }
 
-void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *verticesIdos, NodoLista<Bus> * listaBus, NodoLista<TotalRuta> *rutasTotales)
+void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *& verticesIdos, NodoLista<W> *& listaBus, NodoLista<TotalRuta> *& rutasTotales)
 {
-    NodoLista<R> * tmpVI = verticesIdos;
-    if (tmpVI != NULL)
+    NodoLista<R> * tmpVI;
+    tmpVI->duplicadoLista(&verticesIdos, &tmpVI);
+
+    if (!verticeVisitado(Origen, tmpVI))
     {
-        bool cond = 1;
-        for (; tmpVI != NULL; tmpVI = tmpVI -> nextElemento(tmpVI))
-        {
-            if (*(tmpVI->getElemento(tmpVI)) == Origen)
-            {
-                cond = 0;
-            }
-        }
-        if (cond)
-        {
-            R * rTmp = new R;
-            *rTmp = Origen;
-            verticesIdos->push(&verticesIdos, rTmp);
-        }
-    }
-    else
-    {
-        R * rTmp = new R;
+        R *rTmp = new R;
         *rTmp = Origen;
         verticesIdos->push(&verticesIdos, rTmp);
     }
-
+    
+    tmpVI = verticesIdos;
     NodoLista<AGrafo> * tmpNdAgrafo = _accesoVertice(Origen)->ndArcos;
 
     for(; tmpNdAgrafo != NULL; tmpNdAgrafo = tmpNdAgrafo ->nextElemento(tmpNdAgrafo))
@@ -468,48 +511,38 @@ void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *verti
         if (wTmp != NULL)
         {
             listaBus->push(&listaBus, wTmp);
-            rutaArco(Origen, Destino, espacioDisponible, tmpVI, listaBus, rutasTotales);
+            rutaArco(tmpNdAgrafo->getElemento(tmpNdAgrafo), Destino, espacioDisponible, tmpVI, listaBus, rutasTotales);
         }
         // Si no existe un bus disponible va al siguente arco
     }
-}   
+}
 
 // Actualmente solo funciona con buses
 
-void rutaArco(R Origen, R Destino, int espacioDisponible, NodoLista<R> *verticesIdos, NodoLista<Bus> * listaBus, NodoLista<TotalRuta> *rutasTotales)
+void rutaArco(AGrafo * ArcoTMP, int DestinoFinal, int espacioDisponible, NodoLista<R> *& verticesIdos, NodoLista<Bus> *& listaBus, NodoLista<TotalRuta> *& rutasTotales)
 {
-    AGrafo* tmpArco = NULL;
-    tmpArco = arcoInfo(Origen, Destino);
-    NodoLista<Bus> * listaBustmp = listaBus;
-    
+    AGrafo * tmpArco = ArcoTMP;
+
+    NodoLista<Bus> *listaBustmp;
+    listaBustmp->duplicadoLista(&listaBus, &listaBustmp);
+
     //Si el arco llega al vertice de llegada crea un objeto TotalRuta para ingresar el dato
-    if (tmpArco != NULL)
+    if (tmpArco->verticeLlegada == DestinoFinal)
     {
-        if (tmpArco->verticeLlegada == Destino)
+        W* tmpW = verificacionVehiculo(tmpArco, espacioDisponible);
+        TotalRuta* tmpTR = new TotalRuta;
+        tmpTR->rutaAlDestino = listaBustmp;
+        rutasTotales->push(&rutasTotales, tmpTR);
+    }
+    // Si no existe no bus disponible va al vertice de llegada
+    else
+    {
+        if (!verticeVisitado(ArcoTMP->verticeLlegada, verticesIdos))
         {
-            W* tmpW = verificacionVehiculo(tmpArco, espacioDisponible);
-            TotalRuta* tmpTR = new TotalRuta;
-            tmpTR->rutaAlDestino = listaBus;
-            rutasTotales->push(&rutasTotales, tmpTR);
-        }
-        // Si no existe no bus disponible va al vertice de llegada
-        else
-        {
-            NodoLista<R>* tmpVI = verticesIdos;
-            int cond = 1;
-            for (; tmpVI != NULL; tmpVI = tmpVI->nextElemento(tmpVI))
-            {
-                if (*(tmpVI->getElemento(tmpVI)) == Origen)
-                {
-                    cond = 0;
-                }
-            }
-            if (cond)
-            {
-                rutaVertice(tmpArco->verticeOrigen, tmpArco->verticeLlegada, espacioDisponible, verticesIdos, listaBustmp, rutasTotales);
-            }
+            rutaVertice(tmpArco->verticeLlegada, DestinoFinal, espacioDisponible, verticesIdos, listaBustmp, rutasTotales);
         }
     }
+
 }
 
 

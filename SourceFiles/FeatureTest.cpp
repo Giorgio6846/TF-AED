@@ -96,13 +96,9 @@ struct test
 };
 */
 
-void funcion(vector<int> * test)
-{
-    test->
-}
-
 int main()
 {
+
     //srand(time(NULL));
 
     //ControladorViajes *claseViaje = new ControladorViajes();
@@ -111,15 +107,49 @@ int main()
     
 
     //test *tmp1 = new test();
-    /*
+    NodoLista<int> *tmp2 = NULL;
     for (int i = 0; i < 100; i++)
     {
         int *a = new int;
         *a = i;
 
-        tmp1->tmp->push(&tmp1->tmp, a);
+        tmp2->push(&tmp2, a);
+    }
+
+    NodoLista<int> *tmp = tmp2;
+
+
+    NodoLista<int> *tmp1 = NULL;
+
+    tmp1->duplicadoLista(&tmp, &tmp1);
+
+    /*
+    for (; tmp != NULL; tmp=tmp->nextElemento(tmp))
+    {
+        tmp1->append(&tmp1, tmp->getElemento(tmp));
     }
     */
+    int *a = new int;
+    *a = 200;
+
+    tmp1->push(&tmp1, a);
+    tmp = tmp2;
+
+    
+    for (; tmp != NULL; tmp=tmp->nextElemento(tmp))
+    {
+
+        cout << *(tmp->getElemento(tmp)) << endl;
+    }
+    
+
+    cout << "WOOHOO";
+
+    for (; tmp1 != NULL; tmp1 = tmp1->nextElemento(tmp1))
+    {
+
+        cout << *(tmp1->getElemento(tmp1)) << endl;
+    }
 
     //NodoLista<int> *tmp2 = tmp1->tmp;
     //cout << tmp1->tmp->contadorLista(tmp1->tmp);

@@ -135,7 +135,7 @@ void ControladorViajes :: generacionGrafo()
             if (accesoRutaDisponible(i,j) != 0)
             {
                 NodoLista<Bus> *listaBus = NULL;
-                for (int i = 0; i <= 3; i++)
+                for (int k = 0; k <= 3; k++)
                 {
                     Bus *tmp = new Bus(i, j, accesoTiempoRuta(i,j));
                     listaBus->push(&listaBus,tmp);
