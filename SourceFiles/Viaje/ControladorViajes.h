@@ -8,12 +8,6 @@
 Lima, Chimbote, Trujillo, Pacasmayo, Cajamarca, Chepen, Chiclayo, Piura, Jaen, Cajabamba, Moyobamba, Tarapoto
 */
 
-struct TotalRuta
-{
-    NodoLista<Bus> *rutaAlDestino = NULL;
-    int pesoEntero = 0;
-};
-
 class ControladorViajes : public Rutas
 {
 private:
@@ -62,7 +56,7 @@ void ControladorViajes ::reservaViaje()
         {
             int cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
             Viaje * nuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios);
-            TotalRuta * TRtmp = grafoRutas->rutaFinal(Origen, Destino, cantidadUsuarios);
+            TotalRuta<Bus> * TRtmp = grafoRutas->rutaFinal(Origen,Destino,cantidadUsuarios);
             nuevaReserva -> agregarPasajero();
         }
         

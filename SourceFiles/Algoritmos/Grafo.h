@@ -3,6 +3,13 @@
 
 #include "NodoLista.h"
 
+template<class Z>
+struct TotalRuta
+{
+    NodoLista<Z> *rutaAlDestino = NULL;
+    int pesoEntero = 0;
+};
+
 template <class T, class R, class W, R vacio = -1>
 class Grafo
 {
@@ -92,11 +99,7 @@ public:
     Grafo(){}
     ~Grafo(){}
 
-struct TotalRuta
-{
-    NodoLista<W> *rutaAlDestino = NULL;
-    int pesoEntero = 0;
-};
+
 
     // Al agregar un arco realizar el algoritmo de busqueda de nuevo
 
@@ -386,20 +389,20 @@ struct TotalRuta
 };
 */
 
-void sumaPesos(NodoLista<TotalRuta> * TotRut)
-{
-    NodoLista<TotalRuta> * TRtmp = NULL;
-    TRtmp = TotRut;
-
-    for (; TRtmp != NULL; TRtmp = TRtmp->nextElemento(TRtmp))
+    void sumaPesos(NodoLista<TotalRuta<W>> *TotRut)
     {
-        TotalRuta * TRStmp = new TotalRuta();
-        TRStmp = TRtmp->getElemento(TRtmp);
-        NodoLista<W> *wTmp = NULL;
-        wTmp = TRStmp->rutaAlDestino;
-        for (; wTmp != NULL;  wTmp = wTmp -> nextElemento(wTmp))
+        NodoLista<TotalRuta<W>> *TRtmp = NULL;
+        TRtmp = TotRut;
+
+        for (; TRtmp != NULL; TRtmp = TRtmp->nextElemento(TRtmp))
         {
-            TRStmp->pesoEntero = TRStmp->pesoEntero + wTmp->getElemento(wTmp)->gettiempoEstimado();
+            TotalRuta<W> *TRStmp = new TotalRuta<W>();
+            TRStmp = TRtmp->getElemento(TRtmp);
+            NodoLista<W> *wTmp = NULL;
+            wTmp = TRStmp->rutaAlDestino;
+            for (; wTmp != NULL; wTmp = wTmp->nextElemento(wTmp))
+            {
+                TRStmp->pesoEntero = TRStmp->pesoEntero + wTmp->getElemento(wTmp)->gettiempoEstimado();
         }
     }
 }
@@ -426,10 +429,10 @@ bool verticeVisitado(R Origen, NodoLista<R> * verticesIdos)
 
 //Ingresas el origen, destino y el espacioRequerido
 //Este regresa con un struct TotalRuta con el peso total y la ruta del vehiculo
-TotalRuta *rutaFinal(R Origen, R Destino, int espacioRequerido)
+TotalRuta<W> *rutaFinal(R Origen, R Destino, int espacioRequerido)
 {
     //cout << "TEST";
-    NodoLista<TotalRuta> * rutaFinalNL = NULL;
+    NodoLista<TotalRuta<W>> *rutaFinalNL = NULL;
 
     NodoLista<R> * NLItmp = NULL;
     NodoLista<W> * NLVTtmp = NULL;
@@ -437,10 +440,10 @@ TotalRuta *rutaFinal(R Origen, R Destino, int espacioRequerido)
     rutaVertice(Origen, Destino, espacioRequerido, NLItmp, NLVTtmp, rutaFinalNL);
     sumaPesos(rutaFinalNL);
 
-    TotalRuta * TRtmp = new TotalRuta;
+    TotalRuta<W> *TRtmp = new TotalRuta<W>;
     TRtmp->pesoEntero = 999999;
 
-    NodoLista<TotalRuta> *rutaFinalNLtmp = NULL;
+    NodoLista<TotalRuta<W>> *rutaFinalNLtmp = NULL;
     rutaFinalNLtmp = rutaFinalNL;
     for (; rutaFinalNLtmp != NULL; rutaFinalNLtmp = rutaFinalNLtmp->nextElemento(rutaFinalNLtmp))
     {
@@ -495,7 +498,7 @@ void rutaArco(AGrafo * ArcoTMP, int DestinoFinal, int espacioDisponible, NodoLis
     if (tmpArco->verticeLlegada == DestinoFinal)
     {
         W* tmpW = verificacionVehiculo(tmpArco, espacioDisponible);
-        TotalRuta* tmpTR = new TotalRuta;
+        TotalRuta<W> *tmpTR = new TotalRuta<W>;
         tmpTR->rutaAlDestino = listaVehiculotmp;
         rutasTotales->push(&rutasTotales, tmpTR);
     }
