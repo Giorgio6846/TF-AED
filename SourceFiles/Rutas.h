@@ -10,6 +10,7 @@ private:
     vector<string> origen{"Lima", "Chimbote", "Trujillo", "Pacasmayo", "Cajamarca", "Chepen", "Chiclayo", "Piura", "Jaen", "Cajabamba", "Moyobamba", "Tarapoto"};
     vector<string> destino{"Lima", "Chimbote", "Trujillo", "Pacasmayo", "Cajamarca", "Chepen", "Chiclayo", "Piura", "Jaen", "Cajabamba", "Moyobamba", "Tarapoto"};
 
+    //Si hay tiempo cambiarlo a archivo
     vector<vector<bool>> rutas {
         /*Lima*/      {00, 01, 01, 01, 00, 01, 01, 01, 00, 00, 00, 00},
         /*Chimbote*/  {01, 00, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00},
@@ -67,7 +68,7 @@ public:
     int accesoTiempoRuta(int x, int y);
 
     int selecionarOrigenv2();
-    int selecionarDestinov2();
+    int selecionarDestinov2(int Origen);
 
     //TotalRuta * rutaViaje(int Origen, int Destino, int espacioRequerido);
 };
@@ -160,7 +161,7 @@ int Rutas :: selecionarOrigenv2()
 }
 
 // Selecciona el Destino
-int Rutas ::selecionarDestinov2()
+int Rutas ::selecionarDestinov2(int Origen)
 {
     int opcionElegida;
     do
@@ -171,13 +172,13 @@ int Rutas ::selecionarDestinov2()
             cout << i + 01 << " " << getOrigen(i) << "\n";
         }
         cin >> opcionElegida;
-        if (!(opcionElegida >= 00 && opcionElegida <= 13))
+        if (!(opcionElegida >= 00 && opcionElegida <= 13) || (opcionElegida == (Origen + 1)) )
         {
             ClearKeyboard();
             cout << "La opcion seleccionada es incorrecta.";
             cont();
         }
-    } while (!(opcionElegida >= 00 && opcionElegida <= 13));
+    } while (!(opcionElegida >= 00 && opcionElegida <= 13) || (opcionElegida == (Origen + 1)));
     return opcionElegida - 01;
 }
 

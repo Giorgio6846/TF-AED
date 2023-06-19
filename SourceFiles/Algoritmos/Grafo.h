@@ -457,7 +457,7 @@ TotalRuta<W> *rutaFinal(R Origen, R Destino, int espacioRequerido)
     return TRtmp;
 }
 
-void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *& verticesIdos, NodoLista<W> *& listaVehiculo, NodoLista<TotalRuta> *& rutasTotales)
+void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *& verticesIdos, NodoLista<W> *& listaVehiculo, NodoLista<TotalRuta<W>> *& rutasTotales)
 {
     NodoLista<R> * tmpVI;
     tmpVI->duplicadoLista(&verticesIdos, &tmpVI);
@@ -487,7 +487,7 @@ void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *& ver
 
 // Actualmente solo funciona con buses
 
-void rutaArco(AGrafo * ArcoTMP, int DestinoFinal, int espacioDisponible, NodoLista<R> *& verticesIdos, NodoLista<W> *& listaVehiculo, NodoLista<TotalRuta> *& rutasTotales)
+void rutaArco(AGrafo * ArcoTMP, int DestinoFinal, int espacioDisponible, NodoLista<R> *& verticesIdos, NodoLista<W> *& listaVehiculo, NodoLista<TotalRuta<W>> *& rutasTotales)
 {
     AGrafo * tmpArco = ArcoTMP;
 

@@ -12,7 +12,6 @@ class ControladorViajes : public Rutas
 {
 private:
     NodoLista<Viaje> *listaCompras = NULL;
-    NodoLista<Bus> *listaBuses = NULL;
     Grafo<NodoLista<Bus>, int, Bus> *grafoRutas = new Grafo<NodoLista<Bus>, int, Bus>;
 
 public:
@@ -48,16 +47,19 @@ void ControladorViajes ::escrituraArchivo()
 
 void ControladorViajes ::reservaViaje()
 {
-    int Origen = Rutas :: selecionarOrigen();
-    if(Origen != 0)
+    int Origen = Rutas :: selecionarOrigenv2();
+    
+    if(Origen != -1)
     {
-        int Destino = selecionarDestinov2();
-        if (Destino != 0)
+        int Destino = selecionarDestinov2(Origen);
+        if (Destino != -1)
         {
             int cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
-            Viaje * nuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios);
-            TotalRuta<Bus> * TRtmp = grafoRutas->rutaFinal(Origen,Destino,cantidadUsuarios);
+            TotalRuta<Bus> *TRtmp = grafoRutas->rutaFinal(Origen, Destino, cantidadUsuarios);
+            Viaje * nuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios, TRtmp->pesoEntero,TRtmp->rutaAlDestino);
+
             nuevaReserva -> agregarPasajero();
+            
         }
         
     }
@@ -161,11 +163,4 @@ void ControladorViajes :: generacionGrafo()
             }
         }
     }
-}
-
-
-
-void ControladorViajes :: funciontmp()
-{
-//    grafoRutas->RutaFinal(1, 10, 10);
 }

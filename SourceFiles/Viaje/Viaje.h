@@ -11,27 +11,30 @@ private:
     NodoLista<Bus> *rutaBus = NULL;
 
     int codigoO, codigoD;
-    string ruta;
 
-    int Da,Mo,Ye;
-    int Ho,Mi;
+    int tiempoEstimado;
+
 
 public:
-    Viaje(int codigoO, int codigoD, int cantidadPasajeros);
+    Viaje(int codigoO, int codigoD, int cantidadPasajeros, int tiempoEstimado, NodoLista<Bus> *busTmp);
     ~Viaje();
 
     void agregarPasajero();
     void informacionPasajeros();
-    
+
+    void setRutaBus(NodoLista<Bus> * busTmp){rutaBus = busTmp; }
+
     void calculoRuta();
-    void generadorBus();    
 };
 
-Viaje::Viaje(int codigoO, int codigoD, int cantidadPasajeros)
+Viaje::Viaje(int codigoO, int codigoD, int cantidadPasajeros, int tiempoEstimado, NodoLista<Bus> *busTmp)
 {
     this->codigoO = codigoO;
     this->codigoD = codigoD;
     this->cantidadPasajeros = cantidadPasajeros;
+
+    this->tiempoEstimado = tiempoEstimado;
+    rutaBus = busTmp;
 }
 
 Viaje::~Viaje()
@@ -66,9 +69,4 @@ void Viaje :: informacionPasajeros()
 
     cout << "Presione cualquier tecla para volver al menu de encomiendas!" << endl;
     cont();
-}
-
-void Viaje :: calculoRuta()
-{
-
 }
