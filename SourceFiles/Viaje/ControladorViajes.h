@@ -2,10 +2,17 @@
 #include "Viaje.h"
 #include "../Algoritmos/NodoArbolComplexv2.h"
 #include "../Algoritmos/Grafo.h"
+#include "../VehiculoTransporte.h"
 
 /*
 Lima, Chimbote, Trujillo, Pacasmayo, Cajamarca, Chepen, Chiclayo, Piura, Jaen, Cajabamba, Moyobamba, Tarapoto
 */
+
+struct TotalRuta
+{
+    NodoLista<Bus> *rutaAlDestino = NULL;
+    int pesoEntero = 0;
+};
 
 class ControladorViajes : public Rutas
 {
@@ -47,11 +54,26 @@ void ControladorViajes ::escrituraArchivo()
 
 void ControladorViajes ::reservaViaje()
 {
+    int Origen = Rutas :: selecionarOrigen();
+    if(Origen != 0)
+    {
+        int Destino = selecionarDestinov2();
+        if (Destino != 0)
+        {
+            int cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
+            Viaje * nuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios);
+            TotalRuta * TRtmp = grafoRutas->rutaFinal(Origen, Destino, cantidadUsuarios);
+            nuevaReserva -> agregarPasajero();
+        }
+        
+    }
+
+    /*
     int Origen, Destino, cantidadUsuarios;
     string ruta;
 
-    Origen = Rutas ::selecionarOrigen();
-    Destino = Rutas ::selecionarDestino(Origen);
+    Origen = Rutas ::selecionarOrigenv2();
+    Destino = Rutas ::selecionarDestinov2();
     cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
 
     Viaje *NuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios);
@@ -62,6 +84,7 @@ void ControladorViajes ::reservaViaje()
     cout << "\n Ha selecionado el origen " << Rutas ::getOrigen(Origen);
     cout << "\n Ha selecionado el destino " << Rutas ::getDestino(Destino);
     cout << "\n";
+    */
 }
 
 int ControladorViajes ::seleccionarCantidadUsuarios(string Origen, string Destino)
@@ -150,5 +173,5 @@ void ControladorViajes :: generacionGrafo()
 
 void ControladorViajes :: funciontmp()
 {
-    grafoRutas->RutaFinal(1, 10, 10);
+//    grafoRutas->RutaFinal(1, 10, 10);
 }

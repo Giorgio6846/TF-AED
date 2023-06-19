@@ -6,7 +6,9 @@
 #include "../Algoritmos/NodoLista.h"
 #include "../Algoritmos/NodoArbol.h"
 #include "../Algoritmos/HashTable.h"
+#include "../Algoritmos/Grafo.h"
 
+#include "../VehiculoTransporte.h"
 #include "objetoEncomienda.h"
 #include "Encomienda.h"
 
@@ -14,48 +16,52 @@ class ControladorEncomiendas: public Rutas
 {
     private:
         HashTable<Encomienda> hashTable;
-public:
-    ControladorEncomiendas(){};
-    ~ControladorEncomiendas(){};
+        Grafo<NodoLista<Camion>, int, Camion> *grafoRutas = new Grafo<NodoLista<Camion>, int, Camion>;
 
-    //void printInfoEncomiendas(){
-    //    int contador = 1;
-    //    //Se crea un auxiliar para no alterar los punteros de la lista original
-    //    NodoLista<Encomienda> * aux = listaEncomienda;
-    //    if (aux!= NULL)
-    //    {
-    //        while (aux != NULL)
-    //    {
-    //        cout << "Encomienda numero " << contador << endl;
-    //        cout << "Propietario: " << aux->getElemento(aux)->cliente->getNombre() << " " << aux->getElemento(aux)->cliente->getApellido() <<endl;
-    //        cout << "Categoria del producto: " << aux->getElemento(aux)->objeto->getCategoria() << endl;
-    //        cout << "Peso (Kg): " << aux->getElemento(aux)->getPeso();
-    //        cout << "Fragil: ";
-    //        if (aux->getElemento(aux)->objeto->getEsFragil())
-    //        {
-    //            cout << "SI" << endl;
-    //        }
-    //        else{cout << "NO" << endl;}  
-    //        contador++;
-    //        aux = aux->nextElemento(aux);
-    //    }
-    //    }
-    //    else
-    //    {
-    //        cout << "No existen encomiendas por el momento!" << endl;
-    //        cont();
-    //    }
-    //}
+    public:
+        ControladorEncomiendas(){};
+        ~ControladorEncomiendas(){};
 
-    void agendarEncomiendaFinal(){
-        Persona * cliente = almacenarInfoCliente();
-        objetoEncomienda * encomiendaItem = almacenarInfoObjeto();
-        Encomienda * encomiendaFinal = new Encomienda(cliente, encomiendaItem);
-        if (hashTable.insert(encomiendaFinal->cliente->getDocumento(), encomiendaFinal)){
-            cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
-        }
-       
-        cont();
+        // void printInfoEncomiendas(){
+        //     int contador = 1;
+        //     //Se crea un auxiliar para no alterar los punteros de la lista original
+        //     NodoLista<Encomienda> * aux = listaEncomienda;
+        //     if (aux!= NULL)
+        //     {
+        //         while (aux != NULL)
+        //     {
+        //         cout << "Encomienda numero " << contador << endl;
+        //         cout << "Propietario: " << aux->getElemento(aux)->cliente->getNombre() << " " << aux->getElemento(aux)->cliente->getApellido() <<endl;
+        //         cout << "Categoria del producto: " << aux->getElemento(aux)->objeto->getCategoria() << endl;
+        //         cout << "Peso (Kg): " << aux->getElemento(aux)->getPeso();
+        //         cout << "Fragil: ";
+        //         if (aux->getElemento(aux)->objeto->getEsFragil())
+        //         {
+        //             cout << "SI" << endl;
+        //         }
+        //         else{cout << "NO" << endl;}
+        //         contador++;
+        //         aux = aux->nextElemento(aux);
+        //     }
+        //     }
+        //     else
+        //     {
+        //         cout << "No existen encomiendas por el momento!" << endl;
+        //         cont();
+        //     }
+        // }
+
+        void agendarEncomiendaFinal()
+        {
+            Persona *cliente = almacenarInfoCliente();
+            objetoEncomienda *encomiendaItem = almacenarInfoObjeto();
+            Encomienda *encomiendaFinal = new Encomienda(cliente, encomiendaItem);
+            if (hashTable.insert(encomiendaFinal->cliente->getDocumento(), encomiendaFinal))
+            {
+                cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
+            }
+
+            cont();
     }
     
     void printInfoEncomiendas(){
@@ -100,6 +106,31 @@ public:
                 return opcionSelecionada;
         } while (opcionSelecionada != 3);
         return opcionSelecionada;
+    }
+
+    void generacionGrafo()
+    {
+        for (int i = 0; i < getSizeLugares(); i++)
+        {
+            grafoRutas -> agregarVertice(i);
+        }
+
+        for (int i = 0; i < getSizeOrigen(); i++)
+        {
+            for (int j = 0; j < getSizeDestino(); j++)
+            {
+                if (accesoRutaDisponible(i,j) != 0)
+                {
+                    NodoLista<Camion> *listaCamion = NULL;
+                    for (int k = 0; k <= 3; k++)
+                    {
+                        Camion *tmp = new Camion(i, j, accesoTiempoRuta(i, j));
+                        listaCamion->push(&listaCamion, tmp);
+                    }
+                    grafoRutas->agregarArcoVertice(i, j, accesoTiempoRuta(i, j), listaCamion);
+                }
+            }
+        }
     }
 
     void buscarEncomienda(){

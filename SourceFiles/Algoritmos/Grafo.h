@@ -1,46 +1,7 @@
 #pragma once
-#include <iostream>
+#include "../Libraries.h"
+
 #include "NodoLista.h"
-#include "../VehiculoTransporte.h"
-
-/*
-
-Grafo
-Datos:
-NodoLista de Vertices: Los vertices que tiene el grafo
-
-Metodos:
-    agregarVertice()
-    agregarArcoVertice()
-    eliminarVertice()
-    accederArco()
-    accederVertice()
-    pesoArco()
-    tamañoGrafo()
-
-Vertice
-    Datos:
-    - Dato del vertice
-    - NodoListas de Arcos del Vertice: Los arcos que tiene el vertice
-
-Metodos:
-    agregarArco()
-    eliminarArco()
-    accederArco()
-    pesoArco()
-    tamañoVertice()
-
-Arco
-    Datos:
-        - Dato de llegada
-        - Dato de peso de llegada
-        - Dato de Arco - Para viajes este va a ser un NodoLista de Buses
-
-Metodos:
-    agregarDato()
-    getDato()
-
-*/
 
 template <class T, class R, class W, R vacio = -1>
 class Grafo
@@ -130,6 +91,12 @@ private:
 public:
     Grafo(){}
     ~Grafo(){}
+
+struct TotalRuta
+{
+    NodoLista<W> *rutaAlDestino = NULL;
+    int pesoEntero = 0;
+};
 
     // Al agregar un arco realizar el algoritmo de busqueda de nuevo
 
@@ -361,10 +328,6 @@ struct TotalRuta
     int pesoEntero = 0;
 };
 */
-struct informacionArco
-{
-    NodoLista<AGrafo> * listArcs = NULL;
-};
 
 /*
 Usuario seleciona
@@ -415,11 +378,13 @@ METODO DEL CANGREJO PE IZIZIIIZZIZIZIZIZIZIZIZIZIZ
 Lo mismo :v
 */
 
+/*
 struct TotalRuta
 {
     NodoLista<W> *rutaAlDestino = NULL;
     int pesoEntero = 0;
 };
+*/
 
 void sumaPesos(NodoLista<TotalRuta> * TotRut)
 {
@@ -461,13 +426,13 @@ bool verticeVisitado(R Origen, NodoLista<R> * verticesIdos)
 
 //Ingresas el origen, destino y el espacioRequerido
 //Este regresa con un struct TotalRuta con el peso total y la ruta del vehiculo
-TotalRuta *RutaFinal(R Origen, R Destino, int espacioRequerido)
+TotalRuta *rutaFinal(R Origen, R Destino, int espacioRequerido)
 {
     //cout << "TEST";
     NodoLista<TotalRuta> * rutaFinalNL = NULL;
 
     NodoLista<R> * NLItmp = NULL;
-    NodoLista<W> *NLVTtmp = NULL;
+    NodoLista<W> * NLVTtmp = NULL;
 
     rutaVertice(Origen, Destino, espacioRequerido, NLItmp, NLVTtmp, rutaFinalNL);
     sumaPesos(rutaFinalNL);
@@ -489,7 +454,7 @@ TotalRuta *RutaFinal(R Origen, R Destino, int espacioRequerido)
     return TRtmp;
 }
 
-void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *& verticesIdos, NodoLista<W> *& listaBus, NodoLista<TotalRuta> *& rutasTotales)
+void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *& verticesIdos, NodoLista<W> *& listaVehiculo, NodoLista<TotalRuta> *& rutasTotales)
 {
     NodoLista<R> * tmpVI;
     tmpVI->duplicadoLista(&verticesIdos, &tmpVI);
@@ -510,8 +475,8 @@ void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *& ver
         // Si existe un bus disponible accede al arco
         if (wTmp != NULL)
         {
-            listaBus->push(&listaBus, wTmp);
-            rutaArco(tmpNdAgrafo->getElemento(tmpNdAgrafo), Destino, espacioDisponible, tmpVI, listaBus, rutasTotales);
+            listaVehiculo->append(&listaVehiculo, wTmp);
+            rutaArco(tmpNdAgrafo->getElemento(tmpNdAgrafo), Destino, espacioDisponible, tmpVI, listaVehiculo, rutasTotales);
         }
         // Si no existe un bus disponible va al siguente arco
     }
@@ -519,19 +484,19 @@ void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *& ver
 
 // Actualmente solo funciona con buses
 
-void rutaArco(AGrafo * ArcoTMP, int DestinoFinal, int espacioDisponible, NodoLista<R> *& verticesIdos, NodoLista<Bus> *& listaBus, NodoLista<TotalRuta> *& rutasTotales)
+void rutaArco(AGrafo * ArcoTMP, int DestinoFinal, int espacioDisponible, NodoLista<R> *& verticesIdos, NodoLista<W> *& listaVehiculo, NodoLista<TotalRuta> *& rutasTotales)
 {
     AGrafo * tmpArco = ArcoTMP;
 
-    NodoLista<Bus> *listaBustmp;
-    listaBustmp->duplicadoLista(&listaBus, &listaBustmp);
+    NodoLista<W> *listaVehiculotmp;
+    listaVehiculotmp->duplicadoLista(&listaVehiculo, &listaVehiculotmp);
 
     //Si el arco llega al vertice de llegada crea un objeto TotalRuta para ingresar el dato
     if (tmpArco->verticeLlegada == DestinoFinal)
     {
         W* tmpW = verificacionVehiculo(tmpArco, espacioDisponible);
         TotalRuta* tmpTR = new TotalRuta;
-        tmpTR->rutaAlDestino = listaBustmp;
+        tmpTR->rutaAlDestino = listaVehiculotmp;
         rutasTotales->push(&rutasTotales, tmpTR);
     }
     // Si no existe no bus disponible va al vertice de llegada
@@ -539,10 +504,9 @@ void rutaArco(AGrafo * ArcoTMP, int DestinoFinal, int espacioDisponible, NodoLis
     {
         if (!verticeVisitado(ArcoTMP->verticeLlegada, verticesIdos))
         {
-            rutaVertice(tmpArco->verticeLlegada, DestinoFinal, espacioDisponible, verticesIdos, listaBustmp, rutasTotales);
+            rutaVertice(tmpArco->verticeLlegada, DestinoFinal, espacioDisponible, verticesIdos, listaVehiculotmp, rutasTotales);
         }
     }
-
 }
 
 
