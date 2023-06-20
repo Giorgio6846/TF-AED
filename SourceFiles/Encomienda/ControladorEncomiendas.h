@@ -77,12 +77,15 @@ class ControladorEncomiendas: public Rutas
         }
     }
 
-    void reservaEncomienda(){
+    void reservaEncomienda()
+    {
+    
     int Origen, Destino, cantidadUsuarios;
     Origen = Rutas :: selecionarOrigen();
     Destino = Rutas :: selecionarDestino(Origen);
     cout << "\n Ha selecionado el origen " << Rutas :: getOrigen(Origen);
-    cout << "\n Ha selecionado el destino " << Rutas :: getDestino(Destino);
+    cout << "\n Ha selecionado el destino " << Rutas :: getDestino(Destino)
+    
     }
     
     int menuEncomienda(){

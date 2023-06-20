@@ -124,7 +124,7 @@ void Bus::generarAsientos()
             asientoTMP-> ubicacion = char(65 + j) + to_string(i + 1);
             asientoTMP->claseAsiento = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
 
-            busAsientos.insert(asientoTMP->ubicacion, asientoTMP);
+            busAsientos.insert(to_string(asientoTMP->ubicacion[0]), asientoTMP);
         }
     }
     
@@ -159,6 +159,7 @@ public:
         setOrigen(Origen);
         setDestino(Destino);
         settiempoEstimado(tiempoEstimado);
+        setCantidadDisponible(200);
     }
     ~Camion(){}
 };

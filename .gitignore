@@ -12,3 +12,6 @@ xCode/TurismoDias/
 SourceFiles/main
 SourceFiles/main.dSYM/Contents/Resources/DWARF/main
 SourceFiles/main.dSYM/Contents/Resources/DWARF/main
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+.vscode/tasks.json
