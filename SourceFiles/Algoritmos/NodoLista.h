@@ -204,7 +204,14 @@ void SwapElementosDatos(NodoLista<T> *&lista, T x, T y)
 }
 
 void SwapElementosDireccion(NodoLista<T> *&lista, T * x, T * y)
-{
+{   
+    auto swapPointers = [](T *elementX, T *elementY) {
+        T * aux = elementX;
+        elementX = elementY;
+        elementY = aux;
+        return aux;
+    };
+
     if (lista != NULL)
     {
         if (x == y)
@@ -235,6 +242,8 @@ void SwapElementosDireccion(NodoLista<T> *&lista, T * x, T * y)
             return;
         }
         // Cambiamos los valores
+        T * aux = swapPointers(currentX->elemento, currentY->elemento);
+        /*
         T * aux1;
         T * aux2;
         aux1 = (currentY->elemento);
@@ -244,6 +253,7 @@ void SwapElementosDireccion(NodoLista<T> *&lista, T * x, T * y)
         (prevX->elemento) = aux1;
         prevY = prevY->next;
         (prevY->elemento) = aux2;
+        */
     }
     else
     {
