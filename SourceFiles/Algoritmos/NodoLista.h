@@ -134,12 +134,15 @@ void insertarElementoPosicion(NodoLista<T> **lista, T *objeto, int pos)
 
 //Se requiere la dirección del dato, más no el valor en sí.
 void borrarElemento(NodoLista<T> *&lista, T dato){
+    // Lambda que verifica si el elemento es igual al dato
+    auto Esigual = [](T *elemento, T dato) { return *elemento == dato; };
+
     if(lista!=NULL){
         NodoLista<T> *aux_borrar;
         NodoLista<T> *anterior = NULL;
         aux_borrar = lista;
 
-        while (aux_borrar != NULL && *(aux_borrar->elemento) != dato)
+        while (aux_borrar != NULL && !isEqual(aux_borrar->elemento, dato))
         {
             anterior = aux_borrar;
             aux_borrar = aux_borrar->next;
