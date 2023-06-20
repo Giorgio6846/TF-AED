@@ -11,12 +11,17 @@ private:
     vector<list<T*>>  tableLists; //Cada indice del Hash será una lista
     int currentSize; //Size del hashTable
 public:
-    explicit HashTable(int size) : currentSize{ 0 }
-	{
-		tableLists.resize(size);	//Resize al vector, para que tenga 200 elementos: 200 listas de Nodos Hash(key, value)
+    explicit HashTable() : currentSize{ 0 }
+	{	
+		//Resize al vector, para que tenga 200 elementos: 200 listas de Nodos Hash(key, value)
 	}
 
-    void makeEmpty()
+	void setSize(int size)
+	{
+		tableLists.resize(size);
+	}
+
+	void makeEmpty()
 	{
 		for (auto& thisList : tableLists)
 			thisList.clear();

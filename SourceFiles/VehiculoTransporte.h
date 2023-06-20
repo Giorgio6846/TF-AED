@@ -73,7 +73,7 @@ private:
         int filaAsiento = 6;
 
         //Bus asientos
-        HashTable<Asiento> busAsientos(columnaAsiento);
+        HashTable<Asiento> busAsientos;
 
     public:
         Bus(int Origen, int Destino, int tiempoEstimado) : VehiculoTransporte(Origen, Destino, tiempoEstimado)
@@ -83,6 +83,7 @@ private:
         settiempoEstimado(tiempoEstimado);
         setCantidadDisponible(columnaAsiento * filaAsiento);
 
+        busAsientos.setSize(columnaAsiento);
         generarAsientos();
     }
     ~Bus(){}
