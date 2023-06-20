@@ -43,6 +43,7 @@ int main()
 
     #if (VER == 1 || VER == 3)
     ControladorEncomiendas *claseEncomienda = new ControladorEncomiendas();
+    claseEncomienda->generacionGrafo();
     #endif
 
     int opcionElegida;
@@ -94,7 +95,6 @@ void opcionViajes(ControladorViajes *claseViaje)
             break;
         case 4:
             // Invoca la funcion de la clase para realizar la escritura de archivos
-            claseViaje->funciontmp();
             break;
         default:
             break;

@@ -112,14 +112,14 @@ class ControladorEncomiendas: public Rutas
     {
         for (int i = 0; i < getSizeLugares(); i++)
         {
-            grafoRutas -> agregarVertice(i);
+            grafoRutas->agregarVertice(i);
         }
 
         for (int i = 0; i < getSizeOrigen(); i++)
         {
             for (int j = 0; j < getSizeDestino(); j++)
             {
-                if (accesoRutaDisponible(i,j) != 0)
+                if (accesoRutaDisponible(i, j) != 0)
                 {
                     NodoLista<Camion> *listaCamion = NULL;
                     for (int k = 0; k <= 3; k++)

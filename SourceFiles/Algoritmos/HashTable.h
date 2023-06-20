@@ -1,6 +1,9 @@
+#pragma once
+
 #include "../Libraries.h"
 #include "../Persona.h"
 #include "../Encomienda/Encomienda.h"
+
 template <class T>
 class HashTable
 {
@@ -8,7 +11,7 @@ private:
     vector<list<T*>>  tableLists; //Cada indice del Hash será una lista
     int currentSize; //Size del hashTable
 public:
-    explicit HashTable(int size = 200) : currentSize{ 0 }
+    explicit HashTable(int size) : currentSize{ 0 }
 	{
 		tableLists.resize(size);	//Resize al vector, para que tenga 200 elementos: 200 listas de Nodos Hash(key, value)
 	}
@@ -33,6 +36,8 @@ public:
 		}
 	return true;
 	}
+
+
 	void buscarEncomienda(string key) {
 
 		int pos = 0;

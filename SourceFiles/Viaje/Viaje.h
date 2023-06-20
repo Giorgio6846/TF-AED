@@ -2,39 +2,40 @@
 #include "../Persona.h"
 #include "../Algoritmos/NodoLista.h"
 #include "../VehiculoTransporte.h"
+#include "../Algoritmos/Grafo.h"
+
+struct precioPersona
+{
+    int Precio;
+    Persona * personaViaje = new Persona;
+};
 
 class Viaje
 {
 private:
     int cantidadPasajeros;
-    NodoLista<Persona> *listaPasajeros = NULL;
-    NodoLista<Bus> *rutaBus = NULL;
+    NodoLista<precioPersona> *listaPasajeros = NULL;
+    TotalRuta<Bus> *TRtmp;
 
-    int codigoO, codigoD;
-
-    int tiempoEstimado;
-
+    int codigoO,codigoD;
 
 public:
-    Viaje(int codigoO, int codigoD, int cantidadPasajeros, int tiempoEstimado, NodoLista<Bus> *busTmp);
+    Viaje(int codigoO, int codigoD, int cantidadPasajeros, TotalRuta<Bus> *busTmp);
     ~Viaje();
 
     void agregarPasajero();
-    void informacionPasajeros();
+    //void informacionPasajeros();
 
-    void setRutaBus(NodoLista<Bus> * busTmp){rutaBus = busTmp; }
-
-    void calculoRuta();
+    void setRutaBus(TotalRuta<Bus> *busTmp) { TRtmp = busTmp; }
 };
 
-Viaje::Viaje(int codigoO, int codigoD, int cantidadPasajeros, int tiempoEstimado, NodoLista<Bus> *busTmp)
+Viaje::Viaje(int codigoO, int codigoD, int cantidadPasajeros, TotalRuta<Bus> *busTmp)
 {
     this->codigoO = codigoO;
     this->codigoD = codigoD;
     this->cantidadPasajeros = cantidadPasajeros;
 
-    this->tiempoEstimado = tiempoEstimado;
-    rutaBus = busTmp;
+    TRtmp = busTmp;    
 }
 
 Viaje::~Viaje()
@@ -45,28 +46,14 @@ void Viaje :: agregarPasajero()
 {
     for (int i = 0; i <= cantidadPasajeros - 1; i++)
     {
-        Persona *cliente = new Persona();
-
+        precioPersona * personaCosto = new precioPersona();
+        
         #if RAD == 0
-        cliente->typePersona();
+        personaCosto->personaViaje->typePersona();
         #elif RAD == 1
-        cliente->randomPersona();
+        personaCosto->personaViaje->randomPersona();
         #endif
 
-        listaPasajeros->push(&listaPasajeros, cliente);
-
+        listaPasajeros->push(&listaPasajeros, personaCosto);
     }
-}
-
-void Viaje :: informacionPasajeros()
-{
-    int op;
-    // Mientras no se llegue al final de lista, mostrar los datos de los clientes almacenados
-    clearScreen;
-
-    //listaPasajeros->elemento->informacionPersona();
-    //listaPasajeros->next;
-
-    cout << "Presione cualquier tecla para volver al menu de encomiendas!" << endl;
-    cont();
 }

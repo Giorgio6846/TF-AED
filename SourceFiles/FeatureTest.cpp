@@ -105,7 +105,7 @@ int main()
     //claseViaje->generarGrafo();
 
     
-
+    /*
     //test *tmp1 = new test();
     NodoLista<int> *tmp2 = NULL;
     for (int i = 0; i < 100; i++)
@@ -129,6 +129,7 @@ int main()
         tmp1->append(&tmp1, tmp->getElemento(tmp));
     }
     */
+    /*
     int *a = new int;
     *a = 200;
 
@@ -150,7 +151,7 @@ int main()
 
         cout << *(tmp1->getElemento(tmp1)) << endl;
     }
-
+    */
     //NodoLista<int> *tmp2 = tmp1->tmp;
     //cout << tmp1->tmp->contadorLista(tmp1->tmp);
     /*

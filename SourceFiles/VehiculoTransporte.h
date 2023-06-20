@@ -1,12 +1,7 @@
 #pragma once 
 #include "Libraries.h"
 #include "Persona.h"
-
-struct Asiento
-{
-    string ubicacion;
-    char clase;
-};
+#include "Algoritmos/HashTable.h"
 
 /*
 
@@ -31,6 +26,7 @@ private:
     int tiempoEstimado;
 
     int cantidadDisponible;
+
 public:
     VehiculoTransporte(int Origen = 0, int Destino = 0, int tiempoEstimado = 0)
     {
@@ -60,20 +56,34 @@ Este puede ser organizado a base del asiento
 Por ejemplo: A10 este es organizado por A y despues en la posicion A es organizado de menor a mayor
 
 */
+
+struct Asiento
+{
+    string ubicacion;
+    char claseAsiento;
+    Persona * usuarioPersona;
+};
+
 class Bus : public VehiculoTransporte
 {
 private:
         vector<vector<Asiento>> distribucionAsientos;
 
-        int columnaAsiento = 6;
-        int filaAsiento = 10;
-public:
-    Bus(int Origen, int Destino, int tiempoEstimado) : VehiculoTransporte(Origen, Destino, tiempoEstimado)
-    {
+        int columnaAsiento = 10;
+        int filaAsiento = 6;
+
+        //Bus asientos
+        HashTable<Asiento> busAsientos(columnaAsiento);
+
+    public:
+        Bus(int Origen, int Destino, int tiempoEstimado) : VehiculoTransporte(Origen, Destino, tiempoEstimado)
+        {
         setOrigen(Origen);
         setDestino(Destino);
         settiempoEstimado(tiempoEstimado);
         setCantidadDisponible(columnaAsiento * filaAsiento);
+
+        generarAsientos();
     }
     ~Bus(){}
 
@@ -83,11 +93,60 @@ public:
     //Terminar
     void agregarPasajero()
     {
+
         setCantidadDisponible(getCantidadDisponible() - 1);
     }
 };
 
+void Bus::mostrarAsientos()
+{
+    /*
+    for (int i = 0; i < distribucionAsientos.size(); i++)
+    {
+        for (int j = 0; j < distribucionAsientos[i].size(); j++)
+        {
+            cout << distribucionAsientos[i][j].ubicacion << " " << distribucionAsientos[i][j].clase << " ";
+        }
+        cout << "\n";
+    }
+    */
+}
 
+void Bus::generarAsientos()
+{
+
+    for (int i = 0; i < filaAsiento; i++)
+    {
+        for (int j = 0; j < columnaAsiento; j++)
+        {
+            Asiento * asientoTMP = new Asiento;
+            asientoTMP-> ubicacion = char(65 + j) + to_string(i + 1);
+            asientoTMP->claseAsiento = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
+
+            busAsientos.insert(asientoTMP->ubicacion, asientoTMP);
+        }
+    }
+    
+/*
+    string ubicacion;
+    char clase;
+
+    for (int i = 0; i < filaAsiento; i++)
+    {
+        vector<Asiento> Fil;
+        for (int j = 0; j < columnaAsiento; j++)
+        {
+            ubicacion = char(65 + j) + to_string(i + 1);
+            clase = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
+
+            Fil.push_back(Asiento());
+            Fil[j].clase = clase;
+            Fil[j].ubicacion = ubicacion;
+        }
+        distribucionAsientos.push_back(Fil);
+    }
+*/
+}
 
 class Camion : public VehiculoTransporte
 {
@@ -104,35 +163,3 @@ public:
 };
 
 
-void Bus::mostrarAsientos()
-{
-    for(int i = 0; i < distribucionAsientos.size(); i++)
-    {
-        for(int j = 0; j < distribucionAsientos[i].size();j++)
-        {
-            cout << distribucionAsientos[i][j].ubicacion << " " << distribucionAsientos[i][j].clase << " ";
-        }
-        cout << "\n";
-    }
-}
-
-void Bus::generarAsientos()
-{
-    string ubicacion;
-    char clase;
-
-    for (int i = 0; i < filaAsiento; i++)
-    {
-        vector<Asiento> Fil;
-        for (int j = 0; j < columnaAsiento; j++)
-        {
-            ubicacion = char(65 + j) + to_string(i+1);
-            clase = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
-
-            Fil.push_back(Asiento());
-            Fil[j].clase = clase;
-            Fil[j].ubicacion = ubicacion;
-        }
-        distribucionAsientos.push_back(Fil);
-    }
-}

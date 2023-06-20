@@ -11,7 +11,10 @@ Lima, Chimbote, Trujillo, Pacasmayo, Cajamarca, Chepen, Chiclayo, Piura, Jaen, C
 class ControladorViajes : public Rutas
 {
 private:
+    //La lista de compras de los usuarios
     NodoLista<Viaje> *listaCompras = NULL;
+
+    //El grafo utilizado para realizar la ruta
     Grafo<NodoLista<Bus>, int, Bus> *grafoRutas = new Grafo<NodoLista<Bus>, int, Bus>;
 
 public:
@@ -26,11 +29,9 @@ public:
     void reservaViaje();
     void reservaBusquedaViajes();
 
-    void escrituraArchivo();
 
+    //Generacion de grafo
     void generacionGrafo();
-    
-    void funciontmp();
 };
 
 ControladorViajes::ControladorViajes(/* args */)
@@ -38,10 +39,6 @@ ControladorViajes::ControladorViajes(/* args */)
 }
 
 ControladorViajes::~ControladorViajes()
-{
-}
-
-void ControladorViajes ::escrituraArchivo()
 {
 }
 
@@ -56,31 +53,13 @@ void ControladorViajes ::reservaViaje()
         {
             int cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
             TotalRuta<Bus> *TRtmp = grafoRutas->rutaFinal(Origen, Destino, cantidadUsuarios);
-            Viaje * nuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios, TRtmp->pesoEntero,TRtmp->rutaAlDestino);
+            Viaje * nuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios, TRtmp);
 
             nuevaReserva -> agregarPasajero();
-            
+            listaCompras->push(&listaCompras, nuevaReserva);
         }
         
     }
-
-    /*
-    int Origen, Destino, cantidadUsuarios;
-    string ruta;
-
-    Origen = Rutas ::selecionarOrigenv2();
-    Destino = Rutas ::selecionarDestinov2();
-    cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
-
-    Viaje *NuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios);
-    NuevaReserva->agregarPasajero();
-
-    listaCompras->push(&listaCompras, NuevaReserva);
-
-    cout << "\n Ha selecionado el origen " << Rutas ::getOrigen(Origen);
-    cout << "\n Ha selecionado el destino " << Rutas ::getDestino(Destino);
-    cout << "\n";
-    */
 }
 
 int ControladorViajes ::seleccionarCantidadUsuarios(string Origen, string Destino)
@@ -102,6 +81,7 @@ int ControladorViajes ::seleccionarCantidadUsuarios(string Origen, string Destin
 
 void ControladorViajes ::reservaBusquedaViajes()
 {
+    /*
     int contador;
     // listaCompras->elemento->informacionPasajeros();
     if (listaCompras != NULL)
@@ -109,7 +89,7 @@ void ControladorViajes ::reservaBusquedaViajes()
         while (listaCompras != NULL)
         {
             cout << "Encomienda numero " << contador << endl;
-            listaCompras->getElemento(listaCompras)->informacionPasajeros();
+            //listaCompras->getElemento(listaCompras)->informacionPasajeros();
             contador++;
             listaCompras = listaCompras->nextElemento(listaCompras);
         }
@@ -118,6 +98,7 @@ void ControladorViajes ::reservaBusquedaViajes()
     {
         cout << "No existen encomiendas por el momento!" << endl;
     }
+    */
 }
 
 int ControladorViajes ::menuViajes()
