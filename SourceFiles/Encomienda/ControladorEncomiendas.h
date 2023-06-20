@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../Libraries.h"
 #include "../Rutas.h"
 #include "../Persona.h"
@@ -11,6 +13,7 @@
 #include "../VehiculoTransporte.h"
 #include "objetoEncomienda.h"
 #include "Encomienda.h"
+
 
 class ControladorEncomiendas: public Rutas
 {
@@ -51,20 +54,7 @@ class ControladorEncomiendas: public Rutas
         //     }
         // }
 
-        void agendarEncomiendaFinal()
-        {
-            Persona *cliente = almacenarInfoCliente();
-            objetoEncomienda *encomiendaItem = almacenarInfoObjeto();
-            Encomienda *encomiendaFinal = new Encomienda(cliente, encomiendaItem);
-            hashTable.setSize(200);
-            if (hashTable.insert(encomiendaFinal->cliente->getDocumento(), encomiendaFinal))
-            {
-                cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
-            }
 
-            cont();
-    }
-    
     void printInfoEncomiendas(){
         if (hashTable.isEmpty())
         {
@@ -238,7 +228,13 @@ class ControladorEncomiendas: public Rutas
             }   
         } while (!(int(esFragil) == 78 || int(esFragil) == 83));
         clearScreen;
-        int Origen = Rutas :: selecionarOrigenv2();
+        objetoEncomienda * objeto = new objetoEncomienda(categoria, peso, esFragil);
+        return objeto;
+    }
+
+    TotalRuta<Camion> * almacenarRuta(){
+    int Origen = Rutas :: selecionarOrigenv2();
+
         if(Origen != -1)
         {
             int Destino = selecionarDestinov2(Origen);
@@ -246,10 +242,26 @@ class ControladorEncomiendas: public Rutas
             {
                 int peso ;
                 TotalRuta<Camion> * TRtmp = grafoRutas->rutaFinal(Origen, Destino, peso);
-                TotalRuta<Camion> * tr1 = TRtmp;
+                return TRtmp;
             }
         }
-        objetoEncomienda * objeto = new objetoEncomienda(categoria, peso, esFragil);
-        return objeto;
     }
+
+        void agendarEncomiendaFinal()
+        {
+            Persona *cliente = new Persona();
+            cliente = almacenarInfoCliente();
+            objetoEncomienda *encomiendaItem = almacenarInfoObjeto();
+            TotalRuta<Camion> * ruta = new TotalRuta<Camion>;
+            ruta = almacenarRuta();
+            Encomienda *encomiendaFinal = new Encomienda(cliente, encomiendaItem, ruta);
+            hashTable.setSize(200);
+            if (hashTable.insert(encomiendaFinal->cliente->getDocumento(), encomiendaFinal))
+            {
+                cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
+            }
+
+            cont();
+    }
+    
 };

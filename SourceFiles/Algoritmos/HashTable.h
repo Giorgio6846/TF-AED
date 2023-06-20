@@ -2,7 +2,7 @@
 
 #include "../Libraries.h"
 #include "../Persona.h"
-#include "../Encomienda/Encomienda.h"
+//#include "../Encomienda/Encomienda.h"
 
 template <class T>
 class HashTable
@@ -44,7 +44,7 @@ public:
 
 
 	void buscarEncomienda(string key) {
-
+		/*
 		int pos = 0;
 		pos = crearHashString(key);	//Obtenemos el indice de la Tabla (pos) a partir de la Funcion HASH
 		cout << "Informacion de su encomienda: "<< endl;
@@ -54,11 +54,13 @@ public:
 				cont();
 		}
 		cout << endl;
+		*/
 	}
 
 	
 
 	void mostrarTodasEncomiendas() {
+		/*
 		int pos = 0;
 		int cont = 0;
 		for (auto & thisList  : tableLists) {		// Recorremos el vector<>
@@ -71,6 +73,7 @@ public:
 			}
 			pos++;
 		}
+		*/
 	}
 
 	//Función hash; Se utiliza string, ya que el DNI será pasado como llave

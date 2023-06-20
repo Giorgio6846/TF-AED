@@ -1,5 +1,6 @@
-#include "../Libraries.h"
 #pragma once
+#include "../Libraries.h"
+
 class objetoEncomienda
 {
 private:
