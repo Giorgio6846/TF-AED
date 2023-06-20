@@ -56,6 +56,7 @@ class ControladorEncomiendas: public Rutas
             Persona *cliente = almacenarInfoCliente();
             objetoEncomienda *encomiendaItem = almacenarInfoObjeto();
             Encomienda *encomiendaFinal = new Encomienda(cliente, encomiendaItem);
+            hashTable.setSize(200);
             if (hashTable.insert(encomiendaFinal->cliente->getDocumento(), encomiendaFinal))
             {
                 cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
@@ -236,9 +237,19 @@ class ControladorEncomiendas: public Rutas
 
             }   
         } while (!(int(esFragil) == 78 || int(esFragil) == 83));
-
+        clearScreen;
+        int Origen = Rutas :: selecionarOrigenv2();
+        if(Origen != -1)
+        {
+            int Destino = selecionarDestinov2(Origen);
+            if (Destino != -1)
+            {
+                int peso ;
+                TotalRuta<Camion> * TRtmp = grafoRutas->rutaFinal(Origen, Destino, peso);
+                TotalRuta<Camion> * tr1 = TRtmp;
+            }
+        }
         objetoEncomienda * objeto = new objetoEncomienda(categoria, peso, esFragil);
         return objeto;
     }
-
 };
