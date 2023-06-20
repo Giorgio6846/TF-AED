@@ -84,7 +84,7 @@ class ControladorEncomiendas: public Rutas
     Origen = Rutas :: selecionarOrigen();
     Destino = Rutas :: selecionarDestino(Origen);
     cout << "\n Ha selecionado el origen " << Rutas :: getOrigen(Origen);
-    cout << "\n Ha selecionado el destino " << Rutas :: getDestino(Destino)
+    cout << "\n Ha selecionado el destino " << Rutas :: getDestino(Destino);
     
     }
     
