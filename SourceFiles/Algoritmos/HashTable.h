@@ -80,7 +80,10 @@ public:
 		char c;	
 		size_t hashVal = 0;
 		//For each 
-		for (char ch : key) hashVal += ch;					
+		for (size_t i = 0; i < key.length(); i++) {
+        char c = key[i];
+        hashVal = hashVal * 36 + static_cast<size_t>(c);
+		}				
 		hashVal = hashVal % tableLists.size();
 		return(hashVal);	
 	}
