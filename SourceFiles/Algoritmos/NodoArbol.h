@@ -1,40 +1,49 @@
 #pragma once
-
 #include <iostream>
 using namespace std;
 
+struct valorNodo
+{
+    string key;
+    int tiempoEnvio;
+};
+
+
+template <class T>
 class NodoArbol
 {
 private:
     NodoArbol * l;
     NodoArbol * r;
-    int n;
+    valorNodo nodo;
 public:
     NodoArbol(){};
     ~NodoArbol(){};
 
     //n debe ser el primer valor del apellido para ser creado en orden alfabetico
-    void insertarValor(NodoArbol *& arbol, int n){
+    void insertarValor(NodoArbol *& arbol, string keys, T tiempoEnvio){
         if (arbol == nullptr)
         {
-            NodoArbol * newNodo = crearNodo(n);
+            NodoArbol * newNodo = crearNodo(keys, tiempoEnvio);
             arbol = newNodo;
         }
         else{
-            int valorRaiz = arbol->n;
-            if (n < valorRaiz)
+            int valorRaiz = arbol->nodo.tiempoEnvio;
+            if (tiempoEnvio < valorRaiz)
             {
-                insertarValor(arbol->l, n);
+                insertarValor(arbol->l, keys, tiempoEnvio);
             }
             else{
-                insertarValor(arbol->r, n);
+                insertarValor(arbol->r, keys, tiempoEnvio);
             }       
         }
     }
 
-    NodoArbol* crearNodo(int n){
+    NodoArbol* crearNodo(string keys, T tiempoEnvio){
+        valorNodo nodoAux;
+        nodoAux.key=keys; nodoAux.tiempoEnvio = tiempoEnvio; 
         NodoArbol * newNodo = new NodoArbol();
-        newNodo->n=n;
+        newNodo->nodo=nodoAux;
         newNodo->r=nullptr;
         newNodo->l=nullptr;
         return newNodo;

@@ -20,40 +20,13 @@ class ControladorEncomiendas: public Rutas
     private:
         HashTable<Encomienda> hashTable;
         Grafo<NodoLista<Camion>, int, Camion> *grafoRutas = new Grafo<NodoLista<Camion>, int, Camion>;
+        NodoArbol<int> * arbol;
 
     public:
-        ControladorEncomiendas(){};
+        ControladorEncomiendas(){
+            arbol = NULL;
+        };
         ~ControladorEncomiendas(){};
-
-        // void printInfoEncomiendas(){
-        //     int contador = 1;
-        //     //Se crea un auxiliar para no alterar los punteros de la lista original
-        //     NodoLista<Encomienda> * aux = listaEncomienda;
-        //     if (aux!= NULL)
-        //     {
-        //         while (aux != NULL)
-        //     {
-        //         cout << "Encomienda numero " << contador << endl;
-        //         cout << "Propietario: " << aux->getElemento(aux)->cliente->getNombre() << " " << aux->getElemento(aux)->cliente->getApellido() <<endl;
-        //         cout << "Categoria del producto: " << aux->getElemento(aux)->objeto->getCategoria() << endl;
-        //         cout << "Peso (Kg): " << aux->getElemento(aux)->getPeso();
-        //         cout << "Fragil: ";
-        //         if (aux->getElemento(aux)->objeto->getEsFragil())
-        //         {
-        //             cout << "SI" << endl;
-        //         }
-        //         else{cout << "NO" << endl;}
-        //         contador++;
-        //         aux = aux->nextElemento(aux);
-        //     }
-        //     }
-        //     else
-        //     {
-        //         cout << "No existen encomiendas por el momento!" << endl;
-        //         cont();
-        //     }
-        // }
-
 
     void printInfoEncomiendas(){
         if (hashTable.isEmpty())
@@ -68,16 +41,14 @@ class ControladorEncomiendas: public Rutas
         }
     }
 
-    void reservaEncomienda()
+    /*void reservaEncomienda()
     {
-    
     int Origen, Destino, cantidadUsuarios;
     Origen = Rutas :: selecionarOrigen();
     Destino = Rutas :: selecionarDestino(Origen);
     cout << "\n Ha selecionado el origen " << Rutas :: getOrigen(Origen);
     cout << "\n Ha selecionado el destino " << Rutas :: getDestino(Destino);
-    
-    }
+    }*/
     
     int menuEncomienda(){
         int opcionSelecionada;
@@ -138,13 +109,8 @@ class ControladorEncomiendas: public Rutas
             string codigo;
             cout << "Ingrese su DNI" << endl;
             cin >> codigo;
-            hashTable.buscarEncomienda(codigo);
-            
+            hashTable.buscarEncomienda(codigo); 
         }
-    }
-
-    //Para hacer funcionar esta función, se necesita primero el HashTable
-    void arbolRankingEncomiendas(NodoArbol * arbol, int cantEncomiendas){
     }
 
     Persona * almacenarInfoCliente(){
@@ -155,7 +121,7 @@ class ControladorEncomiendas: public Rutas
 
         Persona * cliente = new Persona();
 
-        #if RAD == 0
+        #if RAD == 1
                     cliente->typePersona();
         #elif RAD == 1
                     cliente->randomPersona();
@@ -233,7 +199,7 @@ class ControladorEncomiendas: public Rutas
     }
 
     TotalRuta<Camion> * almacenarRuta(){
-    int Origen = Rutas :: selecionarOrigenv2();
+        int Origen = Rutas :: selecionarOrigenv2();
 
         if(Origen != -1)
         {
@@ -245,23 +211,25 @@ class ControladorEncomiendas: public Rutas
                 return TRtmp;
             }
         }
+        return nullptr;
     }
 
-        void agendarEncomiendaFinal()
+    void agendarEncomiendaFinal(){
+        //Se crea e iguala el objeto a los devueltos por funciones
+        Persona *cliente = almacenarInfoCliente();
+        objetoEncomienda *encomiendaItem = almacenarInfoObjeto();
+        TotalRuta<Camion> * ruta = almacenarRuta();
+        //Se crea la encomienda completa a base de 3 objetos
+        Encomienda *encomiendaFinal = new Encomienda(cliente, encomiendaItem, ruta);
+        //Se asigna un tamaño al hash
+        hashTable.setSize(200);
+        //Si se insertó de manera satisfactoria, se printea un mensaje
+        if (hashTable.insert(encomiendaFinal->cliente->getDocumento(), encomiendaFinal))
         {
-            Persona *cliente = new Persona();
-            cliente = almacenarInfoCliente();
-            objetoEncomienda *encomiendaItem = almacenarInfoObjeto();
-            TotalRuta<Camion> * ruta = new TotalRuta<Camion>;
-            ruta = almacenarRuta();
-            Encomienda *encomiendaFinal = new Encomienda(cliente, encomiendaItem, ruta);
-            hashTable.setSize(200);
-            if (hashTable.insert(encomiendaFinal->cliente->getDocumento(), encomiendaFinal))
-            {
-                cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
-            }
-
-            cont();
+            cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
+        }
+        //Se agrega el valor de tiempo a un arbol de búsqueda
+        arbol->insertarValor(arbol, "cliente->getKey()" , 4);
+        cont();
     }
-    
 };
