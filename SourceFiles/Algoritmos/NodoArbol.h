@@ -17,56 +17,33 @@ private:
     valorNodo nodo;
     int altura;
 public:
-    NodoArbol(){};
+    NodoArbol(){
+        l = NULL; r = NULL;
+    };
     ~NodoArbol(){};
 
     //n debe ser el primer valor del apellido para ser creado en orden alfabetico
     void insertarValor(NodoArbol *& arbol, string keys, T tiempoEnvio){
-        if (arbol == nullptr)
-        {
-            NodoArbol * newNodo = crearNodo(keys, tiempoEnvio);
-            arbol = newNodo;
-            return;
-        }
-        else{
-            int valorRaiz = arbol->nodo.tiempoEnvio;
-            if (tiempoEnvio < valorRaiz)
-            {
-                insertarValor(arbol->l, keys, tiempoEnvio);
-            }
-            else{
-                insertarValor(arbol->r, keys, tiempoEnvio);
-            }       
-        }
+    if (arbol == nullptr)
+    {
+      NodoArbol * newNodo = crearNodo(keys, tiempoEnvio);
+      arbol = newNodo;
+      return;
+    }
+    else{
+      int valorRaiz = arbol->nodo.tiempoEnvio;
+      if (tiempoEnvio < valorRaiz)
+      {
+        insertarValor(arbol->l, keys, tiempoEnvio);
+      }
+      else{
+        insertarValor(arbol->r, keys, tiempoEnvio);
+      }       
+    }
     
-    actualizarAltura(arbol);
-
-    int balanceFactor = getNodoAltura(arbol->l) - getNodoAltura(arbol->r);
-
-    // Left-Left Case
-    if (balanceFactor > 1 && tiempoEnvio < arbol->l->nodo.tiempoEnvio)
-    {
-        rotarDerecha(arbol);
-    }
-    // Right-Right Case
-    else if (balanceFactor < -1 && tiempoEnvio > arbol->r->nodo.tiempoEnvio)
-    {
-        rotarIzquierda(arbol);
-    }
-    // Left-Right Case
-    else if (balanceFactor > 1 && tiempoEnvio > arbol->l->nodo.tiempoEnvio)
-    {
-        rotarIzquierda(arbol->l);
-        rotarDerecha(arbol);
-    }
-    // Right-Left Case
-    else if (balanceFactor < -1 && tiempoEnvio < arbol->r->nodo.tiempoEnvio)
-    {
-        rotarDerecha(arbol->r);
-        rotarIzquierda(arbol);
-    }
-        
-    }
+    //balancear el arbol
+    balancear(arbol);
+  }
 
     NodoArbol* crearNodo(string keys, T tiempoEnvio){
         valorNodo nodoAux;
@@ -78,33 +55,44 @@ public:
         return newNodo;
     }
 
-    void rotarDerecha(NodoArbol *& nodo){
-        NodoArbol * pivot = nodo->l;
-        nodo->l = pivot->r;
-        pivot->r = nodo;
-        actualizarAltura(nodo);
-        actualizarAltura(pivot);
-        nodo = pivot;
+
+  
+    //imprimir valores en orden
+    void imprimirEnOrden(NodoArbol* nodo) {
+        if (nodo == nullptr) {
+            return;
+        }
+        imprimirEnOrden(nodo->l);
+        cout << "DNI asignada a la encomienda: " << getKeyDNI(nodo->nodo.key) <<endl;
+        cout << "Tiempo estimado: " << nodo->nodo.tiempoEnvio << endl;
+        imprimirEnOrden(nodo->r);
     }
-
-    void rotarIzquierda(NodoArbol *& nodo){
-        NodoArbol *pivot = nodo->l;
-        nodo->l = pivot->r;
-        pivot->r = nodo;
-        actualizarAltura(nodo);
-        actualizarAltura(pivot);
-        nodo = pivot;
+    //Extrae solo la parte numérica de la KEY
+    string getKeyDNI(string key){
+        string dniKey = "";
+        for (int i = 0; i < key.length() ; i++)
+        {
+            if (key[i] >= 48 && key[i] <=57 ){dniKey += key[i];}   
+        }
+        return dniKey;
     }
-
-    int getNodoAltura(NodoArbol *nodo){return nodo->altura;}
-
-    void actualizarAltura(NodoArbol * nodo){nodo->altura = max(getNodoAltura(nodo->l), getNodoAltura(nodo->r)) + 1;}
 
     //Calcula la altura del arbol de manera recursiva
     int calcularNodoAltura(NodoArbol *nodo){
-    if (nodo == nullptr) return 0;
-    int leftHeight = calculateHeight(nodo->l);
-    int rightHeight = calculateHeight(nodo->r);
-    return 1 + max(leftHeight, rightHeight);
+        if (nodo == nullptr) return 0;
+        int leftHeight = calcularNodoAltura(nodo->l);
+        int rightHeight = calcularNodoAltura(nodo->r);
+        return 1 + max(leftHeight, rightHeight);
+    }
+
+  //Funcion para balancear el arbol
+    void balancear(NodoArbol *& arbol){
+        int balance = calcularNodoAltura(arbol->l) - calcularNodoAltura(arbol->r);
+        if (balance > 1){
+          //rotacion izquierda
+        }
+        else if (balance < -1){
+          //rotacion derecha
+        }
     }
 };

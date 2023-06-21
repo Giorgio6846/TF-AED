@@ -124,13 +124,16 @@ void opcionEncomienda(ControladorEncomiendas *claseEncomienda)
             claseEncomienda->printInfoEncomiendas();
             cont();
             break;
-
         case 3:
+            claseEncomienda->mostrarOrdenEncomiendas();
+            cont();
+            break;
+        case 4:
             claseEncomienda->buscarEncomienda();
         default:
             break;
         }
-    } while (opcionSelecionada != 4);
+    } while (opcionSelecionada != 5);
 }    
 #endif
 

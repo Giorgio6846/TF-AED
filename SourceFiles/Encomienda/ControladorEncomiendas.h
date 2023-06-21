@@ -56,13 +56,14 @@ class ControladorEncomiendas: public Rutas
             clearScreen;
             cout << "Selecione la opcion: \n";
             cout << "1. Agendar una encomienda \n";
-            cout << "2. Mostrar lista de encomiendas \n";
-            cout << "3. Buscar encomienda por codigo \n";
-            cout << "4. Regresar al menu principal \n";
+            cout << "2. Mostrar todas las encomiendas \n";
+            cout << "3. Mostrar encomiendas en orden \n";
+            cout << "4. Buscar encomienda por DNI \n";
+            cout << "5. Regresar al menu principal \n";
             
             cin >> opcionSelecionada;
 
-            if (!(opcionSelecionada >= 1 && opcionSelecionada <= 4)){
+            if (!(opcionSelecionada >= 1 && opcionSelecionada <= 5)){
                 ClearKeyboard();
                 cout << "La opcion seleccionada es incorrecta.";
                 cont();
@@ -214,6 +215,10 @@ class ControladorEncomiendas: public Rutas
         return nullptr;
     }
 
+    void mostrarOrdenEncomiendas(){
+        arbol->imprimirEnOrden(arbol);
+    }
+
     void agendarEncomiendaFinal(){
         //Se crea e iguala el objeto a los devueltos por funciones
         Persona *cliente = almacenarInfoCliente();
@@ -229,6 +234,7 @@ class ControladorEncomiendas: public Rutas
             cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
         }
         //Se agrega el valor de tiempo a un arbol de búsqueda
+        
         arbol->insertarValor(arbol, cliente->getKey() , ruta->pesoEntero);
         cont();
     }
