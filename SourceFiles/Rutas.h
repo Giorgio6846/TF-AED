@@ -182,40 +182,6 @@ int Rutas ::selecionarDestinov2(int Origen)
     return opcionElegida - 01;
 }
 
-void Rutas ::generacionRutaViaje(int Origen, int Destino, int cantidadPasajeros)
-{
-    /*
-
-    Obtiene el Origen, Destino y Cantidad de Pasajeros
-    Realiza el algoritmos para ver llegar del origen al destino
-    Este lo pone en el string "lugaresVisitados"
-    Accede al arbol con el Origen como Nodo
-    En este nodo Accede a los otros nodos para ver su tiempo de llegada
-    Al realizar la busqueda de todos los nodos le pone 3 a la raiz del arbol
-    Esto lo pone en una lista para despues realizar la busqueda de todas las otras raices hasta terminar el arbol
-
-    */
-
-    string lugaresVisitados = ""; 
-    for (int i = 0; i < getSizeLugares(); i++)
-    {
-        lugaresVisitados = "0" + lugaresVisitados;
-    }
-
-    /*
-    Del String lugaresVisitados:
-    
-    0: Lugar no visitado
-    1: Origen
-    2: Destino
-    3: Lugar Visitado
-
-    */
-
-    lugaresVisitados.at(Origen) = '1';
-    lugaresVisitados.at(Destino) = '2';
-}
-
 int Rutas :: accesoRutaDisponible(int x, int y)
 {
     //cout << sizeof(rutas[0][0]);

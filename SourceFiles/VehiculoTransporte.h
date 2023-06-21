@@ -59,7 +59,9 @@ Por ejemplo: A10 este es organizado por A y despues en la posicion A es organiza
 
 struct Asiento
 {
-    string ubicacion;
+    string letraAsiento;
+    int numeroAsiento;
+
     char claseAsiento;
     Persona * usuarioPersona;
 };
@@ -121,10 +123,13 @@ void Bus::generarAsientos()
         for (int j = 0; j < columnaAsiento; j++)
         {
             Asiento * asientoTMP = new Asiento;
-            asientoTMP-> ubicacion = char(65 + j) + to_string(i + 1);
+            asientoTMP-> letraAsiento  = char(65 + j);
+            asientoTMP-> numeroAsiento = i + 1;
             asientoTMP->claseAsiento = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
 
-            busAsientos.insert(to_string(asientoTMP->ubicacion[0]), asientoTMP);
+            busAsientos.insert(asientoTMP->letraAsiento, asientoTMP);
+
+            //            busAsientos.insert(to_string(asientoTMP->letraAsiento), asientoTMP);
         }
     }
     

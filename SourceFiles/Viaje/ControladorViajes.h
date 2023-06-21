@@ -45,21 +45,23 @@ ControladorViajes::~ControladorViajes()
 void ControladorViajes ::reservaViaje()
 {
     int Origen = Rutas :: selecionarOrigenv2();
-    
-    if(Origen != -1)
+    if (Origen == -1)
     {
-        int Destino = selecionarDestinov2(Origen);
-        if (Destino != -1)
-        {
-            int cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
-            TotalRuta<Bus> *TRtmp = grafoRutas->rutaFinal(Origen, Destino, cantidadUsuarios);
-            Viaje * nuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios, TRtmp);
-
-            nuevaReserva -> agregarPasajero();
-            listaCompras->push(&listaCompras, nuevaReserva);
-        }
-        
+        return;
     }
+
+    int Destino = selecionarDestinov2(Origen);
+    if (Destino == -1)
+    {
+        return;
+    }
+    
+    int cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
+    TotalRuta<Bus> *TRtmp = grafoRutas->rutaFinal(Origen, Destino, cantidadUsuarios);
+    Viaje * nuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios, TRtmp);
+
+    nuevaReserva -> agregarPasajero();
+    listaCompras->push(&listaCompras, nuevaReserva);
 }
 
 int ControladorViajes ::seleccionarCantidadUsuarios(string Origen, string Destino)

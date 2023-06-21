@@ -98,7 +98,19 @@ struct test
 
 int main()
 {
+    char test = 'A';
+    string test1;
 
+    test1 = test;
+
+    
+
+    /*
+    string test = "HOLA";
+
+    for (char ch : test)
+        cout << ch << " ";
+    */
     //srand(time(NULL));
 
     //ControladorViajes *claseViaje = new ControladorViajes();
