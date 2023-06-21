@@ -79,9 +79,22 @@ public:
     size_t crearHashString(const string key) const {
 		size_t hashVal = 0;
 		//For each 
-		
-		for (char ch : key) hashVal += size_t(ch);					
+		//for (char ch : key) hashVal += size_t(ch);
+
+		auto hashFunc = [](char c) {
+        return static_cast<size_t>(c) * 36;};
+
+    	for (size_t i = 0; i < key.length(); i++) {
+        hashVal = hashVal + hashFunc(key[i]);
+    	}
 		hashVal = hashVal % tableLists.size();
+
+		/*for (size_t i = 0; i < key.length(); i++) {
+        char c = key[i];
+        hashVal = hashVal * 36 + static_cast<size_t>(c);
+		}				
+		}*/			
+		
 		return(hashVal);	
 	}
 

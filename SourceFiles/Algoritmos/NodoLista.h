@@ -285,4 +285,44 @@ T *obtenerPosicionElemento(NodoLista<T> **lista, int pos)
     cout << "La posicion selecionada es mayor a la cantidad de items en la lista";
     return NULL;
 }
-};
+
+/*void quicksort(NodoLista<T> *&lista, T pivote)
+{
+    if (lista == nullptr)
+    {
+        return;
+    }
+    else
+    {
+        NodoLista<T> *menor = nullptr, *mayor = nullptr, *actual = lista;
+        auto menor_que_pivote = [](NodoLista<T> *nodo) { return menor == nullptr && *(nodo->elemento) < pivote; };
+        auto mayor_que_pivote = [](NodoLista<T> *nodo) { return *(nodo->elemento) >= pivote; };
+
+        while (menor == nullptr)
+        {
+            if (*(actual->elemento) < pivote)
+            {
+                menor = actual;
+            }
+            else
+            {
+                mayor = actual;
+            }
+            actual = actual->next;
+        }
+
+        if (menor != nullptr)
+        {
+            menor->next = nullptr;
+            quicksort(menor, pivote);
+        }
+
+        if (mayor != nullptr)
+        {
+            mayor->next = nullptr;
+            quicksort(mayor, pivote);
+        }
+    }
+}
+*/
+};  
