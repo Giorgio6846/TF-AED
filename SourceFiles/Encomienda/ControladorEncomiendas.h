@@ -29,6 +29,7 @@ class ControladorEncomiendas: public Rutas
         ~ControladorEncomiendas(){};
 
     void printInfoEncomiendas(){
+        clearScreen;
         if (hashTable.isEmpty())
         {
             cout << "No hay encomiendas registradas!" << endl;
@@ -41,15 +42,6 @@ class ControladorEncomiendas: public Rutas
         }
     }
 
-    /*void reservaEncomienda()
-    {
-    int Origen, Destino, cantidadUsuarios;
-    Origen = Rutas :: selecionarOrigen();
-    Destino = Rutas :: selecionarDestino(Origen);
-    cout << "\n Ha selecionado el origen " << Rutas :: getOrigen(Origen);
-    cout << "\n Ha selecionado el destino " << Rutas :: getDestino(Destino);
-    }*/
-    
     int menuEncomienda(){
         int opcionSelecionada;
         do{
@@ -107,9 +99,11 @@ class ControladorEncomiendas: public Rutas
         }
         else
         {
+            clearScreen;
             string codigo;
             cout << "Ingrese su DNI" << endl;
             cin >> codigo;
+            clearScreen;
             hashTable.buscarEncomienda(codigo); 
         }
     }
@@ -216,6 +210,7 @@ class ControladorEncomiendas: public Rutas
     }
 
     void mostrarOrdenEncomiendas(){
+        clearScreen;
         arbol->imprimirEnOrden(arbol);
     }
 
@@ -234,7 +229,6 @@ class ControladorEncomiendas: public Rutas
             cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
         }
         //Se agrega el valor de tiempo a un arbol de búsqueda
-        
         arbol->insertarValor(arbol, cliente->getKey() , ruta->pesoEntero);
         cont();
     }

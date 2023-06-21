@@ -22,4 +22,10 @@ public:
     bool getEsFragil(){return (this->esFragil == 'S') ? true : false;}
     string getCategoria(){return this->categoria;}
     int getPeso(){return this->peso;}
+
+    void infoEncomienda(){
+        cout << "Informacion del objeto" << endl;
+        cout << "Peso: " << peso << "Kg" << endl;
+        cout << "Es fragil?: " << esFragil << endl;
+    }
 };

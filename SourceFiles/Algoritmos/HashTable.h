@@ -47,10 +47,10 @@ public:
 		
 		int pos = 0;
 		pos = crearHashString(key);	//Obtenemos el indice de la Tabla (pos) a partir de la Funcion HASH
-		cout << "Informacion de su encomienda: "<< endl;
 		for (auto * it : tableLists[pos]) {	// Recorremos la Lista de cada indice del vector	
 			if (it->cliente->getDocumento() == key )
 				it->cliente->informacionPersona();
+				it->objeto->infoEncomienda();
 				cout << "Tiempo estimado: " << it->ruta->pesoEntero << endl;
 				cont();
 		}
@@ -67,6 +67,7 @@ public:
 				if (it->cliente->getDocumento() != "" ){
 					cout << "Encomienda : " << cont << endl;
 					it->cliente->informacionPersona();
+					it->objeto->infoEncomienda();
 					cout << "Tiempo estimado: " << it->ruta->pesoEntero << endl;
 					cont++;
 				}
