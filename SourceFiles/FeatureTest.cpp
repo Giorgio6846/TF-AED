@@ -105,14 +105,14 @@ struct test
 int main()
 {
 
-    
+    /*
     char test = 'A';
     string test1;
     ControladorDataSet * GA = new ControladorDataSet();
     GA ->lecturaIndexacion();
     test1 = test;
+*/
 
-/*
 Grafo<NodoLista<Bus>, int, Bus> *grafoRutas = new Grafo<NodoLista<Bus>, int, Bus>;
 Rutas *rTMP = new Rutas;
 
@@ -121,9 +121,9 @@ for (int i = 0; i < rTMP -> getSizeLugares(); i++)
     grafoRutas->agregarVertice(i);
 }
 
-for (int i = 0; i < rTMP->getSizeOrigen(); i++)
+for (int i = 0; i < rTMP->getSizeLugares(); i++)
 {
-    for (int j = 0; j < rTMP->getSizeDestino(); j++)
+    for (int j = 0; j < rTMP->getSizeLugares(); j++)
     {
         if (rTMP->accesoRutaDisponible(i, j) != 0)
         {
@@ -170,7 +170,7 @@ for (int i = 0; i < rTMP->getSizeLugares(); i++)
 }
 
 
-*/
+
 /*
 string test = "HOLA";
 
@@ -200,7 +200,7 @@ NodoLista<int> *tmp1 = NULL;
 
 tmp1->duplicadoLista(&tmp, &tmp1);
 
-/*
+
 for (; tmp != NULL; tmp=tmp->nextElemento(tmp))
 {
     tmp1->append(&tmp1, tmp->getElemento(tmp));

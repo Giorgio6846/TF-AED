@@ -16,3 +16,6 @@ SourceFiles/main.dSYM/Contents/Resources/DWARF/main
 .vscode/launch.json
 .vscode/tasks.json
 SourceFiles/main.dSYM/Contents/Info.plist
+SourceFiles/FeatureTest.dSYM/Contents/Resources/DWARF/FeatureTest
+SourceFiles/FeatureTest.dSYM/Contents/Info.plist
+SourceFiles/FeatureTest
