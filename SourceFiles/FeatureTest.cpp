@@ -8,6 +8,7 @@
 //#include "Algoritmos/Grafo.h"
 //#include "Viaje/ControladorViajes.h"
 #include "Algoritmos/NodoLista.h"
+#include "ControladorDataSet.h"
 
 /*
 void print(NodoLista <int> *test)
@@ -100,7 +101,8 @@ int main()
 {
     char test = 'A';
     string test1;
-
+    ControladorDataSet * GA = new ControladorDataSet();
+    GA ->lecturaIndexacion();
     test1 = test;
 
     
