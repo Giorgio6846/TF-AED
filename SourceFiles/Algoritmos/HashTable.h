@@ -79,24 +79,20 @@ public:
 	//Función hash; Se utiliza string, ya que el DNI será pasado como llave
     size_t crearHashString(const string key) const {
 		size_t hashVal = 0;
+		const int a=2023;
 		//For each 
 		//for (char ch : key) hashVal += size_t(ch);
 
 		auto hashFunc = [](char c) {
-        return static_cast<size_t>(c) * 36;};
+        return static_cast<size_t>(c) * a;};
 
     	for (size_t i = 0; i < key.length(); i++) {
         hashVal = hashVal + hashFunc(key[i]);
     	}
-		hashVal = hashVal % tableLists.size();
 
-		/*for (size_t i = 0; i < key.length(); i++) {
-        char c = key[i];
-        hashVal = hashVal * 36 + static_cast<size_t>(c);
-		}				
-		}*/			
-		
+		hashVal = hashVal % tableLists.size();		
 		return(hashVal);	
+	
 	}
 
 	int getSize() const {

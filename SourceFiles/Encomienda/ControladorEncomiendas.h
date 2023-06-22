@@ -129,7 +129,7 @@ class ControladorEncomiendas: public Rutas
         string categoria;
         int opcion;
         float peso;
-        char esFragil;
+        int esFragil;
 
         do
         {
@@ -176,18 +176,16 @@ class ControladorEncomiendas: public Rutas
         {
             clearScreen;
 
-            cout << "Es su objeto considero fragil?: S = SI / N = NO "<< endl;
+            cout << "Es su objeto considero fragil?: 1 = Si / 2 = No "<< endl;
             cin >> esFragil;
 
-            esFragil = toupper(esFragil);
-
-            if (!(int(esFragil) == 78 || int(esFragil) == 83)) {
+            if (!(esFragil >= 1 && esFragil <= 2)) {
             ClearKeyboard();
             cout << "El valor ingresado es invalido.\n";
             cont();
 
             }   
-        } while (!(int(esFragil) == 78 || int(esFragil) == 83));
+        } while (!(esFragil >= 1 && esFragil <= 2));
         clearScreen;
         objetoEncomienda * objeto = new objetoEncomienda(categoria, peso, esFragil);
         return objeto;
@@ -225,7 +223,8 @@ class ControladorEncomiendas: public Rutas
         hashTable.setSize(200);
         //Si se insertó de manera satisfactoria, se printea un mensaje
         if (hashTable.insert(encomiendaFinal->cliente->getDocumento(), encomiendaFinal))
-        {
+        {   
+            clearScreen;
             cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
         }
         //Se agrega el valor de tiempo a un arbol de búsqueda
