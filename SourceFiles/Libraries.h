@@ -55,10 +55,10 @@ void cont()
 #else
 void cont()
 {
-    getch();
-    // char c;
-    // cin >> c;
-    // return c;
+    //getch();
+    char c;
+    cin >> c;
+    return;
 }
 #endif
 

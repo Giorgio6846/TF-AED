@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Libraries.h"
-#include "../Persona.h"
+//#include "../Persona.h"
 //#include "../Encomienda/Encomienda.h"
 
 template <class T>
@@ -51,7 +51,7 @@ public:
 			if (it->cliente->getDocumento() == key )
 				it->cliente->informacionPersona();
 				it->objeto->infoEncomienda();
-				cout << "Tiempo estimado de viaje: " << (it->ruta->pesoEntero)/60 <<" horas"<< endl;
+				cout << "Tiempo estimado de viaje: " << (it->ruta->pesoEntero * 10)/60 <<" horas"<< endl;
 				cont();
 		}
 		cout << endl;
@@ -67,7 +67,7 @@ public:
 					cout << "Encomienda : " << cont << endl;
 					it->cliente->informacionPersona();
 					it->objeto->infoEncomienda();
-					cout << "Tiempo estimado de viaje: " << (it->ruta->pesoEntero)/60 <<" horas"<< endl;
+					cout << "Tiempo estimado de viaje: " << (it->ruta->pesoEntero * 10) / 60 <<" horas"<< endl;
 					cont++;
 				}
 			}

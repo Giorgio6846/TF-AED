@@ -114,13 +114,13 @@ class ControladorEncomiendas: public Rutas
 
         Persona * cliente = new Persona();
 
-        #if RAD == 1
-                    cliente->typePersona();
+        #if RAD == 0
+            cliente->typePersona();
         #elif RAD == 1
-                    cliente->randomPersona();
+            cliente->randomPersona();
         #endif
 
-        return cliente;
+            return cliente;
     }
 
     objetoEncomienda * almacenarInfoObjeto(){
