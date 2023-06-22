@@ -43,8 +43,8 @@ public:
 	}
 
 
-	void buscarEncomienda(string key) {
-		
+	void buscarEncomienda(string key) 
+	{	
 		int pos = 0;
 		pos = crearHashString(key);	//Obtenemos el indice de la Tabla (pos) a partir de la Funcion HASH
 		for (auto * it : tableLists[pos]) {	// Recorremos la Lista de cada indice del vector	
@@ -55,7 +55,6 @@ public:
 				cont();
 		}
 		cout << endl;
-		
 	}
 
 
