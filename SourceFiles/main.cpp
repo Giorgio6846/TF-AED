@@ -7,6 +7,7 @@
 
 #if (VER == 1 || VER == 3)
 #include "Encomienda/ControladorEncomiendas.h"
+#include "ControladorDataSet.h"
 #endif
 
 /*
@@ -43,6 +44,7 @@ int main()
 
     #if (VER == 1 || VER == 3)
     ControladorEncomiendas *claseEncomienda = new ControladorEncomiendas();
+    ControladorDataSet * controladorDataSet = new ControladorDataSet();
     claseEncomienda->generacionGrafo();
     #endif
 
@@ -64,6 +66,7 @@ int main()
         case 2:
             #if (VER == 1 || VER == 3)
             clearScreen;
+            controladorDataSet->lecturaIndexacion();
             opcionEncomienda(claseEncomienda);
             #endif
             

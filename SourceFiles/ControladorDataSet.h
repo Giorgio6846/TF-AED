@@ -1,16 +1,17 @@
+#pragma once
 #include "Libraries.h"
 #include "Algoritmos/HashTable.h"
 #include "Encomienda/Encomienda.h"
-//#include "../Persona.h"
+#include "Persona.h"
 //#include "objetoEncomienda.h"
 //#include "../VehiculoTransporte.h"
 
 class ControladorDataSet
 {
-private:
+protected:
     //HashTable donde se almacerán aquellas personas con una "E"
-    HashTable<Encomienda> hashTable;
-    //HashTable donde se almacerán aquellas personas con una "V"
+    HashTable<Encomienda> hashTableEncomiendas;
+    //hashTableEncomiendas donde se almacerán aquellas personas con una "V"
     //HashTable<GAAA> la mama defabio!;
 
     ifstream archivo;
@@ -20,6 +21,7 @@ private:
 public:
     ControladorDataSet(){
         this->delimitador = ',';
+        hashTableEncomiendas.setSize(10000);
     };
     ~ControladorDataSet(){};
 
@@ -47,16 +49,14 @@ public:
             getline(stream, funcion, delimitador);
 			//Indexamos la informacion, según la función, en encomiendas o viajes
             if (funcion == "E")
-            {
-                Encomienda * encomienda = new Encomienda(NULL, NULL, NULL);
-                cout << "La vieja DE FABIO" << endl;
+            {   
+                Persona * cliente = new Persona(nombre, apellido1 , stoi(edad), 'D');
+                cliente->setDocumento(documento);
+                Encomienda * encomienda = new Encomienda(cliente, NULL, NULL);
+                hashTableEncomiendas.insert(encomienda->cliente->getKey(), encomienda);
+                cout << "a";
             }
-            
-            
 		}
 		archivo.close();
     }
-    
-    
-
 };
