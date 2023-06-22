@@ -478,8 +478,10 @@ void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *& ver
         // Si existe un bus disponible accede al arco
         if (wTmp != NULL)
         {
-            listaVehiculo->append(&listaVehiculo, wTmp);
-            rutaArco(tmpNdAgrafo->getElemento(tmpNdAgrafo), Destino, espacioDisponible, tmpVI, listaVehiculo, rutasTotales);
+            NodoLista<W> *busTMP;
+            busTMP->duplicadoLista(&listaVehiculo, &busTMP);
+            busTMP->append(&busTMP, wTmp);
+            rutaArco(tmpNdAgrafo->getElemento(tmpNdAgrafo), Destino, espacioDisponible, tmpVI, busTMP, rutasTotales);
         }
         // Si no existe un bus disponible va al siguente arco
     }
@@ -501,14 +503,13 @@ void rutaArco(AGrafo * ArcoTMP, int DestinoFinal, int espacioDisponible, NodoLis
         TotalRuta<W> *tmpTR = new TotalRuta<W>;
         tmpTR->rutaAlDestino = listaVehiculotmp;
         rutasTotales->push(&rutasTotales, tmpTR);
+        return;
     }
+
     // Si no existe no bus disponible va al vertice de llegada
-    else
+    if (!verticeVisitado(ArcoTMP->verticeLlegada, verticesIdos))
     {
-        if (!verticeVisitado(ArcoTMP->verticeLlegada, verticesIdos))
-        {
-            rutaVertice(tmpArco->verticeLlegada, DestinoFinal, espacioDisponible, verticesIdos, listaVehiculotmp, rutasTotales);
-        }
+        rutaVertice(tmpArco->verticeLlegada, DestinoFinal, espacioDisponible, verticesIdos, listaVehiculotmp, rutasTotales);
     }
 }
 

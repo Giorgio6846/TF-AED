@@ -132,13 +132,33 @@ for (int i = 0; i < rTMP->getSizeOrigen(); i++)
 }
 
 TotalRuta<Bus> * TRtmp = new TotalRuta<Bus>;
+NodoLista<Bus> *busTMP = NULL;
+
+Bus * busETMP = NULL;
 
 for (int i = 0; i < rTMP->getSizeLugares(); i++)
 {
     for (int j = 0; j < rTMP->getSizeLugares(); j++)
     {
-        TRtmp = grafoRutas->rutaFinal(i,j,1);
-        
+        if (i != j)
+        {
+            TRtmp = grafoRutas->rutaFinal(i, j, 1);
+
+            busTMP = NULL;
+            busTMP = TRtmp->rutaAlDestino;
+
+            cout << "Origen: " << rTMP->getLugar(i) << " ";
+            cout << "Destino: " << rTMP->getLugar(j) << " ";
+            cout << "Tiempo: " << TRtmp->pesoEntero << "\n\n";
+            
+            for (; busTMP != NULL; busTMP = busTMP->nextElemento(busTMP))
+            {
+                busETMP = busTMP->getElemento(busTMP);
+                cout << "Origen bus: " << rTMP->getLugar(busETMP->getOrigen()) << " ";
+                cout << "Destino bus: " << rTMP->getLugar(busETMP->getDestino()) << "\n";
+            }
+            cout << "\n\n";
+        }
     }
 }
 
