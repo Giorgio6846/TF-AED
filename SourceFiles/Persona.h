@@ -89,7 +89,7 @@ void Persona :: typeApellido()
 
         do
         {
-        cout << "Ingrese su apellido: ";
+        cout << "Ingrese su apellido paterno: ";
         cin >> apellidosP;
         for (int i = 0; i < apellidosP.length(); i++)
         {
@@ -252,6 +252,7 @@ void Persona :: typeTipoDocumentoyDocumento()
 
 void Persona :: typePersona()
 {
+    clearScreen;
     cout << "Ingrese los datos de la persona: \n";
     ClearKeyboard();
     typeNombre();
@@ -261,23 +262,27 @@ void Persona :: typePersona()
     typeEdad();
     ClearKeyboard();
     typeTipoDocumentoyDocumento();
-
+    
+    clearScreen;
     cout << "Los datos de la persona son: \n";
-    cout << "Nombres: " << this->nombre << "\n";
-    cout << "Apellidos: " << this->apellido << "\n";
+    cout << "Nombre: " << this->nombre << "\n";
+    cout << "Apellido: " << this->apellido << "\n";
     cout << "Edad: " << this->edad << "\n";
-    cout << "Documento: ";
+    cout << "Tipo de documento: ";
     
     switch (this->tipoDocumento)
     {
     case 1:
-        cout << "DNI " << this->documento << "\n";
+        cout << "DNI"<<"\n";
+        cout<<"Nro: "<<this->documento << "\n";
         break;
     case 2:
-        cout << "Carnet de Extranjeria " << this->documento << "\n";
+        cout << "Carnet de Extranjeria "<<"\n";
+        cout<<"Nro: "<<this->documento << "\n";
         break;
     case 3:
-        cout << "Pasaporte " << this->documento << "\n";
+        cout << "Pasaporte"<<"\n";
+        cout<<"Nro: "<<this->documento << "\n";
         break;
     default:
         break;
@@ -301,6 +306,7 @@ void Persona :: typePersona()
         {
             do
             {
+                clearScreen;
                 cout << "Selecione el dato a cambiar. \n";
                 
                 cout << "1. Nombre \n";
@@ -430,23 +436,27 @@ void Persona :: randomPersona()
 }
 
 void Persona :: informacionPersona()
-{
+{   
+    clearScreen;
     cout << "Los datos de la persona son: \n";
-    cout << "Nombres: " << this->nombre << "\n";
-    cout << "Apellidos: " << this->apellido << "\n";
+    cout << "Nombre: " << this->nombre << "\n";
+    cout << "Apellido: " << this->apellido << "\n";
     cout << "Edad: " << this->edad << "\n";
     cout << "Documento: ";
 
     switch (this->tipoDocumento)
     {
     case 1:
-        cout << "DNI " << this->documento << "\n";
+        cout << "DNI"<<"\n";
+        cout<<this->documento << "\n";
         break;
     case 2:
-        cout << "Carnet de Extranjeria " << this->documento << "\n";
+        cout << "Carnet de Extranjeria "<<"\n";
+        cout <<this->documento << "\n";
         break;
     case 3:
-        cout << "Pasaporte " << this->documento << "\n";
+        cout << "Pasaporte"<<"\n";
+        cout<<this->documento << "\n";
         break;
     default:
         break;

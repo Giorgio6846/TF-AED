@@ -6,9 +6,10 @@ class objetoEncomienda
 private:
     string categoria;
     float peso;
-    char esFragil;
+    int esFragil;
+    string fragil;
 public:
-    objetoEncomienda(string categoria, float peso, char esFragil){
+    objetoEncomienda(string categoria, float peso, int esFragil){
         this->peso=peso;
         this->esFragil = esFragil;
         this->categoria = categoria;
@@ -17,15 +18,22 @@ public:
 
     void setCategoria(string categoria){this->categoria = categoria;}
     void setPeso(float peso){this->peso = peso;}
-    void setEsFragilI(char esFragil){this->esFragil = esFragil;}
+    void setEsFragilI(int esFragil){this->esFragil = esFragil;}
 
-    bool getEsFragil(){return (this->esFragil == 'S') ? true : false;}
+    bool getEsFragil(){return (this->esFragil == '1') ? true : false;}
     string getCategoria(){return this->categoria;}
     int getPeso(){return this->peso;}
 
     void infoEncomienda(){
-        cout << "Informacion del objeto" << endl;
+        cout << "Informacion del objeto: " << endl;
         cout << "Peso: " << peso << "Kg" << endl;
-        cout << "Es fragil?: " << esFragil << endl;
+        if (esFragil==true)
+        {
+           fragil="Si";
+        }else
+        {
+            fragil="No";
+        }
+        cout << "Es fragil?: " << fragil << endl;
     }
 };
