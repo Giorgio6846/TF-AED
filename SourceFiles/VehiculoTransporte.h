@@ -128,8 +128,7 @@ void Bus::generarAsientos()
             asientoTMP->claseAsiento = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
 
             busAsientos.insert(asientoTMP->letraAsiento, asientoTMP);
-
-            //            busAsientos.insert(to_string(asientoTMP->letraAsiento), asientoTMP);
+            //busAsientos.insert(to_string(asientoTMP->letraAsiento), asientoTMP);
         }
     }
     

@@ -1,6 +1,6 @@
 #include "../Rutas.h"
+
 #include "Viaje.h"
-#include "../Algoritmos/NodoArbolComplexv2.h"
 #include "../Algoritmos/Grafo.h"
 #include "../VehiculoTransporte.h"
 
@@ -44,19 +44,19 @@ ControladorViajes::~ControladorViajes()
 
 void ControladorViajes ::reservaViaje()
 {
-    int Origen = Rutas :: selecionarOrigenv2();
+    int Origen = Rutas :: selecionarOrigen();
     if (Origen == -1)
     {
         return;
     }
 
-    int Destino = selecionarDestinov2(Origen);
+    int Destino = selecionarDestino(Origen);
     if (Destino == -1)
     {
         return;
     }
-    
-    int cantidadUsuarios = seleccionarCantidadUsuarios(getOrigen(Origen), getDestino(Destino));
+
+    int cantidadUsuarios = seleccionarCantidadUsuarios(getLugar(Origen), getLugar(Destino));
     TotalRuta<Bus> *TRtmp = grafoRutas->rutaFinal(Origen, Destino, cantidadUsuarios);
     Viaje * nuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios, TRtmp);
 
@@ -130,9 +130,9 @@ void ControladorViajes :: generacionGrafo()
         grafoRutas -> agregarVertice(i);
     }
 
-    for (int i = 0; i < getSizeOrigen(); i++)
+    for (int i = 0; i < getSizeLugares(); i++)
     {
-        for (int j = 0; j < getSizeDestino(); j++)
+        for (int j = 0; j < getSizeLugares(); j++)
         {
             if (accesoRutaDisponible(i,j) != 0)
             {

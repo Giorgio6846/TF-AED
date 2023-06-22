@@ -24,8 +24,6 @@ public:
     ~Viaje();
 
     void agregarPasajero();
-    //void informacionPasajeros();
-
     void setRutaBus(TotalRuta<Bus> *busTmp) { TRtmp = busTmp; }
 };
 

@@ -71,9 +71,9 @@ class ControladorEncomiendas: public Rutas
             grafoRutas->agregarVertice(i);
         }
 
-        for (int i = 0; i < getSizeOrigen(); i++)
+        for (int i = 0; i < getSizeLugares(); i++)
         {
-            for (int j = 0; j < getSizeDestino(); j++)
+            for (int j = 0; j < getSizeLugares(); j++)
             {
                 if (accesoRutaDisponible(i, j) != 0)
                 {
@@ -190,11 +190,11 @@ class ControladorEncomiendas: public Rutas
     }
 
     TotalRuta<Camion> * almacenarRuta(){
-        int Origen = Rutas :: selecionarOrigenv2();
+        int Origen = Rutas :: selecionarOrigen();
 
         if(Origen != -1)
         {
-            int Destino = selecionarDestinov2(Origen);
+            int Destino = selecionarDestino(Origen);
             if (Destino != -1)
             {
                 int peso ;
