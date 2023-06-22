@@ -54,7 +54,6 @@ public:
                 cliente->setDocumento(documento);
                 Encomienda * encomienda = new Encomienda(cliente, NULL, NULL);
                 hashTableEncomiendas.insert(encomienda->cliente->getKey(), encomienda);
-                cout << "a";
             }
 		}
 		archivo.close();

@@ -24,6 +24,7 @@ class ControladorEncomiendas: public Rutas, public ControladorDataSet
     public:
         ControladorEncomiendas(){
             arbol = NULL;
+            lecturaIndexacion();
         };
         ~ControladorEncomiendas(){};
 

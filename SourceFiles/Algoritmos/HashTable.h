@@ -66,8 +66,10 @@ public:
 				if (it->cliente->getDocumento() != "" ){
 					cout << "Encomienda : " << cont << endl;
 					it->cliente->informacionPersona();
-					it->objeto->infoEncomienda();
-					cout << "Tiempo estimado de viaje: " << (it->ruta->pesoEntero * 10) / 60 <<" horas"<< endl;
+					if(it->objeto !=NULL){
+						it->objeto->infoEncomienda();
+						cout << "Tiempo estimado de viaje: " << (it->ruta->pesoEntero * 10) / 60 <<" horas"<< endl;
+					}
 					cont++;
 				}
 			}
