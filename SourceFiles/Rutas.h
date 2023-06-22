@@ -144,7 +144,7 @@ int Rutas :: selecionarOrigenv2()
     int opcionElegida;
     do
     {
-        cout << "\nElija, de la lista, el origen del viaje (01 - " << getSizeOrigen() << " o 00 para regresar al menu de viajes) \n";
+        cout << "Elija, de la lista, el origen del viaje (01 - " << getSizeOrigen() << " o 00 para regresar al menu de viajes) \n";
         for (size_t i = 00; i < getSizeOrigen(); i++)
         {
             cout << i + 01 << " " << getOrigen(i) << "\n";
@@ -166,7 +166,8 @@ int Rutas ::selecionarDestinov2(int Origen)
     int opcionElegida;
     do
     {
-        cout << "\nElija, de la lista, el destino del viaje (01 - " << getSizeOrigen() << " o 00 para regresar al menu de viajes) \n";
+        clearScreen;
+        cout << "Elija, de la lista, el destino del viaje (01 - " << getSizeOrigen() << " o 00 para regresar al menu de viajes) \n";
         for (size_t i = 00; i < getSizeOrigen(); i++)
         {
             cout << i + 01 << " " << getOrigen(i) << "\n";

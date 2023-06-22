@@ -176,7 +176,7 @@ class ControladorEncomiendas: public Rutas
         {
             clearScreen;
 
-            cout << "Es su objeto considero fragil?: S = SI / N = NO "<< endl;
+            cout << "Es su objeto considero fragil?: 1 = Si / 2 = No "<< endl;
             cin >> esFragil;
 
             if (!(esFragil >= 1 && esFragil <= 2)) {
@@ -223,7 +223,8 @@ class ControladorEncomiendas: public Rutas
         hashTable.setSize(200);
         //Si se insertó de manera satisfactoria, se printea un mensaje
         if (hashTable.insert(encomiendaFinal->cliente->getDocumento(), encomiendaFinal))
-        {
+        {   
+            clearScreen;
             cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
         }
         //Se agrega el valor de tiempo a un arbol de búsqueda
