@@ -33,7 +33,6 @@ class ControladorEncomiendas: public Rutas
         if (hashTable.isEmpty())
         {
             cout << "No hay encomiendas registradas!" << endl;
-            cont();
         }
         else
         {

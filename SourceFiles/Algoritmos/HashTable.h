@@ -51,7 +51,7 @@ public:
 			if (it->cliente->getDocumento() == key )
 				it->cliente->informacionPersona();
 				it->objeto->infoEncomienda();
-				cout << "Tiempo estimado: " << it->ruta->pesoEntero << endl;
+				cout << "Tiempo estimado de viaje: " << (it->ruta->pesoEntero)/60 <<" horas"<< endl;
 				cont();
 		}
 		cout << endl;
@@ -68,7 +68,7 @@ public:
 					cout << "Encomienda : " << cont << endl;
 					it->cliente->informacionPersona();
 					it->objeto->infoEncomienda();
-					cout << "Tiempo estimado: " << it->ruta->pesoEntero << endl;
+					cout << "Tiempo estimado de viaje: " << (it->ruta->pesoEntero)/60 <<" horas"<< endl;
 					cont++;
 				}
 			}
@@ -79,16 +79,15 @@ public:
 	//Función hash; Se utiliza string, ya que el DNI será pasado como llave
     size_t crearHashString(const string key) const {
 		size_t hashVal = 0;
-		const int a=2023;
 		//For each 
 		//for (char ch : key) hashVal += size_t(ch);
 
-		auto hashFunc = [](char c) {
-        return static_cast<size_t>(c) * a;};
-
-    	for (size_t i = 0; i < key.length(); i++) {
-        hashVal = hashVal + hashFunc(key[i]);
-    	}
+		for (int i = 0; i < key.length(); i++) {
+        char caracter = key[i];
+        int indice = i;  
+        int valor = caracter * indice;
+        hashVal += valor;
+    }
 
 		hashVal = hashVal % tableLists.size();		
 		return(hashVal);	
