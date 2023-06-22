@@ -4,7 +4,7 @@
 #include "../VehiculoTransporte.h"
 #include "../Algoritmos/Grafo.h"
 
-struct precioPersona
+struct PersonaInf
 {
     int Precio;
     Persona * personaViaje = new Persona;
@@ -14,7 +14,7 @@ class Viaje
 {
 private:
     int cantidadPasajeros;
-    NodoLista<precioPersona> *listaPasajeros = NULL;
+    NodoLista<PersonaInf> *listaPasajeros = NULL;
     TotalRuta<Bus> *TRtmp;
 
     int codigoO,codigoD;
@@ -25,6 +25,7 @@ public:
 
     void agregarPasajero();
     void setRutaBus(TotalRuta<Bus> *busTmp) { TRtmp = busTmp; }
+    void mostrarAsientos();
 };
 
 Viaje::Viaje(int codigoO, int codigoD, int cantidadPasajeros, TotalRuta<Bus> *busTmp)
@@ -40,18 +41,28 @@ Viaje::~Viaje()
 {
 }
 
+void Viaje :: mostrarAsientos()
+{
+    NodoLista<Bus> *busTMP = TRtmp -> rutaAlDestino;
+    for (; busTMP != NULL; busTMP = busTMP->nextElemento(busTMP))
+    {
+        busTMP->getElemento(busTMP)->mostrarAsientos();
+        cont();
+    }
+}
+
 void Viaje :: agregarPasajero()
 {
     for (int i = 0; i <= cantidadPasajeros - 1; i++)
     {
-        precioPersona * personaCosto = new precioPersona();
-        
+        PersonaInf * personaGrupo = new PersonaInf();
+
         #if RAD == 0
-        personaCosto->personaViaje->typePersona();
+        personaGrupo->personaViaje->typePersona();
         #elif RAD == 1
-        personaCosto->personaViaje->randomPersona();
+        personaGrupo->personaViaje->randomPersona();
         #endif
 
-        listaPasajeros->push(&listaPasajeros, personaCosto);
+        listaPasajeros->push(&listaPasajeros, personaGrupo);
     }
 }

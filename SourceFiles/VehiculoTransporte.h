@@ -60,7 +60,7 @@ Por ejemplo: A10 este es organizado por A y despues en la posicion A es organiza
 struct Asiento
 {
     string letraAsiento;
-    int numeroAsiento;
+    string numeroAsiento;
 
     char claseAsiento;
     Persona * usuarioPersona;
@@ -85,7 +85,7 @@ private:
         settiempoEstimado(tiempoEstimado);
         setCantidadDisponible(columnaAsiento * filaAsiento);
 
-        busAsientos.setSize(columnaAsiento);
+        busAsientos.setSize(filaAsiento);
         generarAsientos();
     }
     ~Bus(){}
@@ -103,6 +103,18 @@ private:
 
 void Bus::mostrarAsientos()
 {
+    cout << busAsientos.getSize();
+    for (int i = 0; i < busAsientos.getSize(); i++)
+    {
+        string numeroAsiento = to_string(i+1);
+        list tmp = busAsientos.buscarListaBus(numeroAsiento);
+        for (auto *it : tmp)
+        { 
+            cout << it->letraAsiento << it->numeroAsiento << " ";
+        }
+    }
+    
+
     /*
     for (int i = 0; i < distribucionAsientos.size(); i++)
     {
@@ -117,40 +129,18 @@ void Bus::mostrarAsientos()
 
 void Bus::generarAsientos()
 {
-
     for (int i = 0; i < filaAsiento; i++)
     {
         for (int j = 0; j < columnaAsiento; j++)
         {
             Asiento * asientoTMP = new Asiento;
-            asientoTMP-> letraAsiento  = char(65 + j);
-            asientoTMP-> numeroAsiento = i + 1;
-            asientoTMP->claseAsiento = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
+            asientoTMP -> letraAsiento  = char(65 + j);
+            asientoTMP -> numeroAsiento = i + 1;
+            asientoTMP -> claseAsiento = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
 
-            busAsientos.insert(asientoTMP->letraAsiento, asientoTMP);
-            //busAsientos.insert(to_string(asientoTMP->letraAsiento), asientoTMP);
+            busAsientos.insertBus(asientoTMP->numeroAsiento, asientoTMP);
         }
     }
-    
-/*
-    string ubicacion;
-    char clase;
-
-    for (int i = 0; i < filaAsiento; i++)
-    {
-        vector<Asiento> Fil;
-        for (int j = 0; j < columnaAsiento; j++)
-        {
-            ubicacion = char(65 + j) + to_string(i + 1);
-            clase = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
-
-            Fil.push_back(Asiento());
-            Fil[j].clase = clase;
-            Fil[j].ubicacion = ubicacion;
-        }
-        distribucionAsientos.push_back(Fil);
-    }
-*/
 }
 
 class Camion : public VehiculoTransporte

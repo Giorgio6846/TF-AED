@@ -61,6 +61,7 @@ void ControladorViajes ::reservaViaje()
     Viaje * nuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios, TRtmp);
 
     nuevaReserva -> agregarPasajero();
+    nuevaReserva -> mostrarAsientos();
     listaCompras->push(&listaCompras, nuevaReserva);
 }
 

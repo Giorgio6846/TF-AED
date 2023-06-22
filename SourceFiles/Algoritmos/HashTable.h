@@ -96,6 +96,36 @@ public:
 	}
 
 	int getSize() const {
-		return currentSize;
+		return tableLists.size();
+	}
+
+	bool insertBus(string key, T *n)
+	{
+		tableLists[crearHashStringBus(key)].push_back(n); // Del vector, obtenemos la lista de elementos según el hash(indice) obtenido
+		return true;
+	}
+
+	// Función hash; Se utiliza string, ya que el DNI será pasado como llave
+	size_t crearHashStringBus(const string key) const
+	{
+		size_t hashVal = 0;
+		// For each
+		// for (char ch : key) hashVal += size_t(ch);
+
+		for (int i = 0; i < key.length(); i++)
+		{
+		char caracter = key[i];
+		hashVal += caracter;
+		}
+
+		hashVal = hashVal % tableLists.size();
+		return (hashVal);
+	}
+
+	list<T *> buscarListaBus(string key)
+	{
+		int pos = 0;
+		pos = crearHashStringBus(key); // Obtenemos el indice de la Tabla (pos) a partir de la Funcion HASH
+		return tableLists[pos];
 	}
 };
