@@ -112,7 +112,8 @@ int main()
     GA ->lecturaIndexacion();
     test1 = test;
 */
-
+ 
+/*
 Grafo<NodoLista<Bus>, int, Bus> *grafoRutas = new Grafo<NodoLista<Bus>, int, Bus>;
 Rutas *rTMP = new Rutas;
 
@@ -168,7 +169,7 @@ for (int i = 0; i < rTMP->getSizeLugares(); i++)
         }
     }
 }
-
+*/
 
 
 /*
