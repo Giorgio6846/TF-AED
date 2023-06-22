@@ -189,7 +189,7 @@ class ControladorEncomiendas: public Rutas
         return objeto;
     }
 
-    TotalRuta<Camion> * almacenarRuta(){
+    TotalRuta<Camion> * almacenarRuta(int peso){
         int Origen = Rutas :: selecionarOrigen();
 
         if(Origen != -1)
@@ -197,7 +197,6 @@ class ControladorEncomiendas: public Rutas
             int Destino = selecionarDestino(Origen);
             if (Destino != -1)
             {
-                int peso ;
                 TotalRuta<Camion> * TRtmp = grafoRutas->rutaFinal(Origen, Destino, peso);
                 return TRtmp;
             }
@@ -214,7 +213,7 @@ class ControladorEncomiendas: public Rutas
         //Se crea e iguala el objeto a los devueltos por funciones
         Persona *cliente = almacenarInfoCliente();
         objetoEncomienda *encomiendaItem = almacenarInfoObjeto();
-        TotalRuta<Camion> * ruta = almacenarRuta();
+        TotalRuta<Camion> * ruta = almacenarRuta(encomiendaItem->getPeso());
         //Se crea la encomienda completa a base de 3 objetos
         Encomienda *encomiendaFinal = new Encomienda(cliente, encomiendaItem, ruta);
         //Se asigna un tamaño al hash
