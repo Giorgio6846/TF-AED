@@ -1,4 +1,5 @@
 #include "Libraries.h"
+
 //#include "Bus.h"
 //#include "Algoritmos/NodoLista.h"
 //#include "Algoritmos/NodoArbolComplex.h"
@@ -8,10 +9,12 @@
 //#include "Algoritmos/Grafo.h"
 //#include "Viaje/ControladorViajes.h"
 //#include "Algoritmos/NodoLista.h"
+
 #include "Algoritmos/Grafo.h"
 #include "VehiculoTransporte.h"
 #include "Rutas.h"
 #include "ControladorDataSet.h"
+
 /*
 void print(NodoLista <int> *test)
 {
@@ -101,13 +104,15 @@ struct test
 
 int main()
 {
+
+    
     char test = 'A';
     string test1;
     ControladorDataSet * GA = new ControladorDataSet();
     GA ->lecturaIndexacion();
     test1 = test;
 
-
+/*
 Grafo<NodoLista<Bus>, int, Bus> *grafoRutas = new Grafo<NodoLista<Bus>, int, Bus>;
 Rutas *rTMP = new Rutas;
 
@@ -165,7 +170,7 @@ for (int i = 0; i < rTMP->getSizeLugares(); i++)
 }
 
 
-
+*/
 /*
 string test = "HOLA";
 

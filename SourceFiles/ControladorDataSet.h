@@ -1,6 +1,6 @@
 #include "Libraries.h"
-#include "Algoritmos\HashTable.h"
-#include "Encomienda\Encomienda.h"
+#include "Algoritmos/HashTable.h"
+#include "Encomienda/Encomienda.h"
 //#include "../Persona.h"
 //#include "objetoEncomienda.h"
 //#include "../VehiculoTransporte.h"
