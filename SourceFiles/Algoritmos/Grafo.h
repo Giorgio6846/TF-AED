@@ -351,8 +351,6 @@ private:
             }
         }
 
-
-    /
         W *verificacionVehiculo(AGrafo *tmpArco, int espacioDisponible)
         {
             T *tmpDato = tmpArco->datos;
