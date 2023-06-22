@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <list>
+#include <algorithm>
 
 #ifdef _WIN32
 #include <conio.h>
