@@ -64,7 +64,7 @@ public:
         }
         imprimirEnOrden(nodo->l);
         cout << "DNI asignada a la encomienda: " << getKeyDNI(nodo->nodo.key) <<endl;
-        cout << "Tiempo estimado: " << nodo->nodo.tiempoEnvio << endl;
+        cout << "Tiempo estimado de viaje: " << (nodo->nodo.tiempoEnvio)/60 <<" horas" <<endl;
         imprimirEnOrden(nodo->r);
     }
     //Extrae solo la parte numérica de la KEY
