@@ -35,6 +35,7 @@ public:
     void setApellido(string apellido) { this->apellido = apellido; }
     void setEdad(int edad) { this->edad = edad; }
     void setTipoDocumentoyDocumento(char tipoDocumento) { this->tipoDocumento = tipoDocumento; }
+    void setDocumento(string documento){this->documento = documento;}
 
     void typeNombre();
     void typeApellido();

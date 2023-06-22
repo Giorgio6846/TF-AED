@@ -12,12 +12,12 @@
 #include "../VehiculoTransporte.h"
 #include "objetoEncomienda.h"
 #include "Encomienda.h"
+#include "../ControladorDataSet.h"
 
 
-class ControladorEncomiendas: public Rutas
+class ControladorEncomiendas: public Rutas, public ControladorDataSet
 {
     private:
-        HashTable<Encomienda> hashTable;
         Grafo<NodoLista<Camion>, int, Camion> *grafoRutas = new Grafo<NodoLista<Camion>, int, Camion>;
         NodoArbol<int> * arbol;
 
@@ -29,13 +29,13 @@ class ControladorEncomiendas: public Rutas
 
     void printInfoEncomiendas(){
         clearScreen;
-        if (hashTable.isEmpty())
+        if (hashTableEncomiendas.isEmpty())
         {
             cout << "No hay encomiendas registradas!" << endl;
         }
         else
         {
-            hashTable.mostrarTodasEncomiendas();
+            hashTableEncomiendas.mostrarTodasEncomiendas();
             cont();
         }
     }
@@ -90,7 +90,7 @@ class ControladorEncomiendas: public Rutas
     }
 
     void buscarEncomienda(){
-        if (hashTable.isEmpty())
+        if (hashTableEncomiendas.isEmpty())
         {
             cout << "No hay encomiendas registradas!" << endl;
             cont();
@@ -102,7 +102,7 @@ class ControladorEncomiendas: public Rutas
             cout << "Ingrese su DNI" << endl;
             cin >> codigo;
             clearScreen;
-            hashTable.buscarEncomienda(codigo); 
+            hashTableEncomiendas.buscarEncomienda(codigo); 
         }
     }
 
@@ -114,9 +114,9 @@ class ControladorEncomiendas: public Rutas
 
         Persona * cliente = new Persona();
 
-        #if RAD == 0
+        #if RAD == 1
             cliente->typePersona();
-        #elif RAD == 1
+        #elif RAD == 0
             cliente->randomPersona();
         #endif
 
@@ -217,9 +217,8 @@ class ControladorEncomiendas: public Rutas
         //Se crea la encomienda completa a base de 3 objetos
         Encomienda *encomiendaFinal = new Encomienda(cliente, encomiendaItem, ruta);
         //Se asigna un tamaño al hash
-        hashTable.setSize(200);
         //Si se insertó de manera satisfactoria, se printea un mensaje
-        if (hashTable.insert(encomiendaFinal->cliente->getKey(), encomiendaFinal))
+        if (hashTableEncomiendas.insert(encomiendaFinal->cliente->getKey(), encomiendaFinal))
         {   
             clearScreen;
             cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
