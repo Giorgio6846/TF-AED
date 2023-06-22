@@ -5,61 +5,61 @@ class Persona
 {
 public:
     string nombre, apellido;
-    int edad, contador; //contador para generar un ranking basado en cuantos pedidos ha hecho el cliente
-    //0 = Ninguno, 1 DNI, 2 Carnet Extranjeria, 3 Pasaporte
+    int edad, contador; // contador para generar un ranking basado en cuantos pedidos ha hecho el cliente
+    // 0 = Ninguno, 1 DNI, 2 Carnet Extranjeria, 3 Pasaporte
     int tipoDocumento;
     string documento;
 
 public:
     Persona(string nombre, string apellido, int edad, char tipoDocumento)
     {
-        this -> nombre = nombre;
-        this -> apellido = apellido;
-        this -> edad = edad;
-        this -> tipoDocumento = tipoDocumento;
+        this->nombre = nombre;
+        this->apellido = apellido;
+        this->edad = edad;
+        this->tipoDocumento = tipoDocumento;
         this->contador = 0;
     };
-    
+
     Persona()
     {
-        this -> nombre = "";
-        this -> apellido = "";
-        this -> edad = 0;
-        this -> tipoDocumento = 0;
-        this -> documento = "";
+        this->nombre = "";
+        this->apellido = "";
+        this->edad = 0;
+        this->tipoDocumento = 0;
+        this->documento = "";
     }
 
     ~Persona(){};
 
-    void setNombre(string nombre){this->nombre = nombre;}
-    void setApellido(string apellido){this->apellido = apellido;}
-    void setEdad(int edad){this->edad = edad;}
-    void setTipoDocumentoyDocumento(char tipoDocumento){this->tipoDocumento = tipoDocumento;}
+    void setNombre(string nombre) { this->nombre = nombre; }
+    void setApellido(string apellido) { this->apellido = apellido; }
+    void setEdad(int edad) { this->edad = edad; }
+    void setTipoDocumentoyDocumento(char tipoDocumento) { this->tipoDocumento = tipoDocumento; }
 
     void typeNombre();
     void typeApellido();
     void typeEdad();
     void typeTipoDocumentoyDocumento();
 
-    string getNombre(){return this->nombre;}
-    string getApellido(){return this->apellido;}
-    int getEdad(){return this->edad;}
-    char getTipoDocumento(){return this->tipoDocumento;}
+    string getNombre() { return this->nombre; }
+    string getApellido() { return this->apellido; }
+    int getEdad() { return this->edad; }
+    char getTipoDocumento() { return this->tipoDocumento; }
     string getDocumento() { return this->documento; }
-    int getContador(){return this->contador;}
-    string getKey(){return this->nombre+this->apellido+this->documento;}
+    int getContador() { return this->contador; }
+    string getKey() { return this->nombre + this->apellido + this->documento; }
 
     void typePersona();
     void randomPersona();
     void informacionPersona();
 };
 
-void Persona :: typeNombre()
+void Persona ::typeNombre()
+{
+    string nombreP;
+    bool val;
+    do
     {
-        string nombreP;
-        bool val;
-        do
-        {
         cout << "Ingrese su nombre: ";
         cin >> nombreP;
         for (int i = 0; i < nombreP.length(); i++)
@@ -77,18 +77,18 @@ void Persona :: typeNombre()
         {
             cout << "El nombre ingresado es invalido.\n";
         }
-        } while (val == false);
+    } while (val == false);
 
-        this->nombre = nombreP;
-    }
+    this->nombre = nombreP;
+}
 
-void Persona :: typeApellido()
+void Persona ::typeApellido()
+{
+    string apellidosP;
+    bool val;
+
+    do
     {
-        string apellidosP;
-        bool val;
-
-        do
-        {
         cout << "Ingrese su apellido paterno: ";
         cin >> apellidosP;
         for (int i = 0; i < apellidosP.length(); i++)
@@ -106,151 +106,150 @@ void Persona :: typeApellido()
         {
             cout << "El apellido ingresado es invalido.\n";
         }
-        } while (val == false);
+    } while (val == false);
 
-        /*
-        do
+    /*
+    do
+    {
+        cout << "Apellido: ";
+        val = 1;
+        for (int i = 0; i < nombre.size(); i++)
         {
             cout << "Apellido: ";
-            val = 1;
-            for (int i = 0; i < nombre.size(); i++)
-            {
-                cout << "Apellido: ";
-                cin >> apellidosP;
-                if (!(((int(toupper(nombre[i])) >= 65 && int(toupper(nombre[i])) <= 90) || (int(nombre[i]) >= 48 && int(nombre[i]) <= 57)) || int(nombre[i]) == 32))
-                {
-                    ClearKeyboard();
-                    val = 0;
-                }
-            }
-            if (val == 0)
-            {
-                cout << "Los apellidos ingresados son incorrectos. Solo se aceptan letras y numeros";
-            }
-
-        } while (val == 0);
-        */
-
-        this -> apellido = apellidosP;
-    }
-
-void Persona :: typeEdad()
-    {
-        int edadP;
-
-        do
-        {
-            cout << "Edad: ";
-            cin >> edadP;
-            if(!(edadP >= 1 && edadP <= 120))
+            cin >> apellidosP;
+            if (!(((int(toupper(nombre[i])) >= 65 && int(toupper(nombre[i])) <= 90) || (int(nombre[i]) >= 48 && int(nombre[i]) <= 57)) || int(nombre[i]) == 32))
             {
                 ClearKeyboard();
-                cout << "La edad no es valida";
+                val = 0;
             }
-        } while (!(edadP >= 1 && edadP <= 120));
-
-        this->edad = edadP;
-    }
-
-void Persona :: typeTipoDocumentoyDocumento()
-    {
-        int tipoDocumentoP;
-        string documentoP;
-        bool val;
-        do
+        }
+        if (val == 0)
         {
-            cout << "Tipo de documento (1: DNI, 2: Carnet de Extranjeria & 3: Pasaporte): ";
-            cin >> tipoDocumentoP;
-
-            if (!(tipoDocumentoP >= 1 && tipoDocumentoP <= 3))
-            {
-                ClearKeyboard();
-                cout << "Opcion errorea. Ingrese de nuevo el tipo de documento. \n";
-            }
-        } while (!(tipoDocumentoP >= 1 && tipoDocumentoP <= 3));
-
-        this -> tipoDocumento = tipoDocumentoP;
-
-        switch (tipoDocumentoP)
-        {
-        case 1:
-            do
-            {
-                cout << "Ingrese el DNI del pasajero: ";
-                cin >> documentoP;
-                val = documentoP.size() == 8;
-                if (val)
-                {
-                    for (int i = 0; i < documentoP.size(); i++)
-                    {
-                        if (!(int(documentoP[i]) >= 48 && int(documentoP[i]) <= 57))
-                        {
-                            val = 0;
-                        }
-                    }
-                }
-                if(!val)
-                {
-                    ClearKeyboard();
-                    cout << "DNI Incorrecto.\n";
-                }
-            } while (!val);
-            break;
-        case 2:
-            do
-            {
-                cout << "Ingrese el Carnet de Extranjeria del pasajero: ";
-                cin >> documentoP;
-                val = documentoP.size() == 9;
-                if (val)
-                {
-                    for (int i = 0; i < documentoP.size(); i++)
-                    {
-                        if (!(int(documentoP[i]) >= 48 && int(documentoP[i]) <= 57))
-                        {
-                            val = 0;
-                        }
-                    }
-                }
-                if(!val)
-                {
-                    ClearKeyboard();
-                    cout << "Carnet de Extranjeria Incorrecta. \n";
-                }
-            } while (!val);
-            break;
-        case 3:
-            do
-            {
-                cout << "Ingrese el Pasaporte del pasajero: ";
-                cin >> documentoP;
-                val = documentoP.size() == 8;
-                if (val)
-                {
-                    for (int i = 0; i < documentoP.size(); i++)
-                    {
-                        if (!(int(documentoP[i]) >= 48 && int(documentoP[i]) <= 57))
-                        {
-                            val = 0;
-                        }
-                    }
-                }
-                if(!val)
-                {
-                    ClearKeyboard();
-                    cout << "Pasaporte Incorrecto. \n";
-                }
-            } while (!val);
-            break;
-        default:
-            break;
+            cout << "Los apellidos ingresados son incorrectos. Solo se aceptan letras y numeros";
         }
 
-        this-> documento = documentoP;
+    } while (val == 0);
+    */
 
+    this->apellido = apellidosP;
+}
+
+void Persona ::typeEdad()
+{
+    int edadP;
+
+    do
+    {
+        cout << "Edad: ";
+        cin >> edadP;
+        if (!(edadP >= 1 && edadP <= 120))
+        {
+            ClearKeyboard();
+            cout << "La edad no es valida";
+        }
+    } while (!(edadP >= 1 && edadP <= 120));
+
+    this->edad = edadP;
+}
+
+void Persona ::typeTipoDocumentoyDocumento()
+{
+    int tipoDocumentoP;
+    string documentoP;
+    bool val;
+    do
+    {
+        cout << "Tipo de documento (1: DNI, 2: Carnet de Extranjeria & 3: Pasaporte): ";
+        cin >> tipoDocumentoP;
+
+        if (!(tipoDocumentoP >= 1 && tipoDocumentoP <= 3))
+        {
+            ClearKeyboard();
+            cout << "Opcion errorea. Ingrese de nuevo el tipo de documento. \n";
+        }
+    } while (!(tipoDocumentoP >= 1 && tipoDocumentoP <= 3));
+
+    this->tipoDocumento = tipoDocumentoP;
+
+    switch (tipoDocumentoP)
+    {
+    case 1:
+        do
+        {
+            cout << "Ingrese el DNI del pasajero: ";
+            cin >> documentoP;
+            val = documentoP.size() == 8;
+            if (val)
+            {
+                for (int i = 0; i < documentoP.size(); i++)
+                {
+                    if (!(int(documentoP[i]) >= 48 && int(documentoP[i]) <= 57))
+                    {
+                        val = 0;
+                    }
+                }
+            }
+            if (!val)
+            {
+                ClearKeyboard();
+                cout << "DNI Incorrecto.\n";
+            }
+        } while (!val);
+        break;
+    case 2:
+        do
+        {
+            cout << "Ingrese el Carnet de Extranjeria del pasajero: ";
+            cin >> documentoP;
+            val = documentoP.size() == 9;
+            if (val)
+            {
+                for (int i = 0; i < documentoP.size(); i++)
+                {
+                    if (!(int(documentoP[i]) >= 48 && int(documentoP[i]) <= 57))
+                    {
+                        val = 0;
+                    }
+                }
+            }
+            if (!val)
+            {
+                ClearKeyboard();
+                cout << "Carnet de Extranjeria Incorrecta. \n";
+            }
+        } while (!val);
+        break;
+    case 3:
+        do
+        {
+            cout << "Ingrese el Pasaporte del pasajero: ";
+            cin >> documentoP;
+            val = documentoP.size() == 8;
+            if (val)
+            {
+                for (int i = 0; i < documentoP.size(); i++)
+                {
+                    if (!(int(documentoP[i]) >= 48 && int(documentoP[i]) <= 57))
+                    {
+                        val = 0;
+                    }
+                }
+            }
+            if (!val)
+            {
+                ClearKeyboard();
+                cout << "Pasaporte Incorrecto. \n";
+            }
+        } while (!val);
+        break;
+    default:
+        break;
     }
 
-void Persona :: typePersona()
+    this->documento = documentoP;
+}
+
+void Persona ::typePersona()
 {
     clearScreen;
     cout << "Ingrese los datos de la persona: \n";
@@ -262,31 +261,34 @@ void Persona :: typePersona()
     typeEdad();
     ClearKeyboard();
     typeTipoDocumentoyDocumento();
-    
+
     clearScreen;
     cout << "Los datos de la persona son: \n";
     cout << "Nombre: " << this->nombre << "\n";
     cout << "Apellido: " << this->apellido << "\n";
     cout << "Edad: " << this->edad << "\n";
     cout << "Tipo de documento: ";
-    
+
     switch (this->tipoDocumento)
     {
     case 1:
-        cout << "DNI"<<"\n";
-        cout<<"Nro: "<<this->documento << "\n";
+        cout << "DNI"
+             << "\n";
+        cout << "Nro: " << this->documento << "\n";
         break;
     case 2:
-        cout << "Carnet de Extranjeria "<<"\n";
-        cout<<"Nro: "<<this->documento << "\n";
+        cout << "Carnet de Extranjeria "
+             << "\n";
+        cout << "Nro: " << this->documento << "\n";
         break;
     case 3:
-        cout << "Pasaporte"<<"\n";
-        cout<<"Nro: "<<this->documento << "\n";
+        cout << "Pasaporte"
+             << "\n";
+        cout << "Nro: " << this->documento << "\n";
         break;
     default:
         break;
-    } 
+    }
 
     int verDat;
     int camDat;
@@ -298,8 +300,8 @@ void Persona :: typePersona()
 
         if (!(verDat >= 1 && verDat <= 2))
         {
-                ClearKeyboard();
-                cout << "La opcion ingresada es incorrecta. \n";
+            ClearKeyboard();
+            cout << "La opcion ingresada es incorrecta. \n";
         }
 
         if (verDat == 1)
@@ -308,7 +310,7 @@ void Persona :: typePersona()
             {
                 clearScreen;
                 cout << "Selecione el dato a cambiar. \n";
-                
+
                 cout << "1. Nombre \n";
                 cout << "2. Apellido \n";
                 cout << "3. Edad \n";
@@ -344,7 +346,7 @@ void Persona :: typePersona()
     } while (!(verDat >= 1 && verDat <= 2));
 }
 
-void Persona :: randomPersona()
+void Persona ::randomPersona()
 {
     string pathApellidos = "InformacionDatos/apellidos-es.txt";
     string pathNombres = "InformacionDatos/nombres-propios-es.txt";
@@ -362,7 +364,7 @@ void Persona :: randomPersona()
     datTemp1 = rand() % stoi(cantidadNombres);
     datTemp2 = rand() % stoi(cantidadNombres);
 
-    this -> nombre = "";
+    this->nombre = "";
     i = 0;
 
     do
@@ -400,13 +402,13 @@ void Persona :: randomPersona()
 
     apellidosFile.close();
 
-    this-> edad = 0;
-    this -> edad = rand() % 80 + 18;
+    this->edad = 0;
+    this->edad = rand() % 80 + 18;
 
-    this-> tipoDocumento = 0;
+    this->tipoDocumento = 0;
     this->tipoDocumento = rand() % 3 + 1;
 
-    this-> documento = "";
+    this->documento = "";
     switch (this->tipoDocumento)
     {
     case 1:
@@ -435,8 +437,8 @@ void Persona :: randomPersona()
     }
 }
 
-void Persona :: informacionPersona()
-{   
+void Persona ::informacionPersona()
+{
     clearScreen;
     cout << "Los datos de la persona son: \n";
     cout << "Nombre: " << this->nombre << "\n";
@@ -447,16 +449,19 @@ void Persona :: informacionPersona()
     switch (this->tipoDocumento)
     {
     case 1:
-        cout << "DNI"<<"\n";
-        cout<<this->documento << "\n";
+        cout << "DNI"
+             << "\n";
+        cout << this->documento << "\n";
         break;
     case 2:
-        cout << "Carnet de Extranjeria "<<"\n";
-        cout <<this->documento << "\n";
+        cout << "Carnet de Extranjeria "
+             << "\n";
+        cout << this->documento << "\n";
         break;
     case 3:
-        cout << "Pasaporte"<<"\n";
-        cout<<this->documento << "\n";
+        cout << "Pasaporte"
+             << "\n";
+        cout << this->documento << "\n";
         break;
     default:
         break;

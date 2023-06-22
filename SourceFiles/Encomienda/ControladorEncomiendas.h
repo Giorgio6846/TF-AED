@@ -220,7 +220,7 @@ class ControladorEncomiendas: public Rutas
         //Se asigna un tamaño al hash
         hashTable.setSize(200);
         //Si se insertó de manera satisfactoria, se printea un mensaje
-        if (hashTable.insert(encomiendaFinal->cliente->getDocumento(), encomiendaFinal))
+        if (hashTable.insert(encomiendaFinal->cliente->getKey(), encomiendaFinal))
         {   
             clearScreen;
             cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
