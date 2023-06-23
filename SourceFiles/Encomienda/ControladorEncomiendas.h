@@ -115,9 +115,9 @@ class ControladorEncomiendas: public Rutas, public ControladorDataSet
 
         Persona * cliente = new Persona();
 
-        #if RAD == 1
+        #if RAD == 0
             cliente->typePersona();
-        #elif RAD == 0
+        #elif RAD == 1
             cliente->randomPersona();
         #endif
 
@@ -219,7 +219,7 @@ class ControladorEncomiendas: public Rutas, public ControladorDataSet
         Encomienda *encomiendaFinal = new Encomienda(cliente, encomiendaItem, ruta);
         //Se asigna un tamaño al hash
         //Si se insertó de manera satisfactoria, se printea un mensaje
-        if (hashTableEncomiendas.insert(encomiendaFinal->cliente->getKey(), encomiendaFinal))
+        if (hashTableEncomiendas.insert(encomiendaFinal->cliente->getDocumento(), encomiendaFinal))
         {   
             clearScreen;
             cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
