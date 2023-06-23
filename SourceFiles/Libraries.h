@@ -11,16 +11,20 @@
 #include <fstream>
 #include <list>
 #include <algorithm>
+#include <ctype.h>
 
+// Librerias Windows
 #ifdef _WIN32
 #include <conio.h>
 #include<windows.h>
-#else
-#include <curses.h>
 #endif
 
+// Librerias macOS
+#ifdef __APPLE__
+#include <curses.h>
+#endif 
 
-#include <ctype.h>
+// Librerias Linux
 
 using namespace std;
 
@@ -37,39 +41,72 @@ ClearKeyboard()
 Limpieza del cin
 */
 
-//Limpieza de pantalla
-#ifdef _WIN32
-#define VER 1
-#define RAD 0
-#define clearScreen system("CLS");
-#else
-#define clearScreen system("clear");
-#endif
+//Funciones Windows
+    //Limpieza de pantalla
 
-//Uso del getch en los sistemas operativos Windows y Unix
-#ifdef _WIN32
-void cont()
-{
-    getch();
-}
-#else
-void cont()
-{
-    //getch();
-    char c;
-    cin >> c;
-    return;
-}
-#endif
+    #ifdef _WIN32
+    #define VER 1
+    #define RAD 0
+    #define clearScreen system("CLS");
+    #endif
 
-// Limpieza del cin
-void ClearKeyboard()
-{
-    cin.clear();
-    cin.ignore(20000, '\n');
-}
+    //Getch
 
-int randDigit(int exception)
-{
-    return (rand() % (10 - exception) + exception);
-}
+    #ifdef _WIN32
+    void cont()
+    {
+        getch();
+    }
+    #endif
+
+//Funciones macOS
+    //Limpieza de pantalla
+
+    #ifdef __APPLE__
+    #define clearScreen system("clear");
+    #endif
+
+    //Getch
+
+    #ifdef __APPLE__
+    void cont()
+    {
+        // getch();
+        char c;
+        cin >> c;
+        return;
+    }
+    #endif
+
+    // Funciones Linux
+    // Limpieza de pantalla
+
+    #ifdef __linux__
+    #define clearScreen system("clear");
+    #endif
+
+    // Getch
+
+    #ifdef __linux__
+    void cont()
+    {
+        // getch();
+        char c;
+        cin >> c;
+        return;
+    }
+    #endif
+
+
+    //Funciones globales
+    void
+    ClearKeyboard()
+    {
+        cin.clear();
+        cin.ignore(20000, '\n');
+    }
+
+    int randDigit(int exception)
+    {
+        return (rand() % (10 - exception) + exception);
+    }
