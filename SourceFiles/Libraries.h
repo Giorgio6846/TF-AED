@@ -42,7 +42,7 @@ Limpieza del cin
 */
 
 //Funciones Windows
-    //Limpieza de pantalla
+    //Limpieza de pantalla y Variables
 
     #ifdef _WIN32
     #define VER 1
