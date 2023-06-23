@@ -9,10 +9,17 @@ private:
     int esFragil;
     string fragil;
 public:
+    //Constructor para input manual
     objetoEncomienda(string categoria, float peso, int esFragil){
         this->peso=peso;
         this->esFragil = esFragil;
         this->categoria = categoria;
+    };
+    //Constructor para DataSet
+    objetoEncomienda(){
+        this->peso=rand()%100;
+        this->esFragil = rand()%2;
+        this->categoria = "Tecnologia";
     };
     ~objetoEncomienda(){};
 

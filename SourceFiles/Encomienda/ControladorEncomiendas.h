@@ -19,11 +19,8 @@ class ControladorEncomiendas: public Rutas, public ControladorDataSet
 {
     private:
         Grafo<NodoLista<Camion>, int, Camion> *grafoRutas = new Grafo<NodoLista<Camion>, int, Camion>;
-        NodoArbol<int> * arbol;
-
     public:
         ControladorEncomiendas(){
-            arbol = NULL;
             lecturaIndexacion();
         };
         ~ControladorEncomiendas(){};
@@ -225,7 +222,6 @@ class ControladorEncomiendas: public Rutas, public ControladorDataSet
             cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
         }
         //Se agrega el valor de tiempo a un arbol de búsqueda
-        arbol->insertarValor(arbol, cliente->getKey() , ruta->pesoEntero);
         cont();
     }
 };

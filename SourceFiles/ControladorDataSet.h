@@ -2,9 +2,9 @@
 #include "Libraries.h"
 #include "Algoritmos/HashTable.h"
 #include "Encomienda/Encomienda.h"
+#include "Encomienda/objetoEncomienda.h"
 #include "Persona.h"
-//#include "objetoEncomienda.h"
-//#include "../VehiculoTransporte.h"
+#include "Algoritmos/NodoArbol.h"
 
 class ControladorDataSet
 {
@@ -13,7 +13,7 @@ protected:
     HashTable<Encomienda> hashTableEncomiendas;
     //hashTableEncomiendas donde se almacerán aquellas personas con una "V"
     //HashTable<GAAA> la mama defabio!;
-
+    NodoArbol<int> * arbol;
     ifstream archivo;
 	char delimitador;
 
@@ -22,6 +22,7 @@ public:
     ControladorDataSet(){
         this->delimitador = ',';
         hashTableEncomiendas.setSize(10000);
+        arbol = NULL;
     };
     ~ControladorDataSet(){};
 
@@ -50,10 +51,15 @@ public:
 			//Indexamos la informacion, según la función, en encomiendas o viajes
             if (funcion == "E")
             {   
+                //Se crea un objeto cliente del DataSet
                 Persona * cliente = new Persona(nombre, apellido1 , stoi(edad), 'D');
                 cliente->setDocumento(documento);
-                Encomienda * encomienda = new Encomienda(cliente, NULL, NULL);
+                //Se crea un objeto con valores random
+                objetoEncomienda * objeto = new objetoEncomienda();
+                //Se ingresan los objetos a encomienda
+                Encomienda * encomienda = new Encomienda(cliente, objeto, NULL);
                 hashTableEncomiendas.insert(encomienda->cliente->getKey(), encomienda);
+                //arbol->insertarValor(arbol, cliente->getKey() , ruta->pesoEntero);
             }
 		}
 		archivo.close();
