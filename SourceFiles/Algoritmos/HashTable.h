@@ -58,7 +58,8 @@ public:
 	}
 
 
-	void mostrarTodasEncomiendas() {
+	void mostrarTodasEncomiendas() 
+	{
 		int pos = 0;
 		int cont = 1;
 		for (auto & thisList  : tableLists) {		// Recorremos el vector<>
@@ -78,7 +79,8 @@ public:
 	}
 
 	//Función hash; Se utiliza string, ya que el DNI será pasado como llave
-    size_t crearHashString(const string key) const {
+    size_t crearHashString(const string key) const 
+	{
 		size_t hashVal = 0;
 		//For each 
 		//for (char ch : key) hashVal += size_t(ch);
@@ -92,10 +94,10 @@ public:
 
 		hashVal = hashVal % tableLists.size();		
 		return(hashVal);	
-	
 	}
 
-	int getSize() const {
+	int getSize() const 
+	{
 		return tableLists.size();
 	}
 

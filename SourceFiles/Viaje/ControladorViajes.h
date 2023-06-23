@@ -29,7 +29,6 @@ public:
     void reservaViaje();
     void reservaBusquedaViajes();
 
-
     //Generacion de grafo
     void generacionGrafo();
 };
@@ -70,7 +69,6 @@ void ControladorViajes ::reservaViaje()
 int ControladorViajes ::seleccionarCantidadUsuarios(string Origen, string Destino)
 {
     int cantidadUsuarios;
-
     do
     {
         clearScreen;
