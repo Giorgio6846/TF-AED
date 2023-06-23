@@ -60,6 +60,7 @@ int Rutas :: selecionarOrigen()
     int opcionElegida;
     do
     {
+        clearScreen;
         cout << "Elija, de la lista, el origen del viaje (01 - " << getSizeLugares() << " o 00 para regresar al menu de viajes) \n";
         for (size_t i = 00; i < getSizeLugares(); i++)
         {

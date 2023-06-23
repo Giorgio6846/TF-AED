@@ -48,13 +48,9 @@ int main()
     claseEncomienda->generacionGrafo();
     #endif
 
-    int opcionElegida;
-
     do
     {
-        opcionElegida = menu();
-
-        switch (opcionElegida)
+        switch (menu())
         {
         case 1:
             #if (VER == 1 || VER == 2)
@@ -72,9 +68,10 @@ int main()
             break;
         default:
             cout << "Gracias por elegir nuestra app! :)";
+            exit(1);
             break;
         }
-    } while (opcionElegida != 3);
+    } while (true);
 }
 
 #if (VER == 1 || VER == 2)

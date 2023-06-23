@@ -96,35 +96,33 @@ private:
     //Terminar
     void agregarPasajero()
     {
-
         setCantidadDisponible(getCantidadDisponible() - 1);
     }
 };
 
 void Bus::mostrarAsientos()
 {
-    cout << busAsientos.getSize();
+    //cout << busAsientos.getSize();
     for (int i = 0; i < busAsientos.getSize(); i++)
     {
         string numeroAsiento = to_string(i+1);
         list tmp = busAsientos.buscarListaBus(numeroAsiento);
         for (auto *it : tmp)
         { 
+            if (it->usuarioPersona == NULL)
+            {
+                cout << "\033[92m";
+            }
+            else
+            {
+                cout << "\033[91m";
+            }
+            
             cout << it->letraAsiento << it->numeroAsiento << " ";
-        }
-    }
-    
-
-    /*
-    for (int i = 0; i < distribucionAsientos.size(); i++)
-    {
-        for (int j = 0; j < distribucionAsientos[i].size(); j++)
-        {
-            cout << distribucionAsientos[i][j].ubicacion << " " << distribucionAsientos[i][j].clase << " ";
         }
         cout << "\n";
     }
-    */
+    cout << "\033[39m	\033[49m";
 }
 
 void Bus::generarAsientos()
@@ -135,7 +133,7 @@ void Bus::generarAsientos()
         {
             Asiento * asientoTMP = new Asiento;
             asientoTMP -> letraAsiento  = char(65 + j);
-            asientoTMP -> numeroAsiento = i + 1;
+            asientoTMP -> numeroAsiento = to_string(i + 1);
             asientoTMP -> claseAsiento = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
 
             busAsientos.insertBus(asientoTMP->numeroAsiento, asientoTMP);

@@ -10,7 +10,7 @@ struct PersonaInf
     Persona * personaViaje = new Persona;
 };
 
-class Viaje
+class Viaje : public Rutas
 {
 private:
     int cantidadPasajeros;
@@ -26,6 +26,8 @@ public:
     void agregarPasajero();
     void setRutaBus(TotalRuta<Bus> *busTmp) { TRtmp = busTmp; }
     void mostrarAsientos();
+    void seleccionarAsientos();
+    void mostrarBuses();
 };
 
 Viaje::Viaje(int codigoO, int codigoD, int cantidadPasajeros, TotalRuta<Bus> *busTmp)
@@ -65,4 +67,24 @@ void Viaje :: agregarPasajero()
 
         listaPasajeros->push(&listaPasajeros, personaGrupo);
     }
+}
+
+void Viaje :: mostrarBuses()
+{
+    cout << "\n";
+    cout << "Los buses para su destino son: " << "\n";
+    NodoLista<Bus> * nlbusTMP = TRtmp->rutaAlDestino;
+    Bus * busTMP = NULL;
+    for (int i = 1; nlbusTMP != NULL; nlbusTMP = nlbusTMP->nextElemento(nlbusTMP))
+    {
+        busTMP = nlbusTMP -> getElemento(nlbusTMP);
+        cout << "Bus " << i << ": " << getLugar(busTMP->getOrigen()) << " con destino a " << getLugar(busTMP->getDestino()) << "\n";
+        i++;
+    }
+    cont();
+}
+
+void Viaje ::seleccionarAsientos()
+{
+
 }

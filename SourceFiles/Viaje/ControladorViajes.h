@@ -61,6 +61,8 @@ void ControladorViajes ::reservaViaje()
     Viaje * nuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios, TRtmp);
 
     nuevaReserva -> agregarPasajero();
+    nuevaReserva -> seleccionarAsientos();
+    nuevaReserva->mostrarBuses();
     nuevaReserva -> mostrarAsientos();
     listaCompras->push(&listaCompras, nuevaReserva);
 }
@@ -71,7 +73,8 @@ int ControladorViajes ::seleccionarCantidadUsuarios(string Origen, string Destin
 
     do
     {
-        cout << "\n Cuantos pasajeros son en el grupo de " + Origen + " con destino a  " + Destino << "\n";
+        clearScreen;
+        cout << "Cuantos pasajeros son para la ruta de " + Origen + " con destino a  " + Destino << "\n";
         cin >> cantidadUsuarios;
         if (!(cantidadUsuarios >= 1 && cantidadUsuarios <= 50))
         {
