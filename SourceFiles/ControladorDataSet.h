@@ -57,7 +57,7 @@ public:
                 //Se crea un objeto con valores random
                 objetoEncomienda * objeto = new objetoEncomienda();
                 //Se ingresan los objetos a encomienda
-                Encomienda * encomienda = new Encomienda(cliente, objeto, NULL);
+                Encomienda * encomienda = new Encomienda(cliente, NULL, NULL);
                 hashTableEncomiendas.insert(encomienda->cliente->getKey(), encomienda);
                 //arbol->insertarValor(arbol, cliente->getKey() , ruta->pesoEntero);
             }
