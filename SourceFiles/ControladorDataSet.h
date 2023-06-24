@@ -76,16 +76,16 @@ public:
 			//Indexamos la informacion, según la función, en encomiendas o viajes
 
             #if (VER == 1 || VER == 2)
-                if (funcion == "V")
-                {
-                    FuncionViaje(nombre, apellido1, apellido2, edad, documento);
-                }
+            if (funcion == "V")
+            {
+                FuncionViaje(nombre, apellido1, apellido2, edad, documento);
+            }
             #endif
             #if (VER == 1 || VER == 3)
-                if (funcion == "E")
-                {
-                    FuncionEncomienda(nombre, apellido1, apellido2, edad, documento);
-                }
+            if (funcion == "E")
+            {
+                FuncionEncomienda(nombre, apellido1, apellido2, edad, documento);
+            }
             #endif
         }
 		archivo.close();
@@ -107,13 +107,10 @@ public:
         Destino = randDestino(Origen);
         TotalRuta<Bus> *busTMP = grafoRutasV->rutaFinal(Origen, Destino, 1);
         
-        NodoLista<PersonaInf> * nlPI = NULL;
         PersonaInf * piTMP = new PersonaInf();
-        
         piTMP -> personaViaje = creacionPersona(nombre, apellido1, apellido2, edad, documento);
-        nlPI -> append(&nlPI, piTMP);
-
-        Viaje *viajeTMP = new Viaje(Origen, Destino, nlPI, busTMP);
+        asientoRandom(busTMP->rutaAlDestino,piTMP->personaViaje);
+        Viaje *viajeTMP = new Viaje(Origen, Destino, piTMP, busTMP);
         hashTableViajes.insert(piTMP->personaViaje->getKey(), viajeTMP);
     }
     #endif
@@ -133,28 +130,37 @@ public:
     }
     #endif
 
+    void asientoRandom(NodoLista<Bus> * trbusTMP, Persona * pTMP)
+    {
+        NodoLista<Bus> * nlTMP = trbusTMP;
+        for (; nlTMP != NULL; nlTMP = nlTMP->nextElemento(nlTMP))
+        {
+            nlTMP->getElemento(nlTMP) -> AsientoRandom(pTMP);
+        }
+    }
+
     void generacionGrafoEncomienda()
     {
         for (int i = 0; i < getSizeLugares(); i++)
         {
-                grafoRutasE->agregarVertice(i);
+            grafoRutasE->agregarVertice(i);
         }
 
         for (int i = 0; i < getSizeLugares(); i++)
         {
-                for (int j = 0; j < getSizeLugares(); j++)
+            for (int j = 0; j < getSizeLugares(); j++)
+            {
+                if (accesoRutaDisponible(i, j) != 0)
                 {
-                    if (accesoRutaDisponible(i, j) != 0)
+                    NodoLista<Camion> *listaCamion = NULL;
+                    for (int k = 0; k <= 3; k++)
                     {
-                        NodoLista<Camion> *listaCamion = NULL;
-                        for (int k = 0; k <= 3; k++)
-                        {
-                            Camion *tmp = new Camion(i, j, accesoTiempoRuta(i, j));
-                            listaCamion->push(&listaCamion, tmp);
-                        }
-                        grafoRutasE->agregarArcoVertice(i, j, accesoTiempoRuta(i, j), listaCamion);
+                        Camion *tmp = new Camion(i, j, accesoTiempoRuta(i, j));
+                        listaCamion->push(&listaCamion, tmp);
                     }
+                    grafoRutasE->agregarArcoVertice(i, j, accesoTiempoRuta(i, j), listaCamion);
                 }
+            }
         }
     }
 
@@ -167,19 +173,19 @@ public:
 
         for (int i = 0; i < getSizeLugares(); i++)
         {
-                for (int j = 0; j < getSizeLugares(); j++)
+            for (int j = 0; j < getSizeLugares(); j++)
+            {
+                if (accesoRutaDisponible(i, j) != 0)
                 {
-                    if (accesoRutaDisponible(i, j) != 0)
+                    NodoLista<Bus> *listaBus = NULL;
+                    for (int k = 0; k <= 3; k++)
                     {
-                        NodoLista<Bus> *listaBus = NULL;
-                        for (int k = 0; k <= 3; k++)
-                        {
-                            Bus *tmp = new Bus(i, j, accesoTiempoRuta(i, j));
-                            listaBus->push(&listaBus, tmp);
-                        }
-                        grafoRutasV->agregarArcoVertice(i, j, accesoTiempoRuta(i, j), listaBus);
+                        Bus *tmp = new Bus(i, j, accesoTiempoRuta(i, j));
+                        listaBus->push(&listaBus, tmp);
                     }
+                    grafoRutasV->agregarArcoVertice(i, j, accesoTiempoRuta(i, j), listaBus);
                 }
+            }
         }
     }
 

@@ -42,16 +42,10 @@ ControladorViajes::~ControladorViajes()
 void ControladorViajes ::reservaViaje()
 {
     int Origen = Rutas :: selecionarOrigen();
-    if (Origen == -1)
-    {
-        return;
-    }
+    if (Origen == -1 )  return;
 
     int Destino = selecionarDestino(Origen);
-    if (Destino == -1)
-    {
-        return;
-    }
+    if (Destino == -1)  return;
 
     int cantidadUsuarios = seleccionarCantidadUsuarios(getLugar(Origen), getLugar(Destino));
     TotalRuta<Bus> *TRtmp = grafoRutasV->rutaFinal(Origen, Destino, cantidadUsuarios);
@@ -65,6 +59,7 @@ void ControladorViajes ::reservaViaje()
 
 int ControladorViajes ::seleccionarCantidadUsuarios(string Origen, string Destino)
 {
+    /*
     int cantidadUsuarios;
     do
     {
@@ -78,6 +73,8 @@ int ControladorViajes ::seleccionarCantidadUsuarios(string Origen, string Destin
         }
     } while (!(cantidadUsuarios >= 1 && cantidadUsuarios <= 50));
     return cantidadUsuarios;
+    */
+   return 1;
 }
 
 void ControladorViajes ::reservaBusquedaViajes()
@@ -100,10 +97,25 @@ void ControladorViajes ::reservaBusquedaViajes()
         cout << "No existen encomiendas por el momento!" << endl;
     }
     */
+   if (hashTableViajes.isEmpty())
+   {
+       cout << "No hay encomiendas registradas!" << endl;
+       cont();
+   }
+   else
+   {
+       clearScreen;
+       string codigo;
+       cout << "Ingrese su DNI" << endl;
+       cin >> codigo;
+       clearScreen;
+       hashTableViajes.buscarViaje(codigo);
+   }
 }
 
 int ControladorViajes ::menuViajes()
 {
+    clearScreen;
     int opcionSelecionada;
     do
     {

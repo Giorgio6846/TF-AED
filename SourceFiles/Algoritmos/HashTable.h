@@ -57,6 +57,19 @@ public:
 		cout << endl;
 	}
 
+	void buscarViaje(string key)
+	{
+		int pos = 0;
+		pos = crearHashString(key); // Obtenemos el indice de la Tabla (pos) a partir de la Funcion HASH
+		for (auto *it : tableLists[pos])
+		{ // Recorremos la Lista de cada indice del vector
+				if (it->pasajero->personaViaje->getDocumento() == key)
+				it->pasajero->personaViaje->informacionPersona();
+				cout << "Tiempo estimado de viaje: " << (it->TRtmp->pesoEntero * 10) / 60 << " horas" << endl;
+				cont();
+		}
+		cout << endl;
+	}
 
 	void mostrarTodasEncomiendas() 
 	{

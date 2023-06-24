@@ -94,6 +94,9 @@ private:
     void mostrarAsientos();
     void generarAsientos();
     bool AsientoDisponible(string letra, string numero);
+    void posicionarAsiento(Persona *pTMP, string letra, string numero);
+    Asiento *accesoAsiento(string letra, string numero);
+    void AsientoRandom(Persona *pTMP);
 
     // Terminar
     void agregarPasajero()
@@ -101,6 +104,19 @@ private:
         setCantidadDisponible(getCantidadDisponible() - 1);
     }
 };
+
+void Bus :: AsientoRandom(Persona *pTMP)
+{
+    string numeroAsiento;
+    string letraAsiento;
+
+    do
+    {
+        numeroAsiento = to_string(rand() % columnaAsiento);
+        letraAsiento = to_string(char(65 + rand() % filaAsiento));
+    } while (AsientoDisponible(letraAsiento, numeroAsiento));
+    posicionarAsiento(pTMP, letraAsiento, numeroAsiento);
+}
 
 void Bus::mostrarAsientos()
 {
@@ -126,8 +142,31 @@ void Bus::mostrarAsientos()
     cout << "\033[39m	\033[49m" << "\n";
 }
 
+void Bus :: posicionarAsiento(Persona * pTMP, string letra, string numero)
+{
+    Asiento * tmp = accesoAsiento(letra, numero);
+    tmp->usuarioPersona = pTMP;
+}
+
+Asiento * Bus :: accesoAsiento(string letra, string numero)
+{
+    list tmp = busAsientos.buscarListaBus(numero);
+    for (auto *it : tmp)
+    {
+        if (it->letraAsiento == letra)
+        {
+            return it;
+        }
+    }
+}
+
 bool Bus :: AsientoDisponible(string letra, string numero)
 {
+    Asiento * aTMP = accesoAsiento(letra, numero);
+    if (aTMP->usuarioPersona == NULL)
+    {
+        return 1;
+    }
     return 0;
 }
 
