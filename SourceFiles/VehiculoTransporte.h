@@ -1,4 +1,5 @@
 #pragma once 
+
 #include "Libraries.h"
 #include "Persona.h"
 #include "Algoritmos/HashTable.h"
@@ -92,8 +93,9 @@ private:
 
     void mostrarAsientos();
     void generarAsientos();
+    bool AsientoDisponible(string letra, string numero);
 
-    //Terminar
+    // Terminar
     void agregarPasajero()
     {
         setCantidadDisponible(getCantidadDisponible() - 1);
@@ -102,7 +104,6 @@ private:
 
 void Bus::mostrarAsientos()
 {
-    //cout << busAsientos.getSize();
     for (int i = 0; i < busAsientos.getSize(); i++)
     {
         string numeroAsiento = to_string(i+1);
@@ -122,7 +123,12 @@ void Bus::mostrarAsientos()
         }
         cout << "\n";
     }
-    cout << "\033[39m	\033[49m";
+    cout << "\033[39m	\033[49m" << "\n";
+}
+
+bool Bus :: AsientoDisponible(string letra, string numero)
+{
+    return 0;
 }
 
 void Bus::generarAsientos()

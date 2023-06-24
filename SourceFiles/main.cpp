@@ -1,5 +1,6 @@
 //#include "App.h"
 #include "Libraries.h"
+#include "ControladorDataSet.h"
 
 #if (VER == 1 || VER == 2)
 #include "Viaje/ControladorViajes.h" 
@@ -7,7 +8,6 @@
 
 #if (VER == 1 || VER == 3)
 #include "Encomienda/ControladorEncomiendas.h"
-#include "ControladorDataSet.h"
 #endif
 
 /*
@@ -37,15 +37,14 @@ int main()
 {
     srand(time(NULL));
 
+    ControladorDataSet *controladorDataSet = new ControladorDataSet();
+    
     #if (VER == 1 || VER == 2)
     ControladorViajes *claseViaje = new ControladorViajes();
-    claseViaje->generacionGrafo();
-#endif
+    #endif
 
     #if (VER == 1 || VER == 3)
     ControladorEncomiendas *claseEncomienda = new ControladorEncomiendas();
-    ControladorDataSet * controladorDataSet = new ControladorDataSet();
-    claseEncomienda->generacionGrafo();
     #endif
 
     do
@@ -57,14 +56,12 @@ int main()
             clearScreen;
             opcionViajes(claseViaje);
             #endif
-
             break;
         case 2:
             #if (VER == 1 || VER == 3)
             clearScreen;
             opcionEncomienda(claseEncomienda);
             #endif
-            
             break;
         default:
             cout << "Gracias por elegir nuestra app! :)";
@@ -115,8 +112,8 @@ void opcionEncomienda(ControladorEncomiendas *claseEncomienda)
         switch (opcionSelecionada)
         {
         case 1:
-                //Invoca la clase para agendar la encomienda
-                claseEncomienda->agendarEncomiendaFinal();
+            //Invoca la clase para agendar la encomienda
+            claseEncomienda->agendarEncomiendaFinal();
             break;
 
         case 2:
@@ -147,11 +144,11 @@ int menu()
         cout << "2. Encomiendas" << "\n";
         cout << "3. Salir" << "\n";
 
-cin >> opcionSelecionada;
-// Validando que solo permita numeros del 1 al 3
+        cin >> opcionSelecionada;
+        // Validando que solo permita numeros del 1 al 3
 
-if (!(opcionSelecionada >= 1 && opcionSelecionada <= 3))
-{
+        if (!(opcionSelecionada >= 1 && opcionSelecionada <= 3))
+        {
             ClearKeyboard();
             cout << "La opcion seleccionada es incorrecta.";
             cont();

@@ -1,13 +1,16 @@
+#pragma once
 #include "../Libraries.h"
+
 #include "../Persona.h"
 #include "../Algoritmos/NodoLista.h"
 #include "../VehiculoTransporte.h"
 #include "../Algoritmos/Grafo.h"
+#include "../Rutas.h"
 
 struct PersonaInf
 {
     int Precio;
-    Persona * personaViaje = new Persona;
+    Persona *personaViaje = new Persona;
 };
 
 class Viaje : public Rutas
@@ -21,6 +24,7 @@ private:
 
 public:
     Viaje(int codigoO, int codigoD, int cantidadPasajeros, TotalRuta<Bus> *busTmp);
+    Viaje(int codigoO, int codigoD, NodoLista<PersonaInf> *piTMP, TotalRuta<Bus> *busTmp);
     ~Viaje();
 
     void agregarPasajero();
@@ -28,6 +32,7 @@ public:
     void mostrarAsientos();
     void seleccionarAsientos();
     void mostrarBuses();
+    void AsientoPersona(PersonaInf *pTMP);
 };
 
 Viaje::Viaje(int codigoO, int codigoD, int cantidadPasajeros, TotalRuta<Bus> *busTmp)
@@ -39,18 +44,22 @@ Viaje::Viaje(int codigoO, int codigoD, int cantidadPasajeros, TotalRuta<Bus> *bu
     TRtmp = busTmp;    
 }
 
+Viaje::Viaje(int codigoO, int codigoD, NodoLista<PersonaInf> * piTMP, TotalRuta<Bus> *busTmp)
+{
+    this->codigoO = codigoO;
+    this->codigoD = codigoD;
+    this->cantidadPasajeros = cantidadPasajeros;
+
+    TRtmp = busTmp;
+}
+
 Viaje::~Viaje()
 {
 }
 
-void Viaje :: mostrarAsientos()
+void Viaje ::mostrarAsientos()
 {
-    NodoLista<Bus> *busTMP = TRtmp -> rutaAlDestino;
-    for (; busTMP != NULL; busTMP = busTMP->nextElemento(busTMP))
-    {
-        busTMP->getElemento(busTMP)->mostrarAsientos();
-        cont();
-    }
+  
 }
 
 void Viaje :: agregarPasajero()
@@ -85,6 +94,21 @@ void Viaje :: mostrarBuses()
 }
 
 void Viaje ::seleccionarAsientos()
+{
+    NodoLista<Bus> *nlbusTMP = TRtmp->rutaAlDestino;
+    Bus *busTMP = NULL;
+    for (int i = 1; nlbusTMP != NULL; nlbusTMP = nlbusTMP->nextElemento(nlbusTMP))
+    {
+        busTMP = nlbusTMP->getElemento(nlbusTMP);
+        cout << "Selecione los asientos para el bus " << i << " "<< getLugar(busTMP->getOrigen()) << " con destino a " << getLugar(busTMP->getDestino()) << "\n";
+        cout << "Letra A al C: Clase A; D al G: Clase B; y H al J: Clase C\n" << "El precio afecta dependiendo de la clase selecionada\n\n";
+        busTMP->mostrarAsientos();
+
+        i++;
+    }
+}
+
+void Viaje :: AsientoPersona(PersonaInf * pTMP)
 {
 
 }

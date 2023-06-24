@@ -1,3 +1,4 @@
 {
-    "terminal.integrated.tabs.defaultColor": "terminal.ansiBlack"
+    "terminal.integrated.tabs.defaultColor": "terminal.ansiBlack",
+    "cmake.configureOnOpen": false
 }

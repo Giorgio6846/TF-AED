@@ -1,24 +1,22 @@
+#pragma once
+
 #include "../Rutas.h"
 
 #include "Viaje.h"
-#include "../Algoritmos/Grafo.h"
-#include "../VehiculoTransporte.h"
+#include "../ControladorDataSet.h"
 
 /*
 Lima, Chimbote, Trujillo, Pacasmayo, Cajamarca, Chepen, Chiclayo, Piura, Jaen, Cajabamba, Moyobamba, Tarapoto
 */
 
-class ControladorViajes : public Rutas
+class ControladorViajes : public ControladorDataSet
 {
 private:
     //La lista de compras de los usuarios
     NodoLista<Viaje> *listaCompras = NULL;
 
-    //El grafo utilizado para realizar la ruta
-    Grafo<NodoLista<Bus>, int, Bus> *grafoRutas = new Grafo<NodoLista<Bus>, int, Bus>;
-
 public:
-    ControladorViajes(/* args */);
+    ControladorViajes();
     ~ControladorViajes();
 
     // Funciones usuario
@@ -56,13 +54,12 @@ void ControladorViajes ::reservaViaje()
     }
 
     int cantidadUsuarios = seleccionarCantidadUsuarios(getLugar(Origen), getLugar(Destino));
-    TotalRuta<Bus> *TRtmp = grafoRutas->rutaFinal(Origen, Destino, cantidadUsuarios);
+    TotalRuta<Bus> *TRtmp = grafoRutasV->rutaFinal(Origen, Destino, cantidadUsuarios);
     Viaje * nuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios, TRtmp);
 
     nuevaReserva -> agregarPasajero();
+    nuevaReserva -> mostrarBuses();
     nuevaReserva -> seleccionarAsientos();
-    nuevaReserva->mostrarBuses();
-    nuevaReserva -> mostrarAsientos();
     listaCompras->push(&listaCompras, nuevaReserva);
 }
 
@@ -123,29 +120,4 @@ int ControladorViajes ::menuViajes()
         }
     } while (!(opcionSelecionada >= 1 && opcionSelecionada <= 4));
     return opcionSelecionada;
-}
-
-void ControladorViajes :: generacionGrafo()
-{
-    for (int i = 0; i < getSizeLugares(); i++)
-    {
-        grafoRutas -> agregarVertice(i);
-    }
-
-    for (int i = 0; i < getSizeLugares(); i++)
-    {
-        for (int j = 0; j < getSizeLugares(); j++)
-        {
-            if (accesoRutaDisponible(i,j) != 0)
-            {
-                NodoLista<Bus> *listaBus = NULL;
-                for (int k = 0; k <= 3; k++)
-                {
-                    Bus *tmp = new Bus(i, j, accesoTiempoRuta(i,j));
-                    listaBus->push(&listaBus,tmp);
-                }
-                grafoRutas->agregarArcoVertice(i,j,accesoTiempoRuta(i,j),listaBus);
-            }
-        }
-    }
 }

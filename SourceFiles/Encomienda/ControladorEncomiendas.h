@@ -1,29 +1,22 @@
 #pragma once
 
 #include "../Libraries.h"
-#include "../Rutas.h"
-#include "../Persona.h"
 
 //Algoritmos
 #include "../Algoritmos/NodoLista.h"
 #include "../Algoritmos/NodoArbol.h"
 #include "../Algoritmos/HashTable.h"
-#include "../Algoritmos/Grafo.h"
-#include "../VehiculoTransporte.h"
-#include "objetoEncomienda.h"
-#include "Encomienda.h"
 #include "../ControladorDataSet.h"
 
 
-class ControladorEncomiendas: public Rutas, public ControladorDataSet
+class ControladorEncomiendas: public ControladorDataSet
 {
     private:
-        Grafo<NodoLista<Camion>, int, Camion> *grafoRutas = new Grafo<NodoLista<Camion>, int, Camion>;
     public:
-        ControladorEncomiendas(){
-            lecturaIndexacion();
-        };
-        ~ControladorEncomiendas(){};
+        ControladorEncomiendas()
+        {
+        }
+        ~ControladorEncomiendas(){}
 
     void printInfoEncomiendas(){
         clearScreen;
@@ -62,30 +55,7 @@ class ControladorEncomiendas: public Rutas, public ControladorDataSet
         return opcionSelecionada;
     }
 
-    void generacionGrafo()
-    {
-        for (int i = 0; i < getSizeLugares(); i++)
-        {
-            grafoRutas->agregarVertice(i);
-        }
-
-        for (int i = 0; i < getSizeLugares(); i++)
-        {
-            for (int j = 0; j < getSizeLugares(); j++)
-            {
-                if (accesoRutaDisponible(i, j) != 0)
-                {
-                    NodoLista<Camion> *listaCamion = NULL;
-                    for (int k = 0; k <= 3; k++)
-                    {
-                        Camion *tmp = new Camion(i, j, accesoTiempoRuta(i, j));
-                        listaCamion->push(&listaCamion, tmp);
-                    }
-                    grafoRutas->agregarArcoVertice(i, j, accesoTiempoRuta(i, j), listaCamion);
-                }
-            }
-        }
-    }
+    
 
     void buscarEncomienda(){
         if (hashTableEncomiendas.isEmpty())
@@ -195,7 +165,7 @@ class ControladorEncomiendas: public Rutas, public ControladorDataSet
             int Destino = selecionarDestino(Origen);
             if (Destino != -1)
             {
-                TotalRuta<Camion> * TRtmp = grafoRutas->rutaFinal(Origen, Destino, peso);
+                TotalRuta<Camion> * TRtmp = grafoRutasE->rutaFinal(Origen, Destino, peso);
                 return TRtmp;
             }
         }
@@ -207,7 +177,8 @@ class ControladorEncomiendas: public Rutas, public ControladorDataSet
         arbol->imprimirEnOrden(arbol);
     }
 
-    void agendarEncomiendaFinal(){
+    void agendarEncomiendaFinal()
+    {
         //Se crea e iguala el objeto a los devueltos por funciones
         Persona *cliente = almacenarInfoCliente();
         objetoEncomienda *encomiendaItem = almacenarInfoObjeto();

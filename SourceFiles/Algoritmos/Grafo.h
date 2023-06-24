@@ -94,7 +94,6 @@ private:
 
 
         // Al agregar un arco realizar el algoritmo de busqueda de nuevo
-
         void agregarVertice(R vertice)
         {
             bool cond = 0;
@@ -109,7 +108,6 @@ private:
         }
 
         //Al agregar un arco realizar el algoritmo de busqueda de nuevo
-
         void agregarArcoVertice(R vertice, R llegadaVertice, int pesoLlegada, T * dato)
         {
             VGrafo * tmp = _accesoVertice(vertice);
@@ -325,8 +323,7 @@ private:
             }
         }
 
-    // Actualmente solo funciona con buses
-
+        // Actualmente solo funciona con buses
         void rutaArco(AGrafo * ArcoTMP, int DestinoFinal, int espacioDisponible, NodoLista<R> *& verticesIdos, NodoLista<W> *& listaVehiculo, NodoLista<TotalRuta<W>> *& rutasTotales)
         {
             AGrafo * tmpArco = ArcoTMP;
@@ -363,5 +360,30 @@ private:
                     }
             }
             return NULL;
+        }
+
+        int RutaOrigen(TotalRuta<W> * trW)
+        {
+            NodoLista<W> * nlW = trW ->rutaAlDestino;
+            W * wTMP;
+            for (; nlW != NULL; nlW = nlW -> nextElemento(nlW))
+            {
+                wTMP = nlW->getElemento(nlW);
+                return wTMP->getOrigen();
+            }            
+        }
+
+        int RutaDestino(TotalRuta<W> *trW)
+        {
+            NodoLista<W> *nlW = trW->rutaAlDestino;
+            W * wTMP;
+            for (; nlW != NULL; nlW = nlW->nextElemento(nlW))
+            {
+                if (nlW->nextElemento(nlW) == NULL)
+                {
+                    wTMP = nlW->getElemento(nlW);
+                    return wTMP->getDestino();
+                }
+            }
         }
 };
