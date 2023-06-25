@@ -107,11 +107,11 @@ public:
         Destino = randDestino(Origen);
         TotalRuta<Bus> *busTMP = grafoRutasV->rutaFinal(Origen, Destino, 1);
         
-        PersonaInf * piTMP = new PersonaInf();
-        piTMP -> personaViaje = creacionPersona(nombre, apellido1, apellido2, edad, documento);
-        asientoRandom(busTMP->rutaAlDestino,piTMP->personaViaje);
-        Viaje *viajeTMP = new Viaje(Origen, Destino, piTMP, busTMP);
-        hashTableViajes.insert(piTMP->personaViaje->getKey(), viajeTMP);
+        Persona * pTMP = new Persona();
+        pTMP = creacionPersona(nombre, apellido1, apellido2, edad, documento);
+        asientoRandom(busTMP->rutaAlDestino,pTMP);
+        Viaje *viajeTMP = new Viaje(Origen, Destino, pTMP, busTMP);
+        hashTableViajes.insert(pTMP->getKey(), viajeTMP);
     }
     #endif
 
@@ -141,8 +141,6 @@ public:
         }
     }
 
-    
-
 #if (VER == 1 || VER == 2)
     void generacionGrafoViaje()
     {
@@ -169,6 +167,7 @@ public:
         }
     }
 #endif
+
 #if (VER == 1 || VER == 3)
     void generacionGrafoEncomienda()
     {
@@ -195,8 +194,6 @@ public:
         }
     }
 #endif
-    
-
 
     int randOrigen()
     {

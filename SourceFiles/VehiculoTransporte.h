@@ -70,8 +70,6 @@ struct Asiento
 class Bus : public VehiculoTransporte
 {
 private:
-        vector<vector<Asiento>> distribucionAsientos;
-
         int columnaAsiento = 10;
         int filaAsiento = 6;
 

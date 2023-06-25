@@ -5,22 +5,12 @@
 #include "Viaje.h"
 #include "../ControladorDataSet.h"
 
-/*
-Lima, Chimbote, Trujillo, Pacasmayo, Cajamarca, Chepen, Chiclayo, Piura, Jaen, Cajabamba, Moyobamba, Tarapoto
-*/
-
 class ControladorViajes : public ControladorDataSet
 {
 private:
-    //La lista de compras de los usuarios
-    NodoLista<Viaje> *listaCompras = NULL;
-
 public:
     ControladorViajes();
     ~ControladorViajes();
-
-    // Funciones usuario
-    int seleccionarCantidadUsuarios(string, string);
 
     // Opcion seleccion
     int menuViajes();
@@ -47,56 +37,18 @@ void ControladorViajes ::reservaViaje()
     int Destino = selecionarDestino(Origen);
     if (Destino == -1)  return;
 
-    int cantidadUsuarios = seleccionarCantidadUsuarios(getLugar(Origen), getLugar(Destino));
-    TotalRuta<Bus> *TRtmp = grafoRutasV->rutaFinal(Origen, Destino, cantidadUsuarios);
-    Viaje * nuevaReserva = new Viaje(Origen, Destino, cantidadUsuarios, TRtmp);
+    TotalRuta<Bus> *TRtmp = grafoRutasV->rutaFinal(Origen, Destino,1);
+    Viaje * nuevaReserva = new Viaje(Origen, Destino, TRtmp);
 
     nuevaReserva -> agregarPasajero();
     nuevaReserva -> mostrarBuses();
     nuevaReserva -> seleccionarAsientos();
-    listaCompras->push(&listaCompras, nuevaReserva);
-}
 
-int ControladorViajes ::seleccionarCantidadUsuarios(string Origen, string Destino)
-{
-    /*
-    int cantidadUsuarios;
-    do
-    {
-        clearScreen;
-        cout << "Cuantos pasajeros son para la ruta de " + Origen + " con destino a  " + Destino << "\n";
-        cin >> cantidadUsuarios;
-        if (!(cantidadUsuarios >= 1 && cantidadUsuarios <= 50))
-        {
-            ClearKeyboard();
-            cout << "La opcion seleccionada es incorrecta.\n";
-        }
-    } while (!(cantidadUsuarios >= 1 && cantidadUsuarios <= 50));
-    return cantidadUsuarios;
-    */
-   return 1;
+    hashTableViajes.insert(nuevaReserva->pasajero->getKey(),nuevaReserva);
 }
 
 void ControladorViajes ::reservaBusquedaViajes()
 {
-    /*
-    int contador;
-    // listaCompras->elemento->informacionPasajeros();
-    if (listaCompras != NULL)
-    {
-        while (listaCompras != NULL)
-        {
-            cout << "Encomienda numero " << contador << endl;
-            //listaCompras->getElemento(listaCompras)->informacionPasajeros();
-            contador++;
-            listaCompras = listaCompras->nextElemento(listaCompras);
-        }
-    }
-    else
-    {
-        cout << "No existen encomiendas por el momento!" << endl;
-    }
-    */
    if (hashTableViajes.isEmpty())
    {
        cout << "No hay encomiendas registradas!" << endl;

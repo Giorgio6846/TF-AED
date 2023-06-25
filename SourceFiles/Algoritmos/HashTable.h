@@ -63,8 +63,8 @@ public:
 		pos = crearHashString(key); // Obtenemos el indice de la Tabla (pos) a partir de la Funcion HASH
 		for (auto *it : tableLists[pos])
 		{ // Recorremos la Lista de cada indice del vector
-				if (it->pasajero->personaViaje->getDocumento() == key)
-				it->pasajero->personaViaje->informacionPersona();
+				if (it->pasajero->getDocumento() == key)
+					it->pasajero->informacionPersona();
 				cout << "Tiempo estimado de viaje: " << (it->TRtmp->pesoEntero * 10) / 60 << " horas" << endl;
 				cont();
 		}

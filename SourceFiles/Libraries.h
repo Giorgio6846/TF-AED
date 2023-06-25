@@ -60,8 +60,8 @@ Limpieza del cin
     #endif
 
     #ifdef __linux__
-    //#define VER 1
-    //#define RAD 1
+    #define VER 1
+    #define RAD 1
     #endif
 
 //Funciones macOS
