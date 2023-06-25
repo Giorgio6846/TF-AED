@@ -2,13 +2,17 @@
 #include "../Libraries.h"
 
 #include "NodoLista.h"
+#include "HashTable.h"
 
 template<class Z>
 struct TotalRuta
 {
+    int Origen;
+    int Destino;
     NodoLista<Z> *rutaAlDestino = NULL;
     int pesoEntero = 0;
 };
+
 
 template <class T, class R, class W, R vacio = -1>
 class Grafo
@@ -85,13 +89,23 @@ private:
 
     };
 
+    HashTable<TotalRuta<W>> htRutaViaje;
     NodoLista<VGrafo> *ndVertices = NULL;
-    
+
+
+
+
     public:
-        Grafo(){}
+        Grafo()
+        {
+        htRutaViaje.setSize(12);
+        }
         ~Grafo(){}
 
-
+        string genKey(int Origen, int Destino)
+        {
+            return to_string(Origen)+to_string(Destino);
+        }
 
         // Al agregar un arco realizar el algoritmo de busqueda de nuevo
         void agregarVertice(R vertice)
@@ -267,6 +281,35 @@ private:
 
         TotalRuta<W> *rutaFinal(R Origen, R Destino, int espacioRequerido)
         {
+            list listRV = htRutaViaje.buscarListaRutas(genKey(Origen, Destino));
+            TotalRuta<W> *trWTMP;
+            bool cond = 1;
+            for (auto *it : listRV)
+            {
+                if(it->Origen == Origen && it -> Destino == Destino)
+                {
+                    if (verificacionVehiculoRuta(it->rutaAlDestino,espacioRequerido))
+                    {
+                        return it;
+                    }
+                    else
+                    {
+                        it = NULL;
+                    }
+                }
+            }
+            if(cond)
+            {
+                trWTMP = rutaFinalNueva(Origen, Destino, espacioRequerido);
+                htRutaViaje.insert(genKey(trWTMP->Origen, trWTMP->Destino), trWTMP);
+                return trWTMP;
+            }
+        }
+
+
+
+        TotalRuta<W> *rutaFinalNueva(R Origen, R Destino, int espacioRequerido)
+        {
             //cout << "TEST";
             NodoLista<TotalRuta<W>> *rutaFinalNL = NULL;
 
@@ -275,6 +318,7 @@ private:
 
             rutaVertice(Origen, Destino, espacioRequerido, NLItmp, NLVTtmp, rutaFinalNL);
             sumaPesos(rutaFinalNL);
+
 
             TotalRuta<W> *TRtmp = new TotalRuta<W>;
             TRtmp->pesoEntero = 999999;
@@ -285,15 +329,15 @@ private:
             {
                 if (rutaFinalNLtmp->getElemento(rutaFinalNLtmp)->pesoEntero < TRtmp->pesoEntero)
                 {
-                    TRtmp->pesoEntero = rutaFinalNLtmp->getElemento(rutaFinalNLtmp)->pesoEntero;
-                    TRtmp->rutaAlDestino = rutaFinalNLtmp->getElemento(rutaFinalNLtmp)->rutaAlDestino;
+                    TRtmp = rutaFinalNLtmp->getElemento(rutaFinalNLtmp);
+                    TRtmp->Origen=Origen;
+                    TRtmp->Destino = Destino;
                 }        
             }
-            
             return TRtmp;
         }
 
-        void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *& verticesIdos, NodoLista<W> *& listaVehiculo, NodoLista<TotalRuta<W>> *& rutasTotales)
+        void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *&verticesIdos, NodoLista<W> *&listaVehiculo, NodoLista<TotalRuta<W>> *&rutasTotales)
         {
             NodoLista<R> * tmpVI;
             tmpVI->duplicadoLista(&verticesIdos, &tmpVI);
@@ -360,6 +404,19 @@ private:
                     }
             }
             return NULL;
+        }
+
+        bool verificacionVehiculoRuta(NodoLista<W> * nlZ, int espacioDisponible)
+        {
+            NodoLista<W> * nlZTMP = nlZ;
+            for (; nlZTMP != NULL; nlZTMP = nlZTMP->nextElemento(nlZTMP))
+            {
+                if (!(nlZTMP->getElemento(nlZTMP)->getCantidadDisponible() >= espacioDisponible))
+                {
+                    return 0;
+                }
+            }
+            return 1;
         }
 
         int RutaOrigen(TotalRuta<W> * trW)

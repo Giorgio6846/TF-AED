@@ -89,9 +89,6 @@ void opcionViajes(ControladorViajes *claseViaje)
             // Invoca la funcion de la clase para buscar un viaje reservado
             claseViaje->reservaBusquedaViajes();
             break;
-        case 4:
-            // Invoca la funcion de la clase para realizar la escritura de archivos
-            break;
         default:
             break;
         }

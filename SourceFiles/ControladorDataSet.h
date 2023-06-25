@@ -35,12 +35,12 @@ public:
     {
     #if (VER == 1 || VER == 2)
         generacionGrafoViaje();
-        hashTableViajes.setSize(7500);
+        hashTableViajes.setSize(7000);
     #endif
 
     #if (VER == 1 || VER == 3)
         generacionGrafoEncomienda();
-        hashTableEncomiendas.setSize(7500);
+        hashTableEncomiendas.setSize(7000);
     #endif
 
     this->delimitador = ',';
@@ -74,8 +74,6 @@ public:
 			getline(stream, documento, delimitador);
             getline(stream, funcion, delimitador);
 			//Indexamos la informacion, según la función, en encomiendas o viajes
-
-
 
             #if (VER == 1 || VER == 2)
             if (funcion == "V")

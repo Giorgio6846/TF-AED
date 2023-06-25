@@ -143,4 +143,28 @@ public:
 		pos = crearHashStringBus(key); // Obtenemos el indice de la Tabla (pos) a partir de la Funcion HASH
 		return tableLists[pos];
 	}
+
+	// Función hash; Se utiliza string, ya que el DNI será pasado como llave
+	size_t crearHashStringRutas(const string key) const
+	{
+		size_t hashVal = 0;
+		// For each
+		// for (char ch : key) hashVal += size_t(ch);
+
+		for (int i = 0; i < key.length(); i++)
+		{
+		char caracter = key[i];
+		hashVal += caracter;
+		}
+
+		hashVal = hashVal % tableLists.size();
+		return (hashVal);
+	}
+
+	list<T *> buscarListaRutas(string key)
+	{
+		int pos = 0;
+		pos = crearHashStringRutas(key); // Obtenemos el indice de la Tabla (pos) a partir de la Funcion HASH
+		return tableLists[pos];
+	}
 };
