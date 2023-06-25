@@ -20,16 +20,6 @@ public:
         this->contador = 0;
     };
 
-    Persona(string nombre, string apellido, int edad, char tipoDocumento, string documento)
-    {
-        this->nombre = nombre;
-        this->apellido = apellido;
-        this->edad = edad;
-        this->tipoDocumento = tipoDocumento;
-        this->contador = 0;
-        this->documento = documento;
-    };
-
     Persona()
     {
         this->nombre = "";

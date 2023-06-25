@@ -94,8 +94,8 @@ public:
     Persona *creacionPersona(string nombre, string apellido1, string apellido2, string edad, string documento)
     {
         //Objeto cliente del dataset
-        Persona *cliente = new Persona(nombre, apellido1, stoi(edad), 'D', documento);
-        //cliente->setDocumento(documento);
+        Persona *cliente = new Persona(nombre, apellido1, stoi(edad), 'D');
+        cliente->setDocumento(documento);
         return cliente;
     }
 
