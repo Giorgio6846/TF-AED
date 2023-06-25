@@ -120,8 +120,6 @@ void Bus :: AsientoRandom(Persona *pTMP)
             {
                 cond = 0;
             }
-            
-            
         }
     }
     else
@@ -131,11 +129,12 @@ void Bus :: AsientoRandom(Persona *pTMP)
             numeroAsiento = to_string(rand() % columnaAsiento);
             letraAsiento = LugarDisponible(numeroAsiento);
             // letraAsiento = char(65 + rand() % filaAsiento);
-
         } while (!AsientoDisponible(letraAsiento, numeroAsiento));
     }
-    
-    posicionarAsiento(pTMP, letraAsiento, numeroAsiento);
+    if (cond == 1)
+    {
+        posicionarAsiento(pTMP, letraAsiento, numeroAsiento);    
+    }
 }
 
 string Bus :: LugarDisponible(string numeroAsiento)
@@ -148,6 +147,7 @@ string Bus :: LugarDisponible(string numeroAsiento)
             return it->letraAsiento;
         }
     }
+    return "";
 }
 
 void Bus::mostrarAsientos()
