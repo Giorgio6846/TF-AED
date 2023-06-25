@@ -20,6 +20,16 @@ public:
         this->contador = 0;
     };
 
+    Persona(string nombre, string apellido, int edad, char tipoDocumento, string documento)
+    {
+        this->nombre = nombre;
+        this->apellido = apellido;
+        this->edad = edad;
+        this->tipoDocumento = tipoDocumento;
+        this->contador = 0;
+        this->documento = documento;
+    };
+
     Persona()
     {
         this->nombre = "";
@@ -445,14 +455,12 @@ void Persona ::informacionPersona()
     cout << "Nombre: " << this->nombre << "\n";
     cout << "Apellido: " << this->apellido << "\n";
     cout << "Edad: " << this->edad << "\n";
-    cout << "Documento: ";
+
 
     switch (this->tipoDocumento)
     {
     case 1:
-        cout << "DNI"
-             << "\n";
-        cout << this->documento << "\n";
+        cout << "DNI: " << this->documento << "\n";
         break;
     case 2:
         cout << "Carnet de Extranjeria "

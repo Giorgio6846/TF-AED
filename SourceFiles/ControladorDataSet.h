@@ -94,8 +94,8 @@ public:
     Persona *creacionPersona(string nombre, string apellido1, string apellido2, string edad, string documento)
     {
         //Objeto cliente del dataset
-        Persona *cliente = new Persona(nombre, apellido1, stoi(edad), 'D');
-        cliente->setDocumento(documento);
+        Persona *cliente = new Persona(nombre, apellido1, stoi(edad), 'D', documento);
+        //cliente->setDocumento(documento);
         return cliente;
     }
 
@@ -122,8 +122,7 @@ public:
         objetoEncomienda *objeto = new objetoEncomienda();
         TotalRuta<Camion> *camionTMP = grafoRutasE->rutaFinal(Origen, Destino, objeto->getPeso());
         Encomienda *encomienda = new Encomienda(pTMP, objeto, camionTMP);
-
-        hashTableEncomiendas.insert(encomienda->cliente->getKey(), encomienda);
+        hashTableEncomiendas.insert(pTMP->getDocumento(),encomienda);
     }
     #endif
 

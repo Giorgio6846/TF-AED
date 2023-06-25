@@ -45,16 +45,20 @@ public:
 
 	void buscarEncomienda(string key) 
 	{	
+		int contador = 0;
 		int pos = 0;
 		pos = crearHashString(key);	//Obtenemos el indice de la Tabla (pos) a partir de la Funcion HASH
 		for (auto * it : tableLists[pos]) {	// Recorremos la Lista de cada indice del vector	
-			if (it->cliente->getDocumento() == key )
+			if (it->cliente->getDocumento() == key ){
 				it->cliente->informacionPersona();
 				it->objeto->infoEncomienda();
 				cout << "Tiempo estimado de viaje: " << (it->ruta->pesoEntero * 10)/60 <<" horas"<< endl;
+				contador++;
 				cont();
+			}
 		}
 		cout << endl;
+		if(contador == 0){cout << "No existe una encomienda con dicho DNI" << endl; cont();}
 	}
 
 	void buscarViaje(string key)

@@ -304,6 +304,7 @@ private:
                 htRutaViaje.insert(genKey(trWTMP->Origen, trWTMP->Destino), trWTMP);
                 return trWTMP;
             }
+            return NULL;
         }
 
 
