@@ -92,9 +92,6 @@ private:
     HashTable<TotalRuta<W>> htRutaViaje;
     NodoLista<VGrafo> *ndVertices = NULL;
 
-
-
-
     public:
         Grafo()
         {
@@ -107,7 +104,6 @@ private:
             return to_string(Origen)+to_string(Destino);
         }
 
-        // Al agregar un arco realizar el algoritmo de busqueda de nuevo
         void agregarVertice(R vertice)
         {
             bool cond = 0;
@@ -121,7 +117,6 @@ private:
             }
         }
 
-        //Al agregar un arco realizar el algoritmo de busqueda de nuevo
         void agregarArcoVertice(R vertice, R llegadaVertice, int pesoLlegada, T * dato)
         {
             VGrafo * tmp = _accesoVertice(vertice);
@@ -178,7 +173,6 @@ private:
             return 0;
         }
 
-        //Modificar mas adelante
         bool disponiblesArco(R vertice, R llegada, int cantidadPasajeros)
         {
             NodoLista<T> * tmp = _accesoVertice(vertice) -> _accesoArco(llegada);
@@ -311,7 +305,6 @@ private:
 
         TotalRuta<W> *rutaFinalNueva(R Origen, R Destino, int espacioRequerido)
         {
-            //cout << "TEST";
             NodoLista<TotalRuta<W>> *rutaFinalNL = NULL;
 
             NodoLista<R> * NLItmp = NULL;
@@ -368,7 +361,6 @@ private:
             }
         }
 
-        // Actualmente solo funciona con buses
         void rutaArco(AGrafo * ArcoTMP, int DestinoFinal, int espacioDisponible, NodoLista<R> *& verticesIdos, NodoLista<W> *& listaVehiculo, NodoLista<TotalRuta<W>> *& rutasTotales)
         {
             AGrafo * tmpArco = ArcoTMP;
@@ -376,7 +368,6 @@ private:
             NodoLista<W> *listaVehiculotmp;
             listaVehiculotmp->duplicadoLista(&listaVehiculo, &listaVehiculotmp);
 
-            //Si el arco llega al vertice de llegada crea un objeto TotalRuta para ingresar el dato
             if (tmpArco->verticeLlegada == DestinoFinal)
             {
                 W* tmpW = verificacionVehiculo(tmpArco, espacioDisponible);
@@ -386,7 +377,6 @@ private:
                 return;
             }
 
-            // Si no existe no bus disponible va al vertice de llegada
             if (!verticeVisitado(ArcoTMP->verticeLlegada, verticesIdos))
             {
                 rutaVertice(tmpArco->verticeLlegada, DestinoFinal, espacioDisponible, verticesIdos, listaVehiculotmp, rutasTotales);
@@ -396,7 +386,6 @@ private:
         W *verificacionVehiculo(AGrafo *tmpArco, int espacioDisponible)
         {
             T *tmpDato = tmpArco->datos;
-            // NodoLista<Bus> * tmpDato = tmpArco->datos;
             for (; tmpDato != NULL; tmpDato = tmpDato->nextElemento(tmpDato))
             {
                     if (tmpDato->getElemento(tmpDato)->getCantidadDisponible() >= espacioDisponible)
@@ -420,6 +409,7 @@ private:
             return 1;
         }
 
+        /*
         int RutaOrigen(TotalRuta<W> * trW)
         {
             NodoLista<W> * nlW = trW ->rutaAlDestino;
@@ -444,4 +434,5 @@ private:
                 }
             }
         }
+        */
 };

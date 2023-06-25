@@ -8,7 +8,6 @@
 #include "../Algoritmos/HashTable.h"
 #include "../ControladorDataSet.h"
 
-
 class ControladorEncomiendas: public ControladorDataSet
 {
     private:
@@ -87,15 +86,14 @@ class ControladorEncomiendas: public ControladorDataSet
         #elif RAD == 1
             cliente->randomPersona();
         #endif
-
-            return cliente;
+        return cliente;
     }
 
     objetoEncomienda * almacenarInfoObjeto(){
         string categoria;
         int opcion;
         float peso;
-        int esFragil;
+        bool esFragil;
 
         do
         {
@@ -152,6 +150,7 @@ class ControladorEncomiendas: public ControladorDataSet
 
             }   
         } while (!(esFragil >= 1 && esFragil <= 2));
+        esFragil = (esFragil == 1);
         clearScreen;
         objetoEncomienda * objeto = new objetoEncomienda(categoria, peso, esFragil);
         return objeto;

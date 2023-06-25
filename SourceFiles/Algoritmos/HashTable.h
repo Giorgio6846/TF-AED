@@ -128,8 +128,6 @@ public:
 	size_t crearHashStringBus(const string key) const
 	{
 		size_t hashVal = 0;
-		// For each
-		// for (char ch : key) hashVal += size_t(ch);
 
 		for (int i = 0; i < key.length(); i++)
 		{
@@ -152,8 +150,6 @@ public:
 	size_t crearHashStringRutas(const string key) const
 	{
 		size_t hashVal = 0;
-		// For each
-		// for (char ch : key) hashVal += size_t(ch);
 
 		for (int i = 0; i < key.length(); i++)
 		{

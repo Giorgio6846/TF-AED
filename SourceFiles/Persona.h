@@ -109,29 +109,6 @@ void Persona ::typeApellido()
         }
     } while (val == false);
 
-    /*
-    do
-    {
-        cout << "Apellido: ";
-        val = 1;
-        for (int i = 0; i < nombre.size(); i++)
-        {
-            cout << "Apellido: ";
-            cin >> apellidosP;
-            if (!(((int(toupper(nombre[i])) >= 65 && int(toupper(nombre[i])) <= 90) || (int(nombre[i]) >= 48 && int(nombre[i]) <= 57)) || int(nombre[i]) == 32))
-            {
-                ClearKeyboard();
-                val = 0;
-            }
-        }
-        if (val == 0)
-        {
-            cout << "Los apellidos ingresados son incorrectos. Solo se aceptan letras y numeros";
-        }
-
-    } while (val == 0);
-    */
-
     this->apellido = apellidosP;
 }
 
@@ -264,32 +241,7 @@ void Persona ::typePersona()
     typeTipoDocumentoyDocumento();
 
     clearScreen;
-    cout << "Los datos de la persona son: \n";
-    cout << "Nombre: " << this->nombre << "\n";
-    cout << "Apellido: " << this->apellido << "\n";
-    cout << "Edad: " << this->edad << "\n";
-    cout << "Tipo de documento: ";
-
-    switch (this->tipoDocumento)
-    {
-    case 1:
-        cout << "DNI"
-             << "\n";
-        cout << "Nro: " << this->documento << "\n";
-        break;
-    case 2:
-        cout << "Carnet de Extranjeria "
-             << "\n";
-        cout << "Nro: " << this->documento << "\n";
-        break;
-    case 3:
-        cout << "Pasaporte"
-             << "\n";
-        cout << "Nro: " << this->documento << "\n";
-        break;
-    default:
-        break;
-    }
+    informacionPersona();
 
     int verDat;
     int camDat;

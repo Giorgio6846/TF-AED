@@ -15,28 +15,6 @@ public:
     }
     ~NodoLista(){};
 
-    /*
-    void insertarElementoLista(NodoLista **lista, T *elemento)
-    {
-        //Se crea un nuevo nodo
-        //clearScreen;
-        NodoLista * nuevoNodo = new NodoLista();
-        nuevoNodo->elemento = elemento;
-        //El ultimo nodo siempre apunta a NULL
-        nuevoNodo->next = NULL;
-        //Si la lista está ya vacia, podemos insertar el nuevo nodo directamente
-        if (*lista == NULL){*lista = nuevoNodo;}
-        else
-        {
-            //Creamos un auxiliar para iterar y detectar cuando llegó al final de la lista
-            NodoLista * aux = *lista;
-            while (aux->next != NULL){aux = aux->next;}
-            aux->next = nuevoNodo;
-        }
-        //cout << "Los datos han sido registrada de manera satisfactoria!" << endl;
-    }
-    */
-
     T * getElemento(NodoLista *listaElementos){return elemento;}
     NodoLista * nextElemento(NodoLista *lista){return lista->next;}
 
@@ -166,43 +144,6 @@ void borrarElemento(NodoLista<T> *&lista, T dato){
     }
 }
 
-//Hace swap del valor del elemento pero la idea es de la direccion de memoria
-//Mas tarde implementarlo
-void SwapElementosDatos(NodoLista<T> *&lista, T x, T y)
-{
-    if (lista !=NULL)
-    {
-        if(x==y){return;}
-        NodoLista<T> * prevX = NULL; NodoLista<T> * currentX = lista; 
-        NodoLista<T> * prevY = NULL; NodoLista<T> *currentY = lista;
-
-        while (*(currentX->elemento) != x)
-        {
-            //Sabemos siempre quien sería el nodo anterior al que buscamos
-            prevX = currentX;
-            currentX = currentX->next;
-        }
-        while (*(currentY->elemento) != y)
-        {
-            //Sabemos siempre quien sería el nodo anterior al que buscamos
-            prevY = currentY;
-            currentY = currentY->next;
-        }
-        //Si alguno de los dos valores no existe, no se hace el cambio
-        if ((currentX->elemento) == NULL || (currentY->elemento) == NULL){cout << "Uno de los elementos dados no existen en la lista" << endl; return;}
-        //Cambiamos los valores
-        T aux1; T aux2;
-        aux1 = *(currentY->elemento); 
-        aux2 = *(currentX->elemento);
-
-        prevX = prevX->next; *(prevX->elemento) = aux1;
-        prevY = prevY->next; *(prevY->elemento) = aux2;
-    }
-    else{
-        cout << "La lista se encuentra vacía" << endl;
-    }
-}
-
 void SwapElementosDireccion(NodoLista<T> *&lista, T * x, T * y)
 {   
     auto swapPointers = [](T *elementX, T *elementY) {
@@ -243,17 +184,6 @@ void SwapElementosDireccion(NodoLista<T> *&lista, T * x, T * y)
         }
         // Cambiamos los valores
         T * aux = swapPointers(currentX->elemento, currentY->elemento);
-        /*
-        T * aux1;
-        T * aux2;
-        aux1 = (currentY->elemento);
-        aux2 = (currentX->elemento);
-
-        prevX = prevX->next;
-        (prevX->elemento) = aux1;
-        prevY = prevY->next;
-        (prevY->elemento) = aux2;
-        */
     }
     else
     {
@@ -285,44 +215,4 @@ T *obtenerPosicionElemento(NodoLista<T> **lista, int pos)
     cout << "La posicion selecionada es mayor a la cantidad de items en la lista";
     return NULL;
 }
-
-/*void quicksort(NodoLista<T> *&lista, T pivote)
-{
-    if (lista == nullptr)
-    {
-        return;
-    }
-    else
-    {
-        NodoLista<T> *menor = nullptr, *mayor = nullptr, *actual = lista;
-        auto menor_que_pivote = [](NodoLista<T> *nodo) { return menor == nullptr && *(nodo->elemento) < pivote; };
-        auto mayor_que_pivote = [](NodoLista<T> *nodo) { return *(nodo->elemento) >= pivote; };
-
-        while (menor == nullptr)
-        {
-            if (*(actual->elemento) < pivote)
-            {
-                menor = actual;
-            }
-            else
-            {
-                mayor = actual;
-            }
-            actual = actual->next;
-        }
-
-        if (menor != nullptr)
-        {
-            menor->next = nullptr;
-            quicksort(menor, pivote);
-        }
-
-        if (mayor != nullptr)
-        {
-            mayor->next = nullptr;
-            quicksort(mayor, pivote);
-        }
-    }
-}
-*/
 };  

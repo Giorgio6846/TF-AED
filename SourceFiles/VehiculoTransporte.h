@@ -126,7 +126,6 @@ void Bus :: AsientoRandom(Persona *pTMP)
         {
             numeroAsiento = to_string(rand() % columnaAsiento);
             letraAsiento = LugarDisponible(numeroAsiento);
-            // letraAsiento = char(65 + rand() % filaAsiento);
         } while (!AsientoDisponible(letraAsiento, numeroAsiento));
     }
     if (cond == 1)

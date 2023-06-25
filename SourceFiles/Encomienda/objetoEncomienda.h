@@ -6,7 +6,7 @@ class objetoEncomienda
 private:
     string categoria;
     float peso;
-    int esFragil;
+    bool esFragil;
     string fragil;
 public:
     //Constructor para input manual
@@ -27,11 +27,11 @@ public:
     void setPeso(float peso){this->peso = peso;}
     void setEsFragilI(int esFragil){this->esFragil = esFragil;}
 
-    bool getEsFragil(){return (this->esFragil == '1') ? true : false;}
+    bool getEsFragil(){return this->esFragil;}
     string getCategoria(){return this->categoria;}
-    int getPeso(){return this->peso;}
+    float getPeso(){return this->peso;}
 
-    void infoEncomienda(){
+        void infoEncomienda(){
         cout << "Informacion del objeto: " << endl;
         cout << "Peso: " << peso << "Kg" << endl;
         if (esFragil==true)
@@ -42,5 +42,6 @@ public:
             fragil="No";
         }
         cout << "Es fragil?: " << fragil << endl;
-    }
+        }
+
 };

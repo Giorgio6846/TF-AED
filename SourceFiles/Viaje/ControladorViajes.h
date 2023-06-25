@@ -16,9 +16,6 @@ public:
     int menuViajes();
     void reservaViaje();
     void reservaBusquedaViajes();
-
-    //Generacion de grafo
-    void generacionGrafo();
 };
 
 ControladorViajes::ControladorViajes(/* args */)
@@ -38,7 +35,7 @@ void ControladorViajes ::reservaViaje()
     if (Destino == -1)  return;
 
     TotalRuta<Bus> *TRtmp = grafoRutasV->rutaFinal(Origen, Destino,1);
-    Viaje * nuevaReserva = new Viaje(Origen, Destino, TRtmp);
+    Viaje * nuevaReserva = new Viaje(TRtmp);
 
     nuevaReserva -> agregarPasajero();
     nuevaReserva -> mostrarBuses();

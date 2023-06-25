@@ -14,12 +14,13 @@ public:
     int Precio = 0;
     Persona *pasajero = new Persona;
 
-    int codigoO,codigoD;
-
 public:
-    Viaje(int codigoO, int codigoD, TotalRuta<Bus> *busTmp);
-    Viaje(int codigoO, int codigoD, Persona *pTMP, TotalRuta<Bus> *busTmp);
+    Viaje(TotalRuta<Bus> *busTmp);
+    Viaje(Persona *pTMP, TotalRuta<Bus> *busTmp);
     ~Viaje();
+
+    int getOrigenViaje() {return TRtmp->Origen;}
+    int getDestinoViaje(){ return TRtmp -> Destino; }
 
     void agregarPasajero();
     void setRutaBus(TotalRuta<Bus> *busTmp) { TRtmp = busTmp; }
@@ -29,18 +30,13 @@ public:
     void AsignacionPrecio(Bus *busTMP, string asientoletra, string asientonumero);
 };
 
-Viaje::Viaje(int codigoO, int codigoD, TotalRuta<Bus> *busTmp)
+Viaje::Viaje(TotalRuta<Bus> *busTmp)
 {
-    this->codigoO = codigoO;
-    this->codigoD = codigoD;
-
     TRtmp = busTmp;    
 }
 
-Viaje::Viaje(int codigoO, int codigoD, Persona * pTMP, TotalRuta<Bus> *busTmp)
+Viaje::Viaje(Persona * pTMP, TotalRuta<Bus> *busTmp)
 {
-    this->codigoO = codigoO;
-    this->codigoD = codigoD;
     TRtmp = busTmp;
     pasajero = pTMP;
 }
@@ -92,6 +88,7 @@ void Viaje ::seleccionarAsientos()
    
     cout << pasajero->getNombre() + pasajero->getApellido();
     cout << " S/." << Precio << "\n";
+    cont();
 }
 
 void Viaje :: AsientoPersona(Persona * pTMP, Bus * busTMP)

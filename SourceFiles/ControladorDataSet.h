@@ -34,12 +34,12 @@ public:
     ControladorDataSet()
     {
     #if (VER == 1 || VER == 2)
-        generacionGrafoViaje();
+        generacionGrafoV();
         hashTableViajes.setSize(7000);
     #endif
 
     #if (VER == 1 || VER == 3)
-        generacionGrafoEncomienda();
+        generacionGrafoE();
         hashTableEncomiendas.setSize(7000);
     #endif
 
@@ -105,11 +105,10 @@ public:
     #if (VER == 1 || VER == 2)
     void FuncionViaje(Persona * pTMP)
     {
-        int Origen, Destino;
-        Origen = randOrigen();
-        Destino = randDestino(Origen);
+        int Origen = randOrigen();
+        int Destino = randDestino(Origen);
         TotalRuta<Bus> *busTMP = grafoRutasV->rutaFinal(Origen, Destino, 1);
-        Viaje *viajeTMP = new Viaje(Origen, Destino, pTMP, busTMP);
+        Viaje *viajeTMP = new Viaje(pTMP, busTMP);
         asientoRandom(busTMP->rutaAlDestino,viajeTMP->pasajero);
         hashTableViajes.insert(viajeTMP->pasajero->getKey(), viajeTMP);
     }
@@ -141,6 +140,7 @@ public:
         }
     }
 
+/*
 #if (VER == 1 || VER == 2)
     void generacionGrafoViaje()
     {
@@ -167,9 +167,34 @@ public:
         }
     }
 #endif
+*/
 
-#if (VER == 1 || VER == 3)
-    void generacionGrafoEncomienda()
+    void generacionGrafoV()
+    {
+        for (int i = 0; i < getSizeLugares(); i++)
+        {
+            grafoRutasV->agregarVertice(i);
+        }
+
+        for (int i = 0; i < getSizeLugares(); i++)
+        {
+            for (int j = 0; j < getSizeLugares(); j++)
+            {
+                if (accesoRutaDisponible(i, j) != 0)
+                {
+                    NodoLista<Bus> *listaVehiculo = NULL;
+                    for (int k = 0; k <= 3; k++)
+                    {
+                        Bus *tmp = new Bus(i, j, accesoTiempoRuta(i, j));
+                        listaVehiculo->push(&listaVehiculo, tmp);
+                    }
+                    grafoRutasV->agregarArcoVertice(i, j, accesoTiempoRuta(i, j), listaVehiculo);
+                }
+            }
+        }
+    }
+
+    void generacionGrafoE()
     {
         for (int i = 0; i < getSizeLugares(); i++)
         {
@@ -182,18 +207,17 @@ public:
             {
                 if (accesoRutaDisponible(i, j) != 0)
                 {
-                    NodoLista<Camion> *listaCamion = NULL;
+                    NodoLista<Camion> *listaVehiculo = NULL;
                     for (int k = 0; k <= 3; k++)
                     {
                         Camion *tmp = new Camion(i, j, accesoTiempoRuta(i, j));
-                        listaCamion->push(&listaCamion, tmp);
+                        listaVehiculo->push(&listaVehiculo, tmp);
                     }
-                    grafoRutasE->agregarArcoVertice(i, j, accesoTiempoRuta(i, j), listaCamion);
+                    grafoRutasE->agregarArcoVertice(i, j, accesoTiempoRuta(i, j), listaVehiculo);
                 }
             }
         }
     }
-#endif
 
     int randOrigen()
     {

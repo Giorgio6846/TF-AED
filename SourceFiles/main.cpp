@@ -1,4 +1,3 @@
-//#include "App.h"
 #include "Libraries.h"
 #include "ControladorDataSet.h"
 
@@ -24,6 +23,7 @@ RAD
 
 useDataSet
 
+0: No se generan viajes y encomiendas a base de un data set
 1: Se generan viajes y encomiendas a base de un data set
 
 */

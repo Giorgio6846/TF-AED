@@ -1,6 +1,5 @@
 #pragma once 
 #include "Libraries.h"
-#include "Algoritmos/NodoArbolComplexv2.h"
 
 class Rutas
 {
