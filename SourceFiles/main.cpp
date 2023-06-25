@@ -11,7 +11,7 @@
 #endif
 
 /*
-Opciones de Compilacion
+Opciones de Compilacion (Cambiar en Libraries.h)
 VER
 1: Release
 2: Solo Viajes
@@ -21,6 +21,11 @@ VER
 RAD
 0: Se tienen que ingresar los datos del pasajero
 1: Se crean aleatoriamente los datos del pasajero
+
+useDataSet
+
+1: Se generan viajes y encomiendas a base de un data set
+
 */
 
 int menu();

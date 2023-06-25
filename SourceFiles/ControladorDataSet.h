@@ -46,7 +46,10 @@ public:
     this->delimitador = ',';
     arbol = NULL;
 
-    lecturaIndexacion();
+    #if (useDataSet == 1)
+        lecturaIndexacion();
+    #endif
+    
     };
     ~ControladorDataSet(){};
 
@@ -122,6 +125,7 @@ public:
         objetoEncomienda *objeto = new objetoEncomienda();
         TotalRuta<Camion> *camionTMP = grafoRutasE->rutaFinal(Origen, Destino, objeto->getPeso());
         Encomienda *encomienda = new Encomienda(pTMP, objeto, camionTMP);
+        arbol->insertarValor(arbol, pTMP->getDocumento(), camionTMP->pesoEntero * 10);
         hashTableEncomiendas.insert(pTMP->getDocumento(),encomienda);
     }
     #endif
