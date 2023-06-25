@@ -110,7 +110,7 @@ public:
         TotalRuta<Bus> *busTMP = grafoRutasV->rutaFinal(Origen, Destino, 1);
         Viaje *viajeTMP = new Viaje(pTMP, busTMP);
         asientoRandom(busTMP->rutaAlDestino,viajeTMP->pasajero);
-        hashTableViajes.insert(viajeTMP->pasajero->getKey(), viajeTMP);
+        hashTableViajes.insert(pTMP->getDocumento(), viajeTMP);
     }
     #endif
 

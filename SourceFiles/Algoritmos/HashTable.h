@@ -63,16 +63,27 @@ public:
 
 	void buscarViaje(string key)
 	{
+		int contador = 0;
 		int pos = 0;
 		pos = crearHashString(key); // Obtenemos el indice de la Tabla (pos) a partir de la Funcion HASH
 		for (auto *it : tableLists[pos])
 		{ // Recorremos la Lista de cada indice del vector
-				if (it->pasajero->getDocumento() == key)
-					it->pasajero->informacionPersona();
-				cout << "Tiempo estimado de viaje: " << (it->TRtmp->pesoEntero * 10) / 60 << " horas" << endl;
+			if (it->pasajero->getDocumento() == key)
+			{
+				it->pasajero->informacionPersona();
+				it->informacionViaje();
+				cout << "Tiempo estimado de viaje: " << (it->getTiempoDuracion() * 10) / 60 << " horas" << endl;
+				contador++;
 				cont();
+			}
 		}
 		cout << endl;
+		if (contador == 0)
+		{
+			cout << "No existe una viaje con dicho DNI" << endl;
+			cont();
+		}
+
 	}
 
 	void mostrarTodasEncomiendas() 

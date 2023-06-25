@@ -21,6 +21,7 @@ public:
 
     int getOrigenViaje() {return TRtmp->Origen;}
     int getDestinoViaje(){ return TRtmp -> Destino; }
+    int getTiempoDuracion() { return TRtmp->pesoEntero;}
 
     void agregarPasajero();
     void setRutaBus(TotalRuta<Bus> *busTmp) { TRtmp = busTmp; }
@@ -28,6 +29,7 @@ public:
     void mostrarBuses();
     void AsientoPersona(Persona *pTMP, Bus *busTMP);
     void AsignacionPrecio(Bus *busTMP, string asientoletra, string asientonumero);
+    void informacionViaje();
 };
 
 Viaje::Viaje(TotalRuta<Bus> *busTmp)
@@ -52,6 +54,12 @@ void Viaje :: agregarPasajero()
     #elif RAD == 1
     pasajero->randomPersona();
     #endif
+}
+
+void Viaje :: informacionViaje()
+{
+    cout << "Origen: " << getOrigenViaje() << "\n";
+    cout << "Origen: " << getDestinoViaje() << "\n";
 }
 
 void Viaje :: mostrarBuses()
