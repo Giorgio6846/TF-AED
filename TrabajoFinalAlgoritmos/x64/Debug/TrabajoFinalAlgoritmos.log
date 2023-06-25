@@ -1,0 +1,47 @@
+﻿  main.cpp
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Encomienda\objetoEncomienda.h(20,26): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Rutas.h(44,26): warning C4267: 'return': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Rutas.h(66,48): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Rutas.h(89,48): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Viaje\Viaje.h(148,25): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Viaje\Viaje.h(154,25): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\ControladorDataSet.h(125,95): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Encomienda\ControladorEncomiendas.h(182,73): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\main.cpp(43,15): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Algoritmos\HashTable.h(50,1): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Algoritmos\HashTable.h(47,1): message : al compilar la función del miembro clase plantilla "void HashTable<Encomienda>::buscarEncomienda(std::string)"
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Encomienda\ControladorEncomiendas.h(72,50): message : Vea la referencia a la creación de una instancia de la función plantilla "void HashTable<Encomienda>::buscarEncomienda(std::string)" que se está compilando
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\ControladorDataSet.h(27,31): message : Vea la referencia a la creación de una instancia de clase plantilla "HashTable<Encomienda>" que se está compilando
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Algoritmos\HashTable.h(68,1): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Algoritmos\HashTable.h(65,1): message : al compilar la función del miembro clase plantilla "void HashTable<Viaje>::buscarViaje(std::string)"
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Viaje\ControladorViajes.h(61,35): message : Vea la referencia a la creación de una instancia de la función plantilla "void HashTable<Viaje>::buscarViaje(std::string)" que se está compilando
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\ControladorDataSet.h(20,26): message : Vea la referencia a la creación de una instancia de clase plantilla "HashTable<Viaje>" que se está compilando
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Algoritmos\HashTable.h(156,1): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Algoritmos\HashTable.h(154,1): message : al compilar la función del miembro clase plantilla "std::list<T *,std::allocator<T *>> HashTable<T>::buscarListaBus(std::string)"
+          with
+          [
+              T=Asiento
+          ]
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\VehiculoTransporte.h(139,20): message : Vea la referencia a la creación de una instancia de la función plantilla "std::list<T *,std::allocator<T *>> HashTable<T>::buscarListaBus(std::string)" que se está compilando
+          with
+          [
+              T=Asiento
+          ]
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\VehiculoTransporte.h(77,28): message : Vea la referencia a la creación de una instancia de clase plantilla "HashTable<Asiento>" que se está compilando
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Algoritmos\HashTable.h(129,1): warning C4267: 'return': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Algoritmos\HashTable.h(128,1): message : al compilar la función del miembro clase plantilla "int HashTable<Asiento>::getSize(void) const"
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\VehiculoTransporte.h(113,9): message : Vea la referencia a la creación de una instancia de la función plantilla "int HashTable<Asiento>::getSize(void) const" que se está compilando
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Algoritmos\HashTable.h(178,1): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Algoritmos\HashTable.h(176,1): message : al compilar la función del miembro clase plantilla "std::list<T *,std::allocator<T *>> HashTable<T>::buscarListaRutas(std::string)"
+          with
+          [
+              T=TotalRuta<Camion>
+          ]
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Algoritmos\Grafo.h(278,34): message : Vea la referencia a la creación de una instancia de la función plantilla "std::list<T *,std::allocator<T *>> HashTable<T>::buscarListaRutas(std::string)" que se está compilando
+          with
+          [
+              T=TotalRuta<Camion>
+          ]
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\Algoritmos\Grafo.h(92,1): message : Vea la referencia a la creación de una instancia de clase plantilla "HashTable<TotalRuta<Camion>>" que se está compilando
+C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\ControladorDataSet.h(25,60): message : Vea la referencia a la creación de una instancia de clase plantilla "Grafo<NodoLista<Camion>,int,Camion,-1>" que se está compilando
+  TrabajoFinalAlgoritmos.vcxproj -> C:\Users\mathi\Desktop\TrabajoFinalAlgoritmos\x64\Debug\TrabajoFinalAlgoritmos.exe
