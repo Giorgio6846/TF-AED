@@ -29,13 +29,13 @@ public:
         this->documento = "";
     }
 
-    ~Persona() {};
+    ~Persona(){};
 
     void setNombre(string nombre) { this->nombre = nombre; }
     void setApellido(string apellido) { this->apellido = apellido; }
     void setEdad(int edad) { this->edad = edad; }
     void setTipoDocumentoyDocumento(char tipoDocumento) { this->tipoDocumento = tipoDocumento; }
-    void setDocumento(string documento) { this->documento = documento; }
+    void setDocumento(string documento){this->documento = documento;}
 
     void typeNombre();
     void typeApellido();
@@ -55,7 +55,7 @@ public:
     void informacionPersona();
 };
 
-void Persona::typeNombre()
+void Persona ::typeNombre()
 {
     string nombreP;
     bool val;
@@ -83,7 +83,7 @@ void Persona::typeNombre()
     this->nombre = nombreP;
 }
 
-void Persona::typeApellido()
+void Persona ::typeApellido()
 {
     string apellidosP;
     bool val;
@@ -112,7 +112,7 @@ void Persona::typeApellido()
     this->apellido = apellidosP;
 }
 
-void Persona::typeEdad()
+void Persona ::typeEdad()
 {
     int edadP;
 
@@ -130,7 +130,7 @@ void Persona::typeEdad()
     this->edad = edadP;
 }
 
-void Persona::typeTipoDocumentoyDocumento()
+void Persona ::typeTipoDocumentoyDocumento()
 {
     int tipoDocumentoP;
     string documentoP;
@@ -227,7 +227,7 @@ void Persona::typeTipoDocumentoyDocumento()
     this->documento = documentoP;
 }
 
-void Persona::typePersona()
+void Persona ::typePersona()
 {
     clearScreen;
     cout << "Ingrese los datos de la persona: \n";
@@ -299,7 +299,7 @@ void Persona::typePersona()
     } while (!(verDat >= 1 && verDat <= 2));
 }
 
-void Persona::randomPersona()
+void Persona ::randomPersona()
 {
     string pathApellidos = "InformacionDatos/apellidos-es.txt";
     string pathNombres = "InformacionDatos/nombres-propios-es.txt";
@@ -390,7 +390,7 @@ void Persona::randomPersona()
     }
 }
 
-void Persona::informacionPersona()
+void Persona ::informacionPersona()
 {
     clearScreen;
     cout << "Los datos de la persona son: \n";
@@ -406,12 +406,12 @@ void Persona::informacionPersona()
         break;
     case 2:
         cout << "Carnet de Extranjeria "
-            << "\n";
+             << "\n";
         cout << this->documento << "\n";
         break;
     case 3:
         cout << "Pasaporte"
-            << "\n";
+             << "\n";
         cout << this->documento << "\n";
         break;
     default:

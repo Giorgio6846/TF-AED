@@ -2,7 +2,7 @@
 
 #include "Libraries.h"
 #include "Persona.h"
-#include "HashTable.h"
+#include "Algoritmos/HashTable.h"
 
 /*
 
@@ -31,23 +31,23 @@ private:
 public:
     VehiculoTransporte(int Origen = 0, int Destino = 0, int tiempoEstimado = 0)
     {
-        this->Origen = Origen;
+        this -> Origen = Origen;
         this->Destino = Destino;
         this->tiempoEstimado = tiempoEstimado;
     }
-    ~VehiculoTransporte() {}
+    ~VehiculoTransporte(){}
 
-    int getOrigen() { return this->Origen; }
-    void setOrigen(int Origen) { this->Origen = Origen; }
+    int getOrigen(){ return this-> Origen; }
+    void setOrigen(int Origen) {  this->Origen = Origen; }
 
-    int getDestino() { return this->Destino; }
+    int getDestino(){ return this -> Destino; }
     void setDestino(int Destino) { this->Destino = Destino; }
 
-    int gettiempoEstimado() { return this->tiempoEstimado; }
-    void settiempoEstimado(int tiempoEstimado) { this->tiempoEstimado = tiempoEstimado; }
+    int gettiempoEstimado(){ return this-> tiempoEstimado; }
+    void settiempoEstimado(int tiempoEstimado){ this -> tiempoEstimado = tiempoEstimado; }
 
-    int getCantidadDisponible() { return this->cantidadDisponible; }
-    void setCantidadDisponible(int cantidadDisponible) { this->cantidadDisponible = cantidadDisponible; }
+    int getCantidadDisponible(){ return this -> cantidadDisponible; }
+    void setCantidadDisponible(int cantidadDisponible) {  this->cantidadDisponible = cantidadDisponible; }
 };
 
 /*
@@ -64,21 +64,21 @@ struct Asiento
     string numeroAsiento;
 
     char claseAsiento;
-    Persona* usuarioPersona;
+    Persona * usuarioPersona;
 };
 
 class Bus : public VehiculoTransporte
 {
 private:
-    int columnaAsiento = 10;
-    int filaAsiento = 6;
+        int columnaAsiento = 10;
+        int filaAsiento = 6;
 
-    //Bus asientos
-    HashTable<Asiento> busAsientos;
+        //Bus asientos
+        HashTable<Asiento> busAsientos;
 
-public:
-    Bus(int Origen, int Destino, int tiempoEstimado) : VehiculoTransporte(Origen, Destino, tiempoEstimado)
-    {
+    public:
+        Bus(int Origen, int Destino, int tiempoEstimado) : VehiculoTransporte(Origen, Destino, tiempoEstimado)
+        {
         setOrigen(Origen);
         setDestino(Destino);
         settiempoEstimado(tiempoEstimado);
@@ -87,14 +87,14 @@ public:
         busAsientos.setSize(filaAsiento);
         generarAsientos();
     }
-    ~Bus() {}
+    ~Bus(){}
 
     void mostrarAsientos();
     void generarAsientos();
     bool AsientoDisponible(string letra, string numero);
-    void posicionarAsiento(Persona* pTMP, string letra, string numero);
-    Asiento* accesoAsiento(string letra, string numero);
-    void AsientoRandom(Persona* pTMP);
+    void posicionarAsiento(Persona *pTMP, string letra, string numero);
+    Asiento *accesoAsiento(string letra, string numero);
+    void AsientoRandom(Persona *pTMP);
     string LugarDisponible(string numeroAsiento);
 
     void agregarPasajero()
@@ -103,11 +103,11 @@ public:
     }
 };
 
-void Bus::AsientoRandom(Persona* pTMP)
+void Bus :: AsientoRandom(Persona *pTMP)
 {
     string numeroAsiento = "";
     string letraAsiento = "";
-    bool cond = 1;
+    bool cond = 1; 
     if (getCantidadDisponible() <= 5)
     {
         for (int i = 1; i <= busAsientos.getSize() && cond; i++)
@@ -130,14 +130,14 @@ void Bus::AsientoRandom(Persona* pTMP)
     }
     if (cond == 1)
     {
-        posicionarAsiento(pTMP, letraAsiento, numeroAsiento);
+        posicionarAsiento(pTMP, letraAsiento, numeroAsiento);    
     }
 }
 
-string Bus::LugarDisponible(string numeroAsiento)
+string Bus :: LugarDisponible(string numeroAsiento)
 {
-    list tmp = busAsientos.buscarListaBus(numeroAsiento);
-    for (auto* it : tmp)
+    list<Asiento*> tmp = busAsientos.buscarListaBus(numeroAsiento);
+    for (auto *it : tmp)
     {
         if (it->usuarioPersona == NULL)
         {
@@ -151,10 +151,10 @@ void Bus::mostrarAsientos()
 {
     for (int i = 0; i < busAsientos.getSize(); i++)
     {
-        string numeroAsiento = to_string(i + 1);
-        list tmp = busAsientos.buscarListaBus(numeroAsiento);
-        for (auto* it : tmp)
-        {
+        string numeroAsiento = to_string(i+1);
+        list<Asiento*> tmp = busAsientos.buscarListaBus(numeroAsiento);
+        for (auto *it : tmp)
+        { 
             if (it->usuarioPersona == NULL)
             {
                 cout << "\033[92m";
@@ -163,7 +163,7 @@ void Bus::mostrarAsientos()
             {
                 cout << "\033[91m";
             }
-
+            
             cout << it->letraAsiento << it->numeroAsiento << " ";
         }
         cout << "\n";
@@ -171,17 +171,17 @@ void Bus::mostrarAsientos()
     cout << "\033[39m	\033[49m" << "\n";
 }
 
-void Bus::posicionarAsiento(Persona* pTMP, string letra, string numero)
+void Bus :: posicionarAsiento(Persona * pTMP, string letra, string numero)
 {
     agregarPasajero();
-    Asiento* tmp = accesoAsiento(letra, numero);
+    Asiento * tmp = accesoAsiento(letra, numero);
     tmp->usuarioPersona = pTMP;
 }
 
-Asiento* Bus::accesoAsiento(string letra, string numero)
+Asiento * Bus :: accesoAsiento(string letra, string numero)
 {
-    list tmp = busAsientos.buscarListaBus(numero);
-    for (auto* it : tmp)
+    list<Asiento*> tmp = busAsientos.buscarListaBus(numero);
+    for (auto *it : tmp)
     {
         if (it->letraAsiento == letra)
         {
@@ -191,9 +191,9 @@ Asiento* Bus::accesoAsiento(string letra, string numero)
     return NULL;
 }
 
-bool Bus::AsientoDisponible(string letra, string numero)
+bool Bus :: AsientoDisponible(string letra, string numero)
 {
-    Asiento* aTMP = accesoAsiento(letra, numero);
+    Asiento * aTMP = accesoAsiento(letra, numero);
     if (aTMP == NULL)
     {
         return 0;
@@ -211,10 +211,11 @@ void Bus::generarAsientos()
     {
         for (int j = 0; j < columnaAsiento; j++)
         {
-            Asiento* asientoTMP = new Asiento;
-            asientoTMP->letraAsiento = char(65 + j);
-            asientoTMP->numeroAsiento = to_string(i + 1);
-            asientoTMP->claseAsiento = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
+            Asiento * asientoTMP = new Asiento;
+            asientoTMP -> letraAsiento  = char(65 + j);
+            asientoTMP -> numeroAsiento = to_string(i + 1);
+            asientoTMP -> claseAsiento = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
+            asientoTMP->usuarioPersona = nullptr;
 
             busAsientos.insertBus(asientoTMP->numeroAsiento, asientoTMP);
         }
@@ -226,14 +227,14 @@ class Camion : public VehiculoTransporte
 private:
     /* data */
 public:
-    Camion(int Origen, int Destino, int tiempoEstimado) : VehiculoTransporte(Origen, Destino, tiempoEstimado)
+    Camion(int Origen, int Destino, int tiempoEstimado) : VehiculoTransporte(Origen,  Destino, tiempoEstimado)
     {
         setOrigen(Origen);
         setDestino(Destino);
         settiempoEstimado(tiempoEstimado);
         setCantidadDisponible(200);
     }
-    ~Camion() {}
+    ~Camion(){}
 };
 
 

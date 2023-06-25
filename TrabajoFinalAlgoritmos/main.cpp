@@ -2,11 +2,11 @@
 #include "ControladorDataSet.h"
 
 #if (VER == 1 || VER == 2)
-#include "ControladorViajes.h" 
+#include "Viaje/ControladorViajes.h" 
 #endif
 
 #if (VER == 1 || VER == 3)
-#include "ControladorEncomiendas.h"
+#include "Encomienda/ControladorEncomiendas.h"
 #endif
 
 /*
@@ -31,42 +31,42 @@ useDataSet
 int menu();
 
 #if (VER == 1 || VER == 2)
-void opcionViajes(ControladorViajes* claseViaje);
+void opcionViajes(ControladorViajes *claseViaje);
 #endif
 
 #if (VER == 1 || VER == 3)
-void opcionEncomienda(ControladorEncomiendas* claseEncomienda);
+void opcionEncomienda(ControladorEncomiendas *claseEncomienda);
 #endif
 
 int main()
 {
     srand(time(NULL));
 
-    ControladorDataSet* controladorDataSet = new ControladorDataSet();
+    ControladorDataSet *controladorDataSet = new ControladorDataSet();
+    
+    #if (VER == 1 || VER == 2)
+    ControladorViajes *claseViaje = new ControladorViajes();
+    #endif
 
-#if (VER == 1 || VER == 2)
-    ControladorViajes* claseViaje = new ControladorViajes();
-#endif
-
-#if (VER == 1 || VER == 3)
-    ControladorEncomiendas* claseEncomienda = new ControladorEncomiendas();
-#endif
+    #if (VER == 1 || VER == 3)
+    ControladorEncomiendas *claseEncomienda = new ControladorEncomiendas();
+    #endif
 
     do
     {
         switch (menu())
         {
         case 1:
-#if (VER == 1 || VER == 2)
+            #if (VER == 1 || VER == 2)
             clearScreen;
             opcionViajes(claseViaje);
-#endif
+            #endif
             break;
         case 2:
-#if (VER == 1 || VER == 3)
+            #if (VER == 1 || VER == 3)
             clearScreen;
             opcionEncomienda(claseEncomienda);
-#endif
+            #endif
             break;
         default:
             cout << "Gracias por elegir nuestra app! :)";
@@ -77,7 +77,7 @@ int main()
 }
 
 #if (VER == 1 || VER == 2)
-void opcionViajes(ControladorViajes* claseViaje)
+void opcionViajes(ControladorViajes *claseViaje)
 {
     int opcionSelecionada;
     do
@@ -103,14 +103,14 @@ void opcionViajes(ControladorViajes* claseViaje)
 #endif
 
 #if (VER == 1 || VER == 3)
-void opcionEncomienda(ControladorEncomiendas* claseEncomienda)
+void opcionEncomienda(ControladorEncomiendas *claseEncomienda)
 {
     int opcionSelecionada;
 
     do
     {
         opcionSelecionada = claseEncomienda->menuEncomienda();
-
+        
         switch (opcionSelecionada)
         {
         case 1:
@@ -132,11 +132,11 @@ void opcionEncomienda(ControladorEncomiendas* claseEncomienda)
             break;
         }
     } while (opcionSelecionada != 5);
-}
+}    
 #endif
 
 int menu()
-{
+{    
     int opcionSelecionada;
     do
     {

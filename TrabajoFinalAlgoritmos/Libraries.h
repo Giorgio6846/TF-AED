@@ -44,75 +44,75 @@ Limpieza del cin
 //Funciones Windows
     //Limpieza de pantalla y Variables
 
-#ifdef _WIN32
-#define VER 1
-#define RAD 0
-#define useDataSet 1
-#define clearScreen system("CLS");
-#endif
+    #ifdef _WIN32
+    #define VER 1
+    #define RAD 1
+    #define useDataSet 1
+    #define clearScreen system("CLS");
+    #endif
 
-//Getch
+    //Getch
 
-#ifdef _WIN32
-void cont()
-{
-    _getch();
-}
-#endif
+    #ifdef _WIN32
+    void cont()
+    {
+        _getch();
+    }
+    #endif
 
-#ifdef __linux__
-#define VER 1
-#define RAD 1
-#endif
+    #ifdef __linux__
+    #define VER 1
+    #define RAD 1
+    #endif
 
 //Funciones macOS
     //Limpieza de pantalla
 
-#ifdef __APPLE__
-#define clearScreen system("clear");
-#endif
+    #ifdef __APPLE__
+    #define clearScreen system("clear");
+    #endif
 
-//Getch
+    //Getch
 
-#ifdef __APPLE__
-void cont()
-{
-    // getch();
-    char c;
-    cin >> c;
-    return;
-}
-#endif
+    #ifdef __APPLE__
+    void cont()
+    {
+        // getch();
+        char c;
+        cin >> c;
+        return;
+    }
+    #endif
 
-// Funciones Linux
-// Limpieza de pantalla
+    // Funciones Linux
+    // Limpieza de pantalla
 
-#ifdef __linux__
-#define clearScreen system("clear");
-#endif
+    #ifdef __linux__
+    #define clearScreen system("clear");
+    #endif
 
-// Getch
+    // Getch
 
-#ifdef __linux__
-void cont()
-{
-    // getch();
-    char c;
-    cin >> c;
-    return;
-}
-#endif
+    #ifdef __linux__
+    void cont()
+    {
+        // getch();
+        char c;
+        cin >> c;
+        return;
+    }
+    #endif
 
 
-//Funciones globales
-void
-ClearKeyboard()
-{
-    cin.clear();
-    cin.ignore(20000, '\n');
-}
+    //Funciones globales
+    void
+    ClearKeyboard()
+    {
+        cin.clear();
+        cin.ignore(20000, '\n');
+    }
 
-int randDigit(int exception)
-{
-    return (rand() % (10 - exception) + exception);
-}
+    int randDigit(int exception)
+    {
+        return (rand() % (10 - exception) + exception);
+    }

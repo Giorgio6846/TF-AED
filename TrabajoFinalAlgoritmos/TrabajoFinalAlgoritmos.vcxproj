@@ -134,11 +134,7 @@
     <ClInclude Include="ControladorEncomiendas.h" />
     <ClInclude Include="ControladorViajes.h" />
     <ClInclude Include="Encomienda.h" />
-    <ClInclude Include="Grafo.h" />
-    <ClInclude Include="HashTable.h" />
     <ClInclude Include="Libraries.h" />
-    <ClInclude Include="NodoArbol.h" />
-    <ClInclude Include="NodoLista.h" />
     <ClInclude Include="objetoEncomienda.h" />
     <ClInclude Include="Persona.h" />
     <ClInclude Include="Rutas.h" />

@@ -4,10 +4,10 @@
 class Rutas
 {
 private:
-    vector<string> lugares{ "Lima", "Chimbote", "Trujillo", "Pacasmayo", "Cajamarca", "Chepen", "Chiclayo", "Piura", "Jaen", "Cajabamba", "Moyobamba", "Tarapoto" };
+    vector<string> lugares{"Lima", "Chimbote", "Trujillo", "Pacasmayo", "Cajamarca", "Chepen", "Chiclayo", "Piura", "Jaen", "Cajabamba", "Moyobamba", "Tarapoto"};
 
     //Si hay tiempo cambiarlo a archivo
-    vector<vector<bool>> rutas{
+    vector<vector<bool>> rutas {
         /*Lima*/      {00, 01, 01, 01, 00, 01, 01, 01, 00, 00, 00, 00},
         /*Chimbote*/  {01, 00, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00},
         /*Trujillo*/  {01, 01, 00, 01, 01, 00, 00, 00, 00, 00, 00, 00},
@@ -22,7 +22,7 @@ private:
         /*Tarapoto*/  {00, 00, 00, 00, 01, 00, 00, 00, 00, 00, 01, 00},
     };
 
-    vector<vector<int>> rutasTiempoEstimado{
+    vector<vector<int>> rutasTiempoEstimado {
         /*Lima*/      {00, 39, 54, 65, 00, 69, 79, 98, 00, 00, 00, 00},
         /*Chimbote*/  {39, 00, 14, 00, 00, 00, 00, 00, 00, 00, 00, 00},
         /*Trujillo*/  {54, 14, 00, 12, 37, 00, 00, 00, 00, 00, 00, 00},
@@ -38,13 +38,13 @@ private:
     };
 
 public:
-    Rutas(/* args */) {};
-    ~Rutas() {};
+    Rutas(/* args */){};
+    ~Rutas(){};
 
-    int getSizeLugares() { return lugares.size(); }
-    string getLugar(int N) { return lugares.at(N); }
+    int getSizeLugares() {return lugares.size(); }
+    string getLugar(int N) {return lugares.at(N); }
 
-    bool getRuta(int pos, int N) { return rutas[pos][N]; }
+    bool getRuta(int pos, int N){return rutas[pos][N]; }
 
     int accesoRutaDisponible(int x, int y);
     int accesoTiempoRuta(int x, int y);
@@ -54,7 +54,7 @@ public:
 
 };
 
-int Rutas::selecionarOrigen()
+int Rutas :: selecionarOrigen()
 {
     int opcionElegida;
     do
@@ -77,7 +77,7 @@ int Rutas::selecionarOrigen()
 }
 
 // Selecciona el Destino
-int Rutas::selecionarDestino(int Origen)
+int Rutas ::selecionarDestino(int Origen)
 {
     int opcionElegida;
     do
@@ -89,7 +89,7 @@ int Rutas::selecionarDestino(int Origen)
             cout << i + 01 << " " << getLugar(i) << "\n";
         }
         cin >> opcionElegida;
-        if (!(opcionElegida >= 00 && opcionElegida <= getSizeLugares() + 1) || (opcionElegida == (Origen + 1)))
+        if (!(opcionElegida >= 00 && opcionElegida <= getSizeLugares() + 1) || (opcionElegida == (Origen + 1)) )
         {
             ClearKeyboard();
             cout << "La opcion seleccionada es incorrecta.";
@@ -99,7 +99,7 @@ int Rutas::selecionarDestino(int Origen)
     return opcionElegida - 01;
 }
 
-int Rutas::accesoRutaDisponible(int x, int y)
+int Rutas :: accesoRutaDisponible(int x, int y)
 {
     //cout << sizeof(rutas[0][0]);
 
@@ -110,14 +110,14 @@ int Rutas::accesoRutaDisponible(int x, int y)
             //cout << rutas[x][y] << " ";
             return rutas[x][y];
         }
-
-    }
+    
+    }  
     return 0;
 }
 
-int Rutas::accesoTiempoRuta(int x, int y)
+int Rutas :: accesoTiempoRuta(int x, int y)
 {
-    if (accesoRutaDisponible(x, y) != 0)
+    if (accesoRutaDisponible(x,y) != 0)
     {
         return rutasTiempoEstimado[x][y];
     }

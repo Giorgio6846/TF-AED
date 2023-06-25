@@ -59,17 +59,5 @@
     <ClInclude Include="ControladorEncomiendas.h">
       <Filter>Archivos de encabezado\Encomienda</Filter>
     </ClInclude>
-    <ClInclude Include="NodoLista.h">
-      <Filter>Archivos de encabezado\Algoritmos</Filter>
-    </ClInclude>
-    <ClInclude Include="NodoArbol.h">
-      <Filter>Archivos de encabezado\Algoritmos</Filter>
-    </ClInclude>
-    <ClInclude Include="Grafo.h">
-      <Filter>Archivos de encabezado\Algoritmos</Filter>
-    </ClInclude>
-    <ClInclude Include="HashTable.h">
-      <Filter>Archivos de encabezado\Algoritmos</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
