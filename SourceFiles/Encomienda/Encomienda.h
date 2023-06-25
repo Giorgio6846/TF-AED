@@ -36,6 +36,6 @@ public:
     }
 
     string getCodigo(){return this->codigo;}
-    int getPeso(){return objeto->getPeso();}
+    float getPeso(){return objeto->getPeso();}
 
 };

@@ -55,7 +55,7 @@ public:
 
     void lecturaIndexacion()
     {
-        archivo.open("DataSet.csv", ios::in); //Apertura
+        archivo.open("../DataSet.csv", ios::in); //Apertura
 		if (!archivo.is_open())
 		{
 			cout << "Error: No se pudo abrir el archivo!" << endl;
@@ -168,7 +168,7 @@ public:
     }
 #endif
 */
-
+#if (VER == 1 || VER == 2)
     void generacionGrafoV()
     {
         for (int i = 0; i < getSizeLugares(); i++)
@@ -193,7 +193,8 @@ public:
             }
         }
     }
-
+#endif
+#if (VER == 1 || VER == 3)
     void generacionGrafoE()
     {
         for (int i = 0; i < getSizeLugares(); i++)
@@ -218,7 +219,7 @@ public:
             }
         }
     }
-
+#endif
     int randOrigen()
     {
         return rand() % getSizeLugares();

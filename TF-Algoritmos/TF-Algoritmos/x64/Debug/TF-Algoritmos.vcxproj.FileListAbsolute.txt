@@ -1,0 +1,2 @@
+C:\Users\Giorgio Mancusi\Desktop\TrabajoFinalAlgEstDat\TrabajoFinalAlgEstDat\TF-Algoritmos\TF-Algoritmos\x64\Debug\TF-Algoritmos.vcxproj.AssemblyReference.cache
+C:\Users\Giorgio Mancusi\Desktop\TrabajoFinalAlgEstDat\TrabajoFinalAlgEstDat\TF-Algoritmos\TF-Algoritmos\x64\Debug\TF-Algoritmos.vcxproj.SuggestedBindingRedirects.cache

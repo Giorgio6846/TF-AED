@@ -46,7 +46,7 @@ Limpieza del cin
 
     #ifdef _WIN32
     #define VER 1
-    #define RAD 0
+    #define RAD 1
     #define useDataSet 1
     #define clearScreen system("CLS");
     #endif
@@ -56,7 +56,7 @@ Limpieza del cin
     #ifdef _WIN32
     void cont()
     {
-        getch();
+        _getch();
     }
     #endif
 

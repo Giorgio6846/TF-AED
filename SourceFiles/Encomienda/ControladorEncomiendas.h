@@ -75,9 +75,6 @@ class ControladorEncomiendas: public ControladorDataSet
 
     Persona * almacenarInfoCliente(){
         clearScreen;
-        string nombreP, apellidoP;
-        int edadP;
-        bool validar;
 
         Persona * cliente = new Persona();
 
@@ -94,6 +91,7 @@ class ControladorEncomiendas: public ControladorDataSet
         int opcion;
         float peso;
         bool esFragil;
+        int Fragil;
 
         do
         {
@@ -141,16 +139,16 @@ class ControladorEncomiendas: public ControladorDataSet
             clearScreen;
 
             cout << "Es su objeto considero fragil?: 1 = Si / 2 = No "<< endl;
-            cin >> esFragil;
+            cin >> Fragil;
 
-            if (!(esFragil >= 1 && esFragil <= 2)) {
+            if (!(Fragil >= 1 && Fragil <= 2)) {
             ClearKeyboard();
             cout << "El valor ingresado es invalido.\n";
             cont();
 
             }   
-        } while (!(esFragil >= 1 && esFragil <= 2));
-        esFragil = (esFragil == 1);
+        } while (!(Fragil >= 1 && Fragil <= 2));
+        esFragil = (Fragil == 1);
         clearScreen;
         objetoEncomienda * objeto = new objetoEncomienda(categoria, peso, esFragil);
         return objeto;

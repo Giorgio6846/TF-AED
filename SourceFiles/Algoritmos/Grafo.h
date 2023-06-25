@@ -275,7 +275,7 @@ private:
 
         TotalRuta<W> *rutaFinal(R Origen, R Destino, int espacioRequerido)
         {
-            list listRV = htRutaViaje.buscarListaRutas(genKey(Origen, Destino));
+            list<TotalRuta<W> *> listRV = htRutaViaje.buscarListaRutas(genKey(Origen, Destino));
             TotalRuta<W> *trWTMP;
             bool cond = 1;
             for (auto *it : listRV)

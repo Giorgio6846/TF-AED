@@ -136,7 +136,7 @@ void Bus :: AsientoRandom(Persona *pTMP)
 
 string Bus :: LugarDisponible(string numeroAsiento)
 {
-    list tmp = busAsientos.buscarListaBus(numeroAsiento);
+    list<Asiento*> tmp = busAsientos.buscarListaBus(numeroAsiento);
     for (auto *it : tmp)
     {
         if (it->usuarioPersona == NULL)
@@ -152,7 +152,7 @@ void Bus::mostrarAsientos()
     for (int i = 0; i < busAsientos.getSize(); i++)
     {
         string numeroAsiento = to_string(i+1);
-        list tmp = busAsientos.buscarListaBus(numeroAsiento);
+        list<Asiento*> tmp = busAsientos.buscarListaBus(numeroAsiento);
         for (auto *it : tmp)
         { 
             if (it->usuarioPersona == NULL)
@@ -180,7 +180,7 @@ void Bus :: posicionarAsiento(Persona * pTMP, string letra, string numero)
 
 Asiento * Bus :: accesoAsiento(string letra, string numero)
 {
-    list tmp = busAsientos.buscarListaBus(numero);
+    list<Asiento*> tmp = busAsientos.buscarListaBus(numero);
     for (auto *it : tmp)
     {
         if (it->letraAsiento == letra)
