@@ -113,8 +113,8 @@ void Bus :: AsientoRandom(Persona *pTMP)
     do
     {
         numeroAsiento = to_string(rand() % columnaAsiento);
-        letraAsiento = to_string(char(65 + rand() % filaAsiento));
-    } while (AsientoDisponible(letraAsiento, numeroAsiento));
+        letraAsiento = char(65 + rand() % filaAsiento);
+    } while (!AsientoDisponible(letraAsiento, numeroAsiento));
     posicionarAsiento(pTMP, letraAsiento, numeroAsiento);
 }
 
@@ -159,11 +159,16 @@ Asiento * Bus :: accesoAsiento(string letra, string numero)
             return it;
         }
     }
+    return NULL;
 }
 
 bool Bus :: AsientoDisponible(string letra, string numero)
 {
     Asiento * aTMP = accesoAsiento(letra, numero);
+    if (aTMP == NULL)
+    {
+        return 0;
+    }
     if (aTMP->usuarioPersona == NULL)
     {
         return 1;
