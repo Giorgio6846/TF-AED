@@ -105,7 +105,7 @@ public:
         int Origen, Destino;
         Origen = randOrigen();
         Destino = randDestino(Origen);
-        TotalRuta<Bus> *busTMP = grafoRutasV->rutaFinal(Origen, Destino, 1);
+        TotalRuta<Bus> *busTMP = grafoRutasV->rutaFinal(Origen, Destino, 5);
         
         PersonaInf * piTMP = new PersonaInf();
         piTMP -> personaViaje = creacionPersona(nombre, apellido1, apellido2, edad, documento);
@@ -180,7 +180,7 @@ public:
                 if (accesoRutaDisponible(i, j) != 0)
                 {
                     NodoLista<Bus> *listaBus = NULL;
-                    for (int k = 0; k <= 3; k++)
+                    for (int k = 0; k <= 4; k++)
                     {
                         Bus *tmp = new Bus(i, j, accesoTiempoRuta(i, j));
                         listaBus->push(&listaBus, tmp);

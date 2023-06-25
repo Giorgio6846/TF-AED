@@ -97,8 +97,8 @@ private:
     void posicionarAsiento(Persona *pTMP, string letra, string numero);
     Asiento *accesoAsiento(string letra, string numero);
     void AsientoRandom(Persona *pTMP);
+    string LugarDisponible(string numeroAsiento);
 
-    // Terminar
     void agregarPasajero()
     {
         setCantidadDisponible(getCantidadDisponible() - 1);
@@ -109,13 +109,26 @@ void Bus :: AsientoRandom(Persona *pTMP)
 {
     string numeroAsiento;
     string letraAsiento;
-
     do
     {
         numeroAsiento = to_string(rand() % columnaAsiento);
-        letraAsiento = char(65 + rand() % filaAsiento);
+        letraAsiento = LugarDisponible(numeroAsiento);
+        //letraAsiento = char(65 + rand() % filaAsiento);
+
     } while (!AsientoDisponible(letraAsiento, numeroAsiento));
     posicionarAsiento(pTMP, letraAsiento, numeroAsiento);
+}
+
+string Bus :: LugarDisponible(string numeroAsiento)
+{
+    list tmp = busAsientos.buscarListaBus(numeroAsiento);
+    for (auto *it : tmp)
+    {
+        if (it->usuarioPersona == NULL)
+        {
+            return it->letraAsiento;
+        }
+    }
 }
 
 void Bus::mostrarAsientos()
