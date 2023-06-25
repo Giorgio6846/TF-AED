@@ -141,31 +141,9 @@ public:
         }
     }
 
-    void generacionGrafoEncomienda()
-    {
-        for (int i = 0; i < getSizeLugares(); i++)
-        {
-            grafoRutasE->agregarVertice(i);
-        }
+    
 
-        for (int i = 0; i < getSizeLugares(); i++)
-        {
-            for (int j = 0; j < getSizeLugares(); j++)
-            {
-                if (accesoRutaDisponible(i, j) != 0)
-                {
-                    NodoLista<Camion> *listaCamion = NULL;
-                    for (int k = 0; k <= 3; k++)
-                    {
-                        Camion *tmp = new Camion(i, j, accesoTiempoRuta(i, j));
-                        listaCamion->push(&listaCamion, tmp);
-                    }
-                    grafoRutasE->agregarArcoVertice(i, j, accesoTiempoRuta(i, j), listaCamion);
-                }
-            }
-        }
-    }
-
+#if (VER == 1 || VER == 2)
     void generacionGrafoViaje()
     {
         for (int i = 0; i < getSizeLugares(); i++)
@@ -190,6 +168,35 @@ public:
             }
         }
     }
+#endif
+#if (VER == 1 || VER == 3)
+    void generacionGrafoEncomienda()
+    {
+        for (int i = 0; i < getSizeLugares(); i++)
+        {
+            grafoRutasE->agregarVertice(i);
+        }
+
+        for (int i = 0; i < getSizeLugares(); i++)
+        {
+            for (int j = 0; j < getSizeLugares(); j++)
+            {
+                if (accesoRutaDisponible(i, j) != 0)
+                {
+                    NodoLista<Camion> *listaCamion = NULL;
+                    for (int k = 0; k <= 3; k++)
+                    {
+                        Camion *tmp = new Camion(i, j, accesoTiempoRuta(i, j));
+                        listaCamion->push(&listaCamion, tmp);
+                    }
+                    grafoRutasE->agregarArcoVertice(i, j, accesoTiempoRuta(i, j), listaCamion);
+                }
+            }
+        }
+    }
+#endif
+    
+
 
     int randOrigen()
     {

@@ -45,7 +45,7 @@ Limpieza del cin
     //Limpieza de pantalla y Variables
 
     #ifdef _WIN32
-    #define VER 1
+    #define VER 3
     #define RAD 0
     #define clearScreen system("CLS");
     #endif
@@ -60,8 +60,8 @@ Limpieza del cin
     #endif
 
     #ifdef __linux__
-    #define VER 1
-    #define RAD 1
+    //#define VER 1
+    //#define RAD 1
     #endif
 
 //Funciones macOS
