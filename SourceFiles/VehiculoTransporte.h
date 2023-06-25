@@ -107,15 +107,34 @@ private:
 
 void Bus :: AsientoRandom(Persona *pTMP)
 {
-    string numeroAsiento;
-    string letraAsiento;
-    do
+    string numeroAsiento = "";
+    string letraAsiento = "";
+    bool cond = 1; 
+    if (getCantidadDisponible() <= 5)
     {
-        numeroAsiento = to_string(rand() % columnaAsiento);
-        letraAsiento = LugarDisponible(numeroAsiento);
-        //letraAsiento = char(65 + rand() % filaAsiento);
+        for (int i = 1; i <= busAsientos.getSize() && cond; i++)
+        {
+            numeroAsiento = to_string(i);
+            letraAsiento = LugarDisponible(numeroAsiento);
+            if (letraAsiento != "")
+            {
+                cond = 0;
+            }
+            
+            
+        }
+    }
+    else
+    {
+        do
+        {
+            numeroAsiento = to_string(rand() % columnaAsiento);
+            letraAsiento = LugarDisponible(numeroAsiento);
+            // letraAsiento = char(65 + rand() % filaAsiento);
 
-    } while (!AsientoDisponible(letraAsiento, numeroAsiento));
+        } while (!AsientoDisponible(letraAsiento, numeroAsiento));
+    }
+    
     posicionarAsiento(pTMP, letraAsiento, numeroAsiento);
 }
 

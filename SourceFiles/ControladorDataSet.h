@@ -105,7 +105,7 @@ public:
         int Origen, Destino;
         Origen = randOrigen();
         Destino = randDestino(Origen);
-        TotalRuta<Bus> *busTMP = grafoRutasV->rutaFinal(Origen, Destino, 5);
+        TotalRuta<Bus> *busTMP = grafoRutasV->rutaFinal(Origen, Destino, 1);
         
         PersonaInf * piTMP = new PersonaInf();
         piTMP -> personaViaje = creacionPersona(nombre, apellido1, apellido2, edad, documento);
