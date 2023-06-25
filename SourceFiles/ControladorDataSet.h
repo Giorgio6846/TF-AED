@@ -35,12 +35,12 @@ public:
     {
     #if (VER == 1 || VER == 2)
         generacionGrafoViaje();
-        hashTableViajes.setSize(10000);
+        hashTableViajes.setSize(7500);
     #endif
 
     #if (VER == 1 || VER == 3)
         generacionGrafoEncomienda();
-        hashTableEncomiendas.setSize(10000);
+        hashTableEncomiendas.setSize(7500);
     #endif
 
     this->delimitador = ',';
@@ -75,16 +75,18 @@ public:
             getline(stream, funcion, delimitador);
 			//Indexamos la informacion, según la función, en encomiendas o viajes
 
+
+
             #if (VER == 1 || VER == 2)
             if (funcion == "V")
             {
-                FuncionViaje(nombre, apellido1, apellido2, edad, documento);
+                FuncionViaje(creacionPersona(nombre,apellido1,apellido2,edad,documento));
             }
             #endif
             #if (VER == 1 || VER == 3)
             if (funcion == "E")
             {
-                FuncionEncomienda(nombre, apellido1, apellido2, edad, documento);
+                FuncionEncomienda(creacionPersona(nombre, apellido1, apellido2, edad, documento));
             }
             #endif
         }
@@ -100,23 +102,20 @@ public:
     }
 
     #if (VER == 1 || VER == 2)
-    void FuncionViaje(string nombre, string apellido1, string apellido2, string edad, string documento)
+    void FuncionViaje(Persona * pTMP)
     {
         int Origen, Destino;
         Origen = randOrigen();
         Destino = randDestino(Origen);
         TotalRuta<Bus> *busTMP = grafoRutasV->rutaFinal(Origen, Destino, 1);
-        
-        Persona * pTMP = new Persona();
-        pTMP = creacionPersona(nombre, apellido1, apellido2, edad, documento);
-        asientoRandom(busTMP->rutaAlDestino,pTMP);
         Viaje *viajeTMP = new Viaje(Origen, Destino, pTMP, busTMP);
-        hashTableViajes.insert(pTMP->getKey(), viajeTMP);
+        asientoRandom(busTMP->rutaAlDestino,viajeTMP->pasajero);
+        hashTableViajes.insert(viajeTMP->pasajero->getKey(), viajeTMP);
     }
     #endif
 
     #if (VER == 1 || VER == 3)
-    void FuncionEncomienda(string nombre, string apellido1, string apellido2, string edad, string documento)
+    void FuncionEncomienda(Persona * pTMP)
     {
         int Origen, Destino;
         Origen = randOrigen();
@@ -124,7 +123,7 @@ public:
 
         objetoEncomienda *objeto = new objetoEncomienda();
         TotalRuta<Camion> *camionTMP = grafoRutasE->rutaFinal(Origen, Destino, objeto->getPeso());
-        Encomienda *encomienda = new Encomienda(creacionPersona(nombre, apellido1, apellido2, edad, documento), objeto, camionTMP);
+        Encomienda *encomienda = new Encomienda(pTMP, objeto, camionTMP);
 
         hashTableEncomiendas.insert(encomienda->cliente->getKey(), encomienda);
     }
@@ -156,7 +155,7 @@ public:
                 if (accesoRutaDisponible(i, j) != 0)
                 {
                     NodoLista<Bus> *listaBus = NULL;
-                    for (int k = 0; k <= 4; k++)
+                    for (int k = 0; k <= 3; k++)
                     {
                         Bus *tmp = new Bus(i, j, accesoTiempoRuta(i, j));
                         listaBus->push(&listaBus, tmp);

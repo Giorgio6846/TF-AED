@@ -26,7 +26,7 @@ public:
     void seleccionarAsientos();
     void mostrarBuses();
     void AsientoPersona(Persona *pTMP, Bus *busTMP);
-    int AsignacionPrecio(Bus *busTMP, string asientoletra, string asientonumero);
+    void AsignacionPrecio(Bus *busTMP, string asientoletra, string asientonumero);
 };
 
 Viaje::Viaje(int codigoO, int codigoD, TotalRuta<Bus> *busTmp)
@@ -135,7 +135,7 @@ void Viaje :: AsientoPersona(Persona * pTMP, Bus * busTMP)
     AsignacionPrecio(busTMP, asientoletra, asientonumero);
 }
 
-int Viaje :: AsignacionPrecio(Bus * busTMP,string asientoletra,string asientonumero)
+void Viaje :: AsignacionPrecio(Bus * busTMP,string asientoletra,string asientonumero)
 {
     switch (int(busTMP->accesoAsiento(asientoletra, asientonumero)->claseAsiento))
     {
