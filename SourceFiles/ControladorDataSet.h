@@ -133,9 +133,11 @@ public:
     void asientoRandom(NodoLista<Bus> * trbusTMP, Persona * pTMP)
     {
         NodoLista<Bus> * nlTMP = trbusTMP;
+        Bus * bTMP;
         for (; nlTMP != NULL; nlTMP = nlTMP->nextElemento(nlTMP))
         {
-            nlTMP->getElemento(nlTMP) -> AsientoRandom(pTMP);
+            bTMP = nlTMP->getElemento(nlTMP);
+            bTMP -> AsientoRandom(pTMP);
         }
     }
 
@@ -200,7 +202,7 @@ public:
         do
         {
             dest = rand() % getSizeLugares();
-        } while (dest != Origen);
+        } while (dest == Origen);
         return dest;
     }
 };

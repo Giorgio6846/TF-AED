@@ -144,6 +144,7 @@ void Bus::mostrarAsientos()
 
 void Bus :: posicionarAsiento(Persona * pTMP, string letra, string numero)
 {
+    agregarPasajero();
     Asiento * tmp = accesoAsiento(letra, numero);
     tmp->usuarioPersona = pTMP;
 }
