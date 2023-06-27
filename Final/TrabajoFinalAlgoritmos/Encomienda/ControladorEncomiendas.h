@@ -196,7 +196,7 @@ class ControladorEncomiendas: public ControladorDataSet
             clearScreen;
             cout << "Su encomienda ha sido registrada de manera satisfactoria!" << endl;
         }
-        //Se agrega el valor de tiempo a un arbol de búsqueda
+        arbol->insertarValor(arbol, encomiendaFinal->cliente->getDocumento(), ruta->pesoEntero);
         cont();
     }
 };

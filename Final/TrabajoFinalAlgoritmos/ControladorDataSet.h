@@ -35,12 +35,12 @@ public:
     {
     #if (VER == 1 || VER == 2)
         generacionGrafoV();
-        hashTableViajes.setSize(17000);
+        hashTableViajes.setSize(7000);
     #endif
 
     #if (VER == 1 || VER == 3)
         generacionGrafoE();
-        hashTableEncomiendas.setSize(17000);
+        hashTableEncomiendas.setSize(7000);
     #endif
 
     this->delimitador = ',';
