@@ -26,7 +26,6 @@ class ControladorEncomiendas: public ControladorDataSet
         else
         {
             hashTableEncomiendas.mostrarTodasEncomiendas();
-            cont();
         }
     }
 

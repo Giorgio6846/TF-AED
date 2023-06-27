@@ -86,10 +86,11 @@ public:
 
 	}
 
-	void mostrarTodasEncomiendas() 
+	bool mostrarTodasEncomiendas() 
 	{
 		int pos = 0;
 		int cont = 1;
+		char opcion;
 		for (auto & thisList  : tableLists) {		// Recorremos el vector<>
 			for (auto * it : tableLists[pos]) {	// Recorremos la Lista de cada indice del vector	
 				if (it->cliente->getDocumento() != "" ){
@@ -98,6 +99,13 @@ public:
 					if(it->objeto !=NULL){
 						it->objeto->infoEncomienda();
 						cout << "Tiempo estimado de viaje: " << (it->ruta->pesoEntero * 10) / 60 <<" horas"<< endl;
+						cout << "Presiona dos veces esc para salir: " << endl;
+						
+					}
+					opcion = _getch();
+					if (int(opcion) == 27)
+					{
+						return false;
 					}
 					cont++;
 				}
