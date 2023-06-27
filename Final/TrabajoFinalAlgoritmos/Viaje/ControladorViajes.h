@@ -54,11 +54,13 @@ void ControladorViajes ::reservaBusquedaViajes()
    else
    {
        clearScreen;
-       string codigo;
+       string* codigo = new string;
        cout << "Ingrese su DNI" << endl;
-       cin >> codigo;
+       cin >> *codigo;
        clearScreen;
-       hashTableViajes.buscarViaje(codigo);
+       hashTableViajes.buscarViaje(*codigo);
+       codigo = NULL;
+       delete codigo;
    }
 }
 

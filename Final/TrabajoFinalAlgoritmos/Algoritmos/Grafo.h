@@ -407,10 +407,14 @@ private:
 
         void rutaVertice(R Origen, R Destino, int espacioDisponible, NodoLista<R> *&verticesIdos, NodoLista<W> *&listaVehiculo, NodoLista<TotalRuta<W>> *&rutasTotales)
         {
-            NodoLista<R> * tmpVI;
-            tmpVI->duplicadoLista(&verticesIdos, &tmpVI);
+            //NodoLista<R> * tmpVI;
+            //tmpVI->duplicadoLista(verticesIdos, &tmpVI);
+            
             //NodoLista<R>* tmpVI = new NodoLista<R>;
             //tmpVI = verticesIdos;
+
+            NodoLista<R>* tmpVI = NULL;
+            tmpVI = tmpVI->duplicadoLista(verticesIdos);
 
             if (!verticeVisitado(Origen, tmpVI))
             {
@@ -427,8 +431,12 @@ private:
                 // Si existe un bus disponible accede al arco
                 if (verificacionVehiculo(tmpNdAgrafo->getElemento(), espacioDisponible) != nullptr)
                 {
-                    NodoLista<W> *busTMP;
-                    busTMP->duplicadoLista(&listaVehiculo, &busTMP);
+                    //NodoLista<W> *busTMP;
+                    //busTMP->duplicadoLista(listaVehiculo, &busTMP);
+
+                    NodoLista<W>* busTMP = NULL;
+                    busTMP = busTMP->duplicadoLista(listaVehiculo);
+
                     //NodoLista<W>* busTMP = new NodoLista<W>;
                     //busTMP = listaVehiculo;
                     busTMP->append(&busTMP, verificacionVehiculo(tmpNdAgrafo->getElemento(), espacioDisponible));
@@ -451,11 +459,14 @@ private:
         {
             AGrafo * tmpArco = ArcoTMP;
 
-            NodoLista<W> *listaVehiculotmp;
-            listaVehiculotmp->duplicadoLista(&listaVehiculo, &listaVehiculotmp);
+            //NodoLista<W> *listaVehiculotmp;
+            //listaVehiculotmp->duplicadoLista(listaVehiculo, &listaVehiculotmp);
 
             //NodoLista<W>* listaVehiculotmp = new NodoLista<W>;
             //listaVehiculotmp = listaVehiculo;
+
+            NodoLista<W>* listaVehiculotmp = NULL;
+            listaVehiculotmp = listaVehiculotmp->duplicadoLista(listaVehiculo);
 
             if (tmpArco->getLlegada() == DestinoFinal)
             {
