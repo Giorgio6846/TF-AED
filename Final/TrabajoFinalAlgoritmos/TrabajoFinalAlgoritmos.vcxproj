@@ -144,6 +144,8 @@
     <ClInclude Include="Rutas.h" />
     <ClInclude Include="VehiculoTransporte.h" />
     <ClInclude Include="Viaje.h" />
+    <ClInclude Include="Viaje\ControladorViajes.h" />
+    <ClInclude Include="Viaje\Viaje.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

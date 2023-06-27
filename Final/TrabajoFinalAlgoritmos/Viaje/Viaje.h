@@ -9,7 +9,7 @@
 
 class Viaje : public Rutas
 {
-public:
+private:
     TotalRuta<Bus> *TRtmp;
     int Precio = 0;
     Persona *pasajero = new Persona;
@@ -23,6 +23,7 @@ public:
     int getDestinoViaje(){ return TRtmp -> Destino; }
     int getTiempoDuracion() { return TRtmp->pesoEntero;}
 
+    Persona* getPasajero() { return this->pasajero; }
     void agregarPasajero();
     void setRutaBus(TotalRuta<Bus> *busTmp) { TRtmp = busTmp; }
     void seleccionarAsientos();

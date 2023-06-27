@@ -71,5 +71,11 @@
     <ClInclude Include="Algoritmos\NodoLista.h">
       <Filter>Archivos de encabezado\Algoritmos</Filter>
     </ClInclude>
+    <ClInclude Include="Viaje\ControladorViajes.h">
+      <Filter>Archivos de encabezado\Viaje</Filter>
+    </ClInclude>
+    <ClInclude Include="Viaje\Viaje.h">
+      <Filter>Archivos de encabezado\Viaje</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

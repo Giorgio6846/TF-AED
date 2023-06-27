@@ -319,7 +319,7 @@ private:
             return 0;
         }
 
-        TotalRuta<W> *rutaFinal(R Origen, R Destino, int espacioRequerido)
+        TotalRuta<W> * generadorRuta(R Origen, R Destino, int espacioRequerido)
         {
             list<TotalRuta<W> *> listRV = htRutaViaje.buscarListaRutas(genKey(Origen, Destino));
             bool cond = 1;

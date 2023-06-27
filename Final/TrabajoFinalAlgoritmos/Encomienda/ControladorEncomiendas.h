@@ -162,7 +162,7 @@ class ControladorEncomiendas: public ControladorDataSet
             int Destino = selecionarDestino(Origen);
             if (Destino != -1)
             {
-                TotalRuta<Camion> * TRtmp = grafoRutasE->rutaFinal(Origen, Destino, peso);
+                TotalRuta<Camion> * TRtmp = grafoRutasE->generadorRuta(Origen, Destino, peso);
                 return TRtmp;
             }
         }

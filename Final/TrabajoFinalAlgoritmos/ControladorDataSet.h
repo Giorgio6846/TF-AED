@@ -105,27 +105,31 @@ public:
     #if (VER == 1 || VER == 2)
     void FuncionViaje(Persona * pTMP)
     {
-        int Origen = randOrigen();
-        int Destino = randDestino(Origen);
-        TotalRuta<Bus> *busTMP = grafoRutasV->rutaFinal(Origen, Destino, 1);
-        Viaje *viajeTMP = new Viaje(pTMP, busTMP);
-        asientoRandom(busTMP->rutaAlDestino,viajeTMP->pasajero);
+        int* Origen = new int(randOrigen());
+        int* Destino = new int(randDestino(*Origen));
+
+        TotalRuta<Bus>* busTMP = grafoRutasV->generadorRuta(*Origen, *Destino, 1);
+        Viaje* viajeTMP = new Viaje(pTMP, busTMP);
+        asientoRandom(busTMP->rutaAlDestino, viajeTMP->getPasajero());
         hashTableViajes.insert(pTMP->getDocumento(), viajeTMP);
+
+        delete Origen, Destino;
     }
     #endif
 
     #if (VER == 1 || VER == 3)
     void FuncionEncomienda(Persona * pTMP)
     {
-        int Origen, Destino;
-        Origen = randOrigen();
-        Destino = randDestino(Origen);
+        int* Origen = new int(randOrigen());
+        int* Destino = new int(randDestino(*Origen));
 
-        objetoEncomienda *objeto = new objetoEncomienda();
-        TotalRuta<Camion> *camionTMP = grafoRutasE->rutaFinal(Origen, Destino, objeto->getPeso());
-        Encomienda *encomienda = new Encomienda(pTMP, objeto, camionTMP);
+        objetoEncomienda* objeto = new objetoEncomienda();
+        TotalRuta<Camion>* camionTMP = grafoRutasE->generadorRuta(*Origen, *Destino, objeto->getPeso());
+        Encomienda* encomienda = new Encomienda(pTMP, objeto, camionTMP);
         arbol->insertarValor(arbol, pTMP->getDocumento(), camionTMP->pesoEntero * 10);
-        hashTableEncomiendas.insert(pTMP->getDocumento(),encomienda);
+        hashTableEncomiendas.insert(pTMP->getDocumento(), encomienda);
+
+        delete Origen, Destino;
     }
     #endif
 

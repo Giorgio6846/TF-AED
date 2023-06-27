@@ -34,14 +34,14 @@ void ControladorViajes ::reservaViaje()
     int Destino = selecionarDestino(Origen);
     if (Destino == -1)  return;
 
-    TotalRuta<Bus> *TRtmp = grafoRutasV->rutaFinal(Origen, Destino,1);
+    TotalRuta<Bus> *TRtmp = grafoRutasV->generadorRuta(Origen, Destino,1);
     Viaje * nuevaReserva = new Viaje(TRtmp);
 
     nuevaReserva -> agregarPasajero();
     nuevaReserva -> mostrarBuses();
     nuevaReserva -> seleccionarAsientos();
 
-    hashTableViajes.insert(nuevaReserva->pasajero->getKey(),nuevaReserva);
+    hashTableViajes.insert(nuevaReserva->getPasajero()->getKey(), nuevaReserva);
 }
 
 void ControladorViajes ::reservaBusquedaViajes()
