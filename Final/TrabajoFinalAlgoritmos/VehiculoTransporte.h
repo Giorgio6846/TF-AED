@@ -5,7 +5,6 @@
 #include "Algoritmos/HashTable.h"
 
 /*
-
 El bus va a tiene 60 asientos
 Estos son categorizados por clase: A, B y C
 Dependiendo de la clase el costo del precio es mayor
@@ -21,33 +20,44 @@ A  A  B  B  B  B  C  C  C  C
 class VehiculoTransporte
 {
 private:
-    int Origen;
-    int Destino;
+    int* Origen = new int;
+    int* Destino = new int;
 
-    int tiempoEstimado;
+    int* tiempoEstimado = new int;
 
-    int cantidadDisponible;
+    int* cantidadDisponible = new int;
 
 public:
     VehiculoTransporte(int Origen = 0, int Destino = 0, int tiempoEstimado = 0)
     {
-        this -> Origen = Origen;
-        this->Destino = Destino;
-        this->tiempoEstimado = tiempoEstimado;
+        *this->Origen = Origen;
+        *this->Destino = Destino;
+        *this->tiempoEstimado = tiempoEstimado;
     }
-    ~VehiculoTransporte(){}
+    ~VehiculoTransporte()
+    {
+        Origen = NULL;
+        Destino = NULL;
+        tiempoEstimado = NULL;
+        cantidadDisponible = NULL;
 
-    int getOrigen(){ return this-> Origen; }
-    void setOrigen(int Origen) {  this->Origen = Origen; }
+        delete cantidadDisponible;
+        delete Origen;
+        delete Destino;
+        delete tiempoEstimado;
+    }
 
-    int getDestino(){ return this -> Destino; }
-    void setDestino(int Destino) { this->Destino = Destino; }
+    int getOrigen() { return *(this->Origen); }
+    void setOrigen(int Origen) { *(this->Origen) = Origen; }
 
-    int gettiempoEstimado(){ return this-> tiempoEstimado; }
-    void settiempoEstimado(int tiempoEstimado){ this -> tiempoEstimado = tiempoEstimado; }
+    int getDestino() { return *(this->Destino); }
+    void setDestino(int Destino) { *(this->Destino) = Destino; }
 
-    int getCantidadDisponible(){ return this -> cantidadDisponible; }
-    void setCantidadDisponible(int cantidadDisponible) {  this->cantidadDisponible = cantidadDisponible; }
+    int gettiempoEstimado() { return *(this->tiempoEstimado); }
+    void settiempoEstimado(int tiempoEstimado) { *(this->tiempoEstimado) = tiempoEstimado; }
+
+    int getCantidadDisponible() { return *(this->cantidadDisponible); }
+    void setCantidadDisponible(int cantidadDisponible) { *(this->cantidadDisponible) = cantidadDisponible; }
 };
 
 /*
@@ -60,41 +70,53 @@ Por ejemplo: A10 este es organizado por A y despues en la posicion A es organiza
 
 struct Asiento
 {
-    string letraAsiento;
-    string numeroAsiento;
+    string* letraAsiento = new string;
+    string* numeroAsiento = new string;
 
-    char claseAsiento;
-    Persona * usuarioPersona;
+    char* claseAsiento = new char;
+    Persona* usuarioPersona;
 };
 
 class Bus : public VehiculoTransporte
 {
 private:
-        int columnaAsiento = 10;
-        int filaAsiento = 6;
+    int * columnaAsiento = new int;
+    int * filaAsiento = new int;
 
-        //Bus asientos
-        HashTable<Asiento> busAsientos;
+    //Bus asientos
+    HashTable<Asiento> busAsientos;
 
-    public:
+public:
     Bus(int Origen, int Destino, int tiempoEstimado) : VehiculoTransporte(Origen, Destino, tiempoEstimado)
     {
-        setOrigen(Origen);
-        setDestino(Destino);
-        settiempoEstimado(tiempoEstimado);
-        setCantidadDisponible(columnaAsiento * filaAsiento);
+        *columnaAsiento = 10;
+        *filaAsiento = 6;
 
-        busAsientos.setSize(filaAsiento);
+        setCantidadDisponible(*columnaAsiento * *filaAsiento);
+
+        busAsientos.setSize(*filaAsiento);
         generarAsientos();
     }
-    ~Bus(){}
+    ~Bus()
+    {
+        columnaAsiento = NULL;
+        filaAsiento = NULL;
+
+        delete columnaAsiento;
+        delete filaAsiento;
+    }
+
+    char getClaseAsiento(string letra, string numero)
+    {
+        return (*accesoAsiento(letra, numero)->claseAsiento);
+    }
 
     void mostrarAsientos();
     void generarAsientos();
     bool AsientoDisponible(string letra, string numero);
-    void posicionarAsiento(Persona *pTMP, string letra, string numero);
-    Asiento *accesoAsiento(string letra, string numero);
-    void AsientoRandom(Persona *pTMP);
+    void posicionarAsiento(Persona* pTMP, string letra, string numero);
+    Asiento* accesoAsiento(string letra, string numero);
+    void AsientoRandom(Persona* pTMP);
     string LugarDisponible(string numeroAsiento);
 
     void agregarPasajero()
@@ -103,20 +125,20 @@ private:
     }
 };
 
-void Bus :: AsientoRandom(Persona *pTMP)
+void Bus::AsientoRandom(Persona* pTMP)
 {
-    string numeroAsiento = "";
-    string letraAsiento = "";
-    bool cond = 1; 
+    string * numeroAsiento = new string("");
+    string * letraAsiento = new string("");
+    bool * cond = new bool(1);
     if (getCantidadDisponible() <= 5)
     {
         for (int i = 1; i <= busAsientos.getSize() && cond; i++)
         {
-            numeroAsiento = to_string(i);
-            letraAsiento = LugarDisponible(numeroAsiento);
-            if (letraAsiento != "")
+            *numeroAsiento = to_string(i);
+            *letraAsiento = LugarDisponible(*numeroAsiento);
+            if (*letraAsiento != "")
             {
-                cond = 0;
+                *cond = 0;
             }
         }
     }
@@ -124,24 +146,28 @@ void Bus :: AsientoRandom(Persona *pTMP)
     {
         do
         {
-            numeroAsiento = to_string(rand() % columnaAsiento);
-            letraAsiento = LugarDisponible(numeroAsiento);
-        } while (!AsientoDisponible(letraAsiento, numeroAsiento));
+            *numeroAsiento = to_string(rand() % *columnaAsiento);
+            *letraAsiento = LugarDisponible(*numeroAsiento);
+        } while (!AsientoDisponible(*letraAsiento, *numeroAsiento));
     }
-    if (cond == 1)
+    if (*cond == 1)
     {
-        posicionarAsiento(pTMP, letraAsiento, numeroAsiento);    
+        posicionarAsiento(pTMP, *letraAsiento, *numeroAsiento);
     }
+
+    delete numeroAsiento, letraAsiento, cond;
 }
 
-string Bus :: LugarDisponible(string numeroAsiento)
+string Bus::LugarDisponible(string numeroAsiento)
 {
     list<Asiento*> tmp = busAsientos.buscarListaBus(numeroAsiento);
-    for (auto *it : tmp)
+    for (auto* it : tmp)
     {
         if (it->usuarioPersona == NULL)
         {
-            return it->letraAsiento;
+            string* sTMP = new string(*(it->letraAsiento));
+            tmp.clear();
+            return *sTMP;
         }
     }
     return "";
@@ -151,10 +177,10 @@ void Bus::mostrarAsientos()
 {
     for (int i = 0; i < busAsientos.getSize(); i++)
     {
-        string numeroAsiento = to_string(i+1);
-        list<Asiento*> tmp = busAsientos.buscarListaBus(numeroAsiento);
-        for (auto *it : tmp)
-        { 
+        string * numeroAsiento = new string(to_string(i + 1));
+        list<Asiento*> tmp = busAsientos.buscarListaBus(*numeroAsiento);
+        for (auto* it : tmp)
+        {
             if (it->usuarioPersona == NULL)
             {
                 cout << "\033[92m";
@@ -163,61 +189,76 @@ void Bus::mostrarAsientos()
             {
                 cout << "\033[91m";
             }
-            
-            cout << it->letraAsiento << it->numeroAsiento << " ";
+
+            cout << *it->letraAsiento << *it->numeroAsiento << " ";
         }
+        numeroAsiento = NULL;
+        delete numeroAsiento;
+
+        tmp.clear();
+
         cout << "\n";
     }
     cout << "\033[39m	\033[49m" << "\n";
 }
 
-void Bus :: posicionarAsiento(Persona * pTMP, string letra, string numero)
+void Bus::posicionarAsiento(Persona* pTMP, string letra, string numero)
 {
     agregarPasajero();
-    Asiento * tmp = accesoAsiento(letra, numero);
+    Asiento* tmp = accesoAsiento(letra, numero);
     tmp->usuarioPersona = pTMP;
+    tmp = NULL;
+    delete tmp;
 }
 
-Asiento * Bus :: accesoAsiento(string letra, string numero)
+Asiento* Bus::accesoAsiento(string letra, string numero)
 {
-    list<Asiento*> tmp = busAsientos.buscarListaBus(numero);
-    for (auto *it : tmp)
+    list<Asiento*> tmp = busAsientos.buscarListaBus(numero); 
+    for (auto* it : tmp)
     {
-        if (it->letraAsiento == letra)
+        if (*(it->letraAsiento) == letra)
         {
-            return it;
+            Asiento * aTMP = it;
+            tmp.clear();
+            return aTMP;
         }
     }
     return NULL;
 }
 
-bool Bus :: AsientoDisponible(string letra, string numero)
+bool Bus::AsientoDisponible(string letra, string numero)
 {
-    Asiento * aTMP = accesoAsiento(letra, numero);
+    Asiento* aTMP = accesoAsiento(letra, numero);
     if (aTMP == NULL)
     {
+        aTMP = NULL;
+        delete aTMP;
         return 0;
     }
     if (aTMP->usuarioPersona == NULL)
     {
+        aTMP = NULL;
+        delete aTMP;
         return 1;
     }
+    aTMP = NULL;
+    delete aTMP;
     return 0;
 }
 
 void Bus::generarAsientos()
 {
-    for (int i = 0; i < filaAsiento; i++)
+    for (int i = 0; i < *filaAsiento; i++)
     {
-        for (int j = 0; j < columnaAsiento; j++)
+        for (int j = 0; j < *columnaAsiento; j++)
         {
-            Asiento * asientoTMP = new Asiento;
-            asientoTMP -> letraAsiento  = char(65 + j);
-            asientoTMP -> numeroAsiento = to_string(i + 1);
-            asientoTMP -> claseAsiento = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
+            Asiento* asientoTMP = new Asiento;
+            *(asientoTMP->letraAsiento) = char(65 + j);
+            *(asientoTMP->numeroAsiento) = to_string(i + 1);
+            *(asientoTMP->claseAsiento) = char((i <= 2) * 0 + (i >= 3 && i <= 6) * 1 + (i >= 7) * 2 + 65);
             asientoTMP->usuarioPersona = nullptr;
 
-            busAsientos.insertBus(asientoTMP->numeroAsiento, asientoTMP);
+            busAsientos.insertBus(*(asientoTMP->numeroAsiento), asientoTMP);
         }
     }
 }
@@ -227,14 +268,11 @@ class Camion : public VehiculoTransporte
 private:
     /* data */
 public:
-    Camion(int Origen, int Destino, int tiempoEstimado) : VehiculoTransporte(Origen,  Destino, tiempoEstimado)
+    Camion(int Origen, int Destino, int tiempoEstimado) : VehiculoTransporte(Origen, Destino, tiempoEstimado)
     {
-        setOrigen(Origen);
-        setDestino(Destino);
-        settiempoEstimado(tiempoEstimado);
         setCantidadDisponible(200);
     }
-    ~Camion(){}
+    ~Camion() {}
 };
 
 

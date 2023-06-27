@@ -3,9 +3,9 @@
 #include "../Libraries.h"
 
 //Algoritmos
-#include "../Algoritmos/NodoLista.h"
-#include "../Algoritmos/NodoArbol.h"
-#include "../Algoritmos/HashTable.h"
+//#include "../Algoritmos/NodoLista.h"
+//#include "../Algoritmos/NodoArbol.h"
+//#include "../Algoritmos/HashTable.h"
 #include "../ControladorDataSet.h"
 
 class ControladorEncomiendas: public ControladorDataSet

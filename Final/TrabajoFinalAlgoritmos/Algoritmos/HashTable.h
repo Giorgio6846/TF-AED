@@ -1,8 +1,6 @@
 #pragma once
 
 #include "../Libraries.h"
-//#include "../Persona.h"
-//#include "../Encomienda/Encomienda.h"
 
 template <class T>
 class HashTable
@@ -150,7 +148,7 @@ public:
 		return (hashVal);
 	}
 
-	list<T *> buscarListaBus(string key)
+	list<T*> buscarListaBus(string key)
 	{
 		int pos = 0;
 		pos = crearHashStringBus(key); // Obtenemos el indice de la Tabla (pos) a partir de la Funcion HASH

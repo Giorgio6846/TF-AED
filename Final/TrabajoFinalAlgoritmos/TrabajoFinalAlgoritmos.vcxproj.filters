@@ -77,5 +77,14 @@
     <ClInclude Include="Viaje\Viaje.h">
       <Filter>Archivos de encabezado\Viaje</Filter>
     </ClInclude>
+    <ClInclude Include="Encomienda\ControladorEncomiendas.h">
+      <Filter>Archivos de encabezado\Encomienda</Filter>
+    </ClInclude>
+    <ClInclude Include="Encomienda\Encomienda.h">
+      <Filter>Archivos de encabezado\Encomienda</Filter>
+    </ClInclude>
+    <ClInclude Include="Encomienda\objetoEncomienda.h">
+      <Filter>Archivos de encabezado\Encomienda</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

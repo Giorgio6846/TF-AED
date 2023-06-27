@@ -1,13 +1,17 @@
 #pragma once
 #include "Libraries.h"
+
 #include "Algoritmos/HashTable.h"
+#include "Algoritmos/Grafo.h"
+#include "Algoritmos/NodoArbol.h"
+
 #include "Encomienda/Encomienda.h"
 #include "Encomienda/objetoEncomienda.h"
-#include "Persona.h"
-#include "Algoritmos/NodoArbol.h"
-#include "VehiculoTransporte.h"
-#include "Algoritmos/Grafo.h"
+
 #include "Viaje/Viaje.h"
+
+#include "Persona.h"
+#include "VehiculoTransporte.h"
 #include "Rutas.h"
 
 class ControladorDataSet : public Rutas
@@ -108,9 +112,9 @@ public:
         int* Origen = new int(randOrigen());
         int* Destino = new int(randDestino(*Origen));
 
-        TotalRuta<Bus>* busTMP = grafoRutasV->generadorRuta(*Origen, *Destino, 1);
-        Viaje* viajeTMP = new Viaje(pTMP, busTMP);
-        asientoRandom(busTMP->rutaAlDestino, viajeTMP->getPasajero());
+        //TotalRuta<Bus>* busTMP = grafoRutasV->generadorRuta(*Origen, *Destino, 1);
+        Viaje* viajeTMP = new Viaje(pTMP, grafoRutasV->generadorRuta(*Origen, *Destino, 1));
+        asientoRandom(viajeTMP->getRutaBus()->rutaAlDestino, viajeTMP->getPasajero());
         hashTableViajes.insert(pTMP->getDocumento(), viajeTMP);
 
         delete Origen, Destino;
@@ -124,9 +128,9 @@ public:
         int* Destino = new int(randDestino(*Origen));
 
         objetoEncomienda* objeto = new objetoEncomienda();
-        TotalRuta<Camion>* camionTMP = grafoRutasE->generadorRuta(*Origen, *Destino, objeto->getPeso());
-        Encomienda* encomienda = new Encomienda(pTMP, objeto, camionTMP);
-        arbol->insertarValor(arbol, pTMP->getDocumento(), camionTMP->pesoEntero * 10);
+        //TotalRuta<Camion>* camionTMP = grafoRutasE->generadorRuta(*Origen, *Destino, objeto->getPeso());
+        Encomienda* encomienda = new Encomienda(pTMP, objeto, grafoRutasE->generadorRuta(*Origen, *Destino, objeto->getPeso()));
+        arbol->insertarValor(arbol, pTMP->getDocumento(), encomienda->getTiempoDuracion() * 10);
         hashTableEncomiendas.insert(pTMP->getDocumento(), encomienda);
 
         delete Origen, Destino;
@@ -142,6 +146,11 @@ public:
             bTMP = nlTMP->getElemento();
             bTMP -> AsientoRandom(pTMP);
         }
+        nlTMP = NULL;
+        delete nlTMP;
+
+        bTMP = NULL;
+        delete bTMP;
     }
 
 /*
@@ -187,7 +196,7 @@ public:
                 if (accesoRutaDisponible(i, j) != 0)
                 {
                     NodoLista<Bus> *listaVehiculo = NULL;
-                    for (int k = 0; k <= 3; k++)
+                    for (int k = 0; k <= 2; k++)
                     {
                         Bus *tmp = new Bus(i, j, accesoTiempoRuta(i, j));
                         listaVehiculo->push(&listaVehiculo, tmp);
@@ -213,7 +222,7 @@ public:
                 if (accesoRutaDisponible(i, j) != 0)
                 {
                     NodoLista<Camion> *listaVehiculo = NULL;
-                    for (int k = 0; k <= 3; k++)
+                    for (int k = 0; k <= 2; k++)
                     {
                         Camion *tmp = new Camion(i, j, accesoTiempoRuta(i, j));
                         listaVehiculo->push(&listaVehiculo, tmp);

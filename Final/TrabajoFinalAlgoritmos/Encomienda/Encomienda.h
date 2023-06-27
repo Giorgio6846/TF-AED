@@ -15,6 +15,8 @@ public:
     TotalRuta<Camion> * ruta;
     string codigo;
 
+
+
     Encomienda(Persona * cliente, objetoEncomienda * objeto, TotalRuta<Camion> * rutaTMP){
         this->cliente = cliente;
         this->objeto = objeto;
@@ -23,6 +25,11 @@ public:
     };
     ~Encomienda(){};
     
+    TotalRuta<Camion>* getRutaCamion() { return ruta; }
+    int getOrigenViaje() { return ruta->Origen; }
+    int getDestinoViaje() { return ruta->Destino; }
+    int getTiempoDuracion() { return ruta->pesoEntero; }
+
     string generarCodigo(){
         while (codigo.size() != 10){
             if(rand()%2 == 1){

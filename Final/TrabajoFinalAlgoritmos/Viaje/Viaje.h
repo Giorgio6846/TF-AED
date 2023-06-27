@@ -11,7 +11,7 @@ class Viaje : public Rutas
 {
 private:
     TotalRuta<Bus> *TRtmp;
-    int Precio = 0;
+    int * precio = 0;
     Persona *pasajero = new Persona;
 
 public:
@@ -19,17 +19,22 @@ public:
     Viaje(Persona *pTMP, TotalRuta<Bus> *busTmp);
     ~Viaje();
 
+    TotalRuta<Bus>* getRutaBus() { return TRtmp; }
     int getOrigenViaje() {return TRtmp->Origen;}
     int getDestinoViaje(){ return TRtmp -> Destino; }
     int getTiempoDuracion() { return TRtmp->pesoEntero;}
 
+    int getPrecio() { return *precio; }
+    void setPrecio(int Precio) { *precio = Precio; }
+
     Persona* getPasajero() { return this->pasajero; }
     void agregarPasajero();
-    void setRutaBus(TotalRuta<Bus> *busTmp) { TRtmp = busTmp; }
+    void setRutaBus(TotalRuta<Bus>* busTmp) { TRtmp = busTmp; }
     void seleccionarAsientos();
     void mostrarBuses();
-    void AsientoPersona(Persona *pTMP, Bus *busTMP);
-    void AsignacionPrecio(Bus *busTMP, string asientoletra, string asientonumero);
+    void AsientoPersona(Persona* pTMP, Bus* busTMP);
+    void AsignacionPrecio(Bus* busTMP, char claseAsiento);
+
     void informacionViaje();
 };
 
@@ -96,7 +101,7 @@ void Viaje ::seleccionarAsientos()
     cout << "El costo final del pasajero es: ";
    
     cout << pasajero->getNombre() + pasajero->getApellido();
-    cout << " S/." << Precio << "\n";
+    cout << " S/." << getPrecio() << "\n";
     cont();
 }
 
@@ -138,21 +143,21 @@ void Viaje :: AsientoPersona(Persona * pTMP, Bus * busTMP)
     } while (cond == 0);    
 
     busTMP->posicionarAsiento(pasajero,asientoletra, asientonumero);
-    AsignacionPrecio(busTMP, asientoletra, asientonumero);
+    AsignacionPrecio(busTMP, busTMP->getClaseAsiento(asientoletra,asientonumero));
 }
 
-void Viaje :: AsignacionPrecio(Bus * busTMP,string asientoletra,string asientonumero)
+void Viaje :: AsignacionPrecio(Bus * busTMP,char claseAsiento)
 {
-    switch (int(busTMP->accesoAsiento(asientoletra, asientonumero)->claseAsiento))
+    switch (int(claseAsiento))
     {
     case 65:
-        Precio = Precio + busTMP->gettiempoEstimado() * 1.3;
+        setPrecio(getPrecio() + busTMP->gettiempoEstimado() * 1.3);
         break;
     case 66:
-        Precio = Precio + busTMP->gettiempoEstimado() * 1;
+        setPrecio(getPrecio() + busTMP->gettiempoEstimado() * 1);
         break;
     case 67:
-        Precio = Precio + busTMP->gettiempoEstimado() * 0.7;
+        setPrecio(getPrecio() + busTMP->gettiempoEstimado() * 0.7);
         break;
     default:
         break;

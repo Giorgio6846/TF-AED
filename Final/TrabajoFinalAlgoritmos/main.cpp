@@ -79,12 +79,12 @@ int main()
 #if (VER == 1 || VER == 2)
 void opcionViajes(ControladorViajes *claseViaje)
 {
-    int opcionSelecionada;
+    int * opcionSelecionada = new int;
     do
     {
-        opcionSelecionada = claseViaje->menuViajes();
+        *opcionSelecionada = claseViaje->menuViajes();
 
-        switch (opcionSelecionada)
+        switch (*opcionSelecionada)
         {
         case 1:
             // Invoca la funcion de la clase para reservar el viaje
@@ -97,8 +97,9 @@ void opcionViajes(ControladorViajes *claseViaje)
         default:
             break;
         }
-    } while (opcionSelecionada != 3);
+    } while (*opcionSelecionada != 3);
     clearScreen;
+    delete opcionSelecionada;
 }
 #endif
 
