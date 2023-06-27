@@ -171,7 +171,14 @@ class ControladorEncomiendas: public ControladorDataSet
 
     void mostrarOrdenEncomiendas(){
         clearScreen;
-        arbol->imprimirEnOrden(arbol);
+        if (arbol == NULL)
+        {
+            cout << "No existen encomiendas registradas!" << endl;
+        }
+        else
+        {
+            arbol->imprimirEnOrden(arbol);
+        }
     }
 
     void agendarEncomiendaFinal()
