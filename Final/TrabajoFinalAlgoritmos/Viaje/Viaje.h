@@ -11,7 +11,7 @@ class Viaje : public Rutas
 {
 private:
     TotalRuta<Bus> *TRtmp;
-    int * precio = 0;
+    int * precio = new int(0);
     Persona *pasajero = new Persona;
 
 public:
@@ -100,8 +100,8 @@ void Viaje ::seleccionarAsientos()
 
     cout << "El costo final del pasajero es: ";
    
-    cout << pasajero->getNombre() + pasajero->getApellido();
-    cout << " S/." << getPrecio() << "\n";
+    cout << pasajero->getNombre() + " " + pasajero->getApellido();
+    cout << " S/. " << getPrecio() << "\n";
     cont();
 }
 

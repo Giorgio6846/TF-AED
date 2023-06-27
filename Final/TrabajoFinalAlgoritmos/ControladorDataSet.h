@@ -153,34 +153,7 @@ public:
         delete bTMP;
     }
 
-/*
-#if (VER == 1 || VER == 2)
-    void generacionGrafoViaje()
-    {
-        for (int i = 0; i < getSizeLugares(); i++)
-        {
-            grafoRutasV->agregarVertice(i);
-        }
 
-        for (int i = 0; i < getSizeLugares(); i++)
-        {
-            for (int j = 0; j < getSizeLugares(); j++)
-            {
-                if (accesoRutaDisponible(i, j) != 0)
-                {
-                    NodoLista<Bus> *listaBus = NULL;
-                    for (int k = 0; k <= 3; k++)
-                    {
-                        Bus *tmp = new Bus(i, j, accesoTiempoRuta(i, j));
-                        listaBus->push(&listaBus, tmp);
-                    }
-                    grafoRutasV->agregarArcoVertice(i, j, accesoTiempoRuta(i, j), listaBus);
-                }
-            }
-        }
-    }
-#endif
-*/
 #if (VER == 1 || VER == 2)
     void generacionGrafoV()
     {

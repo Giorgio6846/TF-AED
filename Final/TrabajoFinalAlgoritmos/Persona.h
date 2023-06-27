@@ -132,9 +132,10 @@ void Persona ::typeEdad()
 
 void Persona ::typeTipoDocumentoyDocumento()
 {
-    int tipoDocumentoP;
-    string documentoP;
-    bool val;
+    int *tipoDocumentoP = new int;
+    string *documentoP = new string;
+    bool *val = new bool;
+    /*
     do
     {
         cout << "Tipo de documento (1: DNI, 2: Carnet de Extranjeria & 3: Pasaporte): ";
@@ -146,85 +147,89 @@ void Persona ::typeTipoDocumentoyDocumento()
             cout << "Opcion errorea. Ingrese de nuevo el tipo de documento. \n";
         }
     } while (!(tipoDocumentoP >= 1 && tipoDocumentoP <= 3));
+    */
+    //tipoDocumento = 1;
+    this->tipoDocumento = 1;
 
-    this->tipoDocumento = tipoDocumentoP;
-
-    switch (tipoDocumentoP)
+    switch (this->tipoDocumento)
     {
     case 1:
         do
         {
             cout << "Ingrese el DNI del pasajero: ";
-            cin >> documentoP;
-            val = documentoP.size() == 8;
-            if (val)
+            cin >> *documentoP;
+            *val = (*documentoP).size() == 8;
+            if (*val)
             {
-                for (int i = 0; i < documentoP.size(); i++)
+                for (int i = 0; i < (*documentoP).size(); i++)
                 {
-                    if (!(int(documentoP[i]) >= 48 && int(documentoP[i]) <= 57))
+                    if (!(int((*documentoP)[i]) >= 48 && int((*documentoP)[i]) <= 57))
                     {
-                        val = 0;
+                        *val = 0;
                     }
                 }
             }
-            if (!val)
+            if (!(*val))
             {
                 ClearKeyboard();
                 cout << "DNI Incorrecto.\n";
             }
-        } while (!val);
+        } while (!(*val));
         break;
     case 2:
         do
         {
             cout << "Ingrese el Carnet de Extranjeria del pasajero: ";
-            cin >> documentoP;
-            val = documentoP.size() == 9;
+            cin >> *documentoP;
+            *val = (*documentoP).size() == 9;
             if (val)
             {
-                for (int i = 0; i < documentoP.size(); i++)
+                for (int i = 0; i < (*documentoP).size(); i++)
                 {
-                    if (!(int(documentoP[i]) >= 48 && int(documentoP[i]) <= 57))
+                    if (!(int((*documentoP)[i]) >= 48 && int((*documentoP)[i]) <= 57))
                     {
-                        val = 0;
+                        *val = 0;
                     }
                 }
             }
-            if (!val)
+            if (!(*val))
             {
                 ClearKeyboard();
                 cout << "Carnet de Extranjeria Incorrecta. \n";
             }
-        } while (!val);
+        } while (!(*val));
         break;
     case 3:
         do
         {
             cout << "Ingrese el Pasaporte del pasajero: ";
-            cin >> documentoP;
-            val = documentoP.size() == 8;
-            if (val)
+            cin >> (*documentoP);
+            *val = (*documentoP).size() == 8;
+            if (*val)
             {
-                for (int i = 0; i < documentoP.size(); i++)
+                for (int i = 0; i < (*documentoP).size(); i++)
                 {
-                    if (!(int(documentoP[i]) >= 48 && int(documentoP[i]) <= 57))
+                    if (!(int((*documentoP)[i]) >= 48 && int((*documentoP)[i]) <= 57))
                     {
-                        val = 0;
+                        *val = 0;
                     }
                 }
             }
-            if (!val)
+            if (!(*val))
             {
                 ClearKeyboard();
                 cout << "Pasaporte Incorrecto. \n";
             }
-        } while (!val);
+        } while (!(*val));
         break;
     default:
         break;
     }
-
-    this->documento = documentoP;
+    this->documento = *documentoP;
+    
+    delete documentoP;
+    delete val;
+    delete tipoDocumentoP;
 }
 
 void Persona ::typePersona()
