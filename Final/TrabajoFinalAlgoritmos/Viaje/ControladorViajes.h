@@ -41,7 +41,7 @@ void ControladorViajes ::reservaViaje()
     nuevaReserva -> mostrarBuses();
     nuevaReserva -> seleccionarAsientos();
 
-    hashTableViajes.insert(nuevaReserva->getPasajero()->getKey(), nuevaReserva);
+    hashTableViajes.insert(nuevaReserva->getPasajero()->getDocumento(), nuevaReserva);
 }
 
 void ControladorViajes ::reservaBusquedaViajes()

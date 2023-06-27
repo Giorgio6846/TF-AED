@@ -48,7 +48,6 @@ public:
     char getTipoDocumento() { return this->tipoDocumento; }
     string getDocumento() { return this->documento; }
     int getContador() { return this->contador; }
-    string getKey() { return this->nombre + this->apellido + this->documento; }
 
     void typePersona();
     void randomPersona();

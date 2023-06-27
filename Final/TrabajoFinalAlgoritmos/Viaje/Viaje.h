@@ -64,8 +64,8 @@ void Viaje :: agregarPasajero()
 
 void Viaje :: informacionViaje()
 {
-    cout << "Origen: " << getOrigenViaje() << "\n";
-    cout << "Origen: " << getDestinoViaje() << "\n";
+    cout << "Origen: " << getLugar(getOrigenViaje()) << "\n";
+    cout << "Destino: " << getLugar(getDestinoViaje()) << "\n";
 }
 
 void Viaje :: mostrarBuses()
@@ -100,7 +100,7 @@ void Viaje ::seleccionarAsientos()
 
     cout << "El costo final del pasajero es: ";
    
-    cout << pasajero->getNombre() + " " + pasajero->getApellido();
+    cout << pasajero->getNombre() + " " + pasajero->getApellido() + " ";
     cout << " S/. " << getPrecio() << "\n";
     cont();
 }
@@ -108,7 +108,7 @@ void Viaje ::seleccionarAsientos()
 void Viaje :: AsientoPersona(Persona * pTMP, Bus * busTMP)
 {
     cout << "Selecione el asiento para el pasajero: \n";
-    cout << pTMP->getNombre() << " " << pTMP->getApellido();
+    cout << pTMP->getNombre() + " " + pTMP->getApellido() + " ";
     
     string asientostr, asientoletra, asientonumero;
 

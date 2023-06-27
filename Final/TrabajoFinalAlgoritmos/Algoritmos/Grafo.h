@@ -378,6 +378,9 @@ private:
         TotalRuta<W> *rutaFinalNueva(R Origen, R Destino, int espacioRequerido)
         {
             TotalRuta<W> *rutaFinalNL = new TotalRuta<W>;
+            rutaFinalNL->Origen = Origen;
+            rutaFinalNL->Destino = Destino;
+
 
             NodoLista<R> * NLItmp = nullptr;
             NodoLista<W> * NLVTtmp = nullptr;
