@@ -139,7 +139,7 @@ public:
         Bus * bTMP;
         for (; nlTMP != NULL; nlTMP = nlTMP->nextElemento(nlTMP))
         {
-            bTMP = nlTMP->getElemento(nlTMP);
+            bTMP = nlTMP->getElemento();
             bTMP -> AsientoRandom(pTMP);
         }
     }

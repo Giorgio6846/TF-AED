@@ -22,7 +22,7 @@ public:
         delete next;
     }
 
-    T * getElemento(NodoLista *listaElementos){return elemento;}
+    T * getElemento(){return elemento;}
     NodoLista * nextElemento(NodoLista *lista){return lista->next;}
 
 //Listo
@@ -44,7 +44,7 @@ void duplicadoLista(NodoLista<T> ** origen, NodoLista<T> ** copia)
     NodoLista<T> *copiaTmp = NULL;
     for (; tmpO != NULL; tmpO = tmpO->nextElemento(tmpO))
     {
-        copiaTmp->append(&copiaTmp, tmpO->getElemento(tmpO));
+        copiaTmp->append(&copiaTmp, tmpO->getElemento());
     }
     *copia = copiaTmp;
 

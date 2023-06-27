@@ -71,7 +71,7 @@ void Viaje :: mostrarBuses()
     Bus * busTMP = NULL;
     for (int i = 1; nlbusTMP != NULL; nlbusTMP = nlbusTMP->nextElemento(nlbusTMP))
     {
-        busTMP = nlbusTMP -> getElemento(nlbusTMP);
+        busTMP = nlbusTMP -> getElemento();
         cout << "Bus " << i << ": " << getLugar(busTMP->getOrigen()) << " con destino a " << getLugar(busTMP->getDestino()) << "\n";
         i++;
     }
@@ -85,7 +85,7 @@ void Viaje ::seleccionarAsientos()
     for (int i = 1; nlbusTMP != NULL; nlbusTMP = nlbusTMP->nextElemento(nlbusTMP))
     {
         clearScreen;
-        busTMP = nlbusTMP->getElemento(nlbusTMP);
+        busTMP = nlbusTMP->getElemento();
         cout << "Selecione los asientos para el bus " << i << " "<< getLugar(busTMP->getOrigen()) << " con destino a " << getLugar(busTMP->getDestino()) << "\n";
         cout << "Letra A al C: Clase A; D al G: Clase B; y H al J: Clase C\n" << "El precio afecta dependiendo de la clase selecionada\n\n";
         busTMP->mostrarAsientos();

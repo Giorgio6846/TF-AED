@@ -21,35 +21,52 @@ private:
     
     class AGrafo
     {
+    private:
+        R* verticeOrigen = new R;
+        R* verticeLlegada = new R;
+
+        int* duracion = new int;
+        T* datos = new T;
     public:
-        R verticeOrigen;
-        R verticeLlegada;
-
-        int pesoLlegada;
-        T * datos;
-
-        AGrafo()
+        AGrafo(R verticeOrigen, R verticeLLegada, int duracion, T* datos)
         {
+            *(this->verticeLlegada) = verticeLLegada;
+            *(this->verticeOrigen) = verticeOrigen;
+            *(this->duracion) = duracion;
+            this->datos = datos;
         }
+        ~AGrafo()
+        {
+            delete verticeLlegada;
+            delete verticeOrigen;
+            delete duracion;
+            delete datos;
+        }
+
+        R getLlegada() { return *this->verticeLlegada; }
+        R getOrigen() { return *this->verticeOrigen; }
+        int getDuracion() { return *this->duracion; }
+        T* getDatos() { return datos; }
     };
 
     class VGrafo
     {
-    public:
-        R info;
+    private:
+        R * vertice = new R;
         NodoLista<AGrafo> * ndArcos = nullptr;
-        VGrafo()
+    public:
+
+        R getVertice() { return *vertice; };
+        NodoLista<AGrafo>* getNDArcos() { return ndArcos; };
+
+        VGrafo(R nombre = NULL)
         {
-            info = vacio;
+            *vertice = nombre;
         }
 
         void agregarArco(R llegadaVertice, int pesoLlegada, T * dato)
         {
-            AGrafo *rGraf = new AGrafo();
-            rGraf->verticeOrigen = info;
-            rGraf->verticeLlegada = llegadaVertice;
-            rGraf->pesoLlegada = pesoLlegada;
-            rGraf->datos = dato;
+            AGrafo *rGraf = new AGrafo(*vertice, llegadaVertice, pesoLlegada, dato);
 
             AGrafo *tmp = _accesoArco(llegadaVertice);
             if (tmp == nullptr)
@@ -67,9 +84,9 @@ private:
             NodoLista<AGrafo> *tmp = ndArcos;
             for (bool cond = 0; tmp != nullptr && !cond; tmp = tmp->nextElemento(tmp))
             {
-                if (tmp->getElemento(tmp)->verticeLlegada == llegada)
+                if (tmp->getElemento()->getLlegada() == llegada)
                 {
-                    return tmp->getElemento(tmp);
+                    return tmp->getElemento();
                 }
             }
             tmp = nullptr;
@@ -80,11 +97,11 @@ private:
         AGrafo *_accesoArcoPosicion(R posicion)
         {
             NodoLista<AGrafo> *tmp = ndArcos;
-            for (int contador = 0; tmp != nullptr && contador <= posicion; tmp = tmp->nextElemento(tmp))
+            for (int contador = 0; tmp != nullptr && contador <= posicion; tmp = tmp->nextElemento())
             {
                 if (contador == posicion)
                 {
-                    return tmp->getElemento(tmp);
+                    return tmp->getElemento();
                 }
                 contador++;
             }
@@ -114,8 +131,7 @@ private:
         {
             bool cond = 0;
             VGrafo *VerV = _accesoVertice(vertice);
-            VGrafo *tmpV = new VGrafo();
-            tmpV-> info = vertice;
+            VGrafo *tmpV = new VGrafo(vertice);
 
             if ( VerV == nullptr)
             {
@@ -232,11 +248,11 @@ private:
         VGrafo *_accesoVerticePosicion(R posicion)
         {
             NodoLista<VGrafo> *tmp = ndVertices;
-            for (int contador = 0; tmp != nullptr && contador <= posicion; tmp = tmp->nextElemento(tmp))
+            for (int contador = 0; tmp != nullptr && contador <= posicion; tmp = tmp->nextElemento())
             {
                 if (contador == posicion)
                 {
-                    return tmp->getElemento(tmp);
+                    return tmp->getElemento();
                 }
                 contador++;
             }
@@ -251,10 +267,10 @@ private:
 
             for (bool cond = 0; tmp != nullptr && !cond; tmp = tmp->nextElemento(tmp))
             {
-                if (tmp->getElemento(tmp)->info == vertice)
+                if (tmp->getElemento()->getVertice() == vertice)
                 {
                     cond = 1;
-                    return tmp->getElemento(tmp);
+                    return tmp->getElemento();
                 }
             }
             tmp = nullptr;
@@ -275,12 +291,12 @@ private:
             for (; TRtmp != nullptr; TRtmp = TRtmp->nextElemento(TRtmp))
             {
                 TotalRuta<W> *TRStmp = new TotalRuta<W>();
-                TRStmp = TRtmp->getElemento(TRtmp);
+                TRStmp = TRtmp->getElemento();
                 NodoLista<W> *wTmp = nullptr;
                 wTmp = TRStmp->rutaAlDestino;
                 for (; wTmp != nullptr; wTmp = wTmp->nextElemento(wTmp))
                 {
-                    TRStmp->pesoEntero = TRStmp->pesoEntero + wTmp->getElemento(wTmp)->gettiempoEstimado();
+                    TRStmp->pesoEntero = TRStmp->pesoEntero + wTmp->getElemento()->gettiempoEstimado();
                 }
 
                 TRStmp = nullptr;
@@ -306,7 +322,7 @@ private:
 
             for (; tmpVI != nullptr; tmpVI = tmpVI->nextElemento(tmpVI))
             {
-                    if (*(tmpVI->getElemento(tmpVI)) == Origen)
+                    if (*(tmpVI->getElemento()) == Origen)
                     {
                         tmpVI = nullptr;
                         delete tmpVI;
@@ -375,9 +391,9 @@ private:
             NodoLista<TotalRuta<W>> *rutaFinalNLtmp = rutaFinalNL;
             for (; rutaFinalNLtmp != nullptr; rutaFinalNLtmp = rutaFinalNLtmp->nextElemento(rutaFinalNLtmp))
             {
-                if (rutaFinalNLtmp->getElemento(rutaFinalNLtmp)->pesoEntero < TRtmp->pesoEntero)
+                if (rutaFinalNLtmp->getElemento()->pesoEntero < TRtmp->pesoEntero)
                 {
-                    TRtmp = rutaFinalNLtmp->getElemento(rutaFinalNLtmp);
+                    TRtmp = rutaFinalNLtmp->getElemento();
                     TRtmp->Origen=Origen;
                     TRtmp->Destino = Destino;
                 }        
@@ -404,19 +420,19 @@ private:
             }
             
             tmpVI = verticesIdos;
-            NodoLista<AGrafo> * tmpNdAgrafo = _accesoVertice(Origen)->ndArcos;
+            NodoLista<AGrafo> * tmpNdAgrafo = _accesoVertice(Origen)->getNDArcos();
 
             for(; tmpNdAgrafo != nullptr; tmpNdAgrafo = tmpNdAgrafo ->nextElemento(tmpNdAgrafo))
             {
                 // Si existe un bus disponible accede al arco
-                if (verificacionVehiculo(tmpNdAgrafo->getElemento(tmpNdAgrafo), espacioDisponible) != nullptr)
+                if (verificacionVehiculo(tmpNdAgrafo->getElemento(), espacioDisponible) != nullptr)
                 {
                     NodoLista<W> *busTMP;
                     busTMP->duplicadoLista(&listaVehiculo, &busTMP);
                     //NodoLista<W>* busTMP = new NodoLista<W>;
                     //busTMP = listaVehiculo;
-                    busTMP->append(&busTMP, verificacionVehiculo(tmpNdAgrafo->getElemento(tmpNdAgrafo), espacioDisponible));
-                    rutaArco(tmpNdAgrafo->getElemento(tmpNdAgrafo), Destino, espacioDisponible, tmpVI, busTMP, rutasTotales);
+                    busTMP->append(&busTMP, verificacionVehiculo(tmpNdAgrafo->getElemento(), espacioDisponible));
+                    rutaArco(tmpNdAgrafo->getElemento(), Destino, espacioDisponible, tmpVI, busTMP, rutasTotales);
 
                     busTMP = nullptr;
                     delete busTMP;
@@ -441,7 +457,7 @@ private:
             //NodoLista<W>* listaVehiculotmp = new NodoLista<W>;
             //listaVehiculotmp = listaVehiculo;
 
-            if (tmpArco->verticeLlegada == DestinoFinal)
+            if (tmpArco->getLlegada() == DestinoFinal)
             {
                 TotalRuta<W> *tmpTR = new TotalRuta<W>;
                 tmpTR->rutaAlDestino = listaVehiculotmp;
@@ -454,9 +470,9 @@ private:
                 return;
             }
 
-            if (!verticeVisitado(ArcoTMP->verticeLlegada, verticesIdos))
+            if (!verticeVisitado(ArcoTMP->getLlegada(), verticesIdos))
             {
-                rutaVertice(tmpArco->verticeLlegada, DestinoFinal, espacioDisponible, verticesIdos, listaVehiculotmp, rutasTotales);
+                rutaVertice(tmpArco->getLlegada(), DestinoFinal, espacioDisponible, verticesIdos, listaVehiculotmp, rutasTotales);
             }
 
             tmpArco = nullptr;
@@ -467,12 +483,12 @@ private:
 
         W *verificacionVehiculo(AGrafo *tmpArco, int espacioDisponible)
         {
-            T *tmpDato = tmpArco->datos;
+            T *tmpDato = tmpArco->getDatos();
             for (; tmpDato != nullptr; tmpDato = tmpDato->nextElemento(tmpDato))
             {
-                    if (tmpDato->getElemento(tmpDato)->getCantidadDisponible() >= espacioDisponible)
+                    if (tmpDato->getElemento()->getCantidadDisponible() >= espacioDisponible)
                     {
-                        return tmpDato->getElemento(tmpDato);
+                        return tmpDato->getElemento();
                     }
             }
             tmpDato = nullptr;
@@ -485,7 +501,7 @@ private:
             NodoLista<W> * nlZTMP = nlZ;
             for (; nlZTMP != nullptr; nlZTMP = nlZTMP->nextElemento(nlZTMP))
             {
-                if (!(nlZTMP->getElemento(nlZTMP)->getCantidadDisponible() >= espacioDisponible))
+                if (!(nlZTMP->getElemento()->getCantidadDisponible() >= espacioDisponible))
                 {
                     nlZTMP = nullptr;
                     delete nlZTMP;
