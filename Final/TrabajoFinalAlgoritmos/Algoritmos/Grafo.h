@@ -84,7 +84,10 @@ private:
             {
                 if (tmp->getElemento()->getLlegada() == llegada)
                 {
-                    return tmp->getElemento();
+                    AGrafo* aTMP = tmp->getElemento();
+                    aTMP = NULL;
+                    delete aTMP;
+                    return aTMP;
                 }
             }
             tmp = nullptr;
@@ -99,7 +102,10 @@ private:
             {
                 if (contador == posicion)
                 {
-                    return tmp->getElemento();
+                    AGrafo* aTMP = tmp->getElemento();
+                    aTMP = NULL;
+                    delete aTMP;
+                    return aTMP;
                 }
                 contador++;
             }

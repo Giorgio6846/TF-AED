@@ -64,7 +64,9 @@ NodoLista<T> * duplicadoLista(NodoLista<T> * original)
 //Listo
 void appendDir(NodoLista<T>** lista, T* objeto)
 {
-    NodoLista<T>* nuevoNodo = new NodoLista<T>();
+    NodoLista<T>* nuevoNodo = new NodoLista<T>;
+    //NodoLista<T>* nuevoNodo;
+
     nuevoNodo->elemento = objeto;
     nuevoNodo->next = *lista;
 
